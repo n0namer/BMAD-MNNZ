@@ -5,7 +5,8 @@
 !_bmad/
 !_bmad/**
 !README.md
-!.clinerules
+!.clinerules/
+!.clinerules/**
 
 # Also don't ignore .gitignore itself
 !.gitignore
