@@ -4,6 +4,7 @@
 # But don't ignore the _bmad directory and its contents
 !_bmad/
 !_bmad/**
+!README.md
 
 # Also don't ignore .gitignore itself
 !.gitignore
