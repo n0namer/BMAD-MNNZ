@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# But don't ignore the _bmad directory and its contents
+!_bmad/
+!_bmad/**
+
+# Also don't ignore .gitignore itself
+!.gitignore
