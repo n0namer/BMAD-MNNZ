@@ -7,6 +7,7 @@
 !README.md
 !.clinerules/
 !.clinerules/**
+!folder_structure.md
 
 # Also don't ignore .gitignore itself
 !.gitignore
