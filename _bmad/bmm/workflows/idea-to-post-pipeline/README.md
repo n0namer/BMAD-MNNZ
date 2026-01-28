@@ -1,14 +1,9 @@
----
-name: 'idea-to-post-pipeline'
-description: 'Launch idea-to-post-pipeline workflow with 4 modes: CREATE (collaborative creation), EDIT (post improvement), VALIDATE (quality assurance), YOLO (full automation)'
----
-
 # 🚀 Idea-to-Post Pipeline
 
-**Location:** `_bmad/bmb/workflows/idea-to-post-pipeline/`
+**Location:** `_bmad/bmm/workflows/idea-to-post-pipeline/`
 **Quality Score:** 91/100 (A-)
 **Status:** Production Ready
-**Module:** BMB (BMAD Builder)
+**Module:** BMM (BMAD Modular)
 
 ---
 
@@ -43,22 +38,16 @@ description: 'Launch idea-to-post-pipeline workflow with 4 modes: CREATE (collab
 
 ## 🎯 Quick Start
 
-**PowerShell (Windows):**
-```powershell
-.\run-idea-to-post-pipeline.ps1
-
-# With mode selection:
-.\run-idea-to-post-pipeline.ps1 -Mode yolo
-.\run-idea-to-post-pipeline.ps1 -Mode create
-.\run-idea-to-post-pipeline.ps1 -Mode edit
-.\run-idea-to-post-pipeline.ps1 -Mode validate
+**Claude Command:**
+```
+/bmad-flows-idea-to-post
 ```
 
-**Available modes:**
-- `create` — Collaborative content creation (default)
-- `edit` — Post improvement & refinement
-- `validate` — Quality assurance & batch validation
-- `yolo` — 100% full automation
+**Available modes (select in interactive menu):**
+- `[1]` — CREATE: Collaborative content creation (default)
+- `[2]` — EDIT: Post improvement & refinement
+- `[3]` — VALIDATE: Quality assurance & batch validation
+- `[4]` — YOLO: 100% full automation
 
 ---
 
@@ -180,20 +169,10 @@ idea-to-post-pipeline/
 
 ---
 
-## 📞 Support & Documentation
+## 📞 More Information
 
-**Full documentation:** `WORKFLOW-REGISTRATION-COMPLETE.md`
-**Quick start guide:** `БЫСТРЫЙ-СТАРТ-idea-to-post.md`
-**Registration details:** `WORKFLOW-INTEGRATION-SUCCESS.txt`
-
----
-
-## 🚀 Get Started
-
-1. Run: `.\run-idea-to-post-pipeline.ps1`
-2. Select a mode (create/edit/validate/yolo)
-3. Follow the workflow steps
-4. Get results!
+**Workflow Main File:** `workflow.md` - Configuration and main entry point
+**Related Docs:** Check the `/data/` folder for templates, checklists, and reference materials
 
 ---
 

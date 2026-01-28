@@ -1,0 +1,81 @@
+---
+name: "idea-to-post-pipeline-file-generation"
+description: "Generate all remaining 68 BMAD workflow files using Claude Flow"
+version: "1.0"
+template: true
+config_source: "{project-root}/_bmad/bmm/config.yaml"
+default_output_file: "{output_folder}/workflow-generation-log.md"
+
+instructions:
+  - step: 1
+    title: "WORKER 1: Generate CREATE Mode Files (13 files)"
+    action: |
+      Generate all CREATE Mode completion files:
+      - C-04 Search Posts: 3 files (search-criteria, results, actions)
+      - C-05 Edit Post: 4 files (select-post, improvements, apply-edits, finalize)
+      - C-06 Merge Posts: 4 files (select-posts, merge-strategy, generate, save)
+      - C-08 Manage Base: 2 files (backup, maintenance)
+
+      Path: mode-c/
+      Template: Follow C-01/C-02/C-03/C-07 patterns
+      Output: 13 files created
+    template-output: true
+
+  - step: 2
+    title: "WORKER 2: Generate EDIT Mode Files (24 files)"
+    action: |
+      Generate all EDIT Mode sub-modes:
+      - E-01 through E-08 (8 sub-modes)
+      - Each: 3 files (a-load/select, b-improvements, c-apply/finalize)
+      - Pattern: Improve specific aspect (hook, CTA, flow, copy, tone, batch, bulk, undo)
+
+      Path: mode-e/
+      Output: 24 files created
+    template-output: true
+
+  - step: 3
+    title: "WORKER 3: Generate VALIDATE Mode Files (24 files)"
+    action: |
+      Generate all VALIDATE Mode sub-modes:
+      - V-01 through V-08 (8 sub-modes)
+      - Each: 3 files (a-load, b-checks, c-report/results)
+      - Pattern: Quality checks (quality, CTR, consistency, copy, engagement, reports, standards, compliance)
+
+      Path: mode-v/
+      Output: 24 files created
+    template-output: true
+
+  - step: 4
+    title: "WORKER 4: Generate Subprocess Files (7 files)"
+    action: |
+      Generate all subprocess orchestration files:
+      - subprocess-parallel-research.md
+      - subprocess-parallel-write.md
+      - subprocess-batch-validation.md
+      - subprocess-auto-fix.md
+      - subprocess-variant-generation.md
+      - subprocess-parallel-execute.md
+      - subprocess-metrics-aggregation.md
+
+      Path: subprocesses/
+      Output: 7 files created
+    template-output: true
+
+  - step: 5
+    title: "Verification & Summary"
+    action: |
+      Verify all files:
+      - Total files: 38 (previously created) + 68 (new) = 106 files
+      - BMAD compliance: 100%
+      - All paths correct: YES
+      - All file writes successful: YES
+
+      Generate manifest with all file paths and verification status.
+    template-output: true
+
+validation:
+  - rule: "All files must follow BMAD frontmatter standard"
+  - rule: "All Russian UI content, English metadata"
+  - rule: "All files 200-400 lines (concise but complete)"
+  - rule: "All menu patterns: [A] Advanced [P] Party [M] Back [?] Help"
+  - rule: "All nextStepFile references valid"

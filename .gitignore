@@ -9,5 +9,7 @@
 !.clinerules/**
 !folder_structure.md
 
+.claude\*
+
 # Also don't ignore .gitignore itself
 !.gitignore

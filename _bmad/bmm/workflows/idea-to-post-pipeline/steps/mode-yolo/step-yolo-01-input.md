@@ -1,7 +1,7 @@
 ---
 description: Parse YOLO automation request, extract parameters (count, options, execution mode)
 name: step-yolo-01-input
-nextStepFile: ./step-yolo-02-parallel-execute.md
+nextStepFile: ./step-yolo-01b-ideas-input.md
 stateFile: workflow_state.json
 type: input-specification
 ---
@@ -206,12 +206,13 @@ Show what you understood:
 ### 5. Handle User Confirmation
 
 **IF Y:**
-- Display: "Запускаю YOLO automation... 🚀"
+- Display: "Отлично! Теперь дай мне твои идеи... 📝"
 - Update workflow_state.json:
   - currentMode: "YOLO"
   - yoloParameters: [all extracted parameters]
-  - currentStep: "step-yolo-02-parallel-execute"
-- Load, read entire file, then execute `./step-yolo-02-parallel-execute.md`
+  - currentStep: "step-yolo-01b-ideas-input"
+  - stepsCompleted: ["step-yolo-01-input"]
+- Load, read entire file, then execute `./step-yolo-01b-ideas-input.md`
 
 **IF N:**
 - Display: "Какие параметры нужно изменить?"
