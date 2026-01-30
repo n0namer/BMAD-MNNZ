@@ -192,7 +192,7 @@ id, original_idea_id, ..., pain_points_json
 Load, read entire file, then execute `./c-03a-select-idea.md`
 
 **[A] ANGLES:**
-Load, read entire file, then execute `./step-c-02d-results.md`
+Load, read entire file, then execute `./c-02d-results.md`
 
 **[M] Back to MENU:**
 Load `./c-00-menu.md`

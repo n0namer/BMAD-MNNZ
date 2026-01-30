@@ -239,7 +239,7 @@ This step will:
 
   [R] RESEARCH — Исследуй эту идею (найти углы)
   [A] ADD MORE — Добавь ещё идею
-  [M] Back to CREATE MENU — Другие операции
+  [M] Back to MENU — Другие операции
 
 ═══════════════════════════════════════════════════════════════
 ```
@@ -250,7 +250,7 @@ Load, read entire file, then execute `./c-02a-load-ideas.md`
 **[A] ADD MORE:**
 Return to step 1 (request new idea)
 
-**[M] Back to CREATE MENU:**
+**[M] Back to MENU:**
 Load `./c-00-menu.md`
 
 ---

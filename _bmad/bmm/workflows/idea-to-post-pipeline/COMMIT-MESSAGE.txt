@@ -1,0 +1,55 @@
+feat: implement CSV schema updates for idea-to-post pipeline
+
+Implement missing CSV schema columns and database infrastructure for
+[R]outine mode and user preference filtering.
+
+CHANGES:
+- Add idea_metadata column to ideas_inbox_template.csv (JSON, optional)
+  * Stores visual_context, tools_used, demonstrated_result
+  * Supports [R]outine mode visual context enhancement
+  * Backfilled with NULL for backward compatibility
+
+- Add pain_points_json column to ideas_research_template.csv (JSON, optional)
+  * Maps pain points to each research angle
+  * Enables emotional trigger mapping for content generation
+  * Backfilled with NULL for backward compatibility
+
+- Create user_preferences directory structure
+  * New path: _bmad/bmm/workflows/idea-to-post-pipeline/data/user_preferences/
+
+- Create offer_filter.csv with user preference defaults
+  * Defines acceptable service/product offer types
+  * Includes: training, setup, templates, consulting, full_dev
+  * Used for recommendation filtering in [R]outine mode
+
+FILES MODIFIED:
+- _bmad/bmm/workflows/idea-to-post-pipeline/data/csv-templates/ideas_inbox_template.csv
+- _bmad/bmm/workflows/idea-to-post-pipeline/templates/csv/ideas_inbox_template.csv
+- _bmad/bmm/workflows/idea-to-post-pipeline/data/csv-templates/ideas_research_template.csv
+- _bmad/bmm/workflows/idea-to-post-pipeline/templates/csv/ideas_research_template.csv
+
+FILES CREATED:
+- _bmad/bmm/workflows/idea-to-post-pipeline/data/user_preferences/offer_filter.csv
+- _bmad/bmm/workflows/idea-to-post-pipeline/CSV-SCHEMA-UPDATE-SUMMARY.md
+- _bmad/bmm/workflows/idea-to-post-pipeline/CSV-SCHEMA-SPECIFICATIONS.md
+
+BACKWARD COMPATIBILITY:
+✓ All new columns are optional (NULL-compatible)
+✓ Existing CSV parsers continue to work unchanged
+✓ No data migration required
+✓ New columns accept empty values gracefully
+
+TESTING:
+✓ CSV format validated (proper quoting, escaping)
+✓ UTF-8 encoding preserved (Cyrillic text)
+✓ Directory structure created successfully
+✓ File syntax checks passed
+✓ Templates synchronized across locations
+
+SPECIFICATIONS PROVIDED:
+- Complete JSON schema definitions
+- Python parsing logic examples
+- Integration points in workflow modes
+- Error handling patterns
+- Performance optimization guidelines
+- Migration and testing checklist
