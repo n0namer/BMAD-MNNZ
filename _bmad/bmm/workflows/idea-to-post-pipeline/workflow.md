@@ -3,14 +3,17 @@ name: idea-to-post-pipeline
 description: |
   Comprehensive Telegram post generation system:
   CREATE ideas → RESEARCH → WRITE posts → EDIT → VALIDATE → YOLO (full automation)
+  + CONTENT MACHINE: Transform routine demonstrations into native sales content
 
-  4 operational modes: CREATE (collaborative content creation), EDIT (post improvement),
-  VALIDATE (quality assurance), YOLO (100% automation with parallel execution & self-validation)
+  5 operational modes: CREATE (collaborative content creation), EDIT (post improvement),
+  VALIDATE (quality assurance), YOLO (100% automation with parallel execution & self-validation),
+  CONTENT MACHINE (routine→pain→offer→post pipeline)
 
   Continuable multi-session workflow with state persistence, subprocess optimization (100x speedup),
   and intelligent feedback loops connecting all modes.
 
   MVP: 3 ideas → 9 posts in 3-5 minutes with YOLO mode. Traditional: 6-8 hours.
+  Content Machine: Screenshot + description → 2-3 native sales posts in minutes.
 
 web_bundle: false
 version: 1.0
@@ -59,6 +62,55 @@ status: active
     ├─ Includes: Parallel research, writing, validation, variants, auto-fix
     └─ Time: 3-5 minutes (vs 6-8 hours manual)
 ```
+
+---
+
+## 🎯 CONTENT MACHINE PIPELINE (New!)
+
+### Vision
+Transform routine demonstrations into native sales content through automated pain-point discovery and offer generation.
+
+### Pipeline Stages
+
+**Stage 1: INPUT — Routine Demonstration**
+- User provides: Screenshot + description of what they're doing
+- Examples: "Generated 80 docs with BMAD", "ClaudeFlow consilium processing tasks", "Programming robot with agent schemas"
+
+**Stage 2: PAIN GENERATION — Entrepreneur Problems**
+- System auto-generates business pains this routine addresses:
+  - Slow document processing
+  - No described processes = can't sell business
+  - Dependency on irreplaceable employees
+  - No experts in staff (lawyers, marketers, analysts)
+  - Scaling requires hiring, not automating
+
+**Stage 3: PRODUCT GENERATION — Offers On-the-Fly**
+- System generates potential products/services (NOT from preset list):
+  - Training/mentorship ("I'll teach you to use these tools")
+  - Process setup ("I'll build this workflow for you in N days")
+  - Templates/methodologies ("I'll give you my templates")
+  - Consulting ("We'll extract processes from your head")
+
+**Stage 4: FILTER — "Am I Willing?"**
+- User marks which offers they're OK with:
+  - ✅ Training/teaching — YES
+  - ✅ Setup/consulting — YES
+  - ❌ Full product development — NO (don't want to do this)
+- System remembers preferences for future runs
+
+**Stage 5: OUTPUT — Post Generation**
+- Frameworks used:
+  - **Show Your Work** (Austin Kleon): Process over product
+  - **PAS** (Problem-Agitate-Solution): Pain → Amplify → Solve
+  - **Hook-Story-Offer**: Attention → Narrative → CTA
+  - **Behind-the-Scenes**: Authentic work demonstrations
+- Output: 2-3 Telegram post variants with soft CTAs
+
+### Key Principles
+- No fake cases — demo IS the proof
+- Offers invented on-the-fly based on demonstrated routine
+- Filter prevents unwanted offers
+- Native selling through demonstration, not hard pitches
 
 ---
 
@@ -182,44 +234,53 @@ Load module config from: `_bmad/bmb/config.yaml`
 - document_output_language: "Russian"
 
 ### First Step Execution
-Load, read fully, then execute: `./steps/step-01-init.md` to begin workflow.
+Load, read fully, then execute: `./step-01-init.md` to begin workflow.
 
 ---
 
 ## 📋 STEP FILE ORGANIZATION
 
 ```
-steps/
+idea-to-post-pipeline/
+├── workflow.md                  ← This file (workflow entry point)
+├── step-00-menu.md              ← Main menu (mode selection)
 ├── step-01-init.md              ← Welcome + continuation check
 ├── step-01b-continue.md         ← Resume session from saved state
-├── step-00-menu.md              ← Main menu (mode selection)
 │
-├── mode-c-01-add-idea/
-├── mode-c-02-research/
-├── mode-c-03-write-post/
-├── mode-c-04-search-post/
-├── mode-c-05-edit-post/
-├── mode-c-06-merge-posts/
-├── mode-c-07-analytics/
-├── mode-c-08-manage/
+├── steps-c/                     ← CREATE mode (flat structure)
+│   ├── c-00-menu.md             ← CREATE mode hub
+│   ├── c-01-add-idea.md
+│   ├── c-02a-load-ideas.md
+│   ├── c-02b-select-idea.md
+│   ├── c-02c-research.md
+│   ├── c-02d-results.md
+│   ├── c-03a-select-idea.md
+│   ├── c-03b-select-angle.md
+│   ├── c-03c-draft.md
+│   ├── c-03d-variants.md
+│   ├── c-03e-finalize.md
+│   └── ... (additional CREATE steps)
 │
-├── mode-e-00-edit-menu.md       ← EDIT mode hub (future)
-├── mode-e-01-bulk-edit/ ... [24 files total]
+├── steps-e/                     ← EDIT mode (flat structure)
+│   ├── e-00-menu.md             ← EDIT mode hub
+│   └── ... (EDIT mode steps)
 │
-├── mode-v-00-validate-menu.md   ← VALIDATE mode hub (future)
-├── mode-v-01-quality-check/ ... [24 files total]
+├── steps-v/                     ← VALIDATE mode (flat structure)
+│   ├── v-00-menu.md             ← VALIDATE mode hub
+│   └── ... (VALIDATE mode steps)
 │
-└── mode-yolo/                   ← YOLO automation mode
-    ├── step-yolo-01-input.md
-    ├── step-yolo-02-parallel-execute.md
-    ├── step-yolo-03-self-check.md
-    ├── step-yolo-04-auto-improve.md
-    ├── step-yolo-05-variants.md
-    └── step-yolo-06-summary.md
+└── steps-yolo/                  ← YOLO automation mode (flat structure)
+    ├── yolo-01-input.md
+    ├── yolo-01b-ideas-input.md
+    ├── yolo-02-parallel-execute.md
+    ├── yolo-03-self-check.md
+    ├── yolo-04-auto-improve.md
+    ├── yolo-05-variants.md
+    └── yolo-06-summary.md
 ```
 
 ---
 
 ## 🚀 NEXT ACTION
 
-Load, read the full file, and execute `./steps/step-01-init.md` to begin the workflow.
+Load, read the full file, and execute `./step-01-init.md` to begin the workflow.

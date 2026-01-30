@@ -1,0 +1,11 @@
+id,angle_name,category,description,hook_type,psychology,ctr_potential,difficulty,use_frequency,effectiveness_score,best_for
+1,Экономия времени,value,"Фокус на том сколько времени даёт решение",urgency,Loss aversion,4.3,easy,high,92,"SaaS, automation, tools"
+2,Масштабирование,growth,"Как увеличить результаты без дополнительных ресурсов",curiosity,Achievement,4.1,medium,high,88,"Personal brand, business growth"
+3,Качество vs скорость,tradeoff,"Развенчание мифа что быстро = плохо",pattern-interrupt,Social proof,3.9,medium,medium,82,"Content creation, AI tools"
+4,Психология urgency,psychology,"Почему urgency работает в копирайтинге",educational,Knowledge,3.8,hard,low,85,"Copywriting education"
+5,Social proof,credibility,"Кто успешно использует это решение",social-proof,Trust,4.2,easy,high,89,"SaaS, courses, communities"
+6,Curiosity gap,engagement,"Что ты не знаешь про эту тему",mystery,Curiosity,4.6,hard,medium,91,"Lifestyle, insights, advice"
+7,Emotional pain,emotional,"Фокус на боли и разочарованиях читателя",emotional,Empathy,4.4,medium,high,90,"Transformation, coaching"
+8,Specificity,trust,"Точные числа и факты вместо общих слов",logical,Credibility,3.7,medium,medium,83,"B2B, analytics, data"
+9,Before-after transformation,results,"Визуальное или описательное преобразование",results,Hope,4.3,easy,high,91,"Fitness, productivity, finance"
+10,Contrarian view,bold,"Противоположное мнение от mainstream",pattern-interrupt,Intellectual,4.0,hard,low,84,"Thought leadership, innovation"
