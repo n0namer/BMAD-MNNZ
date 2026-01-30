@@ -1,10 +1,18 @@
 ---
-stepId: c-03b2
-stepType: automated
-stepName: Генерация Офферов On-the-Fly (Content Machine Stage 3)
-estimatedMinutes: 1
+name: step-c-03b2-offer-generation
+description: Automatically generate 2-4 offers that logically connect to the demonstrated routine, selected angle, and entrepreneur pain points. Generated offers are embedded in post drafts.
+type: automated
 nextStepFile: ./c-03c-draft.md
 ---
+
+<!-- METADATA
+   Russian Title: Генерация Офферов On-the-Fly (Content Machine Stage 3)
+   Estimated Time: ~1 minute
+   Trigger: Only if content_type == "demo"
+   Input: routine (from c-01), pain_points (from c-02c), selected_angle (from c-03b), offer_filter (from c-03b1)
+   Output: generated_offers saved to workflow_state.json
+   Stage: Content Machine Stage 3 -->
+
 
 # Step C-03b2: Генерация Офферов (Content Machine Stage 3)
 

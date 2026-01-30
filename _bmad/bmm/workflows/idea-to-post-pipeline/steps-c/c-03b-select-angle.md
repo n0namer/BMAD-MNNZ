@@ -1,9 +1,15 @@
 ---
-description: User selects which angle (from research) to use for the post
 name: step-c-03b-select-angle
-nextStepFile: ./c-03b1-offer-check.md (for demo) OR ./c-03c-draft.md (for normal)
+description: User selects which angle (from research) to use for the post
 type: selection
+nextStepFile: ./c-03b1-offer-check.md
 ---
+
+<!-- ROUTING NOTE: Conditional routing based on content_type
+   IF content_type == "demo": execute ./c-03b1-offer-check.md
+   ELSE (content_type != "demo"): execute ./c-03c-draft.md
+   See EXECUTION section for conditional routing logic -->
+
 
 # CREATE C-03: Write Post - Select Angle
 

@@ -1,10 +1,8 @@
 ---
-description: Generate 3 draft post variations based on selected angle
 name: step-c-03c-draft
-nextStepFile: ./c-03d-variants.md
+description: Generate 3 draft post variations based on selected angle
 type: content-generation
-Дай feedback на все варианты: 
-Например: 
+nextStepFile: ./c-03d-variants.md
 ---
 
 ## NEXT STEP
@@ -252,7 +250,7 @@ Quality score: 85/100 | CTR potential: 3.9%
 [1-3] SELECT DRAFT — Выбрать понравившийся вариант
 [F] FEEDBACK — Дать feedback на все варианты
 [G] GENERATE NEW — Создать новые варианты
-[V] VIEW FULL — Показать полные версии (250/100 chars)
+[V] VIEW FULL — Показать полные версии (500/250/100 chars)
 [M] Back to MENU
 
 ═════════════════════════════════════════════════════════════════
@@ -294,7 +292,7 @@ Quality score: 85/100 | CTR potential: 3.9%
 [1-6] SELECT DRAFT — Выбрать понравившийся вариант
 [F] FEEDBACK — Дать feedback на все варианты
 [G] GENERATE NEW — Создать новые варианты
-[V] VIEW FULL — Показать полные версии (250/100 chars)
+[V] VIEW FULL — Показать полные версии (500/250/100 chars)
 [M] Back to MENU
 
 ═════════════════════════════════════════════════════════════════
@@ -311,7 +309,7 @@ Post metadata:
 
 Переходим к генерации дополнительных вариантов...
 ```
-Load, read entire file, then execute `./step-c-03d-variants.md` with selected draft and variant_of info
+Load, read entire file, then execute `./c-03d-variants.md` with selected draft and variant_of info
 
 **[F] FEEDBACK:**
 ```

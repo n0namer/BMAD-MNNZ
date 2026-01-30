@@ -1,10 +1,17 @@
 ---
-stepId: c-03b1
-stepType: user-input
-stepName: Фильтр Офферов — "Мне Не Лень?" (Content Machine Stage 4)
-estimatedMinutes: 2
+name: step-c-03b1-offer-check
+description: Filter and configure which offer types (training, setup, templates, consulting, full_dev) you're willing to sell. One-time profile setup saved for all future demo ideas.
+type: user-input
 nextStepFile: ./c-03b2-offer-generation.md
 ---
+
+<!-- METADATA
+   Russian Title: Фильтр Офферов — "Мне Не Лень?" (Content Machine Stage 4)
+   Estimated Time: ~2 minutes
+   Trigger: Only if content_type == "demo"
+   Output: offer_filter.csv in user_preferences/
+   Stage: Content Machine Stage 4 -->
+
 
 # Step C-03b1: Фильтр Офферов (Content Machine Stage 4)
 

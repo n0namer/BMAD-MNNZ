@@ -1,14 +1,16 @@
 ---
-Location: posts_content.csv
-Post ID: post_001 [assigned]
-Save to posts_content.csv, then proceed: 
-Status: SAVED (draft, not published)
-description: Final approval of post and save to database
 name: step-c-03e-finalize
-nextStepFile: ./c-00-menu.md
+description: Final approval of post and save to database
 type: finalization
-Варианты сохранены: 
+nextStepFile: ./c-00-menu.md
 ---
+
+<!-- STORAGE NOTE: Post data saved to posts_content.csv
+   Fields: id, research_id, angle_used, publish_date, platform, post_title_short,
+           content_500_chars, content_250_chars, content_100_chars, quality_score,
+           ctr_potential, engagement_score, status, notes
+   Status for draft: SAVED (draft, not published) -->
+
 
 ## SAVED DATA
 
