@@ -1,6 +1,10 @@
 ---
-name: 'workflow'
 description: 'Create structured standalone workflows using markdown-based step architecture (tri-modal: create, validate, edit)'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmb/workflows/workflow/workflow.md, READ its entire contents and follow its directions exactly!
+# workflow
+
+Read the entire workflow file at {project-root}/_bmad/bmb/workflows/workflow/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

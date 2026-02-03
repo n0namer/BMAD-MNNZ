@@ -1,6 +1,10 @@
 ---
-name: 'create-game-brief'
 description: 'Creates a comprehensive Game Brief through collaborative step-by-step discovery to capture game vision before detailed design.'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmgd/workflows/1-preproduction/game-brief/workflow.md, READ its entire contents and follow its directions exactly!
+# create-game-brief
+
+Read the entire workflow file at {project-root}/_bmad/bmgd/workflows/1-preproduction/game-brief/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

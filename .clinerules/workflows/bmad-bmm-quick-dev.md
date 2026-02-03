@@ -1,6 +1,10 @@
 ---
-name: 'quick-dev'
 description: 'Flexible development - execute tech-specs OR direct instructions with optional planning.'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmm/workflows/bmad-quick-flow/quick-dev/workflow.md, READ its entire contents and follow its directions exactly!
+# quick-dev
+
+Read the entire workflow file at {project-root}/_bmad/bmm/workflows/bmad-quick-flow/quick-dev/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

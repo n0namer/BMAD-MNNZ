@@ -1,0 +1,402 @@
+---
+# OFFERS CHEAT SHEET - One-Page Reference
+# Content Machine Pipeline Service Offerings
+# Date: January 30, 2026
+
+quick_facts:
+  total_offers: 4
+  revenue_year_1: "$200-300K"
+  revenue_year_2: "$500-800K"
+  fastest_to_revenue: "Offer 2 (Services) - 4 weeks"
+  easiest_to_launch: "Offer 4 (Templates) - 2 weeks"
+  highest_ceiling: "Offer 3 (SaaS) - unlimited"
+  recommended_start: "Offers 2 + 4 simultaneously"
+
+offer_1_training:
+  name: "Parallel Workflow Orchestration Training"
+  tagline: "Teach engineering teams how to build 8-agent systems"
+
+  at_a_glance:
+    time_to_revenue: "4-6 weeks"
+    monthly_revenue: "$3-5K (early), $10-15K (mature)"
+    year_1_total: "$45-50K"
+    year_2_total: "$120-150K"
+    year_3_total: "$200K+"
+
+  format:
+    - "5-day intensive bootcamp"
+    - "30-day certification program"
+    - "Self-paced video course"
+    - "Corporate training for teams"
+
+  pricing:
+    bootcamp_group: "$1,500/person (3+ people)"
+    bootcamp_solo: "$3,000/person"
+    certification_30day: "$5,000/person"
+    corporate: "$35,000/cohort"
+
+  effort: "7/10 (high upfront, then replicable)"
+  scalability: "Excellent (video scales infinitely)"
+  risk: "Medium (teaching ability required)"
+  hiring_needed: "No until year 2+ (then TA)"
+
+  why_start_this:
+    - "Build authority as expert"
+    - "Generate leads for Offer 2"
+    - "Leverage your case studies"
+    - "Create passive income (video)"
+
+  why_skip_this:
+    - "Need cash immediately"
+    - "Don't enjoy teaching"
+    - "Time-intensive upfront"
+
+---
+
+offer_2_services:
+  name: "Parallel QA Automation Setup Service"
+  tagline: "Done-for-you: Deploy framework on client projects"
+
+  at_a_glance:
+    time_to_revenue: "2-4 weeks (first client)"
+    monthly_revenue: "$3-5K (retainers) + $5-10K (new engagements)"
+    year_1_total: "$180-200K"
+    year_2_total: "$300-350K"
+    year_3_total: "$350-400K"
+
+  format:
+    - "3-4 week engagement per client"
+    - "Ongoing monthly retainer"
+    - "On-demand test runs"
+
+  pricing:
+    setup_standard: "$15,000"
+    setup_enterprise: "$35,000"
+    retainer_monthly: "$3,000"
+    on_demand_per_run: "$500"
+
+  effort: "6/10 (repeatable after 3 clients)"
+  scalability: "Limited to 6-8 clients (time-bound service)"
+  risk: "Low (proven framework, repeatable process)"
+  hiring_needed: "Yes at month 6 (for scale)"
+
+  why_start_this:
+    - "Immediate revenue (Week 4)"
+    - "Proven delivery process"
+    - "Low risk (you have everything)"
+    - "Build case studies for Offer 1"
+    - "Creates retainers ($3K/month)"
+
+  why_skip_this:
+    - "Don't want to do services"
+    - "Prefer product-only approach"
+    - "Can't do 4+ weeks engagement"
+
+---
+
+offer_3_saas:
+  name: "Parallel Agent Orchestration Platform (SaaS)"
+  tagline: "Managed service: Deploy workflows without coding"
+
+  at_a_glance:
+    time_to_revenue: "6 months (launch MVP)"
+    monthly_revenue: "$0 (first 6mo), $5-10K (months 7-12)"
+    year_1_total: "$20-90K (second half only)"
+    year_2_total: "$150-200K"
+    year_3_total: "$500K-2M+"
+
+  format:
+    - "Monthly SaaS subscription"
+    - "Web-based UI (no installation)"
+    - "CI/CD integrations"
+    - "24/5 support"
+
+  pricing:
+    starter: "$1,000/month"
+    growth: "$3,000/month"
+    enterprise: "$10,000/month"
+    overage: "$50/per test run"
+
+  effort: "8/10 upfront (6-8 weeks dev), then 3-5 hrs/week"
+  scalability: "Excellent (software scales infinitely)"
+  risk: "High (6-month runway before revenue)"
+  hiring_needed: "Yes immediately (backend engineer)"
+  breakeven: "12-18 months"
+
+  why_start_this:
+    - "Highest revenue ceiling ($500K-2M+)"
+    - "Unlimited scale potential"
+    - "Recurring revenue model"
+    - "Can acquire at scale"
+    - "Equity potential"
+
+  why_skip_this:
+    - "Need immediate revenue"
+    - "Can't fund 6-month development"
+    - "Don't have co-founder"
+    - "SaaS is complex"
+
+---
+
+offer_4_templates:
+  name: "Orchestration Frameworks Marketplace"
+  tagline: "Sell pre-built specs on Gumroad/GitHub"
+
+  at_a_glance:
+    time_to_revenue: "1-2 weeks"
+    monthly_revenue: "$2-5K (scaling)"
+    year_1_total: "$60-80K"
+    year_2_total: "$150-200K"
+    year_3_total: "$250-350K"
+
+  format:
+    - "Digital products (no fulfillment)"
+    - "One-time purchase templates"
+    - "Marketplace distribution"
+    - "Optional support tier"
+
+  pricing:
+    template_tier_1: "$50-200"
+    template_tier_2: "$500-1,500"
+    template_tier_3: "$2,000-5,000"
+    support_addon: "+$200 (30 days)"
+
+  effort: "5/10 (upfront repackaging, then passive)"
+  scalability: "Excellent (digital products scale perfectly)"
+  risk: "Low (no customers needed, no delivery)"
+  hiring_needed: "No (ever)"
+
+  why_start_this:
+    - "Easiest launch (2 weeks)"
+    - "Zero customer acquisition needed"
+    - "Passive recurring revenue"
+    - "Lead generation for Offer 2"
+    - "Test market demand"
+    - "Minimal investment"
+
+  why_skip_this:
+    - "Market niche is small"
+    - "Commoditized (price wars)"
+    - "Not lead gen for you"
+
+---
+
+decision_tree:
+  need_cash_immediately:
+    start_with:
+      - "Offer 2 (Services)"
+      - "Offer 4 (Templates) parallel"
+    timeline: "2-4 weeks to $15K+"
+    effort: "High for 4 weeks, then scale"
+
+  want_easiest_launch:
+    start_with: "Offer 4 (Templates)"
+    timeline: "2 weeks to market"
+    effort: "Low upfront, minimal ongoing"
+
+  want_to_build_authority:
+    start_with:
+      - "Offer 2 (Services) for case studies"
+      - "Offer 1 (Training) once you have 2-3 cases"
+    timeline: "3-4 months to credibility"
+    effort: "Medium, then scales"
+
+  want_unlimited_scale:
+    start_with: "Offer 3 (SaaS)"
+    timeline: "6+ months to launch"
+    effort: "Very high upfront (6-8 weeks)"
+
+  want_multiple_income_streams:
+    start_with: "All 4 (sequenced)"
+    timeline: "12 months to full portfolio"
+    effort: "Varies: 6/10 Services, 7/10 Training, 8/10 SaaS, 5/10 Templates"
+
+---
+
+recommended_sequence:
+  phase_1_week_1_2:
+    launch: "Offer 4 (Templates)"
+    action: "Package 3 templates, launch on Gumroad"
+    revenue: "$500-2K"
+    time: "2 weeks"
+    effort: "Repackage existing work"
+
+  phase_2_week_1_4_parallel:
+    launch: "Offer 2 (Services)"
+    action: "Cold email 10 founders, close 1 client"
+    revenue: "$15-35K"
+    time: "4 weeks"
+    effort: "Sales + 3-4 week delivery"
+
+  phase_3_week_5_8:
+    launch: "Offer 1 (Training)"
+    action: "Design curriculum, recruit beta cohort"
+    revenue: "$0 (setup), $12-40K (month 3)"
+    time: "4 weeks prep"
+    effort: "Curriculum design (80 hours)"
+
+  phase_4_month_3_4:
+    scale: "Offers 2 + 1"
+    action: "2 more clients, 1 more bootcamp"
+    revenue: "$50-100K additional"
+    time: "Ongoing"
+    effort: "Repeatable now"
+
+  phase_5_month_5_8:
+    evaluate: "Offer 3 (SaaS)"
+    action: "Decide: Build or focus on 1+2+4"
+    revenue: "Depends on decision"
+    time: "Decision point"
+    effort: "Major decision"
+
+---
+
+financial_models:
+  conservative_year_1:
+    offers:
+      - "Offer 2 (Services): 3 clients @ $18K avg = $54K"
+      - "Offer 4 (Templates): 60-80 sales = $49K"
+    total: "$103K"
+    months_to_100K: "11-12 months"
+
+  realistic_year_1:
+    offers:
+      - "Offer 2 (Services): 4-5 clients + retainers = $180K"
+      - "Offer 4 (Templates): 100 sales = $70K"
+      - "Offer 1 (Training): 1 bootcamp = $12K"
+    total: "$262K"
+    months_to_100K: "4-5 months"
+    months_to_200K: "8-9 months"
+
+  optimistic_year_1:
+    offers:
+      - "Offer 2 (Services): 5 clients + 2 retainers = $200K"
+      - "Offer 4 (Templates): 150 sales = $100K"
+      - "Offer 1 (Training): 2 cohorts = $45K"
+    total: "$345K"
+    months_to_100K: "3 months"
+    months_to_200K: "6 months"
+
+  year_2_realistic:
+    offers:
+      - "Offer 2: $300K (6-8 clients, 3-4 retainers)"
+      - "Offer 4: $150K (scaling passive)"
+      - "Offer 1: $120K (2-3 cohorts)"
+      - "Offer 3: $150K (SaaS, 6 months revenue)"
+    total: "$720K"
+
+  year_3_potential:
+    offers:
+      - "Offer 2: $350-400K (scaling ceiling ~$500K max)"
+      - "Offer 4: $250-350K (market saturation)"
+      - "Offer 1: $200-250K (scaling)"
+      - "Offer 3: $500K-2M+ (SaaS unlimited)"
+    total: "$1.3M-3M (depending on SaaS execution)"
+
+---
+
+comparative_metrics:
+  table:
+    - offer: "Offer 1 (Training)"
+      start_timeline: "3-4 weeks"
+      time_to_revenue: "4-6 weeks"
+      monthly_revenue: "$3-5K"
+      year_1: "$45-50K"
+      effort: "7/10"
+      scalability: "Good"
+      recurring: "No"
+
+    - offer: "Offer 2 (Services)"
+      start_timeline: "IMMEDIATE"
+      time_to_revenue: "2-4 weeks"
+      monthly_revenue: "$15-35K"
+      year_1: "$180-200K"
+      effort: "6/10"
+      scalability: "Limited"
+      recurring: "Yes (retainer)"
+
+    - offer: "Offer 3 (SaaS)"
+      start_timeline: "6-8 weeks"
+      time_to_revenue: "6 months"
+      monthly_revenue: "$0-2K (early)"
+      year_1: "$20-90K"
+      effort: "8/10"
+      scalability: "Excellent"
+      recurring: "Yes (SaaS)"
+
+    - offer: "Offer 4 (Templates)"
+      start_timeline: "2 weeks"
+      time_to_revenue: "1-2 weeks"
+      monthly_revenue: "$2-5K"
+      year_1: "$60-80K"
+      effort: "5/10"
+      scalability: "Good"
+      recurring: "Minimal"
+
+---
+
+success_criteria_90_days:
+  week_1:
+    - offer_4_templates_launched_on_gumroad
+    - first_500_to_2k_revenue_from_templates
+
+  week_2:
+    - offer_2_first_prospect_qualified
+    - cold_email_10_founders_completed
+
+  week_4:
+    - offer_2_first_client_signed
+    - revenue_15k_to_35k_from_services
+
+  day_30:
+    - cumulative_revenue_15k_to_50k
+    - 3plus_offer_2_prospects_in_pipeline
+    - offer_4_monthly_recurring_2k_to_5k
+
+  day_60:
+    - offer_1_bootcamp_designed_and_beta_cohort_recruited
+    - second_offer_2_client_in_discussion
+    - cumulative_revenue_30k_to_80k
+
+  day_90:
+    - cumulative_revenue_50k_to_100k
+    - 3_offer_2_clients_signed_or_in_pipeline
+    - 1_offer_1_bootcamp_cohort_enrolled
+    - offer_3_saas_decision_made
+
+---
+
+key_success_factors:
+  - "Start with Offer 2 + 4 (cash + lead gen)"
+  - "Use Offer 2 case studies to launch Offer 1"
+  - "Don't launch Offer 3 until you have 2+ validated case studies"
+  - "Make templates lead generation for Services (not standalone)"
+  - "Price Offer 2 high ($15-35K) to fund other offers"
+  - "Record Offer 1 videos early (for passive income)"
+  - "Use templates to demonstrate expertise (social proof)"
+
+---
+
+common_mistakes_to_avoid:
+  - "Launching Offer 3 (SaaS) before validating market"
+  - "Trying to do all 4 offers simultaneously (too chaotic)"
+  - "Pricing templates too low (commoditizes)"
+  - "Skipping case studies before training bootcamp"
+  - "Not using templates as lead gen for services"
+  - "Building SaaS without talking to 5+ customers first"
+  - "Underestimating sales effort for Offer 2"
+
+---
+
+next_action:
+  - "Pick your starting offer (recommend: 2 + 4)"
+  - "Read EXECUTIVE-SUMMARY-OFFERS.md (10 min)"
+  - "Draft Week 1 action plan"
+  - "Execute immediately"
+
+---
+
+# Generated: January 30, 2026
+# Status: Ready to Launch
+# Location: D:/Users/NIKITA/Documents/DEV/BMAD-MNNZ/_bmad/
+

@@ -1,6 +1,10 @@
 ---
-name: 'brainstorming'
 description: 'Facilitate interactive brainstorming sessions using diverse creative techniques and ideation methods'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/core/workflows/brainstorming/workflow.md, READ its entire contents and follow its directions exactly!
+# brainstorming
+
+Read the entire workflow file at {project-root}/_bmad/core/workflows/brainstorming/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

@@ -1,6 +1,10 @@
 ---
-name: 'create-gdd'
 description: 'Creates a comprehensive Game Design Document through collaborative step-by-step discovery between game designer and user.'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmgd/workflows/2-design/gdd/workflow.md, READ its entire contents and follow its directions exactly!
+# create-gdd
+
+Read the entire workflow file at {project-root}/_bmad/bmgd/workflows/2-design/gdd/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

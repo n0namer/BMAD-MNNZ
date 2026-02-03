@@ -1,6 +1,10 @@
 ---
-name: 'create-prd'
 description: 'PRD tri-modal workflow - Create, Validate, or Edit comprehensive PRDs'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmm/workflows/2-plan-workflows/create-prd/workflow.md, READ its entire contents and follow its directions exactly!
+# create-prd
+
+Read the entire workflow file at {project-root}/_bmad/bmm/workflows/2-plan-workflows/create-prd/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

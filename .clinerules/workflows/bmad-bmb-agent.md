@@ -1,6 +1,10 @@
 ---
-name: 'agent'
 description: 'Tri-modal workflow for creating, editing, and validating BMAD Core compliant agents'
+auto_execution_mode: "iterate"
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @{project-root}/_bmad/bmb/workflows/agent/workflow.md, READ its entire contents and follow its directions exactly!
+# agent
+
+Read the entire workflow file at {project-root}/_bmad/bmb/workflows/agent/workflow.md
+
+Follow all instructions in the workflow file exactly as written.

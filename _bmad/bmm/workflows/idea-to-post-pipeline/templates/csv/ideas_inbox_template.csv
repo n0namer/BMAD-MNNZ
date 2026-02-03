@@ -1,6 +1,0 @@
-id,date_added,source,raw_idea,category,status,notes,idea_metadata
-1,2026-01-27,brainstorm,"ИИ контент за 3 часа",automation,active,"Интересная идея про ускорение контента",
-2,2026-01-27,conversation,"Speech-to-text для постов",tech,active,"Подсказал пользователь на встрече",
-3,2026-01-27,research,"Масштабирование личного бренда",market,pending,"Найдено в статье Medium",
-4,2026-01-26,internal,"A/B тестирование hooks",methodology,active,"Собственное наблюдение из аналитики",
-5,2026-01-25,inspiration,"Психология urgency в CTR",psychology,archived,"Хорошая идея но неактуальна сейчас",
