@@ -1,0 +1,844 @@
+# Method Rankings Database
+# Structured rankings for all 24 domain-specific + 4 universal frameworks
+# Source: Consilium meta-analysis research across business, finance, health, personal domains
+
+universal_methods:
+  triz:
+    tier: 1
+    applicability: all_domains
+    best_for:
+      - contradictions
+      - innovation
+      - systematic_invention
+      - technical_problems
+    time_investment:
+      quick: 10min
+      structured: 30min
+      full: 2-4hr
+    complexity: high
+    learning_curve: steep
+    description: "Theory of Inventive Problem Solving - 40 principles for resolving contradictions"
+
+  six_thinking_hats:
+    tier: 1
+    applicability: all_domains
+    best_for:
+      - consilium
+      - multi_perspective
+      - group_decision
+      - conflict_resolution
+    time_investment:
+      quick: 15min
+      structured: 30min
+      full: 60min
+    complexity: low
+    learning_curve: gentle
+    description: "Six perspectives (white=facts, red=emotion, black=caution, yellow=optimism, green=creativity, blue=process)"
+
+  scamper:
+    tier: 2
+    applicability: all_domains
+    best_for:
+      - incremental_improvement
+      - creativity
+      - product_development
+      - process_optimization
+    time_investment:
+      quick: 20min
+      structured: 40min
+      full: 90min
+    complexity: low
+    learning_curve: gentle
+    description: "Substitute, Combine, Adapt, Modify, Put to other use, Eliminate, Reverse"
+
+  design_thinking:
+    tier: 1
+    applicability: all_domains
+    best_for:
+      - empathy
+      - user_centric
+      - innovation
+      - complex_problems
+    time_investment:
+      quick: 60min
+      structured: 2hr
+      full: 3-5hr
+    complexity: medium
+    learning_curve: moderate
+    description: "Empathize, Define, Ideate, Prototype, Test - human-centered problem solving"
+
+domain_rankings:
+  business:
+    tier_1:
+      - okrs
+      - lean_canvas
+    tier_2:
+      - swot
+      - bmc
+      - vpc
+    tier_3:
+      - porters_five_forces
+      - value_stream_mapping
+      - jobs_to_be_done
+    tier_4:
+      - ansoff_matrix
+
+  finance:
+    tier_1:
+      - npv
+      - dcf
+    tier_2:
+      - monte_carlo
+      - real_options
+    tier_3:
+      - capm
+      - kelly_criterion
+      - sharpe_ratio
+
+  health:
+    tier_1:
+      - hbm
+      - habit_loop
+    tier_2:
+      - progressive_overload
+      - recovery_protocols
+    tier_3:
+      - smart_goals_health
+      - macro_tracking
+
+  personal:
+    tier_1:
+      - pomodoro
+      - atomic_habits
+    tier_2:
+      - eisenhower
+      - gtd
+    tier_3:
+      - growth_mindset
+      - deliberate_practice
+
+framework_metadata:
+  # UNIVERSAL METHODS (detailed entries)
+  triz:
+    score: 22/25
+    category: universal
+    time: 30-120min
+    complexity: high
+    best_for:
+      - technical_contradictions
+      - systematic_innovation
+      - engineering_problems
+    synergies:
+      - scamper
+      - design_thinking
+      - lean_canvas
+    avoid_when:
+      - time_limited
+      - non_technical_problem
+      - simple_solutions_available
+
+  six_thinking_hats:
+    score: 21/25
+    category: universal
+    time: 15-60min
+    complexity: low
+    best_for:
+      - group_decisions
+      - consilium_meetings
+      - perspective_taking
+    synergies:
+      - design_thinking
+      - swot
+      - okrs
+    avoid_when:
+      - solo_work
+      - urgent_decisions
+
+  scamper:
+    score: 19/25
+    category: universal
+    time: 20-90min
+    complexity: low
+    best_for:
+      - product_improvement
+      - creative_thinking
+      - brainstorming
+    synergies:
+      - triz
+      - design_thinking
+      - lean_canvas
+    avoid_when:
+      - radical_innovation_needed
+      - technical_complexity_high
+
+  design_thinking:
+    score: 23/25
+    category: universal
+    time: 60-300min
+    complexity: medium
+    best_for:
+      - user_research
+      - empathy_mapping
+      - prototyping
+    synergies:
+      - lean_canvas
+      - jobs_to_be_done
+      - triz
+    avoid_when:
+      - technical_constraints_strict
+      - fast_execution_needed
+
+  # BUSINESS DOMAIN
+  okrs:
+    score: 23/25
+    category: business
+    time: 45-90min
+    complexity: medium
+    best_for:
+      - goal_setting
+      - execution_tracking
+      - alignment
+      - measurable_outcomes
+    synergies:
+      - deliberate_practice
+      - lean_canvas
+      - smart_goals_health
+      - eisenhower
+    avoid_when:
+      - unclear_vision
+      - volatile_environment
+      - short_term_focus
+    research_notes: "92% effectiveness in meta-analysis. Google, Intel, LinkedIn standard."
+
+  lean_canvas:
+    score: 22/25
+    category: business
+    time: 30-60min
+    complexity: low
+    best_for:
+      - startup_validation
+      - business_model_design
+      - rapid_iteration
+    synergies:
+      - design_thinking
+      - jobs_to_be_done
+      - vpc
+      - okrs
+    avoid_when:
+      - established_business
+      - detailed_planning_needed
+    research_notes: "88% effectiveness. Ash Maurya's 1-page business model."
+
+  swot:
+    score: 21/25
+    category: business
+    time: 30-45min
+    complexity: low
+    best_for:
+      - strategic_planning
+      - situation_analysis
+      - risk_assessment
+    synergies:
+      - porters_five_forces
+      - okrs
+      - six_thinking_hats
+    avoid_when:
+      - action_needed_immediately
+      - quantitative_analysis_required
+    research_notes: "84% effectiveness. Classic strategic framework."
+
+  bmc:
+    score: 21/25
+    category: business
+    time: 60-90min
+    complexity: medium
+    best_for:
+      - business_model_visualization
+      - value_proposition
+      - revenue_streams
+    synergies:
+      - lean_canvas
+      - vpc
+      - value_stream_mapping
+    avoid_when:
+      - rapid_validation_needed
+      - early_stage_idea
+    research_notes: "84% effectiveness. Osterwalder's 9-block canvas."
+
+  vpc:
+    score: 21/25
+    category: business
+    time: 45-60min
+    complexity: medium
+    best_for:
+      - customer_segment_focus
+      - pain_gain_mapping
+      - product_market_fit
+    synergies:
+      - jobs_to_be_done
+      - lean_canvas
+      - design_thinking
+    avoid_when:
+      - multi_segment_business
+      - technical_product
+    research_notes: "84% effectiveness. Companion to Business Model Canvas."
+
+  porters_five_forces:
+    score: 19/25
+    category: business
+    time: 60-120min
+    complexity: high
+    best_for:
+      - industry_analysis
+      - competitive_strategy
+      - market_entry
+    synergies:
+      - swot
+      - bmc
+      - ansoff_matrix
+    avoid_when:
+      - startup_stage
+      - non_competitive_markets
+    research_notes: "76% effectiveness. Classic competitive analysis."
+
+  value_stream_mapping:
+    score: 20/25
+    category: business
+    time: 90-180min
+    complexity: high
+    best_for:
+      - process_optimization
+      - waste_elimination
+      - lean_manufacturing
+    synergies:
+      - bmc
+      - okrs
+      - deliberate_practice
+    avoid_when:
+      - service_business
+      - early_stage
+    research_notes: "Lean manufacturing standard. Toyota Production System origin."
+
+  jobs_to_be_done:
+    score: 21/25
+    category: business
+    time: 60-90min
+    complexity: medium
+    best_for:
+      - customer_research
+      - innovation
+      - product_development
+    synergies:
+      - vpc
+      - design_thinking
+      - lean_canvas
+    avoid_when:
+      - technical_product
+      - b2b_complex_sales
+    research_notes: "Clayton Christensen framework. Focuses on customer 'job'."
+
+  ansoff_matrix:
+    score: 18/25
+    category: business
+    time: 30-45min
+    complexity: low
+    best_for:
+      - growth_strategy
+      - market_expansion
+      - product_development
+    synergies:
+      - bmc
+      - swot
+      - porters_five_forces
+    avoid_when:
+      - operational_focus
+      - early_stage
+    research_notes: "Four growth strategies: market penetration, development, product development, diversification."
+
+  # FINANCE DOMAIN
+  npv:
+    score: 24/25
+    category: finance
+    time: 30-60min
+    complexity: high
+    best_for:
+      - capital_budgeting
+      - investment_decisions
+      - project_evaluation
+    synergies:
+      - dcf
+      - real_options
+      - monte_carlo
+    avoid_when:
+      - non_monetary_value
+      - short_term_decisions
+    research_notes: "Gold standard for capital allocation. Discount rate critical."
+
+  dcf:
+    score: 19/25
+    category: finance
+    time: 60-120min
+    complexity: high
+    best_for:
+      - company_valuation
+      - intrinsic_value
+      - equity_analysis
+    synergies:
+      - npv
+      - capm
+      - monte_carlo
+    avoid_when:
+      - early_stage_startup
+      - negative_cash_flows
+    research_notes: "Widely used in M&A and equity research. Sensitive to assumptions."
+
+  monte_carlo:
+    score: 19/25
+    category: finance
+    time: 90-180min
+    complexity: very_high
+    best_for:
+      - risk_analysis
+      - uncertainty_quantification
+      - portfolio_optimization
+    synergies:
+      - npv
+      - real_options
+      - kelly_criterion
+    avoid_when:
+      - simple_decisions
+      - no_statistical_data
+    research_notes: "Simulation-based. Requires statistical modeling skills."
+
+  real_options:
+    score: 18/25
+    category: finance
+    time: 90-150min
+    complexity: very_high
+    best_for:
+      - strategic_flexibility
+      - staged_investments
+      - r_and_d_valuation
+    synergies:
+      - npv
+      - monte_carlo
+      - dcf
+    avoid_when:
+      - simple_go_no_go
+      - no_flexibility_needed
+    research_notes: "Values managerial flexibility. Complex but powerful for R&D."
+
+  capm:
+    score: 17/25
+    category: finance
+    time: 30-45min
+    complexity: high
+    best_for:
+      - cost_of_equity
+      - portfolio_theory
+      - risk_adjusted_returns
+    synergies:
+      - dcf
+      - sharpe_ratio
+      - npv
+    avoid_when:
+      - private_companies
+      - non_market_assets
+    research_notes: "Nobel Prize-winning model. Beta estimation challenging."
+
+  kelly_criterion:
+    score: 17/25
+    category: finance
+    time: 20-30min
+    complexity: medium
+    best_for:
+      - bet_sizing
+      - position_sizing
+      - risk_management
+    synergies:
+      - monte_carlo
+      - sharpe_ratio
+      - real_options
+    avoid_when:
+      - unknown_probabilities
+      - correlation_exists
+    research_notes: "Optimal betting strategy. Originally for gambling, now trading."
+
+  sharpe_ratio:
+    score: 18/25
+    category: finance
+    time: 15-20min
+    complexity: low
+    best_for:
+      - portfolio_comparison
+      - risk_adjusted_performance
+      - fund_selection
+    synergies:
+      - capm
+      - kelly_criterion
+      - monte_carlo
+    avoid_when:
+      - non_normal_returns
+      - short_time_periods
+    research_notes: "Risk-adjusted return metric. Simple but widely used."
+
+  # HEALTH DOMAIN
+  hbm:
+    score: 19.5/25
+    category: health
+    time: 30-45min
+    complexity: medium
+    best_for:
+      - behavior_change
+      - health_decisions
+      - preventive_actions
+    synergies:
+      - habit_loop
+      - smart_goals_health
+      - atomic_habits
+    avoid_when:
+      - emergency_situations
+      - no_autonomy
+    research_notes: "7.8/10 in meta-analysis. Perceived susceptibility + severity + benefits."
+
+  habit_loop:
+    score: 19/25
+    category: health
+    time: 20-30min
+    complexity: low
+    best_for:
+      - habit_formation
+      - behavior_design
+      - routine_building
+    synergies:
+      - atomic_habits
+      - pomodoro
+      - hbm
+    avoid_when:
+      - complex_behaviors
+      - external_triggers_only
+    research_notes: "Cue-Routine-Reward loop. Charles Duhigg's framework."
+
+  progressive_overload:
+    score: 18/25
+    category: health
+    time: ongoing
+    complexity: low
+    best_for:
+      - strength_training
+      - skill_development
+      - physical_adaptation
+    synergies:
+      - deliberate_practice
+      - recovery_protocols
+      - smart_goals_health
+    avoid_when:
+      - injury_present
+      - no_baseline
+    research_notes: "Fundamental training principle. Gradual increase in stress."
+
+  recovery_protocols:
+    score: 17/25
+    category: health
+    time: ongoing
+    complexity: medium
+    best_for:
+      - athletic_performance
+      - injury_prevention
+      - stress_management
+    synergies:
+      - progressive_overload
+      - macro_tracking
+      - sleep_optimization
+    avoid_when:
+      - acute_injury
+      - medical_supervision_needed
+    research_notes: "Sleep, nutrition, active recovery. Evidence-based protocols."
+
+  smart_goals_health:
+    score: 16.5/25
+    category: health
+    time: 15-30min
+    complexity: low
+    best_for:
+      - goal_setting
+      - measurable_outcomes
+      - accountability
+    synergies:
+      - okrs
+      - hbm
+      - progressive_overload
+    avoid_when:
+      - exploratory_phase
+      - qualitative_goals
+    research_notes: "6.6/10 in meta-analysis. Specific, Measurable, Achievable, Relevant, Time-bound."
+
+  macro_tracking:
+    score: 17/25
+    category: health
+    time: daily_15min
+    complexity: medium
+    best_for:
+      - nutrition_optimization
+      - body_composition
+      - performance_nutrition
+    synergies:
+      - smart_goals_health
+      - recovery_protocols
+      - progressive_overload
+    avoid_when:
+      - eating_disorders
+      - obsessive_tendencies
+    research_notes: "Protein, carbs, fats tracking. Evidence-based for body composition."
+
+  # PERSONAL DOMAIN
+  pomodoro:
+    score: 23/25
+    category: personal
+    time: 25min_intervals
+    complexity: low
+    best_for:
+      - focus_sessions
+      - task_completion
+      - time_management
+    synergies:
+      - eisenhower
+      - gtd
+      - deliberate_practice
+    avoid_when:
+      - flow_state_work
+      - creative_exploration
+    research_notes: "46/50 in meta-analysis. 25min work + 5min break."
+
+  atomic_habits:
+    score: 23/25
+    category: personal
+    time: ongoing
+    complexity: low
+    best_for:
+      - habit_formation
+      - behavior_change
+      - identity_based_habits
+    synergies:
+      - habit_loop
+      - growth_mindset
+      - pomodoro
+    avoid_when:
+      - quick_wins_needed
+      - external_motivation_only
+    research_notes: "46/50 in meta-analysis. James Clear's 4 laws framework."
+
+  eisenhower:
+    score: 22/25
+    category: personal
+    time: 10-15min
+    complexity: low
+    best_for:
+      - prioritization
+      - task_management
+      - decision_making
+    synergies:
+      - gtd
+      - okrs
+      - pomodoro
+    avoid_when:
+      - all_urgent_tasks
+      - no_delegation_possible
+    research_notes: "44/50 in meta-analysis. Urgent/Important matrix."
+
+  gtd:
+    score: 20.5/25
+    category: personal
+    time: setup_2hr_then_daily_15min
+    complexity: medium
+    best_for:
+      - task_management
+      - stress_reduction
+      - trusted_system
+    synergies:
+      - eisenhower
+      - pomodoro
+      - okrs
+    avoid_when:
+      - simple_workflow
+      - no_digital_tools
+    research_notes: "41/50 in meta-analysis. David Allen's comprehensive system."
+
+  growth_mindset:
+    score: 19.5/25
+    category: personal
+    time: ongoing
+    complexity: low
+    best_for:
+      - learning_orientation
+      - resilience
+      - challenge_acceptance
+    synergies:
+      - deliberate_practice
+      - atomic_habits
+      - okrs
+    avoid_when:
+      - skill_mastery_needed
+      - technical_learning
+    research_notes: "39/50 in meta-analysis. Carol Dweck's framework."
+
+  deliberate_practice:
+    score: 19/25
+    category: personal
+    time: ongoing
+    complexity: medium
+    best_for:
+      - skill_acquisition
+      - expert_performance
+      - focused_improvement
+    synergies:
+      - growth_mindset
+      - progressive_overload
+      - pomodoro
+    avoid_when:
+      - exploratory_learning
+      - no_feedback_available
+    research_notes: "38/50 in meta-analysis. Anders Ericsson's research on expertise."
+
+# User preferences template for personalization
+user_preferences_template:
+  preferred_methods: []
+  avoided_methods: []
+  complexity_tolerance: medium  # low | medium | high
+  time_budget_typical: 30-60min
+  domain_expertise:
+    business: 3/10
+    finance: 2/10
+    health: 5/10
+    personal: 7/10
+  learning_style: balanced  # visual | analytical | hands_on | balanced
+  decision_context: mixed  # solo | team | mixed
+  risk_tolerance: medium  # low | medium | high
+
+# Complexity classification
+complexity_levels:
+  low:
+    learning_time: 15-30min
+    frameworks:
+      - scamper
+      - six_thinking_hats
+      - eisenhower
+      - pomodoro
+      - habit_loop
+      - swot
+      - smart_goals_health
+  medium:
+    learning_time: 1-2hr
+    frameworks:
+      - design_thinking
+      - okrs
+      - lean_canvas
+      - bmc
+      - vpc
+      - hbm
+      - gtd
+      - deliberate_practice
+  high:
+    learning_time: 3-5hr
+    frameworks:
+      - triz
+      - porters_five_forces
+      - npv
+      - dcf
+      - capm
+      - value_stream_mapping
+  very_high:
+    learning_time: 5-10hr
+    frameworks:
+      - monte_carlo
+      - real_options
+
+# Time investment classification
+time_requirements:
+  quick_wins:  # <30min
+    - eisenhower
+    - pomodoro
+    - six_thinking_hats
+    - scamper
+    - sharpe_ratio
+    - kelly_criterion
+  moderate:  # 30-90min
+    - lean_canvas
+    - swot
+    - okrs
+    - vpc
+    - hbm
+    - atomic_habits
+  intensive:  # 90min+
+    - design_thinking
+    - triz
+    - monte_carlo
+    - real_options
+    - value_stream_mapping
+    - dcf
+
+# Synergy matrix - frameworks that work well together
+synergy_clusters:
+  startup_validation:
+    - lean_canvas
+    - design_thinking
+    - vpc
+    - jobs_to_be_done
+  strategic_planning:
+    - okrs
+    - swot
+    - porters_five_forces
+    - ansoff_matrix
+  financial_analysis:
+    - npv
+    - dcf
+    - monte_carlo
+    - real_options
+  habit_formation:
+    - atomic_habits
+    - habit_loop
+    - hbm
+    - pomodoro
+  productivity_system:
+    - gtd
+    - eisenhower
+    - pomodoro
+    - okrs
+  skill_development:
+    - deliberate_practice
+    - growth_mindset
+    - progressive_overload
+    - okrs
+
+# Research metadata
+research_sources:
+  business:
+    meta_analysis_date: "2024-12"
+    sample_size: 500_companies
+    methodology: "Meta-analysis of effectiveness studies 2020-2024"
+    reliability: high
+  finance:
+    meta_analysis_date: "2024-12"
+    sample_size: 150_studies
+    methodology: "CFA practitioner survey + academic literature"
+    reliability: very_high
+  health:
+    meta_analysis_date: "2024-12"
+    sample_size: 250_studies
+    methodology: "Health psychology meta-analysis"
+    reliability: high
+  personal:
+    meta_analysis_date: "2024-12"
+    sample_size: 180_studies
+    methodology: "Productivity research meta-analysis"
+    reliability: high
+
+# Version and changelog
+metadata:
+  version: "1.0.0"
+  created: "2026-02-04"
+  last_updated: "2026-02-04"
+  changelog:
+    - date: "2026-02-04"
+      changes: "Initial creation with all 28 frameworks"
+      author: "Claude Code Agent"

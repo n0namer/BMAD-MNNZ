@@ -1,0 +1,91 @@
+# EMBER Integration Configuration for create-product-brief workflow
+# Links to: _bmad/bmm/workflows/1-analysis/create-product-brief/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "create-product-brief"
+description: "Product brief creation workflow integration"
+source_path: "../../../1-analysis/create-product-brief/"
+category: "analysis"
+estimated_steps: 7
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "vision-product_vision"
+    step_file: "steps/step-02-vision.md"
+    questions:
+      - question_id: "product_vision"
+        interception_trigger: "What is the product vision"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_idea", "target_market", "time_horizon"]
+        ember_mapping: "create-product-brief.vision.product_vision"
+
+  - step_id: "users-user_personas"
+    step_file: "steps/step-03-users.md"
+    questions:
+      - question_id: "user_personas"
+        interception_trigger: "Who are the target users"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "target_segments"]
+        ember_mapping: "create-product-brief.users.user_personas"
+
+  - step_id: "metrics-success_metrics"
+    step_file: "steps/step-04-metrics.md"
+    questions:
+      - question_id: "success_metrics"
+        interception_trigger: "What success metrics"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "business_goals", "measurement_period"]
+        ember_mapping: "create-product-brief.metrics.success_metrics"
+
+  - step_id: "scope-mvp_scope"
+    step_file: "steps/step-05-scope.md"
+    questions:
+      - question_id: "mvp_scope"
+        interception_trigger: "What MVP scope"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "core_problem", "time_constraints"]
+        ember_mapping: "create-product-brief.scope.mvp_scope"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research"]
+      context_vars: ["market_size", "competitors", "target_market"]
+  output_context:
+    - target_workflows: ["create-ux-design", "prd", "create-architecture"]
+      context_vars: ["user_personas", "success_metrics", "product_vision", "mvp_scope"]
+
+error_handling:
+  vision_unclear:
+    action: "request_clarification"
+    guidance: "Please provide more details about your product idea"
+  user_research_incomplete:
+    action: "suggest_user_studies"
+    guidance: "Consider conducting user interviews for better personas"
+  metrics_unrealistic:
+    action: "validate_with_data"
+    guidance: "Cross-reference metrics with industry benchmarks"
+
+validation:
+  minimum_questions: ["product_vision", "user_personas", "success_metrics"]
+  cross_references: ["vision_user_alignment", "metrics_business_goals"]
+  stakeholder_review: "product_owner_signoff"
+
+performance:
+  expected_completion:
+    assisted: "25-35 minutes"
+    auto_pilot: "8-12 minutes"
+    manual: "45-75 minutes"

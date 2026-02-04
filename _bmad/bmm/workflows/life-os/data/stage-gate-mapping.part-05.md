@@ -56,19 +56,19 @@ on_completion:
   decision_required: true
   auto_advance_if: "decision == GO"
 
-# steps-c/step-03-consilium.md
+# steps-c/step-04-consilium.md
 on_completion:
   trigger_gate: G1
   decision_required: true
   auto_advance_if: "decision == GO"
 
-# steps-c/step-04-scoring.md
+# steps-c/step-05-scoring.md
 on_completion:
   trigger_gate: G2
   decision_required: true
   auto_advance_if: "decision == GO"
 
-# steps-c/step-05-integration.md
+# steps-c/step-06-integration.md
 on_completion:
   trigger_gate: G3
   decision_required: true
@@ -124,3 +124,4 @@ npx claude-flow@v3alpha memory store \
   - Auto-kill trigger automation
   - Workflow step mapping
   - Decision criteria checklists
+

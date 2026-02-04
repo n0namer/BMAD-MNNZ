@@ -1,0 +1,274 @@
+# EMBER Question to Prompt Mapping
+# Maps questions from BMM workflows to EMBER prompt templates
+
+# =============================================================================
+# 1-ANALYSIS STAGE QUESTIONS
+# =============================================================================
+
+# RESEARCH WORKFLOW QUESTIONS
+research:
+  domain-analysis:
+    market_size:
+      prompt: "Analyze the market size and opportunity for {{product_domain}} in {{geography}}. Include TAM, SAM, SOM estimates with data sources."
+      context_vars: ["product_domain", "geography", "industry"]
+      confidence_threshold: 0.8
+      response_format: "market_analysis"
+
+    competitors:
+      prompt: "Identify and analyze key competitors for {{product_domain}}. Include market share, strengths/weaknesses, competitive advantages."
+      context_vars: ["product_domain", "target_market"]
+      confidence_threshold: 0.85
+      response_format: "competitive_analysis"
+
+    regulatory_focus:
+      prompt: "Analyze regulatory landscape and compliance requirements for {{product_domain}} in {{geography}}."
+      context_vars: ["product_domain", "geography", "industry"]
+      confidence_threshold: 0.9
+      response_format: "regulatory_analysis"
+
+    technical_trends:
+      prompt: "Analyze current technical trends and their impact on {{product_domain}}. Include emerging technologies and adoption timelines."
+      context_vars: ["product_domain", "industry", "timeframe"]
+      confidence_threshold: 0.8
+      response_format: "trend_analysis"
+
+  market-analysis:
+    market_segmentation:
+      prompt: "Define market segmentation strategy for {{product_domain}}. Include target segments, personas, and positioning."
+      context_vars: ["product_domain", "target_audience"]
+      confidence_threshold: 0.85
+      response_format: "segmentation_strategy"
+
+    market_positioning:
+      prompt: "Develop market positioning strategy for {{product_domain}} against competitors {{competitor_list}}."
+      context_vars: ["product_domain", "competitor_list", "unique_value_prop"]
+      confidence_threshold: 0.8
+      response_format: "positioning_strategy"
+
+  technical-analysis:
+    tech_requirements:
+      prompt: "Define technical requirements and constraints for {{product_domain}}. Include scalability, security, integration needs."
+      context_vars: ["product_domain", "scale_requirements", "existing_tech_stack"]
+      confidence_threshold: 0.9
+      response_format: "technical_requirements"
+
+# CREATE-PRODUCT-BRIEF WORKFLOW QUESTIONS
+create-product-brief:
+  vision:
+    product_vision:
+      prompt: "Define product vision and mission for {{product_idea}}. Include long-term goals and market impact."
+      context_vars: ["product_idea", "target_market", "time_horizon"]
+      confidence_threshold: 0.85
+      response_format: "product_vision"
+
+  users:
+    user_personas:
+      prompt: "Define detailed user personas for {{product_domain}}. Include demographics, behaviors, pain points, and goals."
+      context_vars: ["product_domain", "target_segments"]
+      confidence_threshold: 0.9
+      response_format: "user_personas"
+
+    user_journeys:
+      prompt: "Map user journey for {{primary_persona}} using {{product_domain}}. Include touchpoints and emotional states."
+      context_vars: ["primary_persona", "product_domain", "user_goals"]
+      confidence_threshold: 0.8
+      response_format: "user_journey"
+
+  metrics:
+    success_metrics:
+      prompt: "Define success metrics and KPIs for {{product_domain}}. Include leading and lagging indicators."
+      context_vars: ["product_domain", "business_goals", "measurement_period"]
+      confidence_threshold: 0.85
+      response_format: "success_metrics"
+
+    north_star_metric:
+      prompt: "Define North Star Metric for {{product_domain}} that measures long-term value creation."
+      context_vars: ["product_domain", "core_value_prop"]
+      confidence_threshold: 0.9
+      response_format: "north_star_metric"
+
+  scope:
+    mvp_scope:
+      prompt: "Define MVP scope for {{product_domain}}. Include must-have features, nice-to-have features, and exclusion criteria."
+      context_vars: ["product_domain", "core_problem", "time_constraints"]
+      confidence_threshold: 0.85
+      response_format: "mvp_definition"
+
+# =============================================================================
+# 2-PLAN-WORKFLOWS STAGE QUESTIONS
+# =============================================================================
+
+# CREATE-UX-DESIGN WORKFLOW QUESTIONS
+create-ux-design:
+  requirements:
+    ux_requirements:
+      prompt: "Define UX requirements for {{product_domain}}. Include usability goals, accessibility standards, and user experience principles."
+      context_vars: ["product_domain", "target_users", "platform"]
+      confidence_threshold: 0.85
+      response_format: "ux_requirements"
+
+  user-flows:
+    user_flow_design:
+      prompt: "Design user flows for {{primary_user_journey}} in {{product_domain}}. Include decision points and alternative paths."
+      context_vars: ["primary_user_journey", "product_domain", "user_goals"]
+      confidence_threshold: 0.8
+      response_format: "user_flows"
+
+  wireframes:
+    wireframe_requirements:
+      prompt: "Define wireframe requirements for {{key_screen}} in {{product_domain}}. Include layout, interactions, and content hierarchy."
+      context_vars: ["key_screen", "product_domain", "user_tasks"]
+      confidence_threshold: 0.8
+      response_format: "wireframe_spec"
+
+  validation:
+    ux_validation_criteria:
+      prompt: "Define validation criteria for UX design of {{product_domain}}. Include usability metrics and acceptance tests."
+      context_vars: ["product_domain", "usability_goals", "success_criteria"]
+      confidence_threshold: 0.85
+      response_format: "validation_criteria"
+
+# PRD WORKFLOW QUESTIONS
+prd:
+  requirements:
+    functional_requirements:
+      prompt: "Define functional requirements for {{product_domain}}. Include user stories, acceptance criteria, and business rules."
+      context_vars: ["product_domain", "user_stories", "business_rules"]
+      confidence_threshold: 0.9
+      response_format: "functional_requirements"
+
+    non_functional_requirements:
+      prompt: "Define non-functional requirements for {{product_domain}}. Include performance, security, scalability, and usability requirements."
+      context_vars: ["product_domain", "technical_constraints", "quality_attributes"]
+      confidence_threshold: 0.9
+      response_format: "non_functional_requirements"
+
+  features:
+    feature_breakdown:
+      prompt: "Break down {{epic_description}} into features for {{product_domain}}. Include priority, dependencies, and effort estimates."
+      context_vars: ["epic_description", "product_domain", "business_value"]
+      confidence_threshold: 0.85
+      response_format: "feature_breakdown"
+
+  validation:
+    acceptance_criteria:
+      prompt: "Define acceptance criteria for {{feature_description}} in {{product_domain}}. Include scenarios, edge cases, and validation rules."
+      context_vars: ["feature_description", "product_domain", "user_scenarios"]
+      confidence_threshold: 0.9
+      response_format: "acceptance_criteria"
+
+# =============================================================================
+# 3-SOLUTIONING STAGE QUESTIONS
+# =============================================================================
+
+# CHECK-IMPLEMENTATION-READINESS WORKFLOW QUESTIONS
+check-implementation-readiness:
+  technical-readiness:
+    tech_stack_assessment:
+      prompt: "Assess technical readiness for {{product_domain}}. Evaluate team skills, technology choices, and infrastructure requirements."
+      context_vars: ["product_domain", "team_skills", "tech_constraints"]
+      confidence_threshold: 0.85
+      response_format: "tech_readiness"
+
+    infrastructure_requirements:
+      prompt: "Define infrastructure requirements for {{product_domain}}. Include hosting, databases, APIs, and third-party services."
+      context_vars: ["product_domain", "scale_requirements", "compliance_needs"]
+      confidence_threshold: 0.8
+      response_format: "infrastructure_plan"
+
+  team-readiness:
+    team_skills_assessment:
+      prompt: "Assess team readiness for {{product_domain}}. Evaluate required skills, training needs, and resource allocation."
+      context_vars: ["product_domain", "team_composition", "skill_gaps"]
+      confidence_threshold: 0.85
+      response_format: "team_assessment"
+
+# CREATE-ARCHITECTURE WORKFLOW QUESTIONS
+create-architecture:
+  analysis:
+    system_context:
+      prompt: "Define system context and boundaries for {{product_domain}}. Include external systems, interfaces, and data flows."
+      context_vars: ["product_domain", "external_systems", "integration_points"]
+      confidence_threshold: 0.9
+      response_format: "system_context"
+
+  design:
+    component_architecture:
+      prompt: "Design component architecture for {{product_domain}}. Include components, responsibilities, and interactions."
+      context_vars: ["product_domain", "functional_requirements", "quality_attributes"]
+      confidence_threshold: 0.85
+      response_format: "component_design"
+
+    data_architecture:
+      prompt: "Design data architecture for {{product_domain}}. Include data models, storage strategies, and access patterns."
+      context_vars: ["product_domain", "data_requirements", "performance_needs"]
+      confidence_threshold: 0.85
+      response_format: "data_design"
+
+  validation:
+    architecture_validation:
+      prompt: "Validate architecture design for {{product_domain}} against requirements {{requirement_list}}."
+      context_vars: ["product_domain", "requirement_list", "quality_attributes"]
+      confidence_threshold: 0.9
+      response_format: "architecture_validation"
+
+# CREATE-EPICS-AND-STORIES WORKFLOW QUESTIONS
+create-epics-and-stories:
+  breakdown:
+    epic_creation:
+      prompt: "Create epics from features {{feature_list}} for {{product_domain}}. Include epic descriptions and acceptance criteria."
+      context_vars: ["feature_list", "product_domain", "business_goals"]
+      confidence_threshold: 0.85
+      response_format: "epic_creation"
+
+  prioritization:
+    epic_prioritization:
+      prompt: "Prioritize epics {{epic_list}} for {{product_domain}} using {{prioritization_framework}}."
+      context_vars: ["epic_list", "product_domain", "prioritization_framework", "business_goals"]
+      confidence_threshold: 0.8
+      response_format: "epic_prioritization"
+
+    story_prioritization:
+      prompt: "Prioritize user stories {{story_list}} within epic {{epic_name}} using {{prioritization_method}}."
+      context_vars: ["story_list", "epic_name", "prioritization_method"]
+      confidence_threshold: 0.8
+      response_format: "story_prioritization"
+
+  estimation:
+    story_estimation:
+      prompt: "Estimate user stories {{story_list}} using {{estimation_method}}. Include story points and assumptions."
+      context_vars: ["story_list", "estimation_method", "team_velocity"]
+      confidence_threshold: 0.8
+      response_format: "story_estimation"
+
+# =============================================================================
+# RESPONSE FORMAT TEMPLATES
+# =============================================================================
+
+response_formats:
+  market_analysis:
+    structure: ["executive_summary", "tam_sam_som", "growth_projections", "key_trends", "data_sources"]
+    required_fields: ["market_size", "growth_rate", "key_drivers", "sources"]
+
+  competitive_analysis:
+    structure: ["competitor_overview", "market_share", "swot_analysis", "competitive_advantages", "threat_assessment"]
+    required_fields: ["key_competitors", "market_position", "competitive_threats"]
+
+  user_personas:
+    structure: ["persona_profiles", "demographics", "behaviors", "goals", "pain_points", "scenarios"]
+    required_fields: ["name", "demographics", "goals", "pain_points", "scenarios"]
+
+  technical_requirements:
+    structure: ["functional_reqs", "non_functional_reqs", "constraints", "assumptions", "dependencies"]
+    required_fields: ["scalability", "security", "performance", "integration"]
+
+# =============================================================================
+# CONFIDENCE THRESHOLDS BY QUESTION TYPE
+# =============================================================================
+
+confidence_thresholds:
+  strategic: 0.85      # Vision, goals, market analysis
+  requirements: 0.90   # Functional, non-functional requirements
+  technical: 0.90      # Architecture, infrastructure, security
+  validation: 0.95     # Acceptance criteria, compliance
+  estimation: 0.80     # Story points, prioritization

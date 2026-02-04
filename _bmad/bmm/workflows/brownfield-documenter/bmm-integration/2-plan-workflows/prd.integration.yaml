@@ -1,0 +1,92 @@
+# EMBER Integration Configuration for prd workflow
+# Links to: _bmad/bmm/workflows/2-plan-workflows/prd/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "prd"
+description: "Product Requirements Document workflow integration"
+source_path: "../../../2-plan-workflows/prd/"
+category: "planning"
+estimated_steps: 4
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "requirements-functional_requirements"
+    step_file: "steps/step-01-requirements.md"
+    questions:
+      - question_id: "functional_requirements"
+        interception_trigger: "What functional requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "user_stories", "business_rules"]
+        ember_mapping: "prd.requirements.functional_requirements"
+
+  - step_id: "requirements-non_functional_requirements"
+    step_file: "steps/step-01-requirements.md"
+    questions:
+      - question_id: "non_functional_requirements"
+        interception_trigger: "What non-functional requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "technical_constraints", "quality_attributes"]
+        ember_mapping: "prd.requirements.non_functional_requirements"
+
+  - step_id: "features-feature_breakdown"
+    step_file: "steps/step-02-features.md"
+    questions:
+      - question_id: "feature_breakdown"
+        interception_trigger: "How to break down features"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["epic_description", "product_domain", "business_value"]
+        ember_mapping: "prd.features.feature_breakdown"
+
+  - step_id: "validation-acceptance_criteria"
+    step_file: "steps/step-03-validation.md"
+    questions:
+      - question_id: "acceptance_criteria"
+        interception_trigger: "What acceptance criteria"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["feature_description", "product_domain", "user_scenarios"]
+        ember_mapping: "prd.validation.acceptance_criteria"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research", "create-product-brief", "create-ux-design"]
+      context_vars: ["user_personas", "business_goals", "technical_requirements", "ux_requirements"]
+  output_context:
+    - target_workflows: ["create-architecture", "create-epics-and-stories"]
+      context_vars: ["functional_requirements", "non_functional_requirements", "acceptance_criteria"]
+
+error_handling:
+  requirements_conflicts:
+    action: "stakeholder_resolution"
+    guidance: "Conflicting requirements require stakeholder alignment"
+  incomplete_user_stories:
+    action: "user_story_completion"
+    guidance: "Enhance user stories with more detailed acceptance criteria"
+  technical_feasibility_issues:
+    action: "technical_review"
+    guidance: "Non-functional requirements need technical validation"
+
+validation:
+  minimum_questions: ["functional_requirements", "non_functional_requirements"]
+  requirements_completeness: "all user stories covered"
+  stakeholder_alignment: "requirements signed off by key stakeholders"
+  technical_feasibility: "requirements implementable with current technology"
+
+performance:
+  expected_completion:
+    assisted: "35-50 minutes"
+    auto_pilot: "12-18 minutes"
+    manual: "70-100 minutes"

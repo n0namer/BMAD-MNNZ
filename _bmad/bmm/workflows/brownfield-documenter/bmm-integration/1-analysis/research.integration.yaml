@@ -1,0 +1,117 @@
+# EMBER Integration Configuration for research workflow
+# Links to: _bmad/bmm/workflows/1-analysis/research/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "research"
+description: "Market and domain research workflow integration"
+source_path: "../../../1-analysis/research/"
+category: "analysis"
+estimated_steps: 13
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+# Steps mapping for research workflow (spans multiple sub-workflows)
+steps_mapping:
+  # Domain Analysis steps
+  - step_id: "domain-analysis-market_size"
+    step_file: "domain-steps/step-01-init.md"  # Reference to domain analysis
+    questions:
+      - question_id: "market_size"
+        interception_trigger: "What is the market size"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "geography", "industry"]
+        ember_mapping: "research.domain-analysis.market_size"
+
+  - step_id: "domain-analysis-competitors"
+    step_file: "domain-steps/step-02-domain-analysis.md"
+    questions:
+      - question_id: "competitors"
+        interception_trigger: "Who are the key competitors"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "target_market"]
+        ember_mapping: "research.domain-analysis.competitors"
+
+  - step_id: "domain-analysis-regulatory"
+    step_file: "domain-steps/step-04-regulatory-focus.md"
+    questions:
+      - question_id: "regulatory_focus"
+        interception_trigger: "What regulatory requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "geography", "industry"]
+        ember_mapping: "research.domain-analysis.regulatory_focus"
+
+  # Market Analysis steps
+  - step_id: "market-segmentation"
+    step_file: "market-steps/[market_step_file].md"  # Generic market step
+    questions:
+      - question_id: "market_segmentation"
+        interception_trigger: "How to segment the market"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "target_audience"]
+        ember_mapping: "research.market-analysis.market_segmentation"
+
+  # Technical Analysis steps
+  - step_id: "technical-requirements"
+    step_file: "technical-steps/[tech_step_file].md"  # Generic technical step
+    questions:
+      - question_id: "tech_requirements"
+        interception_trigger: "What technical requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "scale_requirements", "existing_tech_stack"]
+        ember_mapping: "research.technical-analysis.tech_requirements"
+
+# Research workflow has extensive context propagation
+context_propagation:
+  input_context: []  # Research is usually first workflow
+  output_context:
+    - target_workflows: ["create-product-brief", "create-ux-design", "prd", "create-architecture"]
+      context_vars: ["market_size", "competitors", "regulatory_requirements", "technical_constraints", "market_segmentation"]
+  research_flow:
+    "domain-analysis → market-analysis → technical-analysis"
+
+# Research has special error handling due to external data dependencies
+error_handling:
+  api_unavailable:
+    action: "cached_fallback"
+    fallback_message: "Using cached market data for {{geography}}"
+  data_insufficient:
+    action: "guided_user_input"
+    guidance: "Please provide additional context for {{product_domain}} analysis"
+  confidence_low:
+    action: "research_deeper"
+    additional_sources: "academic_databases,industry_reports"
+  validation_failed:
+    action: "expert_review_required"
+    notification: "Market analysis requires domain expert validation"
+
+validation:
+  data_sources_required: ["industry_reports", "market_data", "regulatory_info"]
+  minimum_questions: ["market_size", "competitors", "regulatory_focus"]
+  cross_references: ["market_data_consistency", "competitive_analysis_depth"]
+  audit_trail: "research_methodology_log"
+
+performance:
+  expected_completion:
+    assisted: "45-60 minutes"  # Research-intensive
+    auto_pilot: "12-18 minutes"
+    manual: "90-150 minutes"
+  monitoring_points:
+    - "external_api_calls"
+    - "data_source_validation"
+    - "research_depth_analysis"

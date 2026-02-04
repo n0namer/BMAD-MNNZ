@@ -33,9 +33,20 @@ Run a monthly alignment review to ensure portfolio and goals stay aligned.
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/search-decision-protocol.md (and data/mcp_search_system_prompt_xml.md).
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Record an evidence snapshot and confidence (high/medium/low).
+- If confidence is low, ask user to choose; if high, proceed and note rationale.
+
+### Semantic Decision Support
+If monthly alignment is unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Ask monthly alignment questions
 - 💾 Append to {metricsFile}
 - 📖 Conclude validation sequence
+- 🧾 Record evidence snapshot in journal or workflow plan
 
 ## CONTEXT BOUNDARIES:
 
@@ -60,6 +71,9 @@ Append:
 - Stop/Deprioritize: {items}
 - New Opportunities: {items}
 ```
+
+If the user skips metrics, prompt once:
+- "Для месячного обзора достаточно 1–2 ключевых пункта."
 
 ### 3. Completion Message
 

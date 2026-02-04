@@ -1,15 +1,15 @@
     Step03 --> G2{Gate 2<br>Scoring Decision}
 
-    G2 -->|GO| Step04[step-04-scoring.md]
+    G2 -->|GO| Step04[step-05-scoring.md]
     G2 -->|KILL| Archive3[Archive: Low score]
     G2 -->|RECYCLE| G1
 
     Step04 --> G3{Gate 3<br>Approval}
 
-    G3 -->|GO| Step05[step-05-integration.md]
+    G3 -->|GO| Step05[step-06-integration.md]
     G3 -->|HOLD| Backlog3[Approved Backlog]
 
-    Step05 --> Step06[step-06-calendar-sync.md]
+    Step05 --> Step06[step-07-calendar-sync.md]
     Step06 --> ActiveProject[ACTIVE PROJECT]
 
     ActiveProject --> G4{Gate 4<br>In Progress<br>Weekly}
@@ -178,3 +178,4 @@ def check_auto_kill_triggers(project):
         return ("KILL", "Budget Overrun Without Progress", f"Spent {project.budget_spent} > 1.5x planned {project.budget_planned} with only {project.progress*100}% progress")
 
     # WIP LIMIT TRIGGERS
+

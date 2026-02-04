@@ -1,0 +1,90 @@
+# EMBER Integration Configuration for create-epics-and-stories workflow
+# Links to: _bmad/bmm/workflows/3-solutioning/create-epics-and-stories/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "create-epics-and-stories"
+description: "Epic and story creation workflow integration"
+source_path: "../../../3-solutioning/create-epics-and-stories/"
+category: "solutioning"
+estimated_steps: 4
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "breakdown-epic_creation"
+    step_file: "steps/step-01-breakdown.md"
+    questions:
+      - question_id: "epic_creation"
+        interception_trigger: "How to create epics"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["feature_list", "product_domain", "business_goals"]
+        ember_mapping: "create-epics-and-stories.breakdown.epic_creation"
+
+  - step_id: "prioritization-epic_prioritization"
+    step_file: "steps/step-02-prioritization.md"
+    questions:
+      - question_id: "epic_prioritization"
+        interception_trigger: "How to prioritize epics"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["epic_list", "product_domain", "prioritization_framework", "business_goals"]
+        ember_mapping: "create-epics-and-stories.prioritization.epic_prioritization"
+
+  - step_id: "prioritization-story_prioritization"
+    step_file: "steps/step-02-prioritization.md"
+    questions:
+      - question_id: "story_prioritization"
+        interception_trigger: "How to prioritize stories"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["story_list", "epic_name", "prioritization_method"]
+        ember_mapping: "create-epics-and-stories.prioritization.story_prioritization"
+
+  - step_id: "estimation-story_estimation"
+    step_file: "steps/step-03-estimation.md"
+    questions:
+      - question_id: "story_estimation"
+        interception_trigger: "How to estimate stories"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["story_list", "estimation_method", "team_velocity"]
+        ember_mapping: "create-epics-and-stories.estimation.story_estimation"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research", "prd", "create-architecture", "check-implementation-readiness"]
+      context_vars: ["functional_requirements", "architecture_design", "implementation_readiness", "timeline_constraints"]
+  output_context: []  # Final workflow - no downstream workflows
+
+error_handling:
+  epic_scope_too_large:
+    action: "epic_splitting"
+    guidance: "Break down oversized epics into smaller, manageable units"
+  prioritization_conflicts:
+    action: "stakeholder_alignment"
+    guidance: "Resolve prioritization conflicts through stakeholder consensus"
+  estimation_inaccuracy:
+    action: "velocity_calibration"
+    guidance: "Calibrate team velocity based on historical performance"
+
+validation:
+  minimum_questions: ["epic_creation", "epic_prioritization"]
+  epic_completeness: "all features covered by epics"
+  story_readiness: "all stories have clear acceptance criteria"
+  estimation_accuracy: "estimates within 20% of actual velocity"
+
+performance:
+  expected_completion:
+    assisted: "25-40 minutes"
+    auto_pilot: "10-15 minutes"
+    manual: "50-80 minutes"

@@ -1,7 +1,7 @@
 ---
 name: 'step-01-collect-ideas'
 description: 'Collect new idea or project from user'
-nextStepFile: './step-02-specialist-match.md'
+nextStepFile: './step-02-roles-discovery.md'
 ideasFolder: '{bmb_creations_output_folder}/life-os/ideas'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
 workflowPlanTemplate: '../templates/workflow-plan.template.md'
@@ -33,6 +33,15 @@ You are a thoughtful listener and idea clarifier. Your job is to:
 
 ## EXECUTION PROTOCOL
 
+### Search Orchestrator Protocol (Required)
+- Follow data/mcp_search_system_prompt_xml.md.
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Ask user to choose before proceeding.
+
+### Semantic Decision Support
+If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+
 ### 1. Welcome User
 
 ```
@@ -60,18 +69,59 @@ As user speaks, document the essentials. Cover these topics progressively
 - **Domain** (software, finance, personal, business, health, etc.)
 - **Resources Needed** (rough estimate)
 
-### 3. Clarifying Questions (Ask 1-2 Max)
+If the idea is vague or unclear, guide with one short hint at a time:
+- "Это больше про продукт, сервис или личную цель?"
+- "Какой конкретный результат вы хотите получить через 4–6 недель?"
+- "Что будет считаться успехом?"
+
+### 3. Design Thinking: Empathy Check (Universal Method - Embedded)
+
+**Goal:** Frame this idea with user-centric thinking.
+
+Ask the user 2-3 empathy questions to understand the human context:
+
+**Question 1: Who benefits?**
+- "Кто получит пользу от этого проекта?"
+- "Для кого это решает проблему?"
+
+**Question 2: What pain does this solve?**
+- "Какую боль или проблему это устраняет?"
+- "Что произойдёт, если эту проблему НЕ решить?"
+
+**Question 3 (optional): Why now?**
+- "Почему это важно сейчас?"
+- "Что изменилось, что делает это актуальным?"
+
+💡 **Design Thinking Tip:** If you can't clearly answer "who benefits?" and "what pain?", the idea may need refinement. Consider pausing to gather more user insights.
+
+**Guidance for Unclear Answers:**
+- If user says "not sure yet" → That's OK! Mark as "to be explored" and continue
+- If user struggles → Offer examples: "Например: клиенты, команда, личная продуктивность?"
+- Don't block progress → Empathy questions are guidance, not gates
+
+**Append to workflow plan:**
+```markdown
+## Design Thinking: Empathy Framing
+
+**Who Benefits:** {user answer or "to be explored"}
+**Pain/Problem Solved:** {user answer or "to be explored"}
+**Why Now:** {user answer or "not specified"}
+```
+
+### 4. Clarifying Questions (Ask 1-2 Max)
 
 Based on what they said, ask 1-2 clarifying questions:
 
 **Example Question Set:**
-- "Who would be the main beneficiary or user of this?"
 - "What's the biggest risk or challenge you see?"
 - "Does this relate to any existing project in your portfolio?"
 - "What success looks like for you?"
 - "How much time can you allocate to this?"
 
-### 4. Save to Memory (Dual Storage - CRITICAL)
+If the user can't answer, offer examples and let them pick:
+- "Могу предложить варианты: запуск MVP, улучшение процесса, рост метрики, личная цель. Что ближе?"
+
+### 5. Save to Memory (Dual Storage - CRITICAL)
 
 Create file: `{ideasFolder}/{IDEA_ID}.md`
 
@@ -92,6 +142,11 @@ user_input: {direct quote from user}
 
 ## Motivation
 {Why now? What problem/opportunity?)
+
+## Design Thinking: Empathy Framing
+**Who Benefits:** {user answer or "to be explored"}
+**Pain/Problem Solved:** {user answer or "to be explored"}
+**Why Now:** {user answer or "not specified"}
 
 ## Stakeholders
 - {Who's involved}
@@ -114,7 +169,7 @@ user_input: {direct quote from user}
 [Conversation date/time. Key insights. Next step trigger.]
 ```
 
-### 5. Update Workflow Plan
+### 6. Update Workflow Plan
 
 If {workflowPlanFile} does not exist, create it from {workflowPlanTemplate}.
 
@@ -126,12 +181,17 @@ Append:
 - Motivation: {why now}
 - Timeline: {timeline}
 - Resources: {resources}
+
+## Design Thinking: Empathy Framing
+**Who Benefits:** {user answer or "to be explored"}
+**Pain/Problem Solved:** {user answer or "to be explored"}
+**Why Now:** {user answer or "not specified"}
 ```
 
 Update frontmatter in {workflowPlanFile} to append this step to
 `stepsCompleted` (add `step-01-collect-ideas`).
 
-### 6. Save to Claude Flow Memory
+### 7. Save to Claude Flow Memory
 
 If possible, run the Markdown save and Claude Flow save in parallel and confirm both completed.
 
@@ -143,7 +203,7 @@ npx claude-flow@v3alpha memory store \
   --content "{markdown_content}"
 ```
 
-### 7. Confirm Save
+### 8. Confirm Save
 
 "✅ **Idea captured!** Saved both to files and memory.
 
@@ -151,10 +211,13 @@ Now let me find the right specialists to help evaluate this..."
 
 ---
 
-### 8. Proceed to Next Step (Auto-Proceed)
+### 9. Proceed to Next Step (Auto-Proceed)
 
 Display: "**Proceeding to specialist matching...**"
 Then load, read entire file, then execute {nextStepFile}.
+
+#### Menu Handling Logic:
+- After completion, immediately load, read entire file, then execute {nextStepFile}
 
 #### EXECUTION RULES:
 - This is an auto-proceed step (no menu)

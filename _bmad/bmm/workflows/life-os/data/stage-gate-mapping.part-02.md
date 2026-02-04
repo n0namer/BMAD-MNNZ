@@ -23,8 +23,8 @@ END
 
 ### Workflow Mapping
 - **Steps**:
-  - `step-05-integration.md` - Determine standalone vs. integrated
-  - `step-06-calendar-sync.md` - Propose timeline and resource allocation
+  - `step-06-integration.md` - Determine standalone vs. integrated
+  - `step-07-calendar-sync.md` - Propose timeline and resource allocation
 - **Input**: Scored project from G2
 - **Process**:
   - Check WIP limit (max 2 active)
@@ -170,11 +170,12 @@ graph TD
 
     Step01 --> G1{Gate 1<br>Evidence Screen}
 
-    G1 -->|GO| Step02[step-02-specialist-match.md]
+    G1 -->|GO| Step02[step-03-specialist-match.md]
     G1 -->|KILL| Archive2[Archive: No evidence]
     G1 -->|HOLD| Backlog2[On Hold: Dependency]
     G1 -->|RECYCLE| G0
 
     Step02 --> Step025[step-02.5-academic-search.md<br>Phase 2]
-    Step025 --> Step03[step-03-consilium.md]
+    Step025 --> Step03[step-04-consilium.md]
+
 

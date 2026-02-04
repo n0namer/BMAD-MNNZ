@@ -107,9 +107,9 @@ END
 
 ### Workflow Mapping
 - **Steps**:
-  - `step-02-specialist-match.md` - Match specialists
+  - `step-03-specialist-match.md` - Match specialists
   - `step-02.5-academic-search.md` - Research evidence (Phase 2)
-  - `step-03-consilium.md` - Get specialist recommendations
+  - `step-04-consilium.md` - Get specialist recommendations
 - **Input**: Idea brief from G0
 - **Process**: Research + consilium + evidence gathering
 - **Output**: Evidence summary + consilium recommendation + GO/KILL/HOLD/RECYCLE decision
@@ -156,7 +156,7 @@ END
 ```
 
 ### Workflow Mapping
-- **Step**: `step-04-scoring.md`
+- **Step**: `step-05-scoring.md`
 - **Input**: Evidence summary from G1
 - **Process**:
   - RICE scoring (Reach, Impact, Confidence, Effort)
@@ -178,3 +178,4 @@ END
 Final checkpoint before committing resources - ensure sponsor (user) is committed and resources are locked.
 
 ### Decision Criteria
+

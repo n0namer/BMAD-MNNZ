@@ -1,0 +1,80 @@
+# EMBER Integration Configuration for check-implementation-readiness workflow
+# Links to: _bmad/bmm/workflows/3-solutioning/check-implementation-readiness/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "check-implementation-readiness"
+description: "Implementation readiness assessment workflow integration"
+source_path: "../../../3-solutioning/check-implementation-readiness/"
+category: "solutioning"
+estimated_steps: 3
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "technical-readiness-tech_stack_assessment"
+    step_file: "steps/step-01-technical-readiness.md"
+    questions:
+      - question_id: "tech_stack_assessment"
+        interception_trigger: "What technical readiness"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "team_skills", "tech_constraints"]
+        ember_mapping: "check-implementation-readiness.technical-readiness.tech_stack_assessment"
+
+  - step_id: "technical-readiness-infrastructure_requirements"
+    step_file: "steps/step-01-technical-readiness.md"
+    questions:
+      - question_id: "infrastructure_requirements"
+        interception_trigger: "What infrastructure requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "scale_requirements", "compliance_needs"]
+        ember_mapping: "check-implementation-readiness.technical-readiness.infrastructure_requirements"
+
+  - step_id: "team-readiness-team_skills_assessment"
+    step_file: "steps/step-02-team-readiness.md"
+    questions:
+      - question_id: "team_skills_assessment"
+        interception_trigger: "What team readiness"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "team_composition", "skill_gaps"]
+        ember_mapping: "check-implementation-readiness.team-readiness.team_skills_assessment"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research", "prd", "create-architecture"]
+      context_vars: ["technical_requirements", "team_size", "timeline_constraints", "architecture_design"]
+  output_context:
+    - target_workflows: ["create-epics-and-stories"]
+      context_vars: ["implementation_readiness", "resource_requirements", "risk_assessment"]
+
+error_handling:
+  skill_gaps_identified:
+    action: "training_plan_recommendation"
+    guidance: "Create training plan to address identified skill gaps"
+  infrastructure_unavailable:
+    action: "alternative_infrastructure"
+    guidance: "Evaluate cloud vs on-premise vs hybrid infrastructure options"
+  timeline_constraints:
+    action: "scope_adjustment"
+    guidance: "Consider MVP scope reduction or timeline extension"
+
+validation:
+  minimum_questions: ["tech_stack_assessment", "team_skills_assessment"]
+  readiness_score: "minimum 70% readiness required to proceed"
+  risk_assessment: "high-risk items must have mitigation plans"
+  resource_availability: "all required resources must be committed"
+
+performance:
+  expected_completion:
+    assisted: "20-30 minutes"
+    auto_pilot: "8-12 minutes"
+    manual: "40-60 minutes"

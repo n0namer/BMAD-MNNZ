@@ -34,9 +34,20 @@ Run a weekly portfolio review to assess progress, risks, and priorities.
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/search-decision-protocol.md (and data/mcp_search_system_prompt_xml.md).
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Record an evidence snapshot and confidence (high/medium/low).
+- If confidence is low, ask user to choose; if high, proceed and note rationale.
+
+### Semantic Decision Support
+If weekly priorities are unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Ask weekly review questions
 - 💾 Append to {metricsFile}
 - 📖 Proceed to next review step
+- 🧾 Record evidence snapshot in journal or workflow plan
 
 ## CONTEXT BOUNDARIES:
 
@@ -62,10 +73,16 @@ Append:
 - Next Week Priority: {priority}
 ```
 
+If the user skips metrics, prompt once:
+- "Для недельного обзора достаточно 1–2 ключевых пункта."
+
 ### 3. Proceed to Next Review
 
 Display: "**Proceeding to monthly review check...**"
 Then load, read entire file, then execute {nextStepFile}.
+
+#### Menu Handling Logic:
+- After completion, immediately load, read entire file, then execute {nextStepFile}
 
 #### EXECUTION RULES:
 - This is an auto-proceed validation step

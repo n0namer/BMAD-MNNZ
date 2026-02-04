@@ -4,6 +4,9 @@ description: 'Re-score the updated project and document impact'
 nextStepFile: './step-03-kill-project.md'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
 mcdaGuide: '../data/mcda-methodology.md'
+snapshotsFolder: '{bmb_creations_output_folder}/life-os/snapshots'
+journalFolder: '{bmb_creations_output_folder}/life-os/journal'
+plansFolder: '{bmb_creations_output_folder}/life-os/plans'
 ---
 
 # Edit Step 2: Rescoring
@@ -37,9 +40,19 @@ Re-score the project after updates and capture the impact on priority.
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/mcp_search_system_prompt_xml.md.
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Ask user to choose before proceeding.
+
+### Semantic Decision Support
+If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Gather updated scoring inputs
 - 💾 Append rescoring summary to {workflowPlanFile}
 - 📖 Confirm priority impact with user
+- 🧾 Record evidence snapshot in journal or workflow plan
 
 ## CONTEXT BOUNDARIES:
 
@@ -56,6 +69,8 @@ Ask for 1–5 ratings and rationale (progressively, 1–2 at a time) for:
 - Effort
 - Strategic alignment
 - Risk
+
+If the user is unsure about updated weights or criteria, use Search Orchestrator to propose 2–3 rescoring profiles.
 
 ### 2. Compute Summary
 
@@ -79,7 +94,13 @@ Append:
 **Priority Impact:** {increase/decrease/no change}
 ```
 
-### 4. Present MENU OPTIONS
+### 4. Update Snapshot and Journal
+
+Update snapshot in {snapshotsFolder} with the new score summary and priority impact.
+Append a journal entry in {journalFolder} noting the rescoring decision.
+Update the project plan in {plansFolder} with revised scoring and an iteration entry.
+
+### 5. Present MENU OPTIONS
 
 Display: "**Select:** [C] Continue"
 

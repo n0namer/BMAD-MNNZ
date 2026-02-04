@@ -34,9 +34,20 @@ Run a quick daily review to capture current state, blockers, and tomorrow focus.
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/search-decision-protocol.md (and data/mcp_search_system_prompt_xml.md).
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Record an evidence snapshot and confidence (high/medium/low).
+- If confidence is low, ask user to choose; if high, proceed and note rationale.
+
+### Semantic Decision Support
+If review prioritization or next actions are unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Ask short daily review questions
 - 💾 Append to {metricsFile}
 - 📖 Proceed to next review step
+- 🧾 Record evidence snapshot in journal or workflow plan
 
 ## CONTEXT BOUNDARIES:
 
@@ -62,10 +73,16 @@ Append:
 - Tomorrow Focus: {focus}
 ```
 
+If the user skips metrics, prompt once:
+- "Чтобы обзор был полезнее, давайте зафиксируем хотя бы 1–2 пункта."
+
 ### 3. Proceed to Next Review
 
 Display: "**Proceeding to weekly review check...**"
 Then load, read entire file, then execute {nextStepFile}.
+
+#### Menu Handling Logic:
+- After completion, immediately load, read entire file, then execute {nextStepFile}
 
 #### EXECUTION RULES:
 - This is an auto-proceed validation step

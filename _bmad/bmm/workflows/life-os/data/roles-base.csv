@@ -1,0 +1,37 @@
+sphere,role,priority,signals,tags,default_template,version,specialist_profile
+business,Product Strategist,high,"unclear value,need positioning","strategy,product",Business / Strategy,v1,product-strategist
+business,Market Analyst,medium,"unknown market,competition","market,research",Business / Strategy,v1,market-analyst
+business,Operations Lead,medium,"delivery risk,process gaps","ops,delivery",Ops / Delivery Helper,v1,operations-lead
+business,Finance Analyst,medium,"budget uncertainty,unit economics","finance,unit-econ",Business / Strategy,v1,finance-analyst
+business,Legal / Compliance,medium,"regulatory exposure,contracts","legal,compliance",Legal / Compliance,v1,legal-compliance
+business,Growth / GTM,medium,"go-to-market unclear,acquisition plan needed","growth,gtm",Business / Strategy,v1,growth-gtm
+finance,Portfolio Manager,high,"investment decisions,allocation needed","portfolio,allocation",Finance / Investment,v1,portfolio-manager
+finance,Risk Advisor,high,"volatility exposure,risk unclear","risk,controls",Finance / Investment,v1,risk-advisor
+finance,Tax / Legal,medium,"tax impact,regulatory constraints","tax,legal",Legal / Compliance,v1,tax-legal
+finance,Budget Planner,medium,"budget gaps,cashflow planning","budget,cashflow",Finance / Investment,v1,budget-planner
+career,Career Coach,medium,"role unclear,trajectory planning","career,planning",Career / Professional Growth,v1,career-coach
+career,Skill Development,medium,"skill gaps,new responsibilities","learning,skills",Learning / Education,v1,skill-development
+career,Networking / Outreach,low,"stakeholder access,visibility needed","networking,visibility",Career / Professional Growth,v1,networking-outreach
+career,Portfolio / CV,low,"credentialing,profile building","portfolio,branding",Career / Professional Growth,v1,portfolio-cv
+health,Health Coach,medium,"behavior change,habit design","health,habits",Health / Wellbeing,v1,health-coach
+health,Nutrition,medium,"dietary plan,energy management","nutrition,energy",Health / Wellbeing,v1,nutrition
+health,Training / Fitness,medium,"physical capacity,performance goals","fitness,training",Health / Wellbeing,v1,training-fitness
+health,Recovery / Sleep,medium,"fatigue,burnout risk","sleep,recovery",Health / Wellbeing,v1,recovery-sleep
+relationships,Communication Coach,medium,"conflicts,misalignment","communication,relationships",Relationships / Social,v1,communication-coach
+relationships,Conflict Resolution,medium,"tension,negotiations","conflict,negotiation",Relationships / Social,v1,conflict-resolution
+relationships,Community Builder,low,"network support,group dynamics","community,engagement",Community / Public Impact,v1,community-builder
+learning,Curriculum Designer,medium,"learning path unclear","curriculum,design",Learning / Education,v1,curriculum-designer
+learning,Study Coach,medium,"consistency,study structure","study,habits",Learning / Education,v1,study-coach
+learning,Assessment / Feedback,low,"progress validation","assessment,feedback",Learning / Education,v1,assessment-feedback
+home,Household Ops,medium,"routine breakdown,task overload","home,ops",Home / Life Ops,v1,household-ops
+home,Maintenance Planner,medium,"maintenance backlog","maintenance,planning",Home / Life Ops,v1,maintenance-planner
+home,Improvement Planner,low,"upgrade projects","improvement,projects",Home / Life Ops,v1,improvement-planner
+legal,Legal Advisor,high,"contracts,liability","legal,advice",Legal / Compliance,v1,legal-advisor
+legal,Risk / Compliance,high,"regulatory risk","risk,compliance",Legal / Compliance,v1,risk-compliance
+legal,Documentation,medium,"evidence,record keeping","documentation,records",Legal / Compliance,v1,documentation
+creative,Creative Director,medium,"concept clarity,brand fit","creative,brand",Creative / Content,v1,creative-director
+creative,Production Lead,medium,"pipeline coordination","production,pipeline",Creative / Content,v1,production-lead
+creative,Distribution / Promotion,low,"audience reach","distribution,marketing",Creative / Content,v1,distribution-promotion
+community,Community Manager,medium,"engagement,retention","community,management",Community / Public Impact,v1,community-manager
+community,Partnerships,low,"collaboration needs","partnerships,alliances",Community / Public Impact,v1,partnerships
+community,Governance / Policy,low,"rules,moderation","governance,policy",Community / Public Impact,v1,governance-policy

@@ -1,0 +1,80 @@
+# EMBER Integration Configuration for create-architecture workflow
+# Links to: _bmad/bmm/workflows/3-solutioning/create-architecture/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "create-architecture"
+description: "System architecture design workflow integration"
+source_path: "../../../3-solutioning/create-architecture/"
+category: "solutioning"
+estimated_steps: 4
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "analysis-system_context"
+    step_file: "steps/step-01-analysis.md"
+    questions:
+      - question_id: "system_context"
+        interception_trigger: "What system context"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "external_systems", "integration_points"]
+        ember_mapping: "create-architecture.analysis.system_context"
+
+  - step_id: "design-component_architecture"
+    step_file: "steps/step-02-design.md"
+    questions:
+      - question_id: "component_architecture"
+        interception_trigger: "What component architecture"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "functional_requirements", "quality_attributes"]
+        ember_mapping: "create-architecture.design.component_architecture"
+
+  - step_id: "validation-architecture_validation"
+    step_file: "steps/step-04-document.md"
+    questions:
+      - question_id: "architecture_validation"
+        interception_trigger: "Validate architecture"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "requirement_list", "quality_attributes"]
+        ember_mapping: "create-architecture.validation.architecture_validation"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research", "prd", "create-ux-design"]
+      context_vars: ["technical_requirements", "functional_requirements", "non_functional_requirements", "system_constraints"]
+  output_context:
+    - target_workflows: ["create-epics-and-stories"]
+      context_vars: ["architecture_design", "component_model", "integration_patterns"]
+
+error_handling:
+  requirements_conflicts:
+    action: "prioritize_requirements"
+    guidance: "Resolve conflicting requirements with stakeholder input"
+  technical_constraints_ignored:
+    action: "validate_against_constraints"
+    guidance: "Ensure architecture meets all technical and business constraints"
+  scalability_overlooked:
+    action: "add_scalability_analysis"
+    guidance: "Include scalability considerations for future growth"
+
+validation:
+  minimum_questions: ["system_context", "component_architecture"]
+  architectural_patterns: "follows_established_patterns"
+  requirements_traceability: "all_requirements_addressed"
+  quality_attributes_coverage: "performance_security_scalability"
+
+performance:
+  expected_completion:
+    assisted: "40-60 minutes"
+    auto_pilot: "15-20 minutes"
+    manual: "80-120 minutes"

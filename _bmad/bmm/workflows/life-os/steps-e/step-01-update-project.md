@@ -2,8 +2,12 @@
 name: 'step-01-update-project'
 description: 'Update an existing project status, timeline, or resources'
 nextStepFile: './step-02-rescoring.md'
+deepPlanStepFile: './step-04-deep-plan.md'
 projectsFolder: '{bmb_creations_output_folder}/life-os/projects'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
+snapshotsFolder: '{bmb_creations_output_folder}/life-os/snapshots'
+journalFolder: '{bmb_creations_output_folder}/life-os/journal'
+plansFolder: '{bmb_creations_output_folder}/life-os/plans'
 ---
 
 # Edit Step 1: Update Project
@@ -37,9 +41,19 @@ Select a project to update and capture changes to status, timeline, or resources
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/mcp_search_system_prompt_xml.md.
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Ask user to choose before proceeding.
+
+### Semantic Decision Support
+If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Identify the target project in {projectsFolder}
 - 💾 Append update notes to {workflowPlanFile}
 - 📖 Do not rescore here (rescoring happens in next step)
+- 🧾 Record evidence snapshot in journal or workflow plan
 
 ## CONTEXT BOUNDARIES:
 
@@ -56,14 +70,25 @@ Ask:
 Если есть ID/название — укажите.  
 Если нет — опишите, я помогу найти."
 
-### 2. Capture Updates
+If multiple projects match or the user is unsure:
+- Provide up to 5 closest matches and ask to choose by number
+- Offer to filter by status (PLANNED / ACTIVE / BLOCKED / DONE)
+
+### 2. Auto-Select Action
+
+Default to Update (status/timeline/resources).
+After updates, auto-trigger Deep Plan refresh using {deepPlanStepFile}.
+
+If update options are unclear, use Search Orchestrator to propose 2–3 update strategies.
+
+### 3. Capture Updates
 
 Ask for updates to (progressively, 1–2 at a time):
 - Статус (PLANNED / ACTIVE / BLOCKED / DONE)
 - Таймлайн (даты / длительность)
 - Ресурсы (время, бюджет, команда)
 
-### 3. Append to Workflow Plan
+### 4. Append to Workflow Plan
 
 Append:
 ```markdown
@@ -76,7 +101,17 @@ Append:
 - Resources: {from} → {to}
 ```
 
-### 4. Present MENU OPTIONS
+### 5. Update Snapshot and Journal
+
+Update the project snapshot in {snapshotsFolder} (status, dates, next actions).
+Append a journal entry in {journalFolder} summarizing the change and rationale.
+Update the project plan in {plansFolder} with an iteration entry and revised fields if needed.
+
+### 6. Auto-Refresh Deep Plan
+
+Load and execute {deepPlanStepFile} after updates are saved.
+
+### 7. Present MENU OPTIONS
 
 Display: "**Select:** [C] Continue"
 

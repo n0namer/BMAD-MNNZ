@@ -10,6 +10,9 @@ status: IN_PROGRESS
 ## Idea Summary
 [To be filled]
 
+## Roles
+[To be filled]
+
 ## Specialist Matching
 [To be filled]
 
@@ -19,5 +22,11 @@ status: IN_PROGRESS
 ## Scoring Summary
 [To be filled]
 
+## Stage Gate: Scoring
+[To be filled]
+
 ## Integration Summary
+[To be filled]
+
+## Stage Gate: Plan Readiness
 [To be filled]

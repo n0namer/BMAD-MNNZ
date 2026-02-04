@@ -4,6 +4,8 @@ description: 'Confirm and document project termination'
 projectsFolder: '{bmb_creations_output_folder}/life-os/projects'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
 decisionsLog: '{bmb_creations_output_folder}/life-os/decisions/decision-log.md'
+snapshotsFolder: '{bmb_creations_output_folder}/life-os/snapshots'
+journalFolder: '{bmb_creations_output_folder}/life-os/journal'
 ---
 
 # Edit Step 3: Kill Project
@@ -36,9 +38,20 @@ Confirm a kill decision, document rationale, and update records.
 - Summarize findings concisely and cite sources when possible.
 - If MCP search is unavailable, provide best-effort guidance and note the limitation.
 
+### Search Orchestrator Protocol (Required)
+- Follow data/mcp_search_system_prompt_xml.md.
+- Execute: CLI memory search -> local MD (rg) -> web/MCP.
+- Convene consilium to rank 2–4 options with pros/cons and recommendation.
+- Ask user to choose before proceeding.
+
+### Semantic Decision Support
+If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+
 - 🎯 Identify the project to terminate
 - 💾 Append decision to {decisionsLog}
 - 📖 Update status in project record
+- 🧾 Record evidence snapshot in journal or workflow plan
+- 📘 Record decision in project decisions file (if exists)
 
 ## CONTEXT BOUNDARIES:
 
@@ -53,6 +66,8 @@ Ask (progressively):
 - Which project to terminate?
 - Which kill criteria are met?
 - Confirm the decision and any rollback plan
+
+If criteria are unclear, use Search Orchestrator to rank 2–3 options (pause, pivot, kill) with rationale.
 
 ### 2. Document Decision
 
@@ -70,7 +85,12 @@ Append to {decisionsLog}:
 
 In the project file, update status to `KILLED` and add a brief note.
 
-### 4. Append to Workflow Plan
+### 4. Update Snapshot and Journal
+
+Update snapshot in {snapshotsFolder} to KILLED and record final note.
+Append a journal entry in {journalFolder} with the kill decision and criteria.
+
+### 5. Append to Workflow Plan
 
 Append to {workflowPlanFile}:
 ```markdown
@@ -80,7 +100,7 @@ Append to {workflowPlanFile}:
 **Decision Log:** {decisionsLog}
 ```
 
-### 5. Completion Message
+### 6. Completion Message
 
 Confirm the kill is recorded.
 

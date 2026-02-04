@@ -1,0 +1,92 @@
+# EMBER Integration Configuration for create-ux-design workflow
+# Links to: _bmad/bmm/workflows/2-plan-workflows/create-ux-design/
+# Zero modification approach - read-only references to existing workflow
+
+workflow: "create-ux-design"
+description: "UX design creation workflow integration"
+source_path: "../../../2-plan-workflows/create-ux-design/"
+category: "planning"
+estimated_steps: 4
+
+integration_mode: "question_interception"
+interception_level: "step"
+
+steps_mapping:
+  - step_id: "requirements-ux_requirements"
+    step_file: "steps/step-01-requirements.md"
+    questions:
+      - question_id: "ux_requirements"
+        interception_trigger: "What UX requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "target_users", "platform"]
+        ember_mapping: "create-ux-design.requirements.ux_requirements"
+
+  - step_id: "user-flows-user_flow_design"
+    step_file: "steps/step-02-user-flows.md"
+    questions:
+      - question_id: "user_flow_design"
+        interception_trigger: "How should user flows"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["primary_user_journey", "product_domain", "user_goals"]
+        ember_mapping: "create-ux-design.user-flows.user_flow_design"
+
+  - step_id: "wireframes-wireframe_requirements"
+    step_file: "steps/step-03-wireframes.md"
+    questions:
+      - question_id: "wireframe_requirements"
+        interception_trigger: "What wireframe requirements"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["key_screen", "product_domain", "user_tasks"]
+        ember_mapping: "create-ux-design.wireframes.wireframe_requirements"
+
+  - step_id: "validation-ux_validation_criteria"
+    step_file: "steps/step-04-validation.md"
+    questions:
+      - question_id: "ux_validation_criteria"
+        interception_trigger: "What validation criteria"
+        mode_behavior:
+          assisted: "intercept_and_suggest"
+          auto_pilot: "intercept_and_auto_respond"
+          manual: "no_interception"
+        context_vars: ["product_domain", "usability_goals", "success_criteria"]
+        ember_mapping: "create-ux-design.validation.ux_validation_criteria"
+
+context_propagation:
+  input_context:
+    - source_workflows: ["research", "create-product-brief"]
+      context_vars: ["user_personas", "user_journeys", "product_vision", "success_metrics"]
+  output_context:
+    - target_workflows: ["prd", "create-architecture"]
+      context_vars: ["ux_requirements", "user_flows", "wireframe_specs", "validation_criteria"]
+
+error_handling:
+  user_research_insufficient:
+    action: "link_to_research"
+    guidance: "UX design requires complete user research from previous workflows"
+  platform_constraints_ignored:
+    action: "platform_validation"
+    guidance: "Validate UX against platform-specific constraints"
+  accessibility_missing:
+    action: "add_accessibility_layer"
+    guidance: "Include WCAG accessibility requirements"
+
+validation:
+  minimum_questions: ["ux_requirements", "user_flow_design"]
+  design_system_check: "consistent_with_brand_guidelines"
+  user_centered_validation: "meets_user_needs_from_personas"
+  technical_feasibility: "implementable_on_target_platform"
+
+performance:
+  expected_completion:
+    assisted: "30-45 minutes"
+    auto_pilot: "10-15 minutes"
+    manual: "60-90 minutes"
