@@ -5,6 +5,13 @@ status: {{status}}
 lastUpdated: {{date}}
 nextStep: {{next_step}}
 lastDecision: {{last_decision}}
+tier: 1
+tier_name: "Core"
+unlock_requirement: "none"
+category: "tracking"
+difficulty: "beginner"
+estimated_time: "5 min"
+description: "Quick project status snapshot with current state and next actions"
 ---
 
 # Project Snapshot

@@ -5,6 +5,13 @@ framework: TRIZ Quick
 timeInvestment: quick (5-10 min)
 outputs:
   - Append to workflow-plan.md
+tier: 2
+tier_name: "Intermediate"
+unlock_requirement: "3 workflows"
+category: "problem-solving"
+difficulty: "intermediate"
+estimated_time: "10 min"
+description: "Quick contradiction analysis using TRIZ principles for rapid problem-solving"
 ---
 
 # TRIZ Quick Analysis: {Project Name}

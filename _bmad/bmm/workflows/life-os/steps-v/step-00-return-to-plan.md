@@ -24,6 +24,8 @@ Provide a fast context restore for a project (goal, status, last decision, next 
 
 ### Step-Specific Rules:
 - 🎯 Focus ONLY on context recovery
+- 🎯 Analyze project snapshot in subprocess (Pattern 2)
+- 💬 Return structured snapshot summary, not raw data files
 - 🚫 FORBIDDEN to change project data here
 - 💬 If files are missing, explain clearly and offer next best action
 
@@ -55,16 +57,35 @@ Ask:
 "Какой проект вы хотите восстановить по контексту?  
 Укажите ID/название, либо опишите — я помогу найти."
 
-### 2. Load Sources
+### 2. Load Sources (Subprocess Pattern)
 
-Load:
-- Project file from {projectsFolder}
-- Snapshot from {snapshotsFolder}
-- Journal from {journalFolder}
-- Project plan from {plansFolder}
-- Decision log from {decisionsLog} (if relevant)
+**Launch a subprocess that:**
+1. Loads project file from {projectsFolder}
+2. Loads snapshot from {snapshotsFolder}
+3. Loads journal from {journalFolder}
+4. Loads project plan from {plansFolder}
+5. Loads decision log from {decisionsLog} (if relevant)
+6. Synthesizes context snapshot
 
-If any file is missing, state it and continue with available sources.
+**Subprocess returns:**
+```json
+{
+  "project_id": "...",
+  "goal": "...",
+  "status": "active/paused/completed",
+  "last_decision": "...",
+  "last_journal_entry": "...",
+  "next_steps": [...],
+  "plan_depth": "L1-L6",
+  "missing_files": [...]
+}
+```
+
+**Context savings:** ~600 lines (raw files) → ~50 lines (structured snapshot)
+
+**Graceful fallback:** If subprocess unavailable, load files in main context and synthesize manually.
+
+If any file is missing, subprocess will note it in `missing_files` array.
 
 ### 3. Present Context Snapshot
 

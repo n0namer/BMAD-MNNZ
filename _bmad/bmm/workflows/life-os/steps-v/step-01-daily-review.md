@@ -1,16 +1,50 @@
 ---
 name: 'step-01-daily-review'
-description: 'Run a quick daily review of active projects and blockers'
+description: 'OPTIONAL daily standup mode (1-2 min) - Quick status check, not required'
 nextStepFile: './step-02-weekly-review.md'
 portfolioFile: '{bmb_creations_output_folder}/life-os/portfolio.md'
 metricsFile: '{bmb_creations_output_folder}/life-os/metrics/metrics.md'
+estimatedDuration: '1-2 minutes (OPTIONAL)'
+isOptional: true
 ---
 
-# Validation Step 1: Daily Review
+# Validation Step 1: Daily Review (OPTIONAL "Standup Mode")
 
 ## STEP GOAL:
 
-Run a quick daily review to capture current state, blockers, and tomorrow focus.
+Run an OPTIONAL quick daily standup (1-2 min) to capture lightweight signals: today's focus, blockers, and tomorrow's priority. This is NOT required daily — weekly review is the PRIMARY cadence.
+
+## WHY DAILY IS OPTIONAL:
+
+- **Daily** = OPTIONAL lightweight signals (1-2 min, "standup mode")
+- **Weekly** = PRIMARY substantive review (15-20 min, required for progress tracking)
+- **Monthly** = "Deeper weekly" (30 min, adds trend analysis)
+- **Quarterly** = Strategic goal adjustment only
+
+Daily review is useful for high-discipline users who want daily check-ins, but most users should focus on weekly reviews instead.
+
+## SKIP PROMPT:
+
+**At the start of this step, always offer to skip:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 Daily Review (OPTIONAL — 1-2 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This is a quick standup check-in. It's optional.
+
+Your PRIMARY review cadence is **weekly** (15-20 min).
+Daily is only useful if you want daily discipline signals.
+
+Options:
+1. ✅ Do quick daily standup (1-2 min)
+2. ⏭️  Skip to weekly review (recommended for most users)
+
+What would you like to do?
+```
+
+If user chooses "Skip" → immediately proceed to step-02-weekly-review.md
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -24,8 +58,11 @@ Run a quick daily review to capture current state, blockers, and tomorrow focus.
 - 🤝 Proactive guidance: highlight risks, opportunities, and next best actions based on current context
 - 🧭 If WIP/kill criteria or portfolio risks appear, surface them early with a brief recommendation
 - ✅ Ask for user confirmation before taking any proactive action that changes scope or priorities
-- 🎯 Focus ONLY on daily review signals
+- 🎯 Focus ONLY on lightweight daily signals (not substantive review)
+- 🎯 Analyze daily review in subprocess (Pattern 2)
+- 💬 Return structured daily findings, not portfolio data
 - 🚫 FORBIDDEN to reprioritize or rescore here
+- ⏱️  Keep it FAST: 1-2 minutes maximum
 
 ## EXECUTION PROTOCOLS:
 
@@ -56,29 +93,77 @@ If review prioritization or next actions are unclear, use Search Orchestrator to
 
 ## MANDATORY SEQUENCE
 
-### 1. Ask Daily Review Questions
+### 1. Skip Prompt (ALWAYS SHOW FIRST)
 
-Ask (1–2 at a time):
-- What is in progress today?
-- Any blockers?
-- What is the single most important task tomorrow?
+**Before doing anything else, offer skip option:**
+```
+Daily Review is OPTIONAL (1-2 min).
+Weekly Review is your PRIMARY cadence (15-20 min).
 
-### 2. Append Metrics
-
-Append:
-```markdown
-## Daily Review — {today}
-- In Progress: {items}
-- Blockers: {blockers}
-- Tomorrow Focus: {focus}
+[✅ Do daily standup] [⏭️ Skip to weekly review]
 ```
 
-If the user skips metrics, prompt once:
-- "Чтобы обзор был полезнее, давайте зафиксируем хотя бы 1–2 пункта."
+If user skips → immediately load and execute {nextStepFile}
 
-### 3. Proceed to Next Review
+### 2. Daily Review Protocol (Subprocess)
 
-Display: "**Proceeding to weekly review check...**"
+**Launch a subprocess that:**
+1. Loads data/weekly-pulse-protocol.md
+2. Loads today's context ({portfolioFile} if exists)
+3. Asks 3 standup questions
+4. Returns structured standup summary
+
+**Subprocess asks:**
+1. "What is your ONE focus today?"
+2. "Any blockers right now?"
+3. "What's tomorrow's top priority?"
+
+**Subprocess returns:**
+```json
+{
+  "date": "YYYY-MM-DD",
+  "today_focus": "...",
+  "blockers": "...",
+  "tomorrow_priority": "...",
+  "signals": {
+    "wip_warning": true/false,
+    "blocker_severity": "none/low/medium/high"
+  }
+}
+```
+
+**Context savings:** ~400 lines (portfolio data) → ~30 lines (standup summary)
+
+**Graceful fallback:** If subprocess unavailable, ask questions in main context.
+
+**Do NOT ask for details** — this is signal-only mode.
+Accept short answers: "Code review", "Waiting on approval", "Finish testing"
+
+### 3. Append Metrics (Minimal Format)
+
+Append to {metricsFile}:
+```markdown
+## Daily Standup — {today}
+- Today: {focus}
+- Blocker: {blocker_or_none}
+- Tomorrow: {priority}
+```
+
+**If user tries to give long answers:**
+```
+⏱️  Daily standup is 1-2 min only.
+Save detailed reflections for weekly review.
+
+Short answer is fine: what's the ONE thing?
+```
+
+If the user skips metrics entirely:
+- "Ничего страшного — еженедельный обзор важнее."
+- Do NOT force it — proceed immediately
+
+### 4. Proceed to Next Review
+
+Display: "**Proceeding to weekly review (PRIMARY cadence)...**"
 Then load, read entire file, then execute {nextStepFile}.
 
 #### Menu Handling Logic:
@@ -91,14 +176,19 @@ Then load, read entire file, then execute {nextStepFile}.
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
 ### ✅ SUCCESS:
-- Daily snapshot captured
-- Metrics appended
+- User offered skip option FIRST
+- If done: completed in 1-2 minutes (not longer)
+- Minimal metrics captured (3 short answers)
+- User understands weekly is PRIMARY cadence
 
 ### ❌ SYSTEM FAILURE:
-- Skipping questions
-- Not writing to metrics
+- Not offering skip option
+- Making daily review feel mandatory
+- Asking for detailed answers (that's weekly's job)
+- Taking >3 minutes
+- Making user feel guilty for skipping
 
-**Master Rule:** Keep daily review lightweight and recorded.
+**Master Rule:** Daily review is OPTIONAL and LIGHTWEIGHT. Weekly review is where substantive tracking happens. Most users should skip daily and focus on weekly.
 
 
 

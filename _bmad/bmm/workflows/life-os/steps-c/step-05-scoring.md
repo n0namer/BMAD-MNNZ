@@ -3,6 +3,7 @@ name: 'step-05-scoring'
 description: 'Score the project using MCDA/RICE inputs and document rationale'
 nextStepFile: './step-06-integration.md'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
+goalsFile: '{bmb_creations_output_folder}/life-os/goals.yaml'
 mcdaGuide: '../data/mcda-methodology.md'
 stageGateMap: '../data/stage-gate-mapping.md'
 advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml'
@@ -15,56 +16,22 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 Score the project using structured criteria and document the rationale.
 
+💡 **Quality Reference:** See `../data/scoring-examples.md` for WRONG vs RIGHT scoring examples
+
+**Minimum Quality Standards:**
+- Every score justified with reasoning (not just numbers)
+- Evidence provided (data, competitor analysis, interviews)
+- "Why not higher?" ceiling explained
+- Weighted calculation shown (MCDA)
+- 600-800 words total output
+
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
-### Universal Rules:
-- 🛑 NEVER generate content without user input
-- 📖 CRITICAL: Read the complete step file before taking any action
-- 🔄 CRITICAL: When loading next step with 'C', read entire file
-- 📋 YOU ARE A FACILITATOR, not a content generator
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+**Universal:** 🛑 Never generate content without user input | 📖 Read complete step file first | 🔄 When loading next step with 'C', read entire file | 📋 YOU ARE A FACILITATOR, not content generator | ✅ Always speak in `{communication_language}`
 
-### Step-Specific Rules:
-- 🤝 Proactive guidance: highlight risks, opportunities, and next best actions based on current context
-- 🧭 If WIP/kill criteria or portfolio risks appear, surface them early with a brief recommendation
-- ✅ Ask for user confirmation before taking any proactive action that changes scope or priorities
-- 🎯 Focus ONLY on scoring and rationale
-- 🚫 FORBIDDEN to change scope or add new features
-- 💬 Use {mcdaGuide} and {stageGateMap} as reference only
-- 💬 If reference files are sharded, load only the relevant part(s) listed in the index file
+**Step-Specific:** 🎯 Focus ONLY on scoring and rationale | 🚫 FORBIDDEN to change scope or add features | 💬 Use {mcdaGuide} and {stageGateMap} as reference only | 🎯 Use subprocess for scoring criteria filtering by track (Pattern 3) | 💬 Return ONLY track-relevant criteria, not full MCDA encyclopedia
 
-## EXECUTION PROTOCOLS:
-
-### Proactive Advice & Best Practices (MCP)
-- If the user asks for advice, best practices, or recommendations, use MCP search (if available) to retrieve current guidance.
-- Summarize findings concisely and cite sources when possible.
-- If MCP search is unavailable, provide best-effort guidance and note the limitation.
-
-### Search Orchestrator Protocol (Required)
-- Follow data/mcp_search_system_prompt_xml.md.
-- Execute: CLI memory search -> local MD (rg) -> web/MCP.
-- Convene consilium to rank 2–4 options with pros/cons and recommendation.
-- Ask user to choose before proceeding.
-
-### Semantic Decision Support
-If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
-
-### Subprocess Data Ops (Reference Lookup)
-- If subprocess is available, load only relevant part(s) from {mcdaGuide} and {stageGateMap}:
-  - Use the index file to identify needed `.part-*.md` files.
-  - Subprocess returns only the criteria/tables required for this step.
-- If subprocess is unavailable, load only the needed part files manually.
-
-- 🎯 Ask user for inputs per criteria
-- 💾 Append scoring summary to {workflowPlanFile}
-- 📖 Keep rationale explicit and concise
-- 🧾 Record evidence snapshot in journal or workflow plan
-
-## CONTEXT BOUNDARIES:
-
-- Available context: workflow plan + consilium recommendations
-- Focus: scoring and decision rationale
-- Dependencies: step-04 consilium must be complete
+**Execution Protocols:** If subprocess available, load only relevant parts from {mcdaGuide}/{stageGateMap} | Use Search Orchestrator (data/mcp_search_system_prompt_xml.md) when unclear | 💾 Append scoring summary to {workflowPlanFile}
 
 ## MANDATORY SEQUENCE
 
@@ -72,64 +39,62 @@ If a decision or prioritization remains unclear, use Search Orchestrator to rank
 
 Briefly reference {mcdaGuide} and {stageGateMap} for criteria alignment.
 
-### 2. Auto-Suggest: Domain-Specific Criteria (Intelligence Layer)
+### 2. Check Goals Availability & Select Scoring Mode
 
-**AI automatically adds domain-specific scoring criteria based on selected frameworks:**
+**Check if {goalsFile} exists:**
+- ✅ **Found:** Use 5 criteria (Impact, Confidence, Effort, Strategic Alignment, Risk)
+- ❌ **Not found:** Use 4 criteria (no Strategic Alignment) → Offer: `[C]ontinue simplified | [D]efine Goals Now (Step 00, ~10-15 min)`
 
-**If Business frameworks present:**
-- Market Opportunity (0.10 weight)
-- Competitive Advantage (0.10 weight)
+### 2.1. Select Scoring Approach
 
-**If Finance frameworks present:**
-- Expected Value (0.15 weight)
-- Option Value (0.10 weight)
+**[A]bsolute** - Independent scoring (0-5 scale) | Risk: grade inflation
+**[C]omparative** - Rank against other ideas (recommended 2+ ideas) | Forced ranking prevents ties
+**[B]atch** - Side-by-side matrix (3+ ideas) | Fastest for portfolios
 
-**If Health frameworks present:**
-- Readiness (HBM) (0.10 weight)
-- Sustainability (0.10 weight)
+➡️ **Your choice:** [A/C/B] | 📖 **Details:** data/comparative-ranking-protocol.md
 
-**If Personal Dev frameworks present:**
-- Skill Impact (0.10 weight)
-- Time Commitment (0.10 weight)
 
-**Total weights always sum to 1.0** (remaining distributed to base criteria)
+### 3. Auto-Suggest: Domain-Specific Criteria (Intelligence Layer)
 
-**User confirmation:**
-```
-🎯 **Auto-Detected Domain Criteria**
+**Auto-add based on frameworks:** Business (Market Opportunity 0.10, Competitive Advantage 0.10) | Finance (Expected Value 0.15, Option Value 0.10) | Health (Readiness 0.10, Sustainability 0.10) | Personal Dev (Skill Impact 0.10, Time Commitment 0.10) | **Total weights = 1.0** | Confirm with user: `Adjust weights? [Y/n]`
 
-I've added these criteria based on your frameworks:
-- {Criterion 1}: {weight} ({reason})
-- {Criterion 2}: {weight} ({reason})
+### 4. Collect Scoring Inputs
 
-Adjust weights? [Y/n]
-```
+📖 **Criteria Definitions:** data/mcda-criteria-detailed.md
 
-### 3. Collect Scoring Inputs
+#### Scoring Criteria Filtering (Subprocess - Pattern 3)
 
-Invite the user to provide values (1–5) and short rationale for:
-- Impact
-- Confidence
-- Effort
-- Strategic alignment
-- Risk
+**Launch a subprocess that:**
+1. Detects track: Quick / Standard / Deep (from workflow plan frontmatter or step-00)
+2. Loads ONLY relevant criteria from `data/mcda-criteria-detailed.md`:
+   - **Quick Track:** 3 criteria only (Impact, Confidence, Effort) + definitions (~50 lines)
+   - **Standard Track:** 9 base criteria (Impact, Confidence, Effort, Strategic Alignment, Risk + 4 domain-specific auto-detected) + definitions (~150 lines)
+   - **Deep Track:** 10+ criteria (all base + additional domain-specific + custom weight formulas) + definitions (~250 lines)
+3. If user selected Comparative/Batch mode: Also filters `data/comparative-ranking-protocol.md` to matching section (~70 lines)
+4. Returns ONLY track-appropriate criteria definitions + ranking protocol (if needed) (~100-300 lines instead of 1,000+ full MCDA guide)
 
-If the user is unsure about weights or criteria interpretation, use Search Orchestrator to propose 2–3 scoring profiles.
+**Subprocess returns:**
+- Quick: ~50-120 lines (3 criteria + comparative protocol if selected)
+- Standard: ~150-220 lines (9 criteria + protocol)
+- Deep: ~250-320 lines (10+ criteria + protocol)
 
-Ask 1–2 questions at a time and adapt based on the user's answers.
+**Graceful fallback:** If subprocess unavailable, load full MCDA criteria file and manually filter by track in main context
 
-If the user is unsure about a score, offer a quick anchor:
-- 1 = низко, 3 = средне, 5 = высоко
-- Suggest a default score and ask for confirmation
+**Context Savings:** ~1,000 lines (full MCDA guide + all criteria definitions + all ranking protocols) → ~100-320 lines (track-filtered subset) = ~680-900 lines saved
 
-### 4. Calculate Summary
+**ABSOLUTE MODE:** Ask user for values (1-5) + rationale for each criterion | Anchors: 1=низко, 3=средне, 5=высоко | If goals available: Include Strategic Alignment | If unsure: Use Search Orchestrator for scoring profiles
 
-Compute a simple weighted summary (user-approved weights or equal weights).
-Confirm the total score with the user.
+**COMPARATIVE/BATCH MODE:** 📖 **Protocol:** data/comparative-ranking-protocol.md | Execute forced differentiation logic
 
-### 5. Append to Workflow Plan
+### 5. Calculate Summary
 
-Append:
+**ABSOLUTE MODE:** If goals available: weights = Impact (0.25), Confidence (0.15), Effort (-0.20), Strategic (0.25), Risk (-0.15) | If no goals: Impact (0.35), Confidence (0.20), Effort (-0.25), Risk (-0.20) | Confirm with user | If simplified scoring AND score ≥8.0: Suggest defining goals
+
+**COMPARATIVE/BATCH MODE:** 📖 **Results:** data/comparative-ranking-protocol.md | Present normalized scores with differentiation metrics
+
+### 6. Append to Workflow Plan
+
+**If GOALS_AVAILABLE = true, append:**
 ```markdown
 ## Scoring Summary
 
@@ -140,14 +105,35 @@ Append:
 - Strategic Alignment: {score} — {rationale}
 - Risk: {score} — {rationale}
 
-**Overall Score:** {score} (method: {weights})
+**Overall Score:** {score}/10 (method: weighted with goals)
 
 **Decision Rationale:**
 - {bullet}
 - {bullet}
 ```
 
-### 6. Stage Gate: Scoring DoD
+**If GOALS_AVAILABLE = false, append:**
+```markdown
+## Scoring Summary (Simplified - Goals Not Defined)
+
+**Criteria Scores (1–5):**
+- Impact: {score} — {rationale}
+- Confidence: {score} — {rationale}
+- Effort: {score} — {rationale}
+- Risk: {score} — {rationale}
+
+⚠️ **Strategic Alignment:** Not scored (goals not defined yet)
+
+**Overall Score:** {score}/10 (method: simplified without goal alignment)
+
+**Decision Rationale:**
+- {bullet}
+- {bullet}
+
+💡 **Tip:** Define goals (Step 00) later to improve scoring accuracy.
+```
+
+### 7. Stage Gate: Scoring DoD
 
 Confirm readiness to proceed with planning:
 - Scores are complete and justified
@@ -166,42 +152,23 @@ Append:
 **Notes:** {brief rationale}
 ```
 
-### 7. Present MENU OPTIONS
+### 8. Quality Self-Validation & Checkpoint
 
-**Choose next action:**
+📖 **Quality Examples:** data/scoring-examples.md
 
-**[T] TRIZ** - Resolve scoring conflicts (if criteria contradict)
-**[S] Rescore** - Redo scoring with different criteria
-**[A] Adjust Criteria** - Modify MCDA weights
-**[C] Continue** - Accept current scores
+**Checklist:** ☐ Scores justified with reasoning? ☐ Evidence provided? ☐ "Why not higher?" explained? ☐ Weighted calculation shown? ☐ Sensitivity analysis? ☐ Clear decision? ☐ 600-800 words?
 
-➡️ **Your choice:** [T/S/A/C]
+**Quality Check:** [I]mprove | [A]ccept as-is (with warning) | [R]efer to examples | [C]ontinue
 
-**[T] TRIZ - Scoring Conflict Resolution (Optional)**
-- **When to use:** Two criteria fundamentally conflict (e.g., High Impact but High Risk, High Confidence but High Effort)
-- **What happens:** Launch Step 4.5 - TRIZ Analysis to resolve the contradiction
-- **Example:** "High business impact (9/10) requires major investment (9/10 effort)" → Use TRIZ to find breakthrough that achieves high impact with low effort
-- **Skip if:** Scores are balanced, or trade-off is acceptable
+**Review Checkpoint:** [Y]es proceed | [N]o revise | [E]xplain criteria
 
-💡 **Additional Method Options Available:**
-- **[A] Advanced Elicitation**: Deepen analysis with 50+ techniques
-- **[P] Party Mode**: Creative scoring session
+### 9. Quick Feedback & Menu Options
 
-#### Menu Handling Logic:
-- IF T: Identify scoring contradictions (e.g., High Impact ⇄ High Effort, Speed ⇄ Quality, Cost ⇄ Features), proceed to Step 4.5: TRIZ Analysis (optional step jump), return here with TRIZ-optimized approach, re-run MCDA with adjusted criteria if needed, then redisplay the menu
-- IF S: Clear current scores, restart from step 2 (Collect Scoring Inputs) with fresh perspective, then redisplay the menu
-- IF A: Allow user to modify MCDA weights (e.g., increase Impact weight from 0.3 to 0.5), recalculate overall score, confirm with user, then redisplay the menu
-- IF C: Save content to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
-- IF Any other: help user respond, then redisplay menu
+**Feedback:** 👍 Helpful | 😐 OK | 👎 Frustrating → Save to memory: `npx claude-flow@v3alpha memory store --namespace "user-context" --key "feedback:step-05-scoring:{timestamp}"`
 
-#### Additional Method Handling:
-- Advanced Elicitation [A]: Read fully and follow: {advancedElicitationTask} with the current scoring rationale to refine criteria and weights, then redisplay the menu
-- Party Mode [P]: Read fully and follow: {partyModeWorkflow} to gather alternative scoring perspectives, then redisplay the menu
+**Menu:** [T] TRIZ (resolve conflicts) | [S] Rescore | [A] Adjust Criteria | [C] Continue | 💡 Advanced: [A] Elicitation | [P] Party Mode
 
-#### EXECUTION RULES:
-- ALWAYS halt and wait for user input after presenting menu
-- ONLY proceed to next step when user selects 'C'
-- After A/P execution, return and redisplay this menu
+**Handling:** T=Step 4.5 TRIZ → return → re-checkpoint | S=restart 2.1 → re-checkpoint | A=modify weights → recalc → re-checkpoint | C=save → load/execute {nextStepFile} | ALWAYS wait for user input
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
@@ -216,7 +183,3 @@ Append:
 - Skipping save/update before continuing
 
 **Master Rule:** Scoring must be explicit, justified, and recorded.
-
-
-
-

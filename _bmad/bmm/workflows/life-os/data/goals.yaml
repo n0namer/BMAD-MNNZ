@@ -1,0 +1,334 @@
+# Life OS - Weekly Goals Configuration
+# Недельные цели для автоматической генерации ежедневных TODO
+
+# ═══════════════════════════════════════════════════════════
+# ФОКУС НЕДЕЛИ
+# ═══════════════════════════════════════════════════════════
+
+week_focus:
+  # Номер недели в году (ISO 8601)
+  week_number: 6
+
+  # Диапазон дат
+  dates: "2026-02-10 - 2026-02-14"
+
+  # Главная тема недели (отображается в ежедневных TODO)
+  theme: "Завершение Life OS v3.0 + Подготовка демонстрации"
+
+  # Ключевые результаты недели (OKRs)
+  key_results:
+    - "Life OS v3.0 готов к релизу"
+    - "Демо-презентация записана и доступна"
+    - "Документация актуализирована"
+
+  # Общий контекст
+  context: |
+    Финальная неделя перед релизом Life OS v3.0. Фокус на завершение
+    критичных фич, подготовку демонстрации системы и обновление документации.
+    Цель - готовый к использованию продукт с полным руководством.
+
+# ═══════════════════════════════════════════════════════════
+# ЦЕЛИ И ЗАДАЧИ
+# ═══════════════════════════════════════════════════════════
+
+goals:
+  # ─────────────────────────────────────────────────────────
+  # Цель 1: Завершение разработки Life OS v3.0
+  # ─────────────────────────────────────────────────────────
+  - id: "dev.lifeos.v3"
+    title: "Life OS v3.0 Final Release"
+    description: "Завершение всех критичных фич и подготовка к релизу"
+
+    # Приоритет: high, medium, low
+    priority: high
+
+    # Общая оценка времени (часы)
+    estimated_hours: 20
+
+    # Дедлайн
+    deadline: "2026-02-14"
+
+    # Теги для фильтрации
+    tags:
+      - development
+      - critical
+      - release
+
+    # Зависимости (goal_id других целей, которые должны быть завершены первыми)
+    dependencies: []
+
+    # Задачи (будут распределены по дням недели)
+    tasks:
+      - title: "Завершить Deep Plan автоматизацию"
+        description: "Интегрировать авто-генерацию Deep Plan из TRIZ результатов"
+        estimated_hours: 4
+        tags: [automation, deep-plan]
+        complexity: high
+
+      - title: "Интегрировать TRIZ modes execution"
+        description: "Подключить все 40 принципов TRIZ к Consilium"
+        estimated_hours: 6
+        tags: [triz, integration]
+        complexity: high
+
+      - title: "Написать deployment guide"
+        description: "Пошаговая инструкция по развёртыванию системы"
+        estimated_hours: 4
+        tags: [documentation, deployment]
+        complexity: medium
+
+      - title: "Провести end-to-end тестирование"
+        description: "Полный цикл тестирования всех 8 шагов Life OS"
+        estimated_hours: 6
+        tags: [testing, qa]
+        complexity: high
+
+  # ─────────────────────────────────────────────────────────
+  # Цель 2: Демонстрация системы
+  # ─────────────────────────────────────────────────────────
+  - id: "demo.lifeos.presentation"
+    title: "Подготовить демонстрацию системы"
+    description: "Создать презентацию и демо-видео для showcase"
+
+    priority: high
+    estimated_hours: 8
+    deadline: "2026-02-14"
+
+    tags:
+      - demo
+      - presentation
+      - marketing
+
+    dependencies:
+      - dev.lifeos.v3  # Демо требует готовой системы
+
+    tasks:
+      - title: "Создать сценарий презентации"
+        description: "30-минутная презентация с примерами использования"
+        estimated_hours: 2
+        tags: [planning, script]
+        complexity: medium
+
+      - title: "Подготовить примеры использования"
+        description: "3-5 реальных кейсов с входом и выходом"
+        estimated_hours: 3
+        tags: [examples, use-cases]
+        complexity: medium
+
+      - title: "Записать демо-видео"
+        description: "Скринкаст с комментариями (русский + английские субтитры)"
+        estimated_hours: 3
+        tags: [video, recording]
+        complexity: low
+
+  # ─────────────────────────────────────────────────────────
+  # Цель 3: Обновление документации
+  # ─────────────────────────────────────────────────────────
+  - id: "docs.update"
+    title: "Обновление документации"
+    description: "Актуализация всех документов после финальных изменений"
+
+    priority: medium
+    estimated_hours: 6
+    deadline: "2026-02-14"
+
+    tags:
+      - documentation
+      - maintenance
+
+    dependencies:
+      - dev.lifeos.v3
+
+    tasks:
+      - title: "Обновить README.md"
+        description: "Актуальная информация о системе, установке, использовании"
+        estimated_hours: 1.5
+        tags: [readme, markdown]
+        complexity: low
+
+      - title: "Написать API документацию"
+        description: "Документация всех методов и интерфейсов"
+        estimated_hours: 3
+        tags: [api, technical]
+        complexity: medium
+
+      - title: "Создать FAQ"
+        description: "Часто задаваемые вопросы и ответы"
+        estimated_hours: 1.5
+        tags: [faq, support]
+        complexity: low
+
+  # ─────────────────────────────────────────────────────────
+  # Цель 4: Code Review и рефакторинг
+  # ─────────────────────────────────────────────────────────
+  - id: "dev.code.review"
+    title: "Code Review и оптимизация"
+    description: "Проверка качества кода и рефакторинг проблемных мест"
+
+    priority: medium
+    estimated_hours: 8
+    deadline: "2026-02-13"  # Раньше релиза
+
+    tags:
+      - code-quality
+      - refactoring
+      - optimization
+
+    dependencies: []
+
+    tasks:
+      - title: "Code review всех новых модулей"
+        description: "Проверка Deep Plan, TRIZ, Consilium модулей"
+        estimated_hours: 3
+        tags: [review, quality]
+        complexity: medium
+
+      - title: "Рефакторинг повторяющегося кода"
+        description: "Выделение общих паттернов в утилиты"
+        estimated_hours: 2
+        tags: [refactoring, dry]
+        complexity: low
+
+      - title: "Оптимизация производительности"
+        description: "Профилирование и ускорение узких мест"
+        estimated_hours: 3
+        tags: [performance, optimization]
+        complexity: high
+
+  # ─────────────────────────────────────────────────────────
+  # Цель 5: Подготовка к релизу
+  # ─────────────────────────────────────────────────────────
+  - id: "release.preparation"
+    title: "Подготовка релиза v3.0"
+    description: "Финальные шаги перед публикацией"
+
+    priority: high
+    estimated_hours: 4
+    deadline: "2026-02-14"
+
+    tags:
+      - release
+      - deployment
+      - critical
+
+    dependencies:
+      - dev.lifeos.v3
+      - docs.update
+      - dev.code.review
+
+    tasks:
+      - title: "Создать changelog"
+        description: "Детальный список изменений v3.0"
+        estimated_hours: 1
+        tags: [changelog, release-notes]
+        complexity: low
+
+      - title: "Обновить версии в package.json"
+        description: "Bumped версии всех модулей до 3.0.0"
+        estimated_hours: 0.5
+        tags: [versioning, config]
+        complexity: low
+
+      - title: "Подготовить migration guide"
+        description: "Инструкция по миграции с v2.x на v3.0"
+        estimated_hours: 2
+        tags: [migration, guide]
+        complexity: medium
+
+      - title: "Создать release в GitHub"
+        description: "Tag, release notes, binaries"
+        estimated_hours: 0.5
+        tags: [github, publishing]
+        complexity: low
+
+  # ─────────────────────────────────────────────────────────
+  # Цель 6: Личное развитие
+  # ─────────────────────────────────────────────────────────
+  - id: "personal.learning"
+    title: "Изучение новых технологий"
+    description: "Время на самообразование и эксперименты"
+
+    priority: low
+    estimated_hours: 3
+    deadline: "2026-02-14"
+
+    tags:
+      - learning
+      - personal
+      - optional
+
+    dependencies: []
+
+    tasks:
+      - title: "Прочитать статьи про AI agents"
+        description: "Обзор новых подходов к multi-agent системам"
+        estimated_hours: 1
+        tags: [reading, ai]
+        complexity: low
+
+      - title: "Эксперименты с vector databases"
+        description: "Тестирование ChromaDB vs Pinecone vs Weaviate"
+        estimated_hours: 2
+        tags: [experiment, database]
+        complexity: medium
+
+# ═══════════════════════════════════════════════════════════
+# МЕТРИКИ И ОЖИДАНИЯ
+# ═══════════════════════════════════════════════════════════
+
+metrics:
+  # Ожидаемые результаты недели
+  expected:
+    total_hours: 49
+    high_priority_goals: 3
+    completed_tasks: 18
+    documentation_pages: 8
+
+  # Фактические результаты (заполняется по итогам недели)
+  actual:
+    total_hours: 0
+    high_priority_goals: 0
+    completed_tasks: 0
+    documentation_pages: 0
+
+# ═══════════════════════════════════════════════════════════
+# РЕСУРСЫ И ОГРАНИЧЕНИЯ
+# ═══════════════════════════════════════════════════════════
+
+constraints:
+  # Доступное время в неделю (часы)
+  available_time: 40
+
+  # Критичные встречи (нельзя перенести)
+  fixed_meetings:
+    - day: mon
+      time: "10:00"
+      duration: 1.0
+      title: "Weekly Planning"
+
+    - day: wed
+      time: "15:00"
+      duration: 1.0
+      title: "Team Sync"
+
+    - day: fri
+      time: "16:00"
+      duration: 1.0
+      title: "Weekly Retro"
+
+  # Блокеры (риски)
+  blockers:
+    - "Возможные проблемы с интеграцией TRIZ"
+    - "Недостаток времени на тестирование"
+    - "Необходимость дополнительного review"
+
+# ═══════════════════════════════════════════════════════════
+# REVIEW QUESTIONS (для Weekly Retro)
+# ═══════════════════════════════════════════════════════════
+
+review_questions:
+  - "Все ли high priority задачи завершены?"
+  - "Достаточно ли качества для релиза?"
+  - "Что пошло не так и как избежать в будущем?"
+  - "Какие learnings можно применить в следующей неделе?"
+  - "Готовы ли мы к релизу v3.0?"

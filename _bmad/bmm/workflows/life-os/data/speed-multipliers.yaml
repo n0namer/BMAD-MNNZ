@@ -1,0 +1,352 @@
+# Speed Multipliers Database
+# How much faster can projects be completed with modern tools vs traditional development
+
+base_multipliers:
+  traditional_manual:
+    multiplier: 1.0
+    description: "Manual coding without AI assistance (baseline)"
+    examples:
+      - "Hand-written React components"
+      - "Manual API endpoints"
+      - "Custom PostgreSQL setup"
+
+  llm_assisted_solo:
+    multiplier: 10-20
+    description: "LLM writes 80-90% of code, human reviews and integrates"
+    tools:
+      - "Claude Code / Cline"
+      - "GitHub Copilot"
+      - "Cursor AI"
+      - "GPT-4 for code generation"
+    examples:
+      - "Claude Code generates full React app"
+      - "GPT-4 writes API endpoints"
+      - "Cursor autocompletes entire functions"
+
+  llm_assisted_team:
+    multiplier: 20-50
+    description: "Team of developers each using LLM assistance"
+    tools:
+      - "Claude Code for each dev"
+      - "Shared code review with AI"
+      - "Automated testing generation"
+    examples:
+      - "5 developers with Claude Code = 100-250 dev equivalent"
+      - "Parallel development with AI coordination"
+
+  nocode_tools:
+    multiplier: 5-20
+    description: "No-code/low-code platforms for rapid prototyping"
+    tools:
+      - "Bubble.io"
+      - "Webflow"
+      - "Airtable"
+      - "Zapier/Make"
+    examples:
+      - "Bubble app in hours vs weeks of coding"
+      - "Webflow site in days vs custom React"
+    limitations:
+      - "Limited customization"
+      - "Platform constraints"
+      - "Scaling challenges"
+
+  hybrid_approach:
+    multiplier: 20-100
+    description: "Combination of LLM, no-code, and existing codebase"
+    tools:
+      - "Claude Code + Supabase + Vercel"
+      - "LLM + existing libraries"
+      - "No-code for UI + custom backend"
+    examples:
+      - "Supabase (backend ready) + v0.dev (UI) + Claude (glue)"
+      - "Existing framework + LLM for new features"
+
+adjustment_factors:
+  existing_codebase:
+    10_percent_reusable:
+      multiplier_bonus: 0.2
+      description: "10% of code can be reused"
+
+    25_percent_reusable:
+      multiplier_bonus: 0.5
+      description: "25% of code can be reused"
+
+    50_percent_reusable:
+      multiplier_bonus: 1.0
+      description: "50% of code can be reused (2x bonus)"
+
+    75_percent_reusable:
+      multiplier_bonus: 2.0
+      description: "75% of code can be reused (3x bonus)"
+
+  infrastructure_ready:
+    basic:
+      multiplier_bonus: 0.5
+      description: "CI/CD pipeline set up"
+
+    intermediate:
+      multiplier_bonus: 1.0
+      description: "Hosting + database + auth configured"
+
+    advanced:
+      multiplier_bonus: 2.0
+      description: "Full infrastructure + monitoring + scaling"
+
+  team_size:
+    solo:
+      multiplier_bonus: 0.0
+      description: "Single developer (baseline)"
+
+    small_team:
+      multiplier_bonus: 1.0
+      description: "2-3 developers (coordination bonus)"
+
+    medium_team:
+      multiplier_bonus: 2.0
+      description: "4-7 developers (parallel work)"
+
+    large_team:
+      multiplier_bonus: 3.0
+      description: "8+ developers (high parallelization)"
+      penalty: -0.5
+      penalty_reason: "Coordination overhead"
+
+penalty_factors:
+  budget_limited:
+    minimal:
+      multiplier_penalty: -0.5
+      description: "Cannot afford paid tools/APIs"
+
+    constrained:
+      multiplier_penalty: -0.2
+      description: "Limited budget for tools"
+
+  time_limited:
+    critical:
+      multiplier_penalty: -1.0
+      description: "Extreme deadline pressure → corners cut"
+
+    tight:
+      multiplier_penalty: -0.5
+      description: "Tight timeline → some shortcuts"
+
+  skill_gaps:
+    major:
+      multiplier_penalty: -1.0
+      description: "Missing critical skills (e.g., no backend dev)"
+
+    moderate:
+      multiplier_penalty: -0.5
+      description: "Some skill gaps (learning required)"
+
+    minor:
+      multiplier_penalty: -0.2
+      description: "Small gaps (documentation available)"
+
+domain_specific_multipliers:
+  saas_web_app:
+    traditional: 1.0
+    modern: 10-15
+    optimal: 20-30
+    optimal_stack:
+      backend: "Supabase/Firebase"
+      frontend: "Next.js/v0.dev"
+      hosting: "Vercel/Netlify"
+      auth: "Supabase Auth/Auth0"
+      payments: "Stripe"
+
+  mobile_app:
+    traditional: 1.0
+    modern: 5-10
+    optimal: 15-25
+    optimal_stack:
+      framework: "React Native/Expo"
+      backend: "Supabase/Firebase"
+      deployment: "EAS Build"
+      auth: "Supabase Auth"
+
+  ai_ml_product:
+    traditional: 1.0
+    modern: 8-12
+    optimal: 15-30
+    optimal_stack:
+      llm: "Anthropic Claude/OpenAI"
+      backend: "FastAPI/Vercel"
+      vector_db: "Pinecone/Weaviate"
+      deployment: "Modal/Replicate"
+
+  finance_trading:
+    traditional: 1.0
+    modern: 4-8
+    optimal: 8-15
+    optimal_stack:
+      data: "Alpaca/QuantConnect APIs"
+      backtesting: "Backtrader/Zipline"
+      execution: "Interactive Brokers API"
+      analytics: "Pandas/NumPy"
+
+  ecommerce:
+    traditional: 1.0
+    modern: 12-18
+    optimal: 25-40
+    optimal_stack:
+      platform: "Shopify/WooCommerce"
+      payments: "Stripe/PayPal"
+      backend: "Supabase"
+      frontend: "Next.js Commerce"
+
+  content_platform:
+    traditional: 1.0
+    modern: 10-15
+    optimal: 20-35
+    optimal_stack:
+      cms: "Sanity/Contentful"
+      frontend: "Next.js/Astro"
+      hosting: "Vercel/Netlify"
+      media: "Cloudinary/Uploadcare"
+
+calculation_formula: |
+  Final Speed Multiplier =
+    Base Multiplier
+    + Existing Codebase Bonus
+    + Infrastructure Bonus
+    + Team Size Bonus
+    + Domain Optimal Stack Bonus
+    - Budget Penalty
+    - Time Penalty
+    - Skill Gap Penalty
+
+  Example:
+    LLM-assisted solo (10x)
+    + 50% existing code (1x)
+    + Infrastructure ready (1x)
+    + No team (0x)
+    + Optimal stack bonus (5x)
+    - No penalties (0x)
+    = 17x total multiplier
+
+  Timeline Adjustment:
+    Traditional estimate: 12 weeks
+    Adjusted timeline: 12 ÷ 17 = 0.7 weeks = 5 days
+
+real_world_examples:
+  example_1:
+    project: "SaaS MVP (task management app)"
+    traditional:
+      timeline: "16 weeks"
+      stack: "React + Node.js + PostgreSQL + AWS"
+      team: "2 full-time developers"
+      cost: "$40k"
+
+    optimal:
+      timeline: "1 week"
+      stack: "Claude Code + Supabase + Vercel + v0.dev"
+      team: "1 developer + LLM"
+      cost: "$2k"
+
+    multiplier: "16x"
+    savings:
+      time: "15 weeks"
+      cost: "$38k"
+
+  example_2:
+    project: "Mobile app (fitness tracker)"
+    traditional:
+      timeline: "24 weeks"
+      stack: "Native iOS + Native Android"
+      team: "2 iOS + 2 Android developers"
+      cost: "$80k"
+
+    optimal:
+      timeline: "3 weeks"
+      stack: "Claude Code + React Native + Expo + Supabase"
+      team: "1 developer + LLM"
+      cost: "$5k"
+
+    multiplier: "8x"
+    savings:
+      time: "21 weeks"
+      cost: "$75k"
+
+  example_3:
+    project: "AI chatbot (customer support)"
+    traditional:
+      timeline: "12 weeks"
+      stack: "Custom NLP model + Flask + PostgreSQL"
+      team: "1 ML engineer + 1 backend dev"
+      cost: "$30k"
+
+    optimal:
+      timeline: "4 days"
+      stack: "Claude Code + Anthropic API + Vercel"
+      team: "1 developer"
+      cost: "$1k"
+
+    multiplier: "21x"
+    savings:
+      time: "11.4 weeks"
+      cost: "$29k"
+
+usage_guidelines:
+  step_06_integration:
+    - "Ask user about development method (A/B/C/D)"
+    - "Identify available tools (LLM, no-code, existing code)"
+    - "Check constraints (budget, time, skills)"
+    - "Calculate base multiplier from method"
+    - "Add adjustment bonuses (code, infrastructure, team)"
+    - "Subtract penalties (budget, time, skills)"
+    - "Return final multiplier for Step 08"
+
+  step_08_integration:
+    - "Load multiplier from Step 06"
+    - "Calculate: Traditional Timeline ÷ Multiplier"
+    - "Show side-by-side comparison"
+    - "Highlight time/cost savings"
+    - "Recommend optimal tech stack from domain data"
+
+calibration_history:
+  # Retrospective-driven adjustments to Speed Multipliers
+  # Updated after each quarterly review based on completed ideas
+  # Format: {date, domain, assumed_multiplier, actual_multiplier, adjustment, reason, sample_size}
+
+  # Example entries (to be populated as ideas are completed):
+  # - date: "2026-02-05"
+  #   domain: "saas_web_app"
+  #   assumed_multiplier: 10
+  #   actual_multiplier: 8
+  #   adjustment: -20%
+  #   reason: "Frontend complexity underestimated, UI polish took longer"
+  #   sample_size: 3
+  #
+  # - date: "2026-02-06"
+  #   domain: "api_backend"
+  #   assumed_multiplier: 15
+  #   actual_multiplier: 18
+  #   adjustment: +20%
+  #   reason: "LLM excellent at API boilerplate, faster than expected"
+  #   sample_size: 2
+
+adjusted_multipliers:
+  # Running averages after calibration
+  # Updated quarterly based on retrospectives
+  # Format: {domain}: {adjusted_multiplier}x  # Was {original}x, adjusted {date} based on {sample_size} ideas
+
+  # Initially same as domain_specific_multipliers.modern
+  # Updated as data comes in from completed ideas
+  saas_web_app: "10-15"  # Baseline, not yet calibrated
+  mobile_app: "5-10"     # Baseline, not yet calibrated
+  ai_ml_product: "8-12"  # Baseline, not yet calibrated
+  finance_trading: "4-8" # Baseline, not yet calibrated
+  ecommerce: "12-18"     # Baseline, not yet calibrated
+  content_platform: "10-15"  # Baseline, not yet calibrated
+
+metadata:
+  version: "2.0"
+  created: "2026-02-05"
+  updated: "2026-02-05"
+  author: "Life OS v3 - Foundation Steps + M7 Retrospective Protocol"
+  purpose: "Enable realistic timeline calculations accounting for modern development speed + learn from actual execution"
+  integration: "Used by Step 0.6 (Resource Assessment), Step 08 (Deep Plan), Step V-05 (Retrospective), Step V-04 (Quarterly Review)"
+  calibration_status: "baseline"  # baseline | calibrating | calibrated
+  total_retrospectives: 0
+  average_accuracy: "N/A"  # Calculated as: ideas within ±30% variance / total ideas

@@ -1,0 +1,468 @@
+# Optimization Suggestions Database
+# Domain-specific recommendations for fastest/best implementation approaches
+
+domain_optimizations:
+  saas_web_app:
+    traditional:
+      stack:
+        backend: "Node.js/Express + PostgreSQL"
+        frontend: "React (from scratch)"
+        hosting: "AWS EC2 + manual setup"
+        auth: "Custom JWT implementation"
+        database: "PostgreSQL (manual setup)"
+
+      timeline: "12-16 weeks"
+      cost: "$30k-50k"
+      team: "2-3 full-time developers"
+
+      pros:
+        - "Full control over architecture"
+        - "No vendor lock-in"
+        - "Battle-tested stack"
+
+      cons:
+        - "Slowest approach (baseline)"
+        - "High initial cost"
+        - "DevOps burden"
+        - "Scaling challenges"
+
+    modern:
+      stack:
+        backend: "Next.js API routes + Prisma"
+        frontend: "Next.js + Tailwind CSS"
+        hosting: "Vercel"
+        auth: "NextAuth.js"
+        database: "PostgreSQL (managed)"
+
+      timeline: "3-4 weeks"
+      cost: "$8k-12k"
+      team: "1-2 developers + LLM"
+      multiplier: "4x-5x faster"
+
+      pros:
+        - "Modern DX (Developer Experience)"
+        - "Auto-deployment"
+        - "SSR/SSG built-in"
+        - "TypeScript-first"
+
+      cons:
+        - "Some Vercel dependency"
+        - "Learning curve for Next.js patterns"
+
+    optimal:
+      stack:
+        backend: "Supabase (instant APIs + auth + database)"
+        frontend: "v0.dev (UI generation) + Claude Code (logic)"
+        hosting: "Vercel (one-click deploy)"
+        auth: "Supabase Auth (built-in)"
+        database: "Supabase PostgreSQL"
+        payments: "Stripe (pre-built checkout)"
+
+      timeline: "3-5 days"
+      cost: "$2k-5k"
+      team: "1 developer + LLM"
+      multiplier: "20x-30x faster"
+
+      why_optimal:
+        - "🚀 Backend ready in 2 minutes (Supabase init)"
+        - "🎨 UI generation via v0.dev → 80% done instantly"
+        - "🔐 Auth included (no OAuth setup needed)"
+        - "💳 Stripe integration in 1 hour (not days)"
+        - "🤖 Claude Code writes 90% of custom logic"
+        - "☁️ Zero DevOps (Vercel handles everything)"
+
+      architecture:
+        - "Serverless functions (Vercel Edge)"
+        - "Real-time subscriptions (Supabase)"
+        - "Row Level Security (built-in)"
+        - "Automatic migrations"
+
+      cost_breakdown:
+        supabase: "$25/month (Pro tier)"
+        vercel: "$20/month (Pro tier)"
+        stripe: "2.9% + $0.30 per transaction"
+        llm_api: "$50/month (Claude Code usage)"
+        total_monthly: "$95/month"
+        savings_vs_traditional: "$4k+/month (no server costs)"
+
+  mobile_app:
+    traditional:
+      stack:
+        ios: "Swift + UIKit"
+        android: "Kotlin + Jetpack Compose"
+        backend: "Custom Node.js API"
+
+      timeline: "24-32 weeks"
+      cost: "$60k-100k"
+      team: "2 iOS + 2 Android + 1 backend dev"
+
+      pros:
+        - "Native performance"
+        - "Platform-specific features"
+
+      cons:
+        - "Duplicate codebase (iOS + Android)"
+        - "2x development time"
+        - "High maintenance"
+
+    modern:
+      stack:
+        framework: "React Native"
+        backend: "Firebase"
+        deployment: "Manual builds"
+
+      timeline: "8-12 weeks"
+      cost: "$20k-35k"
+      team: "2 developers"
+      multiplier: "3x faster"
+
+      pros:
+        - "Single codebase"
+        - "Share logic between platforms"
+
+      cons:
+        - "Performance trade-offs"
+        - "Manual deployment workflow"
+
+    optimal:
+      stack:
+        framework: "React Native + Expo"
+        backend: "Supabase"
+        deployment: "EAS Build (one command)"
+        auth: "Supabase Auth"
+        push_notifications: "Expo Push"
+
+      timeline: "2-3 weeks"
+      cost: "$5k-10k"
+      team: "1 developer + LLM"
+      multiplier: "12x-16x faster"
+
+      why_optimal:
+        - "📱 Expo handles 90% of native complexity"
+        - "🚀 EAS Build → deploy with one command"
+        - "🔔 Push notifications built-in"
+        - "🗄️ Supabase = instant mobile backend"
+        - "🤖 Claude Code generates screens + navigation"
+
+  ai_ml_product:
+    traditional:
+      stack:
+        model: "Custom training (BERT/GPT fine-tune)"
+        backend: "Flask + Celery"
+        infrastructure: "AWS SageMaker"
+        database: "PostgreSQL + Redis"
+
+      timeline: "16-20 weeks"
+      cost: "$40k-60k"
+      team: "1 ML engineer + 1 backend dev"
+
+      pros:
+        - "Full control over model"
+        - "Custom training data"
+
+      cons:
+        - "Expensive training ($1k+)"
+        - "Infrastructure complexity"
+        - "Long iteration cycles"
+
+    modern:
+      stack:
+        model: "OpenAI API"
+        backend: "FastAPI"
+        hosting: "Railway"
+        database: "Pinecone (vector DB)"
+
+      timeline: "4-6 weeks"
+      cost: "$10k-15k"
+      team: "1 developer + API"
+      multiplier: "4x faster"
+
+      pros:
+        - "No model training needed"
+        - "Fast iteration"
+
+      cons:
+        - "API costs scale with usage"
+        - "Limited customization"
+
+    optimal:
+      stack:
+        llm: "Anthropic Claude API"
+        backend: "Vercel Edge Functions"
+        vector_db: "Supabase pgvector"
+        orchestration: "LangChain"
+        ui: "Vercel AI SDK (streaming)"
+
+      timeline: "4-7 days"
+      cost: "$2k-5k"
+      team: "1 developer"
+      multiplier: "20x-30x faster"
+
+      why_optimal:
+        - "🧠 Claude API = best reasoning (no training)"
+        - "⚡ Edge Functions = 100ms global latency"
+        - "🔍 Supabase pgvector = cheap vector storage"
+        - "🔄 LangChain = pre-built agent patterns"
+        - "📺 Streaming UI = ChatGPT-like experience"
+
+      architecture:
+        - "RAG (Retrieval Augmented Generation)"
+        - "Agent workflow orchestration"
+        - "Semantic search with embeddings"
+        - "Function calling for tools"
+
+  finance_trading:
+    traditional:
+      stack:
+        backtesting: "Custom Python framework"
+        data: "Manual CSV downloads"
+        execution: "Manual broker API integration"
+        analytics: "Jupyter notebooks"
+
+      timeline: "12-16 weeks"
+      cost: "$25k-40k"
+      team: "1 quant + 1 developer"
+
+      pros:
+        - "Full control"
+        - "Custom indicators"
+
+      cons:
+        - "Slow backtesting"
+        - "Data management burden"
+        - "Complex broker integration"
+
+    modern:
+      stack:
+        backtesting: "Backtrader"
+        data: "Alpaca API"
+        execution: "Alpaca Trading API"
+        analytics: "Pandas + Plotly"
+
+      timeline: "4-6 weeks"
+      cost: "$10k-15k"
+      team: "1 developer"
+      multiplier: "3x-4x faster"
+
+      pros:
+        - "Pre-built backtesting"
+        - "Free market data"
+
+      cons:
+        - "Limited broker options"
+        - "US markets only (Alpaca)"
+
+    optimal:
+      stack:
+        backtesting: "QuantConnect (cloud backtesting)"
+        data: "QuantConnect data library"
+        execution: "Interactive Brokers API"
+        analytics: "QuantConnect Research (Jupyter)"
+        optimization: "Lean Engine (C# for speed)"
+
+      timeline: "2-3 weeks"
+      cost: "$5k-8k"
+      team: "1 developer + existing code"
+      multiplier: "6x-8x faster"
+
+      why_optimal:
+        - "📊 10+ years of data built-in"
+        - "⚡ Cloud backtesting (no local compute)"
+        - "🔄 Paper trading environment"
+        - "📈 Vectorized operations (fast)"
+        - "🔗 Multi-broker support (IB, OANDA, etc.)"
+
+      example_katana:
+        approach: "Use QuantConnect base + Claude Code for strategies"
+        existing: "Phases 1-4 complete, Epic L in progress"
+        timeline_adjustment: "4x faster (existing base + QuantConnect)"
+        savings: "8 weeks vs greenfield"
+
+  ecommerce:
+    traditional:
+      stack:
+        platform: "Custom WooCommerce + WordPress"
+        hosting: "Shared hosting"
+        payments: "Manual Stripe integration"
+        inventory: "Custom spreadsheet sync"
+
+      timeline: "8-12 weeks"
+      cost: "$15k-25k"
+      team: "1 developer + 1 designer"
+
+      pros:
+        - "Full customization"
+
+      cons:
+        - "WordPress complexity"
+        - "Manual inventory management"
+        - "Slow page loads"
+
+    modern:
+      stack:
+        platform: "Next.js Commerce"
+        cms: "Sanity"
+        payments: "Stripe Checkout"
+        hosting: "Vercel"
+
+      timeline: "3-4 weeks"
+      cost: "$8k-12k"
+      team: "1 developer"
+      multiplier: "3x faster"
+
+      pros:
+        - "Fast page loads (SSG)"
+        - "Headless CMS"
+
+      cons:
+        - "More complex setup"
+
+    optimal:
+      stack:
+        platform: "Shopify (instant store)"
+        customization: "Shopify Liquid + Claude Code"
+        payments: "Shopify Payments (built-in)"
+        hosting: "Shopify (managed)"
+        analytics: "Shopify Analytics"
+
+      timeline: "2-3 days"
+      cost: "$2k-4k"
+      team: "1 person + LLM"
+      multiplier: "25x-40x faster"
+
+      why_optimal:
+        - "🛒 Store ready in 1 hour (Shopify setup)"
+        - "💳 Payments included (no Stripe setup)"
+        - "📦 Inventory management built-in"
+        - "🎨 Claude customizes theme code"
+        - "📊 Analytics out-of-the-box"
+
+  content_platform:
+    traditional:
+      stack:
+        cms: "WordPress + custom plugins"
+        frontend: "PHP templates"
+        hosting: "Shared hosting"
+        media: "Manual upload"
+
+      timeline: "10-14 weeks"
+      cost: "$20k-30k"
+      team: "1 developer + 1 designer"
+
+      pros:
+        - "Familiar for non-technical users"
+
+      cons:
+        - "Slow (PHP + database queries)"
+        - "Security vulnerabilities"
+        - "Plugin conflicts"
+
+    modern:
+      stack:
+        cms: "Contentful"
+        frontend: "Next.js"
+        hosting: "Vercel"
+        media: "Cloudinary"
+
+      timeline: "4-6 weeks"
+      cost: "$10k-15k"
+      team: "1 developer"
+      multiplier: "2x-3x faster"
+
+      pros:
+        - "Headless CMS"
+        - "Fast static pages"
+
+      cons:
+        - "Complex setup for non-devs"
+
+    optimal:
+      stack:
+        cms: "Sanity (structured content)"
+        frontend: "Astro (content-focused SSG)"
+        hosting: "Vercel"
+        media: "Sanity CDN (built-in)"
+        search: "Algolia"
+
+      timeline: "1-2 weeks"
+      cost: "$5k-8k"
+      team: "1 developer + LLM"
+      multiplier: "10x-20x faster"
+
+      why_optimal:
+        - "📝 Sanity = structured content (not just text)"
+        - "⚡ Astro = fastest SSG (partial hydration)"
+        - "🖼️ Image optimization built-in"
+        - "🔍 Algolia = instant search"
+        - "🤖 Claude generates content schemas"
+
+architecture_patterns:
+  serverless_first:
+    when: "SaaS, APIs, content platforms"
+    why: "Zero DevOps, auto-scale, pay-per-use"
+    tools: "Vercel, Netlify, Cloudflare Workers"
+
+  backend_as_service:
+    when: "MVPs, mobile apps, prototypes"
+    why: "Instant APIs, auth, database"
+    tools: "Supabase, Firebase, Nhost"
+
+  no_code_for_ui:
+    when: "Standard UIs, forms, dashboards"
+    why: "80% UI ready instantly"
+    tools: "v0.dev, Bolt.new, Framer"
+
+  llm_for_code:
+    when: "All projects (always use)"
+    why: "10x-50x faster development"
+    tools: "Claude Code, Cursor, GitHub Copilot"
+
+  managed_services:
+    when: "Everything except core IP"
+    why: "Focus on differentiation, not infrastructure"
+    tools: "Stripe, Auth0, Algolia, Cloudinary"
+
+integration_best_practices:
+  prefer_existing_apis:
+    - "Stripe over custom payment processing (3 months saved)"
+    - "Auth0 over custom OAuth (2 weeks saved)"
+    - "Google Maps over custom mapping (4 weeks saved)"
+    - "Twilio over custom SMS gateway (1 week saved)"
+
+  use_templates:
+    - "SaaS starter kits (1 week saved)"
+    - "Next.js templates (3 days saved)"
+    - "React Native templates (1 week saved)"
+
+  leverage_llm_for_glue_code:
+    - "API integrations (Claude writes wrappers)"
+    - "Data transformations (LLM generates parsers)"
+    - "Business logic (human defines, LLM implements)"
+
+resource_optimization_strategies:
+  if_budget_limited:
+    - "Use free tiers (Supabase, Vercel, Stripe test)"
+    - "LLM over hiring ($20/month vs $10k/month)"
+    - "No-code for non-critical features"
+
+  if_time_critical:
+    - "MVP in 1-2 weeks (not months)"
+    - "Pre-built templates"
+    - "Skip custom solutions, use SaaS"
+
+  if_solo_founder:
+    - "Claude Code as your 'team' (10x multiplier)"
+    - "Focus on product, not infrastructure"
+    - "Use managed services for everything"
+
+  if_team_available:
+    - "Assign Claude Code to each dev (20x-50x team multiplier)"
+    - "Parallel development with clear modules"
+    - "Code review > manual coding"
+
+metadata:
+  version: "1.0"
+  created: "2026-02-05"
+  author: "Life OS v3 - Foundation Steps"
+  purpose: "Provide domain-specific optimization suggestions for fastest implementation"
+  integration: "Used by Step 0.7 (Optimization Intelligence) and Step 08 (Deep Plan)"

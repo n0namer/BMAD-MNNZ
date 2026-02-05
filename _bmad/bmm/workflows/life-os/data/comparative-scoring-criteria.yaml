@@ -1,0 +1,197 @@
+# Comparative Ranking Methodology
+# Prevents scoring inflation by forcing relative ranking between ideas
+
+comparative_ranking:
+  mode: relative
+
+  # Core criteria for comparative ranking
+  criteria:
+    - name: Impact Magnitude
+      weight: 0.25
+      question: "Which has bigger potential impact?"
+      description: "Overall transformative effect on goals, life, or business outcomes"
+      examples:
+        - "Idea A changes entire workflow vs Idea B improves one step"
+        - "Idea C affects 100 people vs Idea D affects 10"
+
+    - name: Strategic Fit
+      weight: 0.20
+      question: "Which aligns better with long-term direction?"
+      description: "Alignment with vision, values, and strategic goals"
+      examples:
+        - "Idea A supports 3-year plan vs Idea B is tactical"
+        - "Idea C builds core competency vs Idea D is one-time benefit"
+
+    - name: Execution Confidence
+      weight: 0.20
+      question: "Which are you more confident executing?"
+      description: "Likelihood of successful completion given skills, resources, and constraints"
+      examples:
+        - "Idea A uses known tech vs Idea B requires learning"
+        - "Idea C has clear path vs Idea D has many unknowns"
+
+    - name: Time-to-Value
+      weight: 0.15
+      question: "Which delivers value faster?"
+      description: "Speed from start to first meaningful result"
+      examples:
+        - "Idea A shows results in 1 week vs Idea B needs 3 months"
+        - "Idea C has quick wins vs Idea D is long-term"
+
+    - name: Resource Efficiency
+      weight: 0.10
+      question: "Which uses resources more efficiently?"
+      description: "Return on investment of time, money, and energy"
+      examples:
+        - "Idea A costs $100 vs Idea B costs $1000 for same benefit"
+        - "Idea C takes 10 hours vs Idea D takes 100 hours"
+
+    - name: Risk Level
+      weight: 0.10
+      question: "Which has lower risk?"
+      description: "Probability and impact of failure or negative outcomes"
+      examples:
+        - "Idea A is reversible vs Idea B is permanent"
+        - "Idea C has fallback plan vs Idea D is all-or-nothing"
+
+  # Forced differentiation when scores are too close
+  forced_choice:
+    enabled: true
+    threshold: 0.3  # If scores within 0.3 points, force tiebreaker
+    prompt: |
+      ⚠️ Scores are very close:
+      - {Idea A}: {score_a}
+      - {Idea B}: {score_b}
+
+      Which is more important to you RIGHT NOW?
+      [A] {Idea A} (rank higher)
+      [B] {Idea B} (rank higher)
+      [T]ie is OK (keep close scores)
+
+  # Normalization rules (converts rank to score)
+  normalization:
+    rank_1: 5.0
+    rank_2: 4.5
+    rank_3: 4.0
+    rank_4: 3.5
+    rank_5: 3.0
+    rank_6_plus: 2.5
+
+    # Alternative: Linear scaling
+    # If you have N ideas, score = 5.0 - (rank - 1) * (5.0 - 2.5) / (N - 1)
+    # Example with 5 ideas: 1st=5.0, 2nd=4.375, 3rd=3.75, 4th=3.125, 5th=2.5
+
+  # Comparison matrix (batch mode)
+  batch_mode:
+    enabled: true
+    max_ideas: 10  # Maximum ideas to compare at once
+    display_format: matrix  # matrix | side-by-side | tournament
+
+    matrix_columns:
+      - Impact
+      - Strategic Fit
+      - Execution
+      - Time-to-Value
+      - Resources
+      - Risk
+
+  # Tournament mode (for large portfolios)
+  tournament:
+    enabled: false  # Future enhancement
+    bracket_size: 4  # Compare 4 ideas at a time
+    progression: elimination  # elimination | round-robin
+
+# Anti-Inflation Rules
+anti_inflation:
+  # Prevent all ideas getting same score
+  duplicate_score_limit: 2  # Max 2 ideas can have identical scores
+
+  # Force distribution
+  force_distribution:
+    enabled: true
+    rule: "no_more_than_30_percent_in_single_bucket"
+    buckets:
+      - range: [4.5, 5.0]
+        label: "Critical Priority"
+        max_percentage: 30
+      - range: [3.5, 4.4]
+        label: "High Priority"
+        max_percentage: 40
+      - range: [2.5, 3.4]
+        label: "Medium Priority"
+        max_percentage: 30
+
+  # Warn if scores too clustered
+  clustering_warning:
+    threshold: 0.5  # Warn if all scores within 0.5 range
+    message: |
+      ⚠️ All ideas scored very similarly ({min_score} - {max_score}).
+      Consider using comparative ranking to force differentiation.
+
+# Integration with Portfolio Intake
+portfolio_integration:
+  # Automatically use comparative mode when step-00.1 routes to step-05
+  auto_trigger: true
+  conditions:
+    - "2 or more ideas in PLANNED status"
+    - "User completed batch intake (step-00.1)"
+
+  # Inherit batch-quick-score results
+  inherit_batch_scores: true
+  allow_adjustment: true
+
+  workflow:
+    - step: "Load all PLANNED ideas from memory"
+    - step: "Show batch-quick-score comparison matrix"
+    - step: "User confirms or adjusts rankings"
+    - step: "System assigns normalized scores"
+    - step: "Save to memory with comparative metadata"
+
+# Examples and Use Cases
+examples:
+  - scenario: "3 business ideas evaluated"
+    ideas:
+      - name: "Launch Product A"
+        rank: 1
+        score: 5.0
+        reason: "Highest market demand, proven tech, fast time-to-market"
+      - name: "Optimize Process B"
+        rank: 2
+        score: 4.5
+        reason: "Good ROI, lower risk, but less transformative"
+      - name: "Experiment with C"
+        rank: 3
+        score: 4.0
+        reason: "Innovative but uncertain, longer timeline"
+
+    differentiation: "Clear ranking: A > B > C with 0.5-point gaps"
+
+  - scenario: "5 personal goals ranked"
+    ideas:
+      - name: "Learn Python"
+        rank: 1
+        score: 5.0
+      - name: "Improve fitness"
+        rank: 2
+        score: 4.5
+      - name: "Read 20 books"
+        rank: 3
+        score: 4.0
+      - name: "Side project"
+        rank: 4
+        score: 3.5
+      - name: "Learn guitar"
+        rank: 5
+        score: 3.0
+
+    forced_choice: "User initially scored Python=4.2, Fitness=4.1 → forced to choose which is more important"
+
+# Metadata tracking
+metadata:
+  track_comparative_sessions: true
+  fields:
+    - scoring_mode  # absolute | comparative | batch
+    - ideas_compared  # List of idea IDs
+    - forced_choices  # Number of tiebreakers needed
+    - final_distribution  # Score distribution histogram
+    - user_confidence  # User's confidence in ranking (1-5)

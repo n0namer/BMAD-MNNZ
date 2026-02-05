@@ -1,0 +1,217 @@
+# Life OS Dashboard Configuration
+# ═══════════════════════════════════════════════════════════════════
+
+dashboard:
+  # Auto-refresh interval (seconds) - set to 0 to disable
+  refresh_interval: 300  # 5 minutes
+
+  # WIP (Work In Progress) Limits
+  wip_limits:
+    healthy: "0-2"      # 🟢 GREEN - Optimal capacity
+    at_capacity: "2-3"  # 🟡 YELLOW - At limit
+    overload: "3+"      # 🔴 RED - Over capacity
+
+  # Status Indicators
+  status_indicators:
+    on_track: "🟢"      # Within ±20% of timeline
+    at_risk: "🟡"       # 20-40% variance
+    blocked: "🔴"       # >40% variance or critical blocker
+
+  # Alert Thresholds
+  alerts:
+    pulse_overdue_days: 7       # Days since last pulse check
+    milestone_overdue_days: 0   # Days past milestone target
+    blocked_weeks: 2            # Consecutive weeks in blocked status
+    wip_threshold: 3            # Alert when WIP hits this number
+    chronic_blocker_weeks: 3    # Trigger pivot-or-kill suggestion
+
+  # Metrics Calculation Window
+  metrics_window_days: 30  # Days for metrics calculation
+
+  # Display Settings
+  display:
+    max_active_projects: 10     # Maximum IN_PROGRESS projects to show
+    max_planned_ideas: 5        # Maximum PLANNED ideas to show
+    max_completed_recent: 5     # Recent completed ideas to show
+    show_completed: true        # Show completed section
+    show_killed: true           # Show killed ideas
+    show_archived: false        # Show archived projects
+    compact_mode: false         # Compact view (less details)
+
+  # Progress Bar Settings
+  progress:
+    bar_width: 40               # Characters for progress bar
+    symbols:
+      filled: "━"
+      empty: "─"
+      marker: "▶"
+
+# ═══════════════════════════════════════════════════════════════════
+# Data Sources Configuration
+# ═══════════════════════════════════════════════════════════════════
+
+data_sources:
+  # Memory (Claude Flow) - Primary source
+  memory:
+    enabled: true
+    namespaces:
+      - "execution:tracking"
+      - "ideas:planned"
+      - "ideas:completed"
+      - "ideas:killed"
+      - "portfolio:metrics"
+
+  # File System - Secondary source
+  files:
+    enabled: true
+    patterns:
+      - "output/*-execution-tracker.md"
+      - "output/portfolio.md"
+      - "output/metrics/*.md"
+      - "output/goals.yaml"
+
+  # Fallback mode if memory unavailable
+  fallback_to_files: true
+
+# ═══════════════════════════════════════════════════════════════════
+# Status Calculation Logic
+# ═══════════════════════════════════════════════════════════════════
+
+status_calculation:
+  # Project health based on variance from plan
+  variance_thresholds:
+    on_track:
+      min: -0.20    # -20%
+      max: 0.20     # +20%
+    at_risk:
+      min: -0.40    # -40%
+      max: 0.40     # +40%
+    blocked:
+      min: -1.0     # Any variance beyond ±40%
+      max: 1.0
+
+  # Weekly pulse health
+  pulse_health:
+    green_consecutive: 2        # Consecutive green weeks for "healthy"
+    yellow_threshold: 1         # Single yellow = warning
+    red_threshold: 2            # 2+ reds = critical
+
+  # Milestone tracking
+  milestone_status:
+    upcoming_days: 7            # Highlight milestones in next N days
+    overdue_critical: 3         # Days overdue = critical alert
+
+# ═══════════════════════════════════════════════════════════════════
+# Metrics Formulas
+# ═══════════════════════════════════════════════════════════════════
+
+metrics:
+  # Estimate Accuracy = % of projects within ±20% of planned duration
+  estimate_accuracy:
+    formula: "completed_within_threshold / total_completed * 100"
+    threshold: 0.20  # ±20%
+
+  # Speed Multiplier = avg(actual_speed / planned_speed) for all projects
+  speed_multiplier:
+    formula: "avg(llm_assist_speed_multiplier)"
+    default: 1  # No LLM assistance
+
+  # Completion Rate = completed / (completed + killed)
+  completion_rate:
+    formula: "completed / (completed + killed) * 100"
+
+  # Average Duration Variance
+  duration_variance:
+    formula: "(avg_actual_duration - avg_planned_duration) / avg_planned_duration * 100"
+
+# ═══════════════════════════════════════════════════════════════════
+# Alert Rules
+# ═══════════════════════════════════════════════════════════════════
+
+alert_rules:
+  # Pulse overdue
+  - id: pulse_overdue
+    priority: medium
+    condition: "days_since_pulse > alerts.pulse_overdue_days"
+    message: "⚠️ {idea_name}: Weekly pulse overdue ({days} days)"
+    action: "Run /pulse for {idea_name}"
+
+  # Milestone overdue
+  - id: milestone_overdue
+    priority: high
+    condition: "milestone_overdue_days > alerts.milestone_overdue_days"
+    message: "⚠️ {idea_name}: Milestone {milestone_name} overdue ({days} days)"
+    action: "Review milestone and adjust timeline"
+
+  # Chronic blocker
+  - id: chronic_blocker
+    priority: critical
+    condition: "consecutive_blocked_weeks >= alerts.chronic_blocker_weeks"
+    message: "⚠️ {idea_name}: {weeks} weeks blocked → Run pivot-or-kill"
+    action: "Execute /pivot-or-kill decision framework"
+
+  # WIP at capacity
+  - id: wip_capacity
+    priority: medium
+    condition: "wip_count >= alerts.wip_threshold"
+    message: "💡 WIP at capacity: Consider completing 1 before starting new"
+    action: "Review active projects and prioritize completion"
+
+  # Portfolio review needed
+  - id: portfolio_review
+    priority: low
+    condition: "planned_ideas_count >= 3"
+    message: "💡 {count} PLANNED ideas ready: Run portfolio review to prioritize"
+    action: "Execute /portfolio review"
+
+# ═══════════════════════════════════════════════════════════════════
+# Recommendations Engine
+# ═══════════════════════════════════════════════════════════════════
+
+recommendations:
+  # Auto-generate based on dashboard state
+  enabled: true
+
+  # Recommendation types
+  types:
+    - type: wip_management
+      triggers:
+        - "wip_count >= wip_limits.at_capacity"
+      suggestion: "Consider completing current work before starting new projects"
+
+    - type: portfolio_prioritization
+      triggers:
+        - "planned_ideas_count >= 3"
+        - "wip_count < wip_limits.healthy"
+      suggestion: "Run portfolio review to select next high-priority idea"
+
+    - type: pivot_decision
+      triggers:
+        - "consecutive_blocked_weeks >= 3"
+      suggestion: "Project {idea_name} blocked for {weeks} weeks - trigger pivot-or-kill"
+
+    - type: milestone_focus
+      triggers:
+        - "upcoming_milestone_days <= 7"
+      suggestion: "Focus on completing {milestone_name} for {idea_name} (due in {days} days)"
+
+# ═══════════════════════════════════════════════════════════════════
+# Export Settings
+# ═══════════════════════════════════════════════════════════════════
+
+export:
+  # Auto-export dashboard to files
+  enabled: true
+
+  # Export formats
+  formats:
+    - markdown  # output/dashboard-{date}.md
+    - json      # output/dashboard-{date}.json
+
+  # Export schedule
+  schedule:
+    daily: true
+    on_refresh: false
+
+  # Retention
+  retention_days: 30  # Keep exports for N days

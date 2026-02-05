@@ -2,6 +2,12 @@
 template: swot
 domain: business
 tier: 2
+tier_name: "Intermediate"
+unlock_requirement: "3 workflows"
+category: "business"
+difficulty: "intermediate"
+estimated_time: "10 min"
+description: "SWOT analysis for strategic business planning"
 framework: "SWOT Analysis"
 applicability: high
 timeInvestment: moderate

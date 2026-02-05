@@ -10,6 +10,9 @@ integrationPatternsRef: '../data/integration-patterns.md'
 workflowMappingRef: '../data/bmad-workflow-mapping.md'
 timelineRef: '../data/timeline-allocation.md'
 wipRef: '../data/wip-enforcement.md'
+portfolioTemplatesRef: '../data/portfolio-templates.md'
+portfolioAlignmentRef: '../data/portfolio-alignment-scoring.md'
+portfolioWipRef: '../data/portfolio-wip-management.md'
 advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml'
 partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 ---
@@ -18,179 +21,117 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 ## STEP GOAL:
 
-Classify the project, assess portfolio health, define integration approach, and document the integration plan.
+Classify project, assess portfolio health, define integration approach, and document integration plan.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES:
 
-### Universal Rules:
-- 🛑 NEVER generate content without user input
-- 📖 CRITICAL: Read the complete step file before taking any action
-- 🔄 CRITICAL: When loading next step with 'C', read entire file
-- 📋 YOU ARE A FACILITATOR, not a content generator
-- ⚙️ TOOL/SUBPROCESS FALLBACK: If any instruction references a subprocess or tool you do not have access to, achieve the outcome in the main thread
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
-
-### Step-Specific Rules:
-- 🤝 Proactive guidance: highlight risks, opportunities, and next best actions based on current context
-- 🧭 If WIP/kill criteria or portfolio risks appear, surface them early with a brief recommendation
-- ✅ Ask for user confirmation before taking any proactive action that changes scope or priorities
-- 🎯 Focus ONLY on integration and portfolio fit
-- 🚫 FORBIDDEN to change scores from step-05
-- 💬 Use reference files for guidance only
-- 💬 Ask 1–2 questions at a time and adapt to the user’s responses
-- 💬 If reference files are sharded, load only the relevant part(s) listed in the index file
+- 🛑 NEVER generate without user input | 📖 Read complete step first | 🔄 Read entire next step when loading
+- 📋 FACILITATOR role only | ⚙️ Subprocess fallback: achieve outcome in main thread
+- ✅ Speak in `{communication_language}` | 🤝 Highlight risks/opportunities proactively
+- 🧭 Surface WIP/kill criteria early | ✅ Confirm before changing scope | 🎯 Integration focus only
+- 🚫 NEVER change step-05 scores | 💬 1-2 questions max | 💬 Load only relevant sharded parts
+- 🎯 Use subprocess for WIP capacity check (Pattern 1 + Pattern 3)
+- 💬 Return ONLY WIP status summary, not full portfolio files
 
 ## EXECUTION PROTOCOLS:
 
-### Proactive Advice & Best Practices (MCP)
-- If the user asks for advice, best practices, or recommendations, use MCP search (if available) to retrieve current guidance.
-- Summarize findings concisely and cite sources when possible.
-- If MCP search is unavailable, provide best-effort guidance and note the limitation.
+**MCP/Search:** If unclear, use MCP search → consilium ranks 2-4 options → user chooses
 
-### Search Orchestrator Protocol (Required)
-- Follow data/mcp_search_system_prompt_xml.md.
-- Execute: CLI memory search -> local MD (rg) -> web/MCP.
-- Convene consilium to rank 2–4 options with pros/cons and recommendation.
-- Ask user to choose before proceeding.
+**Data Ops:** Load only relevant parts from {strategicBucketsRef}, {portfolioHealthRef}, {integrationPatternsRef}, {workflowMappingRef}, {timelineRef}, {wipRef}. Use subprocess if available, otherwise manual.
 
-### Semantic Decision Support
-If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+**Outputs:** Append to {workflowPlanFile} | Record in {decisionsLog} | Use {portfolioTemplatesRef}, {portfolioAlignmentRef}, {portfolioWipRef} for JIT guidance
 
-### Subprocess Data Ops (Reference Lookup)
-- If subprocess is available, load only relevant part(s) from:
-  - {strategicBucketsRef}, {portfolioHealthRef}, {integrationPatternsRef}
-  - {workflowMappingRef}, {timelineRef}, {wipRef}
-- Use each index file to identify needed `.part-*.md` files.
-- Subprocess returns only the sections needed for the current decision.
-- If subprocess is unavailable, load only the required part files manually.
-
-- 🎯 Determine strategic bucket using {strategicBucketsRef}
-- 💾 Append integration summary to {workflowPlanFile}
-- 📖 Record key decisions in {decisionsLog}
-- 🧾 Record evidence snapshot in journal or workflow plan
-- 📘 Record decision in project decisions file (if exists)
-
-## CONTEXT BOUNDARIES:
-
-- Available context: workflow plan (idea + scoring)
-- Focus: portfolio fit and integration plan
-- Dependencies: step-05 scoring must be complete
+**Context:** Workflow plan (idea + scoring) | Focus: portfolio fit | Dependency: step-05 complete
 
 ## MANDATORY SEQUENCE
 
 ### 1. Classify Strategic Bucket
+Use {strategicBucketsRef} + {portfolioAlignmentRef} to classify. Confirm with user, capture reasoning.
 
-Use {strategicBucketsRef} to classify the project.
-Confirm with the user and capture reasoning.
 
 ### 2. Check Portfolio Health
+#### WIP Capacity Check (Subprocess - Pattern 1 + Pattern 3)
 
-Using {portfolioHealthRef}, estimate current allocation and WIP.
-If a subprocess/tool is available, compute allocations there and return only the summary.
-If unhealthy, discuss rebalancing options and user decision.
+**Launch a subprocess that:**
+1. **Grep operation (Pattern 1):** Searches portfolio folder (from {workflowPlanFile} config or {bmb_creations_output_folder}/life-os/portfolio/) for `status: IN_PROGRESS` across all project files
+2. **Count:** Calculates current active project count
+3. **Load WIP rules (Pattern 3):** From `{wipRef}` extracts WIP limit (usually 3 for personal portfolios, 5+ for teams)
+4. **Check threshold (Pattern 3):** From `{portfolioWipRef}` determines health status:
+   - 🟢 0-66% of limit (0-2 for limit=3) = healthy
+   - 🟡 67-99% of limit (2 for limit=3) = approaching (warning)
+   - 🔴 100%+ of limit (3+ for limit=3) = FULL (blocking, must defer/kill/override)
+5. **Returns ONLY:** current_count, limit, status_emoji, available_slots, decision_options (if over limit) (~10-15 lines)
+
+**Subprocess returns:** WIP status summary instead of full portfolio files + WIP guides
+
+**Example output:**
+```
+WIP Status: 🟡 APPROACHING (2/3 projects active)
+Available slots: 1
+Status: Can accept 1 more project before FULL
+```
+
+**Graceful fallback:** If subprocess unavailable:
+1. Grep portfolio folder in main context: `rg "status: IN_PROGRESS" {portfolio_folder}`
+2. Count matches manually
+3. Load WIP limit from {wipRef} manually
+4. Determine status manually using {portfolioWipRef} rules
+
+**Context Savings:** ~950 lines (full portfolio project files + WIP enforcement guide + WIP management guide) → ~10-15 lines (status summary) = ~935-940 lines saved
+
+Use {portfolioHealthRef} + {portfolioAlignmentRef} to assess allocation and WIP. If subprocess available, compute there. If unhealthy, discuss rebalancing (see {portfolioAlignmentRef}). User decides.
 
 ### 3. Define Integration Approach
-
-Use {integrationPatternsRef} to decide:
-- Standalone vs Platform Extension vs Bundle vs Enabler
-Confirm dependencies and shared components (if any).
-
-If multiple patterns are plausible, use Search Orchestrator to rank 2–3 options and recommend the best fit.
+Use {integrationPatternsRef} + {portfolioTemplatesRef} for pattern (Standalone/Platform Extension/Bundle/Enabler). Confirm dependencies. If multiple fit, Search Orchestrator ranks 2-3 options.
 
 ### 4. Suggest BMAD Workflow
+Use {workflowMappingRef} to suggest workflow. Confirm: start now/defer/skip.
 
-Use {workflowMappingRef} to suggest the most relevant BMAD workflow.
-Confirm whether to start now, defer, or skip.
-
-### 5. Propose Timeline & Resources (High-Level)
-
-Use {timelineRef} to propose:
-- Start date
-- End date or duration
-- Weekly capacity
-Confirm with the user.
+### 5. Propose Timeline & Resources
+Use {timelineRef}: start date, end/duration, weekly capacity. Confirm with user.
 
 ### 6. Enforce WIP Limit
+Check WIP using {wipRef} + {portfolioWipRef}:
+- 🟢 0-2/3 healthy | 🟡 2/3 approaching | 🔴 3/3 FULL (must defer/kill/override)
 
-Use {wipRef} to check if WIP > 2.
-If exceeded, present kill/defer/override options and confirm choice.
-
-If WIP is high and capacity is low, recommend pause or kill before proceeding.
+If exceeded, present options (see {portfolioWipRef}). User confirms choice.
 
 ### 7. Ensure Decision Log Exists
-
-If {decisionsLog} does not exist, create it with:
-```markdown
-# Decision Log
-
-## {today} — {project_title}
-- Context: Portfolio Integration
-- Decision: {bucket} / {pattern} / WIP {decision}
-- Rationale: {brief rationale}
-```
-
-If it exists, append a new decision entry with the same fields.
+If {decisionsLog} missing, create with template from {portfolioTemplatesRef}. Otherwise append decision.
 
 ### 8. Append Integration Summary
-
-Append to {workflowPlanFile}:
-```markdown
-## Integration Summary
-
-**Bucket:** {bucket}
-**Portfolio Health:** {healthy/imbalanced} — {notes}
-**Integration Pattern:** {pattern}
-**Dependencies:** {list or none}
-**BMAD Workflow:** {suggested} — {start/defer/skip}
-**Timeline (High-Level):** {start} → {end} ({capacity}/week)
-**WIP Decision:** {allow/defer/kill/override}
-```
+Use template from {portfolioTemplatesRef} to append to {workflowPlanFile}.
 
 ### 9. Stage Gate: Plan Readiness DoD
-
-Confirm readiness to schedule:
-- Integration summary complete
-- WIP decision confirmed
-- Resources and timeline agreed
-- User approves moving to calendar sync
-
-Append:
-```markdown
-## Stage Gate: Plan Readiness
-
-**Gate Decision:** {Proceed/Revise/Pause}
-**DoD Checklist:** {met/not met}
-**Notes:** {brief rationale}
-```
+Confirm: summary complete, WIP decided, timeline agreed, user approves calendar sync.
+Append gate decision using {portfolioTemplatesRef} template.
 
 ### 10. Present MENU OPTIONS
 
-Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Continue"
+**Quick Feedback:** 👍 Helpful | 😐 OK | 👎 Frustrating [Enter to skip]
 
-#### Menu Handling Logic:
-- IF A: Read fully and follow: {advancedElicitationTask} with the current integration summary to refine portfolio fit, then redisplay the menu
-- IF P: Read fully and follow: {partyModeWorkflow} to explore alternative integration approaches, then redisplay the menu
-- IF C: Save content to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
-- IF Any other: help user respond, then redisplay menu
+Save feedback:
+```bash
+npx claude-flow@v3alpha memory store --namespace "user-context" \
+  --key "feedback:step-06-integration:{timestamp}" \
+  --content "{\"step\":\"step-06-integration\",\"rating\":\"{rating}\",\"comment\":\"{comment}\",\"timestamp\":\"{ISO}\"}"
+```
 
-#### EXECUTION RULES:
-- ALWAYS halt and wait for user input after presenting menu
-- ONLY proceed to next step when user selects 'C'
-- After A/P execution, return and redisplay this menu
+**Select:** [A] Advanced Elicitation [P] Party Mode [C] Continue
 
-## 🚨 SYSTEM SUCCESS/FAILURE METRICS
+**Logic:**
+- A: Execute {advancedElicitationTask} to refine portfolio fit → redisplay menu
+- P: Execute {partyModeWorkflow} for alternative approaches → redisplay menu
+- C: Save to {workflowPlanFile}, update frontmatter, read and execute {nextStepFile}
+- Other: Help user → redisplay menu
 
-### ✅ SUCCESS:
-- Bucket classification confirmed
-- Portfolio health assessed and decision made
-- Integration pattern documented
-- Timeline agreed
-- WIP decision captured
+**Rules:** HALT after menu | Proceed ONLY on 'C' | Return after A/P
 
-### ❌ SYSTEM FAILURE:
-- Skipping confirmation steps
-- Not appending to workflow plan
-- Proceeding without WIP decision
+## SUCCESS/FAILURE
+
+**✅ SUCCESS:** Bucket confirmed | Health assessed | Pattern documented | Timeline agreed | WIP decided
+
+**❌ FAILURE:** Skipped confirmations | No workflow plan append | Missing WIP decision
 
 **Master Rule:** Integration requires explicit confirmation and recorded decisions.
 

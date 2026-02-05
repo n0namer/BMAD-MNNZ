@@ -2,6 +2,13 @@
 projectId: {{project_id}}
 title: {{project_title}}
 created: {{date}}
+tier: 1
+tier_name: "Core"
+unlock_requirement: "none"
+category: "tracking"
+difficulty: "beginner"
+estimated_time: "2 min per entry"
+description: "Daily project logging with evidence and decision tracking"
 ---
 
 # Project Journal

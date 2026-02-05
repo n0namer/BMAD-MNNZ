@@ -40,6 +40,12 @@ linked_frameworks:
 prerequisite_frameworks: []
 follows_frameworks: []
 research_notes: "88% effectiveness. Ash Maurya's 1-page business model for lean startups."
+tracking:
+  enabled: true
+  category: business
+  auto_complete_threshold: 0.95
+  usage_count: 0
+  last_used: null
 ---
 
 # Lean Canvas: {{project_name}}

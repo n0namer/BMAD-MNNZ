@@ -1,0 +1,647 @@
+# Life OS Goals Structure (PDCA Hierarchical Model)
+# Version: 2.0 (PDCA Integration)
+# Purpose: Hierarchical goal structure for year → semester → quarter → month → week breakdown
+# Integration: Used by Step-00 (Goals Discovery), Step-07 (Calendar Sync), Review Steps (v-01 to v-04)
+
+---
+year: 2026
+version: "2.0-pdca"
+created_at: "2026-02-05T12:00:00Z"
+updated_at: "2026-02-05T12:00:00Z"
+
+# Vision: Long-term aspiration (5-10 years)
+vision: |
+  Describe your desired state in 5-10 years.
+  Example: "Build a portfolio of 3 successful SaaS businesses generating $500K+ ARR each,
+  achieve financial independence, maintain excellent health, and mentor 100+ entrepreneurs."
+
+# Annual Theme (PDCA Plan Phase)
+annual_theme: "Year of {Theme Name}"
+annual_focus: |
+  Primary focus areas for 2026.
+  Example: "Product launches, team building, market expansion"
+
+# PDCA Cycle Metadata
+pdca:
+  current_phase: "plan"  # plan | do | check | act
+  cycle_start: "2026-01-01"
+  cycle_duration: "1 year"
+  review_frequency:
+    daily: true
+    weekly: true
+    monthly: true
+    quarterly: true
+  next_review: "2026-01-31"  # Monthly review date
+
+# Goals (Primary Structure)
+# Each goal follows OKR pattern: Objective + Key Results
+goals:
+  - id: "goal-001"
+    title: "Launch SaaS Product MVP"
+    description: |
+      Build and launch a minimum viable product for {product_name} with initial user base.
+      Target: 100 beta users and product-market fit validation.
+
+    # Domain Classification
+    domain: "business"  # business | finance | health | personal | career | relationships
+
+    # SMART Criteria Validation
+    smart:
+      specific: "Launch MVP with core features: auth, dashboard, analytics, payments"
+      measurable: "100 beta users, 10 paying customers, $2000 MRR"
+      achievable: true
+      relevant: "Aligns with 5-year vision of building SaaS portfolio"
+      timebound: "2026-Q2 (by June 30)"
+
+    # Key Results (OKR-style)
+    key_results:
+      - id: "kr-001"
+        title: "Achieve 100 beta users"
+        target: 100
+        unit: "users"
+        baseline: 0
+        deadline: "2026-03-31"
+        status: "not_started"  # not_started | in_progress | at_risk | completed | failed
+        progress: 0  # 0-100%
+        last_updated: "2026-02-05"
+
+      - id: "kr-002"
+        title: "Convert 10 paying customers"
+        target: 10
+        unit: "customers"
+        baseline: 0
+        deadline: "2026-06-30"
+        status: "not_started"
+        progress: 0
+        last_updated: "2026-02-05"
+
+      - id: "kr-003"
+        title: "Reach $2000 Monthly Recurring Revenue"
+        target: 2000
+        unit: "USD/month"
+        baseline: 0
+        deadline: "2026-06-30"
+        status: "not_started"
+        progress: 0
+        last_updated: "2026-02-05"
+
+    # Stakeholders
+    stakeholders:
+      - type: "owner"
+        name: "Self"
+      - type: "beneficiary"
+        name: "Target customers (small business owners)"
+      - type: "supporter"
+        name: "Co-founder, advisors"
+
+    # Risks & Dependencies
+    risks:
+      - description: "Market competition from established players"
+        probability: "medium"  # low | medium | high
+        impact: "high"
+        mitigation: "Focus on niche differentiation and superior UX"
+      - description: "Technical debt from rapid prototyping"
+        probability: "high"
+        impact: "medium"
+        mitigation: "Allocate 20% time for refactoring"
+
+    dependencies:
+      - goal_id: null
+        description: "None (independent goal)"
+
+    # Resources Needed
+    resources:
+      time: "20 hours/week (Q1-Q2)"
+      money: "$5000 (infrastructure, marketing)"
+      tools: ["AWS", "Vercel", "Stripe", "Analytics tools"]
+      skills: ["Full-stack development", "UI/UX design", "Marketing"]
+      people: ["Co-founder (part-time)", "2 beta testers"]
+
+    # Timeline Breakdown
+    timeline:
+      semesters: ["H1"]
+      quarters: ["Q1", "Q2"]
+      milestones:
+        Q1: "Complete MVP development, onboard 50 beta users"
+        Q2: "Public launch, reach 100 users, convert first 10 customers"
+
+    # Status & Progress
+    status: "active"  # draft | active | paused | completed | abandoned
+    priority: "P0"  # P0 (critical) | P1 (high) | P2 (medium) | P3 (low)
+    confidence: 80  # 0-100% (confidence in achieving goal)
+
+    # Tracking
+    created_at: "2026-01-01T00:00:00Z"
+    updated_at: "2026-02-05T12:00:00Z"
+    started_at: "2026-01-15T00:00:00Z"
+    target_completion: "2026-06-30T23:59:59Z"
+    actual_completion: null
+
+    # Integration with Life OS Workflow
+    workflow_integration:
+      ideas: ["idea-001", "idea-002"]  # Link to ideas from Step-01
+      projects: ["project-001"]  # Link to projects
+      tasks: []  # Auto-populated by TODO generation system
+      reviews: []  # Links to review files
+
+  - id: "goal-002"
+    title: "Achieve Financial Stability"
+    description: "Build emergency fund and establish passive income streams"
+    domain: "finance"
+    smart:
+      specific: "Save $10,000 emergency fund + $1,000/month passive income"
+      measurable: "$10,000 saved + $1,000/month from investments"
+      achievable: true
+      relevant: "Foundation for financial independence in 3-5 years"
+      timebound: "2026-12-31"
+    key_results:
+      - id: "kr-004"
+        title: "Emergency fund of $10,000"
+        target: 10000
+        unit: "USD"
+        baseline: 2000
+        deadline: "2026-12-31"
+        status: "in_progress"
+        progress: 20
+        last_updated: "2026-02-05"
+      - id: "kr-005"
+        title: "Passive income $1,000/month"
+        target: 1000
+        unit: "USD/month"
+        baseline: 150
+        deadline: "2026-12-31"
+        status: "in_progress"
+        progress: 15
+        last_updated: "2026-02-05"
+    stakeholders:
+      - type: "owner"
+        name: "Self"
+      - type: "beneficiary"
+        name: "Family"
+    risks:
+      - description: "Market downturn affecting investment returns"
+        probability: "medium"
+        impact: "medium"
+        mitigation: "Diversified portfolio, conservative allocation"
+    dependencies:
+      - goal_id: "goal-001"
+        description: "Business revenue supports savings goals"
+    resources:
+      time: "5 hours/week (financial planning)"
+      money: "$0 initial (use existing income)"
+      tools: ["Investment platform", "Budgeting app", "Spreadsheets"]
+      skills: ["Financial planning", "Investment basics"]
+      people: ["Financial advisor (optional)"]
+    timeline:
+      semesters: ["H1", "H2"]
+      quarters: ["Q1", "Q2", "Q3", "Q4"]
+      milestones:
+        Q1: "Save $2,500"
+        Q2: "Save $5,000 total, passive income $250/mo"
+        Q3: "Save $7,500 total, passive income $500/mo"
+        Q4: "Save $10,000 total, passive income $1,000/mo"
+    status: "active"
+    priority: "P1"
+    confidence: 75
+    created_at: "2026-01-01T00:00:00Z"
+    updated_at: "2026-02-05T12:00:00Z"
+    started_at: "2026-01-01T00:00:00Z"
+    target_completion: "2026-12-31T23:59:59Z"
+    actual_completion: null
+    workflow_integration:
+      ideas: []
+      projects: []
+      tasks: []
+      reviews: []
+
+# Hierarchical Time Structure
+
+# Semesters (H1 = Jan-Jun, H2 = Jul-Dec)
+semesters:
+  H1:
+    name: "First Semester 2026"
+    start_date: "2026-01-01"
+    end_date: "2026-06-30"
+    theme: "Launch & Validation"
+    goals: ["goal-001", "goal-002"]
+    focus_areas:
+      - "Product development"
+      - "User acquisition"
+      - "Financial foundation"
+    key_milestones:
+      - "MVP Launch (Q1)"
+      - "First paying customers (Q2)"
+      - "$5,000 emergency fund (Q2)"
+    status: "active"
+
+  H2:
+    name: "Second Semester 2026"
+    start_date: "2026-07-01"
+    end_date: "2026-12-31"
+    theme: "Growth & Optimization"
+    goals: ["goal-002"]
+    focus_areas:
+      - "Product scaling"
+      - "Revenue growth"
+      - "Passive income"
+    key_milestones:
+      - "$1,000/mo passive income (Q4)"
+      - "$10,000 emergency fund (Q4)"
+    status: "planned"
+
+# Quarters
+quarters:
+  Q1:
+    name: "Q1 2026 (Jan-Mar)"
+    semester: "H1"
+    start_date: "2026-01-01"
+    end_date: "2026-03-31"
+    theme: "Foundation & MVP"
+    goals: ["goal-001", "goal-002"]
+    okrs:
+      - goal_id: "goal-001"
+        key_results: ["kr-001"]
+        target: "50 beta users, MVP complete"
+      - goal_id: "goal-002"
+        key_results: ["kr-004"]
+        target: "$2,500 saved"
+    milestones:
+      - title: "MVP Development Complete"
+        date: "2026-03-15"
+        status: "planned"
+      - title: "50 Beta Users Onboarded"
+        date: "2026-03-31"
+        status: "planned"
+    focus_sprint: "Build core product features"
+    review_date: "2026-03-31"
+    status: "active"
+
+  Q2:
+    name: "Q2 2026 (Apr-Jun)"
+    semester: "H1"
+    start_date: "2026-04-01"
+    end_date: "2026-06-30"
+    theme: "Launch & Monetization"
+    goals: ["goal-001", "goal-002"]
+    okrs:
+      - goal_id: "goal-001"
+        key_results: ["kr-001", "kr-002", "kr-003"]
+        target: "100 users, 10 customers, $2K MRR"
+      - goal_id: "goal-002"
+        key_results: ["kr-004"]
+        target: "$5,000 saved total"
+    milestones:
+      - title: "Public Product Launch"
+        date: "2026-04-15"
+        status: "planned"
+      - title: "First Paying Customer"
+        date: "2026-05-01"
+        status: "planned"
+      - title: "10 Paying Customers"
+        date: "2026-06-30"
+        status: "planned"
+    focus_sprint: "Customer acquisition and conversion"
+    review_date: "2026-06-30"
+    status: "planned"
+
+  Q3:
+    name: "Q3 2026 (Jul-Sep)"
+    semester: "H2"
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+    theme: "Optimization & Growth"
+    goals: ["goal-002"]
+    okrs:
+      - goal_id: "goal-002"
+        key_results: ["kr-004", "kr-005"]
+        target: "$7,500 saved, $500/mo passive"
+    milestones:
+      - title: "$500/month Passive Income"
+        date: "2026-09-30"
+        status: "planned"
+    focus_sprint: "Revenue optimization"
+    review_date: "2026-09-30"
+    status: "planned"
+
+  Q4:
+    name: "Q4 2026 (Oct-Dec)"
+    semester: "H2"
+    start_date: "2026-10-01"
+    end_date: "2026-12-31"
+    theme: "Consolidation & Planning"
+    goals: ["goal-002"]
+    okrs:
+      - goal_id: "goal-002"
+        key_results: ["kr-004", "kr-005"]
+        target: "$10,000 saved, $1,000/mo passive"
+    milestones:
+      - title: "Financial Stability Achieved"
+        date: "2026-12-31"
+        status: "planned"
+    focus_sprint: "Year-end review and 2027 planning"
+    review_date: "2026-12-31"
+    status: "planned"
+
+# Monthly Breakdown (Example for Q1)
+months:
+  "2026-01":
+    name: "January 2026"
+    quarter: "Q1"
+    weeks: 4
+    goals: ["goal-001", "goal-002"]
+    focus: "MVP core features development"
+    milestones:
+      - "Architecture design complete (Week 2)"
+      - "Auth & user management (Week 4)"
+    todos: []  # Auto-populated by TODO generation system
+    status: "active"
+
+  "2026-02":
+    name: "February 2026"
+    quarter: "Q1"
+    weeks: 4
+    goals: ["goal-001", "goal-002"]
+    focus: "Dashboard & analytics implementation"
+    milestones:
+      - "Dashboard UI complete (Week 2)"
+      - "Analytics integration (Week 4)"
+    todos: []
+    status: "active"
+
+  "2026-03":
+    name: "March 2026"
+    quarter: "Q1"
+    weeks: 5
+    goals: ["goal-001", "goal-002"]
+    focus: "Beta launch & user onboarding"
+    milestones:
+      - "Payment integration (Week 1)"
+      - "Beta launch (Week 2)"
+      - "50 users onboarded (Week 5)"
+    todos: []
+    status: "planned"
+
+# Weekly Structure (Example for January 2026)
+weeks:
+  "2026-W01":
+    week_number: 1
+    start_date: "2026-01-01"
+    end_date: "2026-01-07"
+    month: "2026-01"
+    quarter: "Q1"
+    theme: "Planning & setup"
+    goals: ["goal-001"]
+    tasks:
+      - "Define product requirements"
+      - "Set up development environment"
+      - "Create project roadmap"
+    completed: 0
+    total: 3
+    status: "planned"
+
+  "2026-W02":
+    week_number: 2
+    start_date: "2026-01-08"
+    end_date: "2026-01-14"
+    month: "2026-01"
+    quarter: "Q1"
+    theme: "Architecture & design"
+    goals: ["goal-001"]
+    tasks:
+      - "Design system architecture"
+      - "Create database schema"
+      - "Design UI mockups"
+    completed: 0
+    total: 3
+    status: "planned"
+
+# TODO Integration Points
+# This structure is consumed by data/todo-generation-system.md
+todo_generation:
+  enabled: true
+  sources:
+    - "goals[].key_results[]"
+    - "quarters[].milestones[]"
+    - "months[].milestones[]"
+    - "weeks[].tasks[]"
+
+  rules:
+    - type: "key_result"
+      template: "{kr.title} → Generate actionable tasks"
+      priority_mapping:
+        P0: "high"
+        P1: "medium"
+        P2: "low"
+
+    - type: "milestone"
+      template: "{milestone.title} by {milestone.date}"
+      auto_deadline: true
+      buffer_days: 3
+
+    - type: "weekly_task"
+      template: "{task} (Week {week_number})"
+      auto_schedule: true
+
+# Calendar Sync Configuration
+# Used by Step-07 (Calendar Sync)
+calendar_sync:
+  enabled: true
+  provider: "google_calendar"  # google_calendar | outlook | ical | caldav
+  sync_frequency: "daily"
+
+  event_mappings:
+    - source: "goals[].key_results[].deadline"
+      event_type: "deadline"
+      reminder: "-3 days, -1 day"
+
+    - source: "quarters[].review_date"
+      event_type: "review"
+      duration: "2 hours"
+      reminder: "-1 week, -1 day"
+
+    - source: "months[].milestones[]"
+      event_type: "milestone"
+      reminder: "-1 week"
+
+    - source: "weeks[].tasks[]"
+      event_type: "task"
+      auto_schedule: true
+      preferred_time: "09:00-12:00"
+
+# Metrics & Tracking
+# Used by data/pdca-metrics-dashboard.md
+metrics:
+  goal_completion_rate:
+    formula: "completed_goals / total_goals * 100"
+    target: 80  # 80% goal completion rate
+    current: 0
+    trend: "neutral"
+
+  key_result_achievement:
+    formula: "achieved_krs / total_krs * 100"
+    target: 75  # 75% KR achievement rate
+    current: 0
+    trend: "neutral"
+
+  average_goal_progress:
+    formula: "sum(goals[].progress) / count(goals)"
+    target: 25  # 25% progress per quarter
+    current: 0
+    trend: "neutral"
+
+  time_to_first_action:
+    formula: "days_between(goal.created_at, first_todo.completed_at)"
+    target: 7  # Start working within 7 days
+    current: null
+    trend: "neutral"
+
+  pdca_cycle_velocity:
+    formula: "goals_adjusted / total_reviews"
+    target: 0.3  # 30% of goals adjusted per review cycle
+    current: 0
+    trend: "neutral"
+
+# Integration Metadata
+integration:
+  life_os_version: "3.0"
+  pdca_version: "1.0"
+  compatible_steps:
+    - "step-00-goals-discovery"
+    - "step-01-collect-ideas"
+    - "step-05-scoring"
+    - "step-06-integration"
+    - "step-07-calendar-sync"
+    - "step-v-01-daily-review"
+    - "step-v-02-weekly-review"
+    - "step-v-03-monthly-review"
+    - "step-v-04-quarterly-review"
+
+  memory_namespace: "shared-knowledge:life-os:goals:2026"
+  last_sync: "2026-02-05T12:00:00Z"
+
+---
+
+# Usage Examples
+
+## Example 1: Adding a New Goal
+
+```yaml
+goals:
+  - id: "goal-003"
+    title: "Master TypeScript & System Design"
+    description: "Become proficient in TypeScript and system architecture"
+    domain: "personal"
+    smart:
+      specific: "Complete 3 major projects using TypeScript, pass system design certification"
+      measurable: "3 projects shipped, certification score >85%"
+      achievable: true
+      relevant: "Career advancement and technical leadership"
+      timebound: "2026-09-30"
+    key_results:
+      - id: "kr-006"
+        title: "Complete TypeScript certification"
+        target: 1
+        unit: "certification"
+        deadline: "2026-06-30"
+        status: "not_started"
+        progress: 0
+    timeline:
+      quarters: ["Q1", "Q2", "Q3"]
+      milestones:
+        Q1: "Complete TypeScript fundamentals course"
+        Q2: "Build 2 production projects"
+        Q3: "Pass certification exam"
+    status: "active"
+    priority: "P1"
+```
+
+## Example 2: Updating Goal Progress
+
+```yaml
+# Monthly review update
+goals:
+  - id: "goal-001"
+    key_results:
+      - id: "kr-001"
+        progress: 45  # Updated from 0 to 45%
+        status: "in_progress"  # Changed from not_started
+        last_updated: "2026-02-28"
+```
+
+## Example 3: Adding Weekly Tasks
+
+```yaml
+weeks:
+  "2026-W10":
+    week_number: 10
+    start_date: "2026-03-04"
+    end_date: "2026-03-10"
+    month: "2026-03"
+    quarter: "Q1"
+    theme: "Beta testing & feedback"
+    goals: ["goal-001"]
+    tasks:
+      - "Onboard 10 beta users"
+      - "Conduct user interviews"
+      - "Fix top 5 bugs from feedback"
+      - "Update roadmap based on learnings"
+    completed: 0
+    total: 4
+    status: "active"
+```
+
+---
+
+# Schema Documentation
+
+## Goal Object Schema
+
+```typescript
+interface Goal {
+  id: string;
+  title: string;
+  description: string;
+  domain: 'business' | 'finance' | 'health' | 'personal' | 'career' | 'relationships';
+  smart: {
+    specific: string;
+    measurable: string;
+    achievable: boolean;
+    relevant: string;
+    timebound: string;
+  };
+  key_results: KeyResult[];
+  stakeholders: Stakeholder[];
+  risks: Risk[];
+  dependencies: Dependency[];
+  resources: Resources;
+  timeline: Timeline;
+  status: 'draft' | 'active' | 'paused' | 'completed' | 'abandoned';
+  priority: 'P0' | 'P1' | 'P2' | 'P3';
+  confidence: number; // 0-100
+  created_at: string; // ISO 8601
+  updated_at: string;
+  target_completion: string;
+  actual_completion: string | null;
+  workflow_integration: WorkflowIntegration;
+}
+```
+
+## Key Result Object Schema
+
+```typescript
+interface KeyResult {
+  id: string;
+  title: string;
+  target: number;
+  unit: string;
+  baseline: number;
+  deadline: string; // YYYY-MM-DD or YYYY-QN
+  status: 'not_started' | 'in_progress' | 'at_risk' | 'completed' | 'failed';
+  progress: number; // 0-100
+  last_updated: string; // YYYY-MM-DD
+}
+```
+
+---
+
+**End of Goals Structure Template**

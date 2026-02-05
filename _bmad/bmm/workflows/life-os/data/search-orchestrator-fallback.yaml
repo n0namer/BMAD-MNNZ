@@ -1,0 +1,185 @@
+# Search Orchestrator Fallback Chain
+# When primary search methods fail, use this escalation protocol
+
+version: 1.0
+purpose: "Fallback protocols when Search Orchestrator primary methods unavailable"
+
+# Primary Chain (Default)
+primary_chain:
+  - method: "CLI Claude Flow Memory"
+    command: "npx claude-flow@v3alpha memory search -q '{query}'"
+    timeout: 5000ms
+    fallback_if: "command not found, timeout, or empty results"
+    success_indicator: "Returns 1+ results with similarity > 0.7"
+
+  - method: "Local MD Search (ripgrep)"
+    command: "rg '{pattern}' --type md {search_paths}"
+    timeout: 3000ms
+    fallback_if: "no matches found"
+    success_indicator: "Returns 1+ file matches"
+
+  - method: "Web/MCP Search"
+    requires: "MCP server available"
+    fallback_if: "MCP unavailable, timeout, or no results"
+    success_indicator: "Returns web results or MCP data"
+
+# Fallback Protocols
+fallback_protocols:
+  no_cli_memory:
+    reason: "Claude Flow CLI not available or memory empty"
+    action: "Skip to Local MD Search"
+    impact: "May miss patterns from other projects"
+    recovery: "Continue with local knowledge only"
+
+  no_local_matches:
+    reason: "No local markdown files match query"
+    action: "Use general knowledge + ask user for context"
+    impact: "Recommendations based on general best practices, not project-specific"
+    recovery: "Proceed with Manual Consilium Mode"
+
+  no_mcp_available:
+    reason: "MCP server offline or search unavailable"
+    action: "Use consilium with general expertise"
+    impact: "Cannot access real-time web knowledge"
+    recovery: "Rely on cached knowledge and best practices"
+
+  all_searches_fail:
+    reason: "All search methods exhausted"
+    action: "Manual Consilium Mode"
+    fallback_steps:
+      1: "Acknowledge: 'Search methods unavailable, using manual analysis'"
+      2: "Present 2-3 options based on general best practices"
+      3: "Explain pros/cons for each option"
+      4: "Recommend based on context from workflow plan"
+      5: "Ask user to choose"
+    impact: "Slower, relies on general knowledge not specific patterns"
+    recovery: "User-guided decision with expert analysis"
+
+# Consilium Fallback (When Search Not Needed)
+manual_consilium:
+  when_to_use:
+    - "Search methods all fail"
+    - "Query is ambiguous or too broad"
+    - "User explicitly requests manual analysis"
+    - "Decision requires human judgment over data"
+
+  steps:
+    1:
+      action: "Analyze context from workflow plan"
+      output: "Key requirements and constraints"
+      technique: "Extract from user inputs and previous steps"
+
+    2:
+      action: "Generate 2-3 reasonable options"
+      criteria: "Based on general best practices for domain"
+      technique: "Apply Six Thinking Hats for balanced perspective"
+
+    3:
+      action: "Evaluate options"
+      format: "Pros/cons table with recommendation"
+      technique: "TRIZ contradiction matrix if applicable"
+
+    4:
+      action: "Present to user"
+      menu: "[1] Option 1 / [2] Option 2 / [3] Option 3 / [C]ustom"
+      format: "Clear numbered choices with one-line summaries"
+
+    5:
+      action: "Record decision"
+      location: "Append to workflow plan"
+      format: "Decision log with rationale"
+
+# Error Messages
+error_messages:
+  cli_memory_unavailable: "⚠️ Claude Flow memory search unavailable. Using local search fallback."
+  local_search_empty: "ℹ️ No local patterns found. Proceeding with general best practices."
+  mcp_timeout: "⚠️ MCP search timed out. Using available context."
+  all_fail: "⚠️ All search methods unavailable. Using manual consilium mode."
+  partial_results: "⚠️ Search returned partial results. Recommendations may be incomplete."
+
+# Success Criteria
+success_criteria:
+  - "User receives 2-4 ranked options"
+  - "Each option has clear pros/cons"
+  - "Recommendation is provided with rationale"
+  - "User makes informed choice"
+  - "Decision is recorded in workflow plan"
+  - "Fallback method used is documented"
+
+# Integration Points
+integration:
+  steps_using_protocol:
+    - "step-02-roles-discovery.md"
+    - "step-03-specialist-match.md"
+    - "step-04-consilium.md"
+    - "step-04.5-triz-analysis.md"
+    - "step-05-scoring.md"
+
+  reference_format:
+    frontmatter: "searchFallback: '../data/search-orchestrator-fallback.yaml'"
+    in_text: "💡 **Fallback:** If search fails, load: {searchFallback}"
+    code_block: |
+      ```yaml
+      # Reference this file in step frontmatter:
+      searchFallback: "../data/search-orchestrator-fallback.yaml"
+      ```
+
+# Escalation Flow Diagram
+escalation_flow: |
+  User Query
+      ↓
+  [1] CLI Memory Search (npx claude-flow@v3alpha memory search)
+      ↓ (if fails)
+  [2] Local MD Search (ripgrep)
+      ↓ (if fails)
+  [3] Web/MCP Search (if available)
+      ↓ (if fails)
+  [4] Manual Consilium Mode
+      ↓
+  User Decision → Record → Continue
+
+# Performance Metrics
+performance:
+  cli_memory:
+    typical_latency: "100-500ms"
+    max_latency: "5000ms"
+    success_rate_target: "90%"
+
+  local_search:
+    typical_latency: "50-200ms"
+    max_latency: "3000ms"
+    success_rate_target: "70%"
+
+  mcp_search:
+    typical_latency: "500-2000ms"
+    max_latency: "10000ms"
+    success_rate_target: "80%"
+
+  manual_consilium:
+    typical_duration: "2-5 minutes"
+    success_rate_target: "95%"
+
+# Logging Requirements
+logging:
+  required_fields:
+    - "method_attempted"
+    - "success_status"
+    - "latency_ms"
+    - "fallback_triggered"
+    - "final_method_used"
+    - "results_count"
+
+  log_location: "output/search-orchestrator-log.jsonl"
+
+  example_entry: |
+    {
+      "timestamp": "2026-02-05T12:34:56Z",
+      "query": "project planning frameworks",
+      "methods": [
+        {"type": "cli_memory", "status": "timeout", "latency_ms": 5100},
+        {"type": "local_search", "status": "success", "latency_ms": 120, "results": 3}
+      ],
+      "final_method": "local_search",
+      "fallback_triggered": true,
+      "user_choice": "option_2"
+    }

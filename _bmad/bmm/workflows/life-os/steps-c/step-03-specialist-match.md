@@ -26,10 +26,12 @@ Identify the most relevant specialists for the captured idea, confirm with the u
 ### Step-Specific Rules:
 - 🤝 Proactive guidance: highlight risks, opportunities, and next best actions based on current context
 - 🧭 If WIP/kill criteria or portfolio risks appear, surface them early with a brief recommendation
-- ✅ Ask for user confirmation before taking any proactive action that changes scope or priorities
 - 🎯 Focus ONLY on specialist matching for the current idea
-- 🚫 FORBIDDEN to proceed without user confirmation
+- 🤖 I will suggest specialists based on roles, you confirm before proceeding
+- 🚫 FORBIDDEN to save/proceed without user confirmation
 - 💬 Ask clarifying questions only if needed for accurate matching
+- 🎯 Use subprocess for Search Orchestrator specialist profile lookup (Pattern 3)
+- 💬 Return ONLY matched specialist profiles, not full data files
 
 ## EXECUTION PROTOCOLS:
 
@@ -46,7 +48,7 @@ Identify the most relevant specialists for the captured idea, confirm with the u
 - Follow data/mcp_search_system_prompt_xml.md.
 - Execute: CLI memory search -> local MD (rg) -> web/MCP.
 - Convene consilium to rank 2–4 options with pros/cons and recommendation.
-- Ask user to choose before proceeding.
+- Present options and wait for user to choose before proceeding.
 
 ### Semantic Decision Support
 If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
@@ -79,7 +81,7 @@ Summarize in 2–4 bullets:
 
 Confirm: "Верно ли я понял(а) идею?"
 
-### 3. Draft Specialist Shortlist (Automatic, Semantic)
+### 3. Draft Specialist Shortlist (I Suggest, You Confirm)
 
 Use the Search Orchestrator to map roles -> specialists.
 Prefer specialist_profile from roles-base.csv when available.
@@ -88,17 +90,54 @@ If multiple roles map to the same specialist profile, merge to avoid duplicates.
 2) Local MD search (existing specialist profiles)
 3) Web/MCP search only if mapping is ambiguous
 
-Build a list automatically based on the Roles section in {workflowPlanFile}.
+Build a suggested list based on the Roles section in {workflowPlanFile}.
 Use one specialist per role, plus 1–2 domain specialists if needed.
 
-Do NOT ask the user to confirm or change the list.
+#### Search Orchestrator Specialist Lookup (Subprocess - Pattern 3)
 
-### 4. Finalize Specialist Set (Automatic)
+**Launch a subprocess that:**
+1. Loads roles from {workflowPlanFile} (Roles section)
+2. For each role, executes Search Orchestrator priority:
+   - CLI memory search: `npx claude-flow@v3alpha memory search -q "specialist:{role}"`
+   - Local MD search: grep {specialistsFolder} for matching profiles
+   - Web/MCP: Only if ambiguous
+3. Returns ONLY matched specialist names + brief scope (~50-100 lines instead of 800+ full profiles)
 
-Finalize without user confirmation.
+**Subprocess returns:** Specialist shortlist with role mapping + priority + rationale snippet
 
-### 5. Save to Workflow Plan
+**Graceful fallback:** If subprocess unavailable, execute Search Orchestrator sequence in main context
 
+**Context Savings:** ~800 lines (full specialist profiles → 50-100 matched excerpts)
+
+**Present suggested specialists to user:**
+```
+📋 Suggested Specialists:
+
+**Idea ID:** {IDEA_ID}
+**Idea Title:** {Idea Title}
+
+**Selected Specialists:**
+- {Specialist} — {reason} (priority: {high/medium/low})
+- {Specialist} — {reason} (priority: {high/medium/low})
+
+**Notes:**
+- {Any constraints or risks}
+
+Please confirm: [A]pprove / [M]odify / [C]ontinue
+```
+
+**Wait for user response:**
+- IF A or C: Proceed to save to workflow plan
+- IF M: Ask what changes needed, update suggestions, re-present
+- IF Any other: Help user respond, then redisplay menu
+
+### 4. Finalize Specialist Set (After User Approval)
+
+After user confirms, finalize the specialist set.
+
+### 5. Save to Workflow Plan (After User Approval)
+
+Once user approves, save to {workflowPlanFile}.
 If {workflowPlanFile} does not exist, create it from the template used in step-01.
 
 Append:
@@ -121,6 +160,26 @@ Update frontmatter in {workflowPlanFile} to append this step to
 
 ### 6. Present MENU OPTIONS
 
+---
+
+## 📊 Quick Feedback (Optional)
+
+How was this step?
+
+👍 Helpful | 😐 OK | 👎 Frustrating
+
+[Type feedback or press Enter to skip]
+
+**After user responds (or skips), save to memory:**
+```bash
+npx claude-flow@v3alpha memory store \
+  --namespace "user-context" \
+  --key "feedback:step-03-specialist-match:{timestamp}" \
+  --content "{\"step\": \"step-03-specialist-match\", \"rating\": \"{helpful/ok/frustrating}\", \"comment\": \"{user_comment}\", \"timestamp\": \"{ISO_datetime}\"}"
+```
+
+---
+
 Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Continue"
 
 #### Menu Handling Logic:
@@ -137,9 +196,9 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
 ### ✅ SUCCESS:
-- Idea record identified
-- Specialist list confirmed by user
-- Rationale documented in {workflowPlanFile}
+- Idea record identified and presented
+- Specialist list suggested and confirmed by user
+- Rationale documented in {workflowPlanFile} after user approval
 
 ### ❌ SYSTEM FAILURE:
 - Proceeding without user confirmation

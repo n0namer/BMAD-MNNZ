@@ -6,6 +6,13 @@ timeInvestment: moderate (30-60 min)
 outputs:
   - triz-structured-analysis.md (separate document)
   - Executive summary for workflow-plan.md
+tier: 2
+tier_name: "Intermediate"
+unlock_requirement: "3 workflows"
+category: "problem-solving"
+difficulty: "intermediate"
+estimated_time: "30 min"
+description: "Structured TRIZ analysis with comprehensive contradiction matrix and inventive principles"
 ---
 
 # TRIZ Structured Analysis: {Project Name}

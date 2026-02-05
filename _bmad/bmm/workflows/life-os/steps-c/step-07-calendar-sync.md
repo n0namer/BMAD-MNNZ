@@ -13,81 +13,110 @@ plansFolder: '{bmb_creations_output_folder}/life-os/plans'
 planTemplate: '../templates/project-plan.template.md'
 decisionsFolder: '{bmb_creations_output_folder}/life-os/decisions'
 decisionsTemplate: '../templates/project-decisions.template.md'
+calendarIntegrationMethodsRef: '../data/calendar-integration-methods.md'
+calendarSyncProtocolsRef: '../data/calendar-sync-protocols.md'
+calendarEventTemplatesRef: '../data/calendar-event-templates.md'
 ---
 
 # Step 7: Calendar Sync
 
-## STEP GOAL:
+## STEP GOAL
 
 Translate the approved project into a realistic timeline and capture it in a project file.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES
 
-### Universal Rules:
+### Universal Rules
 - 🛑 NEVER generate content without user input
-- 📖 CRITICAL: Read the complete step file before taking any action
+- 📖 Read the complete step file before taking any action
 - 📋 YOU ARE A FACILITATOR, not a content generator
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+- ✅ Communicate in your Agent style using `{communication_language}`
 
-### Step-Specific Rules:
-- 🤝 Proactive guidance: highlight risks, opportunities, and next best actions based on current context
-- 🧭 If WIP/kill criteria or portfolio risks appear, surface them early with a brief recommendation
-- ✅ Ask for user confirmation before taking any proactive action that changes scope or priorities
+### Step-Specific Rules
+- 🤝 Proactive guidance: highlight risks, opportunities, next best actions
+- 🧭 Surface WIP/kill criteria or portfolio risks early with brief recommendation
+- ✅ Ask user confirmation before changing scope or priorities
 - 🎯 Focus ONLY on timeline and calendar alignment
 - 🚫 FORBIDDEN to add new scope
-- 💬 Confirm dates and capacity with the user
-- 💬 Ask 1–2 questions at a time and adapt to the user’s responses
+- 💬 Confirm dates and capacity with user
+- 💬 Ask 1-2 questions at a time, adapt to responses
+- 🎯 Use subprocess for calendar event generation (Pattern 3: Data Operations)
+- 💬 Return structured calendar events only
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### Proactive Advice & Best Practices (MCP)
-- If the user asks for advice, best practices, or recommendations, use MCP search (if available) to retrieve current guidance.
-- Summarize findings concisely and cite sources when possible.
-- If MCP search is unavailable, provide best-effort guidance and note the limitation.
+If user requests advice or recommendations:
+1. Use MCP search (if available) to retrieve current guidance
+2. Summarize findings concisely with sources
+3. If MCP unavailable, provide best-effort guidance and note limitation
 
 ### Search Orchestrator Protocol (Required)
-- Follow data/mcp_search_system_prompt_xml.md.
-- Execute: CLI memory search -> local MD (rg) -> web/MCP.
-- Convene consilium to rank 2–4 options with pros/cons and recommendation.
-- Ask user to choose before proceeding.
+1. Follow `data/mcp_search_system_prompt_xml.md`
+2. Execute: CLI memory search → local MD (rg) → web/MCP
+3. Convene consilium to rank 2-4 options with pros/cons
+4. Ask user to choose before proceeding
 
 ### Semantic Decision Support
-If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+If decision or prioritization unclear, use Search Orchestrator to rank 2-3 options.
 
+### Core Deliverables
 - 🎯 Confirm project readiness and start date
-- 💾 Write a project file to {outputProjectFile}
-- 📖 Append timeline summary to {workflowPlanFile}
+- 💾 Write project file to `{outputProjectFile}`
+- 📖 Append timeline summary to `{workflowPlanFile}`
 - 🧾 Record evidence snapshot in journal or workflow plan
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
-- Available context: workflow plan (idea, consilium, scoring)
-- Focus: scheduling and calendar alignment
-- Dependencies: step-06 integration must be complete
+- **Available context:** workflow plan (idea, consilium, scoring)
+- **Focus:** scheduling and calendar alignment
+- **Dependencies:** step-06 integration must be complete
 
 ## MANDATORY SEQUENCE
 
 ### 1. Confirm Schedule Inputs
 
-Ask for schedule inputs progressively (1–2 at a time), covering:
+Ask progressively (1-2 at a time):
 - Target start date
 - Target end date or duration
 - Weekly capacity (hours/week)
 - Milestones (if any)
 
-If scheduling trade-offs are unclear, use Search Orchestrator to propose 2–3 scheduling strategies.
+**JIT Reference (if trade-offs unclear):** See `{calendarIntegrationMethodsRef}` for integration approaches.
 
-Validation hints:
-- If end date is before start date, ask to корректировать даты.
-- If capacity is 0 or unrealistically high, ask to уточнить допустимую нагрузку.
+**Validation:**
+- End date before start date? → Ask to correct dates
+- Capacity 0 or unrealistic? → Ask to clarify acceptable load
+
+**Decision Support:** If unclear, use Search Orchestrator for 2-3 scheduling strategies.
 
 ### 2. Propose Timeline
 
-Draft a simple timeline with 3–6 milestones and confirm with the user.
+Draft simple timeline with 3-6 milestones and confirm with user.
 
-### 3. Create Project File
+**JIT Reference (for sync methods):** See `{calendarSyncProtocolsRef}` for weekly sync, iCal export, or API integration protocols.
 
-Write to {outputProjectFile}:
+### 3. Generate Calendar Events (Subprocess)
+
+**Launch a subprocess that:**
+1. Loads Deep Plan L5 tasks from project plan
+2. Extracts all tasks with timeline dependencies
+3. Loads event templates from `{calendarEventTemplatesRef}`
+4. Generates calendar events for:
+   - Milestones (with reminder 7 days prior)
+   - Capacity blocks (recurring work sessions)
+   - Deadlines (with color-coding by priority)
+   - Review points (weekly/bi-weekly checkpoints)
+5. Returns structured event list with iCal format
+
+**Subprocess returns:** Formatted event list (50-100 lines) instead of loading full calendar-event-templates.md (800+ lines).
+
+**Graceful fallback:** If subprocess unavailable, load `{calendarEventTemplatesRef}` and manually select 3-5 template types relevant to timeline.
+
+### 4. Create Project File
+
+Write to `{outputProjectFile}`:
+
 ```markdown
 ---
 projectId: {project_id}
@@ -104,13 +133,17 @@ capacityPerWeek: {hours}
 - {milestone}: {date}
 - {milestone}: {date}
 
+## Calendar Events
+{subprocess_generated_events}
+
 ## Notes
 - {constraints}
 ```
 
-### 4. Append to Workflow Plan
+### 5. Append to Workflow Plan
 
-Append:
+Append to `{workflowPlanFile}`:
+
 ```markdown
 ## Calendar Sync
 
@@ -123,62 +156,79 @@ Append:
 - {milestone}: {date}
 ```
 
-### 5. Create Snapshot, Journal, and Project Plan
+### 6. Create Artifacts
 
-Ensure folders exist:
-- {snapshotsFolder}
-- {journalFolder}
-- {plansFolder}
-- {decisionsFolder}
+**Ensure folders exist:**
+- `{snapshotsFolder}`
+- `{journalFolder}`
+- `{plansFolder}`
+- `{decisionsFolder}`
 
-Create:
-- Snapshot file in {snapshotsFolder} (use {snapshotTemplate})
-- Journal file in {journalFolder} (use {journalTemplate})
-- Project plan file in {plansFolder} (use {planTemplate})
-- Decisions file in {decisionsFolder} (use {decisionsTemplate})
+**Create files:**
+1. **Snapshot** in `{snapshotsFolder}` (use `{snapshotTemplate}`):
+   - Goal
+   - Current status (PLANNED)
+   - Next actions
+   - Last decision (Calendar Sync approved)
 
-Include in snapshot:
-- Goal
-- Current status (PLANNED)
-- Next actions
-- Last decision (Calendar Sync approved)
+2. **Journal** in `{journalFolder}` (use `{journalTemplate}`):
+   - Append initial entry with scheduling decision
 
-Append an initial journal entry with the scheduling decision.
+3. **Project Plan** in `{plansFolder}` (use `{planTemplate}`):
+   - Idea summary
+   - Consilium summary
+   - Scoring summary
+   - Integration summary
+   - Calendar summary
 
-Initialize the project plan with:
-- Idea summary
-- Consilium summary
-- Scoring summary
-- Integration summary
-- Calendar summary
+4. **Decisions** in `{decisionsFolder}` (use `{decisionsTemplate}`):
+   - Document scheduling trade-offs and rationale
 
-### 6. Present MENU OPTIONS
+**JIT Reference (for event templates):** See `{calendarEventTemplatesRef}` for milestone, deadline, and work block templates.
 
-Display: "**Select:** [D] Deep Plan [C] Complete"
+### 7. Present MENU OPTIONS
 
-#### Menu Handling Logic:
-- IF D: Load, read entire file, then execute {nextStepFile}
-- IF C: Save content to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {completeStepFile}
-- IF Any other: help user respond, then redisplay menu
+Display: **"Select: [D] Deep Plan [C] Complete"**
 
-#### EXECUTION RULES:
-- ALWAYS halt and wait for user input after presenting menu
+**Menu Handling:**
+- **D** → Load and read `{nextStepFile}`, then execute
+- **C** → Save content to `{workflowPlanFile}`, update frontmatter, load and read `{completeStepFile}`, then execute
+- **Other** → Help user respond, redisplay menu
+
+**Execution Rules:**
+- ALWAYS halt and wait for user input after menu
 - ONLY proceed to next step when user selects 'D'
-- If user selects 'C', ensure all outputs are saved before completion
+- If 'C' selected, ensure all outputs saved before completion
 
-## 🚨 SYSTEM SUCCESS/FAILURE METRICS
+## JIT REFERENCE SUMMARY
 
-### ✅ SUCCESS:
+**Integration Methods:** `{calendarIntegrationMethodsRef}`
+- Manual entry, iCal export, API integration, capacity blocking
+- Best practices, compatibility matrix, common pitfalls
+
+**Sync Protocols:** `{calendarSyncProtocolsRef}`
+- Weekly manual sync, iCal import/export, API-based sync, capacity blocking
+- Validation checklists, conflict resolution, troubleshooting
+
+**Event Templates:** `{calendarEventTemplatesRef}`
+- Milestone events, capacity blocks, deadlines, reviews, buffer time
+- Color-coding, reminder strategy, naming conventions
+
+## SUCCESS/FAILURE METRICS
+
+### ✅ SUCCESS
 - Timeline confirmed by user
-- Project file created at {outputProjectFile}
-- Plan updated with schedule
+- Project file created at `{outputProjectFile}`
+- Plan updated with schedule in `{workflowPlanFile}`
+- Snapshot, journal, plan, decisions artifacts created
 
-### ❌ SYSTEM FAILURE:
-- Timeline without confirmation
-- Project file not written
+### ❌ SYSTEM FAILURE
+- Timeline proposed without user confirmation
+- Project file not written to correct location
 - Missing schedule in workflow plan
+- Artifacts missing or incomplete
 
-**Master Rule:** Scheduling must be confirmed and saved to the project file.
+**Master Rule:** Scheduling must be confirmed by user and saved to project file before proceeding.
 
 
 

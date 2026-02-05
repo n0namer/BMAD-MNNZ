@@ -2,6 +2,13 @@
 framework: "Eisenhower Matrix"
 framework_slug: "eisenhower-matrix"
 domain: personal_development
+tier: 2
+tier_name: "Intermediate"
+unlock_requirement: "3 workflows"
+category: "personal"
+difficulty: "intermediate"
+estimated_time: "5 min"
+description: "Priority management using urgent/important matrix"
 applied_to_project: "{{project_id}}"
 project_name: "{{project_name}}"
 created_date: "{{YYYY-MM-DD}}"

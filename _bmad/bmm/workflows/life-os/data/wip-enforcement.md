@@ -1,7 +1,8 @@
 # WIP Limit Enforcement (Reference)
 
 ## Rule
-- Max 2 active projects across all buckets
+- **Max 3 active projects** across all buckets
+- Visual indicator: 🟢 WIP: 0-2/3 | 🟡 WIP: 2/3 | 🔴 WIP: 3/3 FULL
 
 ## Kill Criteria
 - Phase > 2x original estimate

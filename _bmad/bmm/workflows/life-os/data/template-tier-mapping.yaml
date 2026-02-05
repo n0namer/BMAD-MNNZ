@@ -1,0 +1,293 @@
+# Template Tier Mapping
+# Version: 1.0
+# Purpose: Central registry of all templates with tier classifications
+
+tier_1_core:
+  count: 6
+  unlock: "immediate"
+  templates:
+    - file: "workflow-plan.template.md"
+      category: "tracking"
+      difficulty: "beginner"
+      time: "ongoing"
+      description: "Track workflow progress and status"
+
+    - file: "project-snapshot.template.md"
+      category: "tracking"
+      difficulty: "beginner"
+      time: "5 min"
+      description: "Quick project status snapshot"
+
+    - file: "project-plan.template.md"
+      category: "planning"
+      difficulty: "beginner"
+      time: "15-30 min"
+      description: "Comprehensive project plan with L1-L6 structure"
+
+    - file: "project-journal.template.md"
+      category: "tracking"
+      difficulty: "beginner"
+      time: "2 min per entry"
+      description: "Daily project logging"
+
+    - file: "project-decisions.template.md"
+      category: "tracking"
+      difficulty: "beginner"
+      time: "5 min per decision"
+      description: "Document key decisions"
+
+    - file: "goals.template.yaml"
+      category: "planning"
+      difficulty: "beginner"
+      time: "30-60 min initial, 5-10 min weekly"
+      description: "Annual goal cascade with PDCA"
+
+tier_2_intermediate:
+  count: 12
+  unlock: "3 workflows"
+  templates:
+    # Business (4)
+    - file: "business/business-model-canvas.template.md"
+      category: "business"
+      difficulty: "intermediate"
+      time: "20-40 min"
+      description: "Business model canvas framework"
+
+    - file: "business/lean-canvas.template.md"
+      category: "business"
+      difficulty: "intermediate"
+      time: "15 min"
+      description: "Lean startup validation canvas"
+
+    - file: "business/swot.template.md"
+      category: "business"
+      difficulty: "intermediate"
+      time: "10 min"
+      description: "SWOT analysis"
+
+    - file: "business/okrs.template.md"
+      category: "business"
+      difficulty: "intermediate"
+      time: "15 min"
+      description: "OKR goal setting"
+
+    # Personal (3)
+    - file: "personal/eisenhower-matrix.template.md"
+      category: "personal"
+      difficulty: "intermediate"
+      time: "5 min"
+      description: "Priority management matrix"
+
+    - file: "personal/gtd.template.md"
+      category: "personal"
+      difficulty: "intermediate"
+      time: "30 min"
+      description: "Getting Things Done system"
+
+    - file: "personal/pomodoro.template.md"
+      category: "personal"
+      difficulty: "intermediate"
+      time: "ongoing"
+      description: "Time management technique"
+
+    # Reviews (3)
+    - file: "reviews/daily-review.template.md"
+      category: "review"
+      difficulty: "intermediate"
+      time: "5 min"
+      description: "Daily retrospective"
+
+    - file: "reviews/weekly-review.template.md"
+      category: "review"
+      difficulty: "intermediate"
+      time: "15 min"
+      description: "Weekly PDCA retrospective"
+
+    - file: "reviews/monthly-review.template.md"
+      category: "review"
+      difficulty: "intermediate"
+      time: "30 min"
+      description: "Monthly review and planning"
+
+    # TRIZ (2)
+    - file: "triz-quick.template.md"
+      category: "problem-solving"
+      difficulty: "intermediate"
+      time: "10 min"
+      description: "Quick contradiction analysis"
+
+    - file: "triz-structured.template.md"
+      category: "problem-solving"
+      difficulty: "intermediate"
+      time: "30 min"
+      description: "Structured TRIZ problem-solving"
+
+tier_3_advanced:
+  count: 15
+  unlock: "10 workflows + domain usage"
+  templates:
+    # Finance (6)
+    - file: "finance/npv.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "20 min"
+      description: "Net present value analysis"
+      unlock_path: "finance_used"
+
+    - file: "finance/dcf.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "30 min"
+      description: "Discounted cash flow model"
+      unlock_path: "finance_used"
+
+    - file: "finance/monte-carlo.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "40 min"
+      description: "Monte Carlo simulation"
+      unlock_path: "finance_used"
+
+    - file: "finance/capm.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "15 min"
+      description: "Capital asset pricing model"
+      unlock_path: "finance_used"
+
+    - file: "finance/kelly-criterion.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "10 min"
+      description: "Optimal betting strategy"
+      unlock_path: "finance_used"
+
+    - file: "finance/real-options.template.md"
+      category: "finance"
+      difficulty: "advanced"
+      time: "25 min"
+      description: "Real options valuation"
+      unlock_path: "finance_used"
+
+    # Health (6)
+    - file: "health/smart-goals.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "15 min"
+      description: "SMART health goal setting"
+      unlock_path: "health_used"
+
+    - file: "health/habit-loop.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "20 min"
+      description: "Habit formation framework"
+      unlock_path: "health_used"
+
+    - file: "health/macros-tracking.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "ongoing"
+      description: "Nutrition macro tracking"
+      unlock_path: "health_used"
+
+    - file: "health/progressive-overload.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "20 min"
+      description: "Progressive fitness planning"
+      unlock_path: "health_used"
+
+    - file: "health/recovery-protocols.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "15 min"
+      description: "Recovery tracking system"
+      unlock_path: "health_used"
+
+    - file: "health/health-belief-model.template.md"
+      category: "health"
+      difficulty: "advanced"
+      time: "30 min"
+      description: "Behavior change model"
+      unlock_path: "health_used"
+
+    # Business Advanced (2)
+    - file: "business/porters-five-forces.template.md"
+      category: "business"
+      difficulty: "advanced"
+      time: "30 min"
+      description: "Competitive analysis framework"
+      unlock_path: "base_10_workflows"
+
+    - file: "business/value-proposition-canvas.template.md"
+      category: "business"
+      difficulty: "advanced"
+      time: "25 min"
+      description: "Value proposition design"
+      unlock_path: "base_10_workflows"
+
+    # Personal Advanced (1)
+    - file: "personal/deliberate-practice.template.md"
+      category: "personal"
+      difficulty: "advanced"
+      time: "ongoing"
+      description: "Skill mastery framework"
+      unlock_path: "base_10_workflows"
+
+tier_4_expert:
+  count: 6
+  unlock: "25 workflows + mastery signals"
+  mastery_requirements:
+    - estimate_accuracy: ">= 80%"
+    - speed_improvement: ">= 20%"
+    - consistent_usage: ">= 10 workflows last quarter"
+    - advanced_techniques: "TRIZ or ARIZ or Monte Carlo"
+  templates:
+    - file: "ariz-full.template.md"
+      category: "problem-solving"
+      difficulty: "expert"
+      time: "2-4 hours"
+      description: "Complete ARIZ algorithm"
+
+    - file: "personal/atomic-habits.template.md"
+      category: "personal"
+      difficulty: "expert"
+      time: "60 min"
+      description: "Advanced habit engineering"
+
+    - file: "personal/growth-mindset.template.md"
+      category: "personal"
+      difficulty: "expert"
+      time: "45 min"
+      description: "Mindset transformation framework"
+
+    - file: "reviews/quarterly-review.template.md"
+      category: "review"
+      difficulty: "expert"
+      time: "60 min"
+      description: "Quarterly strategic retrospective"
+
+    - file: "custom/user-created-templates"
+      category: "custom"
+      difficulty: "expert"
+      time: "varies"
+      description: "User-created custom templates"
+
+    - file: "custom/multi-domain-integration"
+      category: "custom"
+      difficulty: "expert"
+      time: "varies"
+      description: "Advanced multi-domain workflows"
+
+# Metadata
+metadata:
+  total_templates: 39
+  tier_distribution:
+    tier_1: 6
+    tier_2: 12
+    tier_3: 15
+    tier_4: 6
+  version: "1.0"
+  created: "2026-02-05"
+  purpose: "Progressive unlock system for template discovery"

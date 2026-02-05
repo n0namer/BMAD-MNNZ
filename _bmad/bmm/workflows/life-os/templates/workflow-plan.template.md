@@ -3,6 +3,13 @@ workflowName: life-os
 creationDate: '{{date}}'
 stepsCompleted: []
 status: IN_PROGRESS
+tier: 1
+tier_name: "Core"
+unlock_requirement: "none"
+category: "tracking"
+difficulty: "beginner"
+estimated_time: "ongoing"
+description: "Track workflow progress and status across all Life OS steps"
 ---
 
 # Life OS Workflow Plan

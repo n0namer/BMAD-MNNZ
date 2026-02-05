@@ -1,0 +1,412 @@
+# Project Stage Templates
+# Standard templates for assessing project stage (Точка А) completion percentage
+
+lifecycle_stages:
+  A_idea_only:
+    code: "A"
+    label: "Idea Only"
+    description: "Nothing built - just concept in mind"
+    typical_completion: 0-10
+    characteristics:
+      - "No code, prototypes, or users"
+      - "Only concept documentation"
+      - "Research phase"
+    what_exists:
+      technical: 0
+      product: 0
+      market: 0
+      operations: 0
+    next_steps:
+      - "Validate idea (customer interviews)"
+      - "Build POC or prototype"
+      - "Define MVP scope"
+
+  B_poc_prototype:
+    code: "B"
+    label: "Prototype/POC Exists"
+    description: "Proof-of-concept works locally"
+    typical_completion: 10-25
+    characteristics:
+      - "Working prototype (local/demo only)"
+      - "Core functionality proven"
+      - "No users or deployment"
+    what_exists:
+      technical: 20-30
+      product: 10-20
+      market: 0
+      operations: 5-10
+    next_steps:
+      - "Plan MVP architecture"
+      - "Set up development environment"
+      - "Define deployment strategy"
+
+  C_mvp_in_development:
+    code: "C"
+    label: "MVP in Development"
+    description: "Partial functionality ready, some modules working"
+    typical_completion: 25-50
+    characteristics:
+      - "Some features complete, others in progress"
+      - "Development environment set up"
+      - "Basic architecture in place"
+    what_exists:
+      technical: 40-60
+      product: 30-50
+      market: 0-10
+      operations: 20-40
+    next_steps:
+      - "Complete remaining MVP features"
+      - "Testing and bug fixes"
+      - "Prepare for beta launch"
+
+  D_mvp_launched:
+    code: "D"
+    label: "MVP Launched"
+    description: "Product available to users, collecting feedback"
+    typical_completion: 50-70
+    characteristics:
+      - "MVP deployed and accessible"
+      - "Initial users/customers"
+      - "Feedback loop established"
+      - "Basic metrics tracking"
+    what_exists:
+      technical: 60-80
+      product: 50-70
+      market: 30-50
+      operations: 40-60
+    next_steps:
+      - "Iterate based on feedback"
+      - "Scale infrastructure"
+      - "Build marketing funnel"
+
+  E_production_scaling:
+    code: "E"
+    label: "Production (Scaling)"
+    description: "Stable version with paying customers, focus on growth"
+    typical_completion: 70-90
+    characteristics:
+      - "Product-market fit validated"
+      - "Paying customers"
+      - "Growth metrics positive"
+      - "Team scaling"
+    what_exists:
+      technical: 80-95
+      product: 70-90
+      market: 60-80
+      operations: 60-85
+    next_steps:
+      - "Optimize growth channels"
+      - "Expand feature set"
+      - "Improve unit economics"
+
+  F_mature_product:
+    code: "F"
+    label: "Mature Product"
+    description: "Established product, focus on optimization and evolution"
+    typical_completion: 90-100
+    characteristics:
+      - "Established market presence"
+      - "Consistent revenue"
+      - "Mature team and processes"
+      - "Feature roadmap based on data"
+    what_exists:
+      technical: 90-100
+      product: 85-100
+      market: 80-95
+      operations: 85-100
+    next_steps:
+      - "Incremental improvements"
+      - "Market expansion"
+      - "New product lines"
+
+completion_dimensions:
+  technical:
+    weight: 0.30
+    components:
+      codebase:
+        weight: 0.40
+        questions:
+          - "What % of planned code is written?"
+          - "How many modules/components are complete?"
+
+      infrastructure:
+        weight: 0.30
+        questions:
+          - "Is hosting set up?"
+          - "Is CI/CD configured?"
+          - "Are databases provisioned?"
+
+      integrations:
+        weight: 0.20
+        questions:
+          - "How many third-party APIs integrated?"
+          - "Are auth systems working?"
+
+      testing:
+        weight: 0.10
+        questions:
+          - "Test coverage %?"
+          - "Automated tests in place?"
+
+  product:
+    weight: 0.30
+    components:
+      functionality:
+        weight: 0.50
+        questions:
+          - "What % of MVP features complete?"
+          - "Core user flows working?"
+
+      ui_ux:
+        weight: 0.30
+        questions:
+          - "Design system in place?"
+          - "User experience polished?"
+
+      documentation:
+        weight: 0.20
+        questions:
+          - "User docs written?"
+          - "API docs available?"
+
+  market:
+    weight: 0.25
+    components:
+      users:
+        weight: 0.40
+        questions:
+          - "How many active users?"
+          - "User growth rate?"
+
+      metrics:
+        weight: 0.30
+        questions:
+          - "Analytics tracking?"
+          - "Key metrics defined?"
+
+      marketing:
+        weight: 0.30
+        questions:
+          - "Landing page live?"
+          - "Marketing channels active?"
+
+  operations:
+    weight: 0.15
+    components:
+      team:
+        weight: 0.40
+        questions:
+          - "Team assembled?"
+          - "Roles defined?"
+
+      processes:
+        weight: 0.30
+        questions:
+          - "Development workflow?"
+          - "Code review process?"
+
+      tools:
+        weight: 0.30
+        questions:
+          - "Tools configured (GitHub, Jira)?"
+          - "Communication channels set up?"
+
+blocker_types:
+  technical:
+    categories:
+      - label: "Architectural problems"
+        examples:
+          - "Monolith needs to be split"
+          - "Database design issues"
+          - "Scalability bottlenecks"
+
+      - label: "Technical debt"
+        examples:
+          - "Legacy code needs refactor"
+          - "Test coverage too low"
+          - "Dependencies outdated"
+
+      - label: "Missing competencies"
+        examples:
+          - "No backend developer"
+          - "Need ML expertise"
+          - "DevOps skills gap"
+
+      - label: "Instability"
+        examples:
+          - "Frequent crashes"
+          - "Performance issues"
+          - "Data inconsistencies"
+
+  resource:
+    categories:
+      - label: "Time shortage"
+        examples:
+          - "Team at capacity"
+          - "Too many concurrent projects"
+
+      - label: "Budget constraints"
+        examples:
+          - "Cannot afford infrastructure"
+          - "Need to hire but no budget"
+
+      - label: "Personnel gaps"
+        examples:
+          - "Missing key roles"
+          - "Team too small for scope"
+
+  market:
+    categories:
+      - label: "Product-market fit unclear"
+        examples:
+          - "No clear target user"
+          - "Value proposition uncertain"
+
+      - label: "No users for validation"
+        examples:
+          - "Cannot test assumptions"
+          - "No feedback loop"
+
+      - label: "Strong competition"
+        examples:
+          - "Established competitors"
+          - "Hard to differentiate"
+
+      - label: "Regulatory barriers"
+        examples:
+          - "Compliance requirements"
+          - "Legal uncertainties"
+
+  organizational:
+    categories:
+      - label: "Lack of focus"
+        examples:
+          - "Too many projects"
+          - "Priorities unclear"
+
+      - label: "Coordination issues"
+        examples:
+          - "Team not aligned"
+          - "Communication gaps"
+
+      - label: "No ownership"
+        examples:
+          - "Unclear responsibilities"
+          - "Decision-making paralysis"
+
+calculation_examples:
+  example_1_katana:
+    project: "Katana (Idea 001)"
+    stage: "C"  # MVP in development
+    assessment:
+      technical:
+        codebase: 50  # Phases 1-4 complete, Epic L in progress
+        infrastructure: 60  # QuantConnect environment set up
+        integrations: 40  # Some APIs connected
+        testing: 30  # Partial test coverage
+        total: 48
+      product:
+        functionality: 40  # Core features partial
+        ui_ux: 30  # Basic interface
+        documentation: 35  # Some docs
+        total: 37
+      market:
+        users: 0  # Not launched
+        metrics: 20  # Tracking in backtest only
+        marketing: 0  # No marketing yet
+        total: 7
+      operations:
+        team: 50  # Solo + some partner help
+        processes: 40  # Development workflow exists
+        tools: 60  # GitHub, Python env set up
+        total: 50
+
+    overall_completion: 37  # Weighted average
+    timeline_adjustment: 0.63  # 100 - 37 = 63% remaining
+    impact: "12 weeks greenfield → ~7.5 weeks adjusted"
+
+  example_2_beauty_franchise:
+    project: "Beauty Franchise (Idea 007)"
+    stage: "D"  # MVP launched (pilot studio exists)
+    assessment:
+      technical:
+        codebase: 30  # Some booking system
+        infrastructure: 40  # Basic setup
+        integrations: 50  # Payments, scheduling
+        testing: 20  # Minimal tests
+        total: 35
+      product:
+        functionality: 60  # Core services working
+        ui_ux: 50  # Basic branding
+        documentation: 40  # Some training materials
+        total: 53
+      market:
+        users: 70  # Pilot customers exist
+        metrics: 50  # Basic tracking
+        marketing: 40  # Local marketing
+        total: 57
+      operations:
+        team: 50  # Pilot team in place
+        processes: 40  # Some SOPs
+        tools: 30  # Spreadsheets mostly
+        total: 40
+
+    overall_completion: 49  # Weighted average
+    timeline_adjustment: 0.51  # 100 - 49 = 51% remaining
+    impact: "16 weeks greenfield → ~8 weeks adjusted"
+
+  example_3_autoresponder:
+    project: "Автоответчик (Idea 002)"
+    stage: "A"  # Idea only
+    assessment:
+      technical:
+        codebase: 0
+        infrastructure: 0
+        integrations: 0
+        testing: 0
+        total: 0
+      product:
+        functionality: 0
+        ui_ux: 0
+        documentation: 5  # Concept doc
+        total: 2
+      market:
+        users: 0
+        metrics: 0
+        marketing: 0
+        total: 0
+      operations:
+        team: 10  # Solo founder identified
+        processes: 0
+        tools: 5  # GitHub account exists
+        total: 5
+
+    overall_completion: 2  # Nearly greenfield
+    timeline_adjustment: 0.98  # 100 - 2 = 98% remaining
+    impact: "12 weeks greenfield → ~11.8 weeks (minimal adjustment)"
+
+usage_guide:
+  step_05_integration:
+    - "Ask user to identify lifecycle stage (A/B/C/D/E/F)"
+    - "Present characteristics to help user choose"
+    - "Ask about what exists in each dimension"
+    - "Calculate completion % per dimension"
+    - "Compute overall completion (weighted average)"
+    - "Identify primary blocker"
+    - "Calculate timeline adjustment factor"
+    - "Save to project-stage-assessment.md"
+
+  step_08_integration:
+    - "Load completion % from Step 0.5"
+    - "Load speed multiplier from Step 0.6"
+    - "Calculate: Traditional Timeline × (100 - completion%) / 100 ÷ Speed Multiplier"
+    - "Example: 12 weeks × 63% ÷ 10x = 0.76 weeks = 5 days"
+    - "Show what phases can be skipped (already complete)"
+    - "Focus Deep Plan on missing 37%"
+
+metadata:
+  version: "1.0"
+  created: "2026-02-05"
+  author: "Life OS v3 - Foundation Steps"
+  purpose: "Standardize project stage assessment for accurate timeline calculations"
+  integration: "Used by Step 0.5 (Project Stage Discovery) and Step 08 (Deep Plan)"

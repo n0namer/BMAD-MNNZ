@@ -3,6 +3,13 @@ projectId: {{project_id}}
 title: {{project_title}}
 created: {{date}}
 status: PLANNING
+tier: 1
+tier_name: "Core"
+unlock_requirement: "none"
+category: "planning"
+difficulty: "beginner"
+estimated_time: "15-30 min"
+description: "Comprehensive project plan with L1-L6 deep plan structure, RACI, and scoring"
 ---
 
 # Project Plan

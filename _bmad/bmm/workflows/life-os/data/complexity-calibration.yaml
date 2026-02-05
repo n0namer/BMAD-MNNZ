@@ -1,0 +1,207 @@
+# Complexity Calibration Database
+# Learn from retrospectives to improve complexity scoring accuracy
+
+# Calibration adjustments based on completed ideas
+# Updated quarterly via step-v-04 (Quarterly Review) and step-v-05 (Retrospective)
+
+complexity_factors:
+  # Original factors from MCDA methodology
+  # Weights adjusted based on retrospective learnings
+
+  technical_complexity:
+    original_weight: 0.25
+    adjusted_weight: 0.25  # Baseline, not yet calibrated
+    description: "Technical difficulty of implementation"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  integration_points:
+    original_weight: 0.15
+    adjusted_weight: 0.15  # Baseline, not yet calibrated
+    description: "Number of external systems to integrate"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  novelty:
+    original_weight: 0.20
+    adjusted_weight: 0.20  # Baseline, not yet calibrated
+    description: "Using unfamiliar technologies or domains"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  scale:
+    original_weight: 0.15
+    adjusted_weight: 0.15  # Baseline, not yet calibrated
+    description: "Size of codebase, user base, data volume"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  dependencies:
+    original_weight: 0.10
+    adjusted_weight: 0.10  # Baseline, not yet calibrated
+    description: "External dependencies and their reliability"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  ui_polish:
+    original_weight: 0.10
+    adjusted_weight: 0.10  # Baseline, not yet calibrated
+    description: "User interface complexity and polish requirements"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+  testing_requirements:
+    original_weight: 0.05
+    adjusted_weight: 0.05  # Baseline, not yet calibrated
+    description: "Testing depth and coverage requirements"
+    confidence: "baseline"
+    sample_size: 0
+    last_updated: "2026-02-05"
+    reason: "Not yet calibrated"
+
+calibration_history:
+  # Populated from retrospectives
+  # Format: {date, factor, original_weight, adjusted_weight, reason, confidence, sample_size}
+
+  # Example entries (to be populated as ideas are completed):
+  # - date: "2026-03-15"
+  #   factor: "technical_complexity"
+  #   original_weight: 0.25
+  #   adjusted_weight: 0.30
+  #   reason: "Consistently underestimated, increase importance"
+  #   confidence: "high"
+  #   sample_size: 10
+  #
+  # - date: "2026-03-15"
+  #   factor: "integration_points"
+  #   original_weight: 0.15
+  #   adjusted_weight: 0.20
+  #   reason: "Integration always more complex than assumed"
+  #   confidence: "medium"
+  #   sample_size: 5
+
+learned_patterns:
+  # Common patterns discovered through retrospectives
+  # Format: {pattern_name, observation, adjustment, confidence, sample_size, date}
+
+  # Example patterns (to be populated):
+  # - pattern_name: "frontend_polish_multiplier"
+  #   observation: "8/10 web apps took 30-50% longer on UI polish"
+  #   adjustment: "Add 1.4x multiplier to frontend complexity scores"
+  #   confidence: "high"
+  #   sample_size: 10
+  #   domains: ["saas_web_app", "content_platform"]
+  #   date_discovered: "2026-03-15"
+  #
+  # - pattern_name: "llm_backend_efficiency"
+  #   observation: "Backend APIs 20% faster than estimated"
+  #   adjustment: "Reduce backend complexity by 0.8x when using LLM"
+  #   confidence: "high"
+  #   sample_size: 8
+  #   domains: ["api_backend", "saas_web_app"]
+  #   date_discovered: "2026-03-15"
+  #
+  # - pattern_name: "first_time_tech_learning_curve"
+  #   observation: "New technologies add 50-100% to estimates"
+  #   adjustment: "Flag novelty in complexity scoring, add learning time buffer"
+  #   confidence: "medium"
+  #   sample_size: 4
+  #   domains: ["all"]
+  #   date_discovered: "2026-03-15"
+
+domain_specific_adjustments:
+  # Complexity adjustments per domain
+  # Updated based on retrospective patterns
+
+  saas_web_app:
+    frontend_multiplier: 1.0  # Baseline, not yet calibrated
+    backend_multiplier: 1.0   # Baseline, not yet calibrated
+    integration_multiplier: 1.0  # Baseline, not yet calibrated
+    last_updated: "2026-02-05"
+    sample_size: 0
+
+  mobile_app:
+    ui_multiplier: 1.0        # Baseline, not yet calibrated
+    platform_multiplier: 1.0  # Baseline, not yet calibrated
+    testing_multiplier: 1.0   # Baseline, not yet calibrated
+    last_updated: "2026-02-05"
+    sample_size: 0
+
+  ai_ml_product:
+    model_multiplier: 1.0     # Baseline, not yet calibrated
+    data_multiplier: 1.0      # Baseline, not yet calibrated
+    integration_multiplier: 1.0  # Baseline, not yet calibrated
+    last_updated: "2026-02-05"
+    sample_size: 0
+
+common_pitfalls:
+  # Known issues to watch for in complexity estimation
+  # Discovered through retrospectives
+
+  # Example pitfalls (to be populated):
+  # - pitfall_name: "hidden_auth_complexity"
+  #   description: "Authentication always more complex than expected"
+  #   frequency: "8/10 projects"
+  #   impact: "Add 20-30% to estimate"
+  #   domains: ["saas_web_app", "mobile_app"]
+  #   mitigation: "Use Supabase Auth or similar to reduce complexity"
+  #   confidence: "high"
+  #   sample_size: 10
+  #
+  # - pitfall_name: "third_party_api_reliability"
+  #   description: "External APIs often have undocumented quirks"
+  #   frequency: "6/10 projects"
+  #   impact: "Add buffer for debugging and workarounds"
+  #   domains: ["all"]
+  #   mitigation: "Allocate 15% extra time for external integrations"
+  #   confidence: "medium"
+  #   sample_size: 6
+
+accuracy_metrics:
+  # Track overall complexity scoring accuracy
+
+  total_ideas_scored: 0
+  total_retrospectives: 0
+
+  accuracy_distribution:
+    excellent:  # ±2 points
+      count: 0
+      percentage: 0
+    good:       # ±3-5 points
+      count: 0
+      percentage: 0
+    poor:       # >±5 points
+      count: 0
+      percentage: 0
+
+  average_variance: 0  # Average |actual - planned| complexity
+  target_variance: 2   # Target: ±2 points average
+
+  trend: "baseline"  # baseline | improving | stable | declining
+
+metadata:
+  version: "1.0"
+  created: "2026-02-05"
+  updated: "2026-02-05"
+  author: "Life OS v3 - M7 Retrospective Protocol"
+  purpose: "Learn from completed ideas to improve complexity scoring accuracy"
+  integration: "Used by Step 04 (Complexity), Step V-05 (Retrospective), Step V-04 (Quarterly Review)"
+  calibration_status: "baseline"  # baseline | calibrating | calibrated
+  requires_sample_size: 5  # Minimum ideas before adjusting weights
+  confidence_levels:
+    high: "10+ ideas"
+    medium: "5-9 ideas"
+    low: "1-4 ideas"
+    baseline: "0 ideas"

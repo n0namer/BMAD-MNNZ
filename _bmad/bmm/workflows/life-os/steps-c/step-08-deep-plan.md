@@ -5,307 +5,199 @@ projectPlanFile: '{bmb_creations_output_folder}/life-os/plans/{project_id}-plan.
 snapshotFile: '{bmb_creations_output_folder}/life-os/snapshots/{project_id}.md'
 journalFile: '{bmb_creations_output_folder}/life-os/journal/{project_id}.md'
 deepPlanTemplatesRef: '../data/deep-plan-templates.md'
-completeStepFile: './step-09-complete.md'
+l1l3TemplateRef: '../data/l1-l3-template.md'
+nextStepFile: './step-08.5-final-polish.md'
+track_defaults:
+  quick:
+    default_action: skip
+    recommended_depth: none
+    message: "Quick Track ideas don't need Deep Plan. Proceed to completion."
+  standard:
+    default_action: l1_l3
+    recommended_depth: [L1, L2, L3]
+    message: "Standard Track: L1-L3 provides sufficient detail. L4-L6 optional."
+  deep:
+    default_action: l1_l6
+    recommended_depth: [L1, L2, L3, L4, L5, L6]
+    message: "Deep Track: Full L1-L6 plan recommended for comprehensive analysis."
 ---
 
 # Step 8: Deep Plan Builder
 
-## STEP GOAL:
+## STEP GOAL
 
-Create or deepen a multi-level plan (L1-L6) so the user can contribute effectively even with unclear role.
+Create multi-level plan (L1-L6) for effective project contribution.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+💡 **Quality Reference:** `../data/validation-examples.md` | **Quality Gates:** `../data/deep-plan-quality-gates.md`
 
-### Universal Rules:
-- 🛑 NEVER generate content without user input
-- 📖 CRITICAL: Read the complete step file before taking any action
-- 📋 YOU ARE A FACILITATOR, not a content generator
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+**Quality Standards:**
+- **Deep Track (L1-L6):** Full depth, 100+ tasks, dependencies, 5-8 risks, 2000-3000 words
+- **Standard Track (L1-L3):** Clear structure, 20-30 tasks, top 3 risks, 800-1200 words
 
-### Step-Specific Rules:
-- 🎯 Focus ONLY on planning depth and clarity
-- 🚫 FORBIDDEN to change scope or timeline here
-- 💬 Ask 1–2 questions at a time
-- 💬 Confirm each level before moving deeper
+## TRACK-BASED DEFAULTS
 
-## EXECUTION PROTOCOLS:
+**Quick Track:** SKIP (not needed) | **Standard Track:** L1-L3 (10-15 min) | **Deep Track:** L1-L6 (20-60 min)
 
-- 🎯 Load the project plan, snapshot, and journal
-- 💾 Update the Deep Plan section
-- 📖 Append a journal entry about the deep plan iteration
-- 🧾 Record evidence snapshot in journal or workflow plan
+## EXECUTION RULES
 
-### Search Orchestrator Protocol (Required)
-- Follow data/mcp_search_system_prompt_xml.md.
-- Execute: CLI memory search -> local MD (rg) -> web/MCP.
-- Convene consilium to rank 2–4 options with pros/cons and recommendation.
-- Ask user to choose before proceeding.
+- 🛑 Facilitator role only - no auto-generation
+- 📖 Read complete step file first
+- 💬 Ask 1-2 questions at a time, confirm each level
+- 📊 Default to track-appropriate depth
+- ✅ Use `{communication_language}` for all output
+- 🎯 Use subprocess for auto-linking-engine.md (Pattern 3 + Pattern 4: Data Operations + Parallel)
+- 💬 Return structured L2-L5 node connections only
 
-### Semantic Decision Support
-If a decision or prioritization remains unclear, use Search Orchestrator to rank 2–3 options.
+## EXECUTION PROTOCOLS
+
+Load {projectPlanFile}, {snapshotFile}, {journalFile}. Update Deep Plan section and journal. Follow Search Orchestrator protocol (CLI memory → local MD → web/MCP) for decisions.
+
+---
 
 ## MANDATORY SEQUENCE
 
-### 1. Load Current Context
+### 1. Load Context & Detect Track
 
-Open:
-- {projectPlanFile}
-- {snapshotFile} (if exists)
-- {journalFile} (if exists)
+Open {projectPlanFile}, {snapshotFile}, {journalFile}. Extract `track` from workflow plan frontmatter. Summarize goal, status, next step.
 
-Summarize the current goal, status, and next step.
+### 2. Depth Selection Menu
 
-### 2. Confirm Planning Mode
+Present options based on track:
+```
+DEEP PLAN DEPTH SELECTION
+Your idea: {TRACK} TRACK | Recommended: {track_defaults[track].message}
 
-Ask the user for confirmation before generating the deep plan:
-- "Сделать авто‑генерацию глубинного плана (L1–L6) сейчас? [Да/Нет]"
+[A]ccept {recommended} ({time_estimate} min)
+[F]ull L1-L6 (20-60 min)
+{if quick_track}[S]kip Deep Plan{/if}
 
-If the user says **No**, ask what level of detail they want and proceed manually.
-
-### 3. Auto-Select Planning Mode
-
-Automatically choose the planning mode:
-- Default: Use template and build full depth (L1 -> L6)
-- If role is unclear or user is invited without scope, use the "Invited Role" template
-
-### 4. Auto-Linking Check (Intelligence Layer)
-
-**Before generating Deep Plan, AI scans for auto-linkable data:**
-
-**Sources Checked:**
-1. **Workflow Plan** (Design Thinking, Consilium, Scoring)
-2. **Framework Templates** (if multiple frameworks filled)
-3. **Claude Flow Memory** (patterns from similar projects)
-
-**Auto-Linking Rules:**
-```yaml
-# Business → Finance
-lean_canvas.revenue_streams → npv.cash_inflows
-lean_canvas.cost_structure → npv.cash_outflows
-okrs.key_results → deep_plan.l2_phases
-
-# Health → Personal
-habit_loop.cue → deep_plan.l5_daily_tasks
-progressive_overload.weekly_plan → pomodoro.schedule
-
-# Finance → Personal
-npv.project_timeline → deep_plan.l2_phases
-monte_carlo.scenarios → deep_plan.scenario_branches
-
-# Workflow Plan → All
-workflow_plan.project_name → all_templates.project_name
-workflow_plan.consilium.specialists → template.recommended_roles
+Choice: [A/F/S]
 ```
 
-**If auto-links found (≥1):**
+**Warnings:**
+- **Standard→[F]:** "⚠️ Adds 40-50 min. L1-L3 sufficient. Proceed? [Y/N]"
+- **Quick→[A/F]:** "⚠️ Quick Track = 15-20 min total. Deep Plan adds 10-60 min. Continue? [Y/N]"
+
+**Route:**
+- [A]: Quick=skip | Standard=L1-L3 | Deep=L1-L6
+- [F]: L1-L6 (set `deep_plan_depth: L1-L6` in plan)
+- [S]: Mark `deep_plan_skipped: true`, proceed to next step
+
+### 3. Auto-Intelligence Check & Auto-Linking (Subprocess)
+
+📖 **Reference:** `../data/deep-plan-auto-intelligence.md`
+
+**Launch a subprocess that:**
+1. Scans idea metadata for domain tags (Business, Health, Personal, etc.)
+2. Loads auto-linking-engine.md with 50+ linking rules
+3. Matches domain patterns to template structures:
+   - Business → Finance/OKR nodes at L2
+   - Health → Habit Loop at L5
+   - Personal → Pomodoro/Time blocks at L5
+4. Identifies cross-domain dependencies (e.g., Business goal needs Health energy)
+5. Returns structured node suggestions with parent-child relationships
+
+**Subprocess returns:** Concise node mapping (200-300 lines) instead of loading full auto-linking-engine.md (1300+ lines).
+
+**Graceful fallback:** If subprocess unavailable, load `../data/deep-plan-auto-intelligence.md` and manually apply 3-5 highest-priority linking rules based on user's domain tags.
+
+### 4. Generate Plan
+
+📖 **Structure Guide:** `../data/deep-plan-l1-l6-guide.md`
+
+**L1-L3 (Standard):** Load {l1l3TemplateRef}
+- L1: Overview (what/why/how, 2-3 paragraphs)
+- L2: Major phases (3-5 phases with duration, goal)
+- L3: Milestones (5-8 with dates, criteria, deliverables)
+- Output: Duration, critical path, top 3 risks
+
+**L1-L6 (Deep):** Load {deepPlanTemplatesRef}
+- L1: Role/mission | L2: Contribution areas (2-5) | L3: Work streams | L4: Stages | L5: Tasks | L6: Atomic actions
+- Use scenario template: Tech Expert, Research, Ops, Product, Invited Role (fallback)
+- Mixed Scenario if multiple match (merge unique nodes)
+- Apply auto-linked nodes from subprocess (connections from Step 3)
+
+### 5. Update Project Plan
+
+Update "Deep Plan (L1-L6)" section in {projectPlanFile}. Add RACI for L2 nodes, 2-4 If-Then actions.
+
+**Metrics:**
+- Depth Covered = levels / 6
+- Nodes Count = total L* lines
+- RACI Coverage = (L2 with R+A) / total L2
+- If-Then Coverage = count If-Then actions
+
+**If TRIZ used:** Document principle, before/after resolution, add as L2 node if applicable.
+
+### 6. Update Journal
+
+Append: Date, what deepened, key decisions.
+
+---
+
+### 7. Quality Validation
+
+📖 **Reference:** `../data/deep-plan-quality-gates.md`
+
+**L1-L3 Checklist:** Structure clear? Phase timelines specific? 20-30 tasks? Top 3 risks? 800-1200 words?
+
+**L1-L6 Checklist:** Full depth (not L1-L2)? Timelines specific? 100+ tasks? Dependencies mapped? 5-8 risks? Contingencies? 2000-3000 words?
+
+**Quality Check:**
+[I]mprove | [A]ccept as-is (risk acknowledged) | [R]efer to examples | [C]ontinue (standards met)
+
+**Handle:** I=return to step 4 | A=warn + confirm | R=show validation-examples.md | C=proceed
+
+**Review Checkpoint:**
 ```
-🔗 **Auto-Linking Detected**
-
-Found {count} auto-linkable fields:
-
-1. {Source Framework}.{field} → {Target Framework}.{field}
-   - Value: "{preview}"
-   - Confidence: {percentage}%
-
-2. {Source}.{field} → {Target}.{field}
-   - Value: "{preview}"
-   - Confidence: {percentage}%
-
-Apply all links? [✅ Yes] [🔍 Review individually] [❌ Skip]
+L1: {Role/Mission}
+L2: {Areas} | L3: {Streams} | L4: {Stages} | L5: {Tasks} | L6: {Actions}
+RACI: {%} | If-Then: {count} | Template: {name} | Auto-linked: {count}
 ```
 
-**If user approves:**
-- Auto-populate target fields
-- Show summary of populated fields
-- Log to memory for learning
+Plan meets expectations? [Y]es/[N]o/[E]xplain
+- Y=proceed to menu | N=revise | E=show L1-L6 breakdown
 
-**If user reviews individually:**
-- Show each link with full context
-- Allow accept/reject per link
-- Learn from rejections (lower confidence for that rule)
+---
 
-**Memory Integration:**
+### 8. Menu Options
+
+```
+[T] TRIZ - Resolve contradictions (if L2+ reveals conflicts)
+[R] Revise Plan - Restructure levels
+[Q] Quality Gate - Check completeness (L1-L4, RACI ≥70%, If-Then ≥2)
+[C] Continue - Finalize plan
+
+Choice: [T/R/Q/C]
+```
+
+**Menu Logic:**
+- **T:** Identify contradictions → Step 4.5 TRIZ Analysis → Apply principle → Update L2 structure → Document TRIZ principle → Re-run quality check → Redisplay menu
+- **R:** Revise levels → Restructure L1-L6 → Re-run quality check → Redisplay menu
+- **Q:** Verify L1-L4, RACI ≥70%, If-Then ≥2 → Show results → Allow extension → Re-run quality check → Redisplay menu
+- **C:** Save to {projectPlanFile} and {journalFile} → Update frontmatter → Execute {nextStepFile}
+
+**RULES:** Wait for input. Complete only when C selected.
+
+---
+
+## Quick Feedback
+
+How was this step? 👍 Helpful | 😐 OK | 👎 Frustrating
+
+[Type feedback or Enter to skip]
+
+**Save to memory:**
 ```bash
-# Store successful links
-npx claude-flow@v3alpha memory store \
-  --namespace "shared-knowledge" \
-  --key "auto-linking:{source}→{target}:success" \
-  --content "Confidence {%}, User accepted, Project {id}"
-
-# Store rejections for learning
-npx claude-flow@v3alpha memory store \
-  --namespace "shared-knowledge" \
-  --key "auto-linking:{source}→{target}:rejected" \
-  --content "Reason: {user_reason}, Lower confidence next time"
+npx claude-flow@v3alpha memory store --namespace "user-context" --key "feedback:step-08-deep-plan:{timestamp}" --content "{\"step\":\"step-08-deep-plan\",\"rating\":\"{rating}\",\"comment\":\"{comment}\",\"plan_mode\":\"{mode}\",\"timestamp\":\"{ISO_datetime}\"}"
 ```
 
-**L2 Auto-Population:**
+---
 
-After auto-linking completes, check for L2 phase auto-population:
+## SUCCESS/FAILURE METRICS
 
-**If OKRs framework present:**
-```
-💡 **L2 Auto-Population Available**
+**✅ SUCCESS:** Deep plan created/expanded, updates saved to plan and journal
 
-Your OKRs have {count} Key Results.
-I can auto-generate L2 phases from them:
+**❌ FAILURE:** Skipping confirmation, not saving updates
 
-OKR: {objective}
-  → L2 Phase 1: {KR1 as phase name}
-  → L2 Phase 2: {KR2 as phase name}
-  → L2 Phase 3: {KR3 as phase name}
-
-Use this structure? [✅ Yes] [✏️ Customize] [❌ Manual]
-```
-
-**If NPV/Finance framework present:**
-```
-💡 **L2 Auto-Population Available**
-
-Your NPV has {year_count} year timeline.
-I can auto-generate L2 phases:
-
-NPV Year 1-2 → L2 Phase 1: {first_milestone}
-NPV Year 3-5 → L2 Phase 2: {second_milestone}
-...
-
-Use this structure? [✅ Yes] [✏️ Customize] [❌ Manual]
-```
-
-**After L2 populated, check L5:**
-
-**If Pomodoro/Habit Loop present:**
-```
-💡 **L5 Auto-Population Available**
-
-Your Habit Loop has daily cue at {time}.
-Auto-populate L5 daily tasks?
-
-L5-1: {7:00 AM} - {habit_response} ({habit_loop})
-L5-2: {time} - {pomodoro_task_1}
-L5-3: {time} - {pomodoro_task_2}
-
-Use this schedule? [✅ Yes] [✏️ Customize] [❌ Manual]
-```
-
-### 5. Build L1-L6 (Automatic)
-
-Auto-generate the full depth using the selected template:
-- L1: Role/mission
-- L2: Contribution areas (2-5)
-- L3: Work streams for each area
-- L4: Stages for each stream
-- L5: Tasks for each stage
-- L6: Atomic actions
-
-### 6. Scenario Mapping (Automatic, Semantic)
-
-Infer scenario by meaning (not keywords) using the Search Orchestrator:
-1) CLI Claude Flow memory search to find nearest scenario template
-2) Local MD search in plans/snapshots for similar cases
-3) Web/MCP search only if ambiguity remains
-
-Pick the top 1–2 scenarios and map to templates:
-- Tech Expert / Architect
-- Research / Discovery
-- Ops / Delivery Helper
-- Product / Strategy Contributor
-- Invited Role (unclear contribution) as fallback
-
-Use {deepPlanTemplatesRef} as the index and load only the relevant `.part-*.md` template file.
-If subprocess is available, load the relevant part in a subprocess and return only the selected outline.
-
-If multiple scenarios match, use a **Mixed Scenario** (combine top 2 templates).
-Insert the selected template structure and auto-fill a best-effort example outline.
-
-When mixing templates, merge unique nodes and remove duplicates.
-
-### 7. Update Project Plan
-
-Update the "Deep Plan (L1-L6)" section in {projectPlanFile} with the generated outline.
-Fill RACI for key L2 nodes and add 2–4 If-Then actions.
-Update Plan Quality Metrics:
-- Depth Covered = levels present / 6
-- Nodes Count = total nodes across L1-L6
-- RACI Coverage = % of L2 nodes with R and A
-- If-Then Coverage = count of If-Then actions
-
-Compute metrics explicitly:
-- Levels present: count L1..L6 headers that exist in the outline
-- Nodes count: count all L* lines in the outline
-- RACI coverage: (L2 nodes with R and A) / (total L2 nodes)
-- If-Then coverage: count of If-Then entries
-
-Quality Gate (must pass before completion):
-- L1–L4 present
-- RACI Coverage >= 70%
-- If-Then Coverage >= 2
-If not met, extend the plan until the gate is satisfied.
-
-**If TRIZ was used during planning:**
-- Document which TRIZ principle(s) were applied in a dedicated section
-- Show before/after contradiction resolution with clear comparison
-- Add TRIZ principle as L2 strategy node when appropriate (e.g., "L2: Segmentation - Phase 1 MVP + Phase 2 Polish")
-- Include trade-off analysis and why TRIZ approach was chosen
-- Update Quality Metrics to reflect TRIZ optimization impact
-
-### 8. Update Journal
-
-Append a journal entry:
-- Date
-- What was deepened
-- Key decisions
-
-### 9. Present MENU OPTIONS
-
-Display menu with method options:
-
-```
-**Choose next action:**
-
-**[T] TRIZ** - Resolve planning contradictions (if L2+ reveals conflicts)
-**[R] Revise Plan** - Restructure levels
-**[Q] Quality Gate** - Check completeness (L1-L4, RACI ≥70%, If-Then ≥2)
-**[C] Continue** - Finalize plan
-
-➡️ **Your choice:** [T/R/Q/C]
-```
-
-**[T] TRIZ - Planning Contradiction Resolution (Optional)**
-- **When to use:** L2+ planning reveals fundamental contradictions (e.g., "Need to launch fast but also need thorough testing", "Limited budget but requires expensive tool")
-- **What happens:** Launch Step 4.5 - TRIZ Analysis (Full ARIZ mode recommended for strategic projects)
-- **Outputs:** L2 phase structure informed by TRIZ solution, updated deep plan with contradiction-free path
-- **Integration:** ARIZ generates L1-L3 structure automatically (see ariz-full.template.md Section 13.2)
-- **Skip if:** Plan is executable without resolving contradictions
-
-#### Menu Handling Logic:
-- IF T:
-  - Identify planning contradictions (timeline, resources, quality trade-offs)
-  - Proceed to Step 4.5: TRIZ Analysis (jump to optional step if available)
-  - Apply TRIZ principle to resolve contradiction
-  - Return here with optimized L2 structure
-  - Common outcome: TRIZ principle becomes L2 node (e.g., "L2: Segmentation - Phase 1 MVP + Phase 2 Polish")
-  - Document which TRIZ principle(s) applied in Deep Plan section
-  - Show before/after contradiction resolution
-  - Redisplay menu after TRIZ integration
-- IF R: Allow user to revise plan levels, restructure L1-L6 hierarchy, then redisplay menu
-- IF Q: Run quality gate check (verify L1-L4 present, RACI Coverage ≥70%, If-Then Coverage ≥2), show results, allow user to extend plan if needed, then redisplay menu
-- IF C: Save updates to {projectPlanFile} and {journalFile}, update frontmatter if present, then load, read entire file, then execute {completeStepFile}
-- IF Any other: help user respond, then redisplay menu
-
-#### EXECUTION RULES:
-- ALWAYS halt and wait for user input after presenting menu
-- ONLY complete when user selects 'C'
-
-## 🚨 SYSTEM SUCCESS/FAILURE METRICS
-
-### ✅ SUCCESS:
-- Deep plan created or expanded
-- Updates saved to plan and journal
-
-### ❌ SYSTEM FAILURE:
-- Skipping confirmation
-- Not saving updates
-
-**Master Rule:** Depth must be explicit, confirmed, and documented.
-
+**Master Rule:** Depth explicit, confirmed, documented.
