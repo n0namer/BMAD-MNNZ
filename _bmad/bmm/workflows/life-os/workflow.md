@@ -188,12 +188,14 @@ User chooses track: [Q] Quick / [S] Standard / [D] Deep / [R] Accept recommendat
 **IF Quick Track selected:**
 ```
 Step 01 (Collect Ideas) →
-Step 04lite (Consilium Lite: 2-3 specialists, no Six Hats, 5-10 min) →
+Step 04-consilium-lite (Consilium Lite: 2-3 specialists, 3 perspectives, 5-10 min) →
 Step 05 (Simplified Scoring: 3 criteria only, 5 min) →
 Step 09 (Complete)
 
 Total: 15-20 minutes
 ```
+- Route: Step 01 → Step 04-consilium-lite (NOT full Step 04)
+- Step 04-consilium-lite: Load `steps-c/step-04-consilium-lite.md`
 
 **IF Standard Track selected:**
 ```
@@ -216,7 +218,7 @@ Step 01 (Collect Ideas) →
 Step 02 (Roles Discovery) →
 Step 03 (Specialist Match) →
 Step 04 (Consilium Deep: 6-8 specialists, Six Hats, multi-round, 25-30 min) →
-Step 04.5 (TRIZ Analysis - if contradictions detected, 10-60 min) →
+Step 04.5 (TRIZ Analysis - AUTO-TRIGGERED if contradictions detected, 10-60 min) →
 Step 05 (Full Scoring: 10+ criteria, 10-15 min) →
 Step 06 (Portfolio Integration: full WIP + synergy, 15 min) →
 Step 07 (Calendar Sync: milestone events, 10 min) →
@@ -227,6 +229,12 @@ Step 09 (Complete)
 
 Total: 2-4 hours (up to 6h with extensive TRIZ)
 ```
+
+**TRIZ Auto-Trigger:** Step 04.5 is automatically offered if:
+- Consilium shows >40% expert disagreement
+- Scoring reveals conflicting criteria (e.g., High Impact + High Effort)
+- Deep Plan identifies fundamental trade-offs
+User can accept, decline, or defer TRIZ analysis.
 
 ### 5. Track Escalation Rules
 
@@ -339,10 +347,29 @@ Would you like to begin execution tracking?
 
 #### Integration with Reviews
 
-**Daily Review:** Quick status check for active ideas (optional)
-**Weekly Review (step-v-02):** Presents all IN_PROGRESS ideas for pulse check
-**Monthly Review:** Milestone progress across all active ideas
-**Quarterly Review:** Portfolio health, pivot/kill decisions for stalled ideas
+**Daily Review (step-v-01):** Quick status check for active ideas (optional)
+**Weekly Review (step-v-02):**
+  - Presents all IN_PROGRESS ideas for pulse check
+  - Triggers Step X-02 (Weekly Pulse) for each active idea
+  - Auto-surface blockers and progress updates
+
+**Monthly Review (step-v-03):**
+  - Milestone progress across all active ideas
+  - Trigger Step X-03 (Milestone Gate) for completed milestones
+  - Portfolio health assessment
+
+**Quarterly Review (step-v-04):**
+  - Portfolio health analysis
+  - Pivot/kill decisions for stalled ideas
+  - Trigger Step X-04 (Pivot-or-Kill) for blocked projects
+  - Refocus strategy for next quarter
+
+**Execution ↔ Validate Integration:**
+- Validate steps present IN_PROGRESS projects and trigger appropriate X-steps
+- X-steps return status updates to validate workflows
+- Weekly pulse (X-02) feeds into Weekly Review (step-v-02)
+- Milestone gates (X-03) feed into Monthly Review (step-v-03)
+- Pivot decisions (X-04) inform Quarterly Review (step-v-04)
 
 **IF mode == validate:**
 ```
@@ -351,23 +378,32 @@ Which review would you like to run?
 [D]aily - Quick daily review (5 min)
 [W]eekly - Full weekly review (30 min)
 [M]onthly - Monthly alignment check (1 hour)
+[Q]uarterly - Quarterly pivot/kill decisions (2 hours)
 
-Please select: [D]aily / [W]eekly / [M]onthly
+Please select: [D]aily / [W]eekly / [M]onthly / [Q]uarterly
 ```
-- Load the corresponding validate step
+- **IF D:** Load `steps-v/step-01-daily-review.md`
+- **IF W:** Load `steps-v/step-02-weekly-review.md`
+- **IF M:** Load `steps-v/step-03-monthly-review.md`
+- **IF Q:** Load `steps-v/step-04-quarterly-review.md`
 
 **IF mode == edit:**
 ```
 What would you like to update?
 
-[P]roject - Update existing project
-[S]pecialist - Manage specialist
-[R]esources - Update resources/capacity
-[G]oals - Update long-term goals
+[P]roject - Update existing project (status, timeline, resources)
+[S]pecialist - Manage specialist (add, update, remove)
+[R]esources - Update portfolio resources/capacity
+[G]oals - Update long-term goals (add, update, progress, retire)
 
 Please select: [P]roject / [S]pecialist / [R]esources / [G]oals
 ```
-- Route to the appropriate edit step
+- **IF P:** Load `steps-e/step-01-update-project.md`
+- **IF S:** Load `steps-e/step-02-update-specialist.md`
+- **IF R:** Load `steps-e/step-02-update-resources.md` (note: also step-02 but different focus)
+- **IF G:** Load `steps-e/step-03-update-goals.md`
+
+**ROUTING LOGIC NOTE:** Specialist and Resources updates both named step-02 because they're alternative workflows at same level. User can chain between them via menu options.
 
 **IF mode == return-to-plan:**
 - Load and execute `steps-v/step-00-return-to-plan.md`

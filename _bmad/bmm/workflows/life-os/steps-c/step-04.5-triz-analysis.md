@@ -1,9 +1,16 @@
 ---
 name: 'step-04.5-triz-analysis'
-description: 'TRIZ contradiction analysis: optional step called from Step 4, 5 or 8'
+description: 'TRIZ contradiction analysis: optional step called from Step 4, 5 or 8 (AUTO-TRIGGERED if contradictions detected)'
 mode: create
 type: optional
 estimatedTime: '5-120 minutes (depends on mode)'
+triggers:
+  automatic:
+    - consilium_divergence: '>40% expert disagreement'
+    - scoring_conflict: '2+ criteria score >=4 on opposing dimensions'
+    - plan_tradeoff: 'Identified trade-off during planning'
+  manual:
+    - user_selection: 'User explicitly chooses [T] TRIZ from menu'
 requires:
   - workflow-plan.md (must exist)
   - At least one identified contradiction
@@ -12,6 +19,7 @@ outputs:
   - Updated workflow-plan.md with TRIZ solution
 calledFrom:
   - step-04-consilium
+  - step-04-consilium-lite
   - step-05-scoring
   - step-08-deep-plan
 templates:
@@ -27,6 +35,59 @@ workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.m
 ## STEP GOAL:
 
 Resolve contradictions blocking progress using TRIZ principles. Find a solution that eliminates the contradiction, not a compromise.
+
+---
+
+## AUTO-TRIGGER DETECTION
+
+**This step is automatically offered when contradictions are detected:**
+
+### Trigger 1: Consilium Divergence (Step 4)
+- **Condition:** >40% expert disagreement on recommendations
+- **Indicator:** 2+ of 5 specialists recommend conflicting approaches
+- **Action:** System flags and offers TRIZ
+- **Message:** "Specialists strongly disagree (>40% divergence). TRIZ can help find a non-compromise solution. Run TRIZ? [Y]es / [N]o / [S]kip"
+
+### Trigger 2: Scoring Conflict (Step 5)
+- **Condition:** 2+ criteria score ≥4 on opposing dimensions (e.g., High Impact + High Effort)
+- **Indicator:** MCDA detects conflicting criteria
+- **Action:** System flags and offers TRIZ
+- **Message:** "Scoring reveals contradiction: high impact requires high effort. TRIZ can find efficient path. Run TRIZ? [Y]es / [N]o / [S]kip"
+
+### Trigger 3: Planning Trade-off (Step 8)
+- **Condition:** Deep Plan identifies fundamental trade-off (Speed vs Quality, Cost vs Features)
+- **Indicator:** User or system identifies either-or situation
+- **Action:** System flags and offers TRIZ
+- **Message:** "Plan reveals trade-off: {trade-off description}. TRIZ can eliminate the trade-off. Run TRIZ? [Y]es / [N]o / [S]kip"
+
+### Manual Trigger: User Selection
+- **Condition:** User explicitly chooses [T] TRIZ from any step menu
+- **Action:** Load this step
+
+---
+
+## DECISION LOGIC
+
+**IF any trigger condition met:**
+```
+Display: "🔄 Contradiction Detected!
+
+{Trigger description}
+
+Would you like to run TRIZ analysis to find a non-compromise solution?
+
+[Y] Yes - Run TRIZ (5-120 min depending on mode)
+[N] No - Continue without TRIZ (accept compromise)
+[S] Skip - Address manually later
+
+Your choice: [Y/N/S]"
+```
+
+**IF user selects [Y]:** Proceed to SECTION 1: Context Definition
+**IF user selects [N]:** Return to calling step with note that compromise accepted
+**IF user selects [S]:** Return to calling step, record contradiction for later review
+
+---
 
 ## MANDATORY EXECUTION RULES:
 
