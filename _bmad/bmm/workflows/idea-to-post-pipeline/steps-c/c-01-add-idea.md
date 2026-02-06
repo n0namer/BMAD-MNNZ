@@ -1,0 +1,270 @@
+---
+description: Collect raw idea, validate against criteria, collect content_type, check for duplicates, add to ideas_inbox
+name: step-c-01-add-idea
+nextStepFile: ./c-01b-dedup-check.md
+type: input-collection
+---
+
+## SAVED DATA
+
+Idea automatically saved to ideas_inbox.csv (after dedup check passes):
+```csv
+id,date_added,source,raw_idea,content_type,category,status,notes
+[N],[today],user_input,"[idea description]",[type],[category],active,[auto-generated notes]
+```
+
+---
+
+## NEXT STEP
+
+User selects next action: Research → Add More → Back to Menu
+
+**EXECUTION RULE:**
+ALWAYS halt and wait for user input after presenting menu. ONLY proceed when user makes a selection.
+
+---
+
+# CREATE C-01: Add New Idea
+
+## STEP GOAL:
+
+Collect a raw idea from user, validate it, and add to ideas_inbox.csv.
+
+## EXECUTION:
+
+### PRE-STEP: Выбор Режима Ввода
+
+**Новое в Content Machine Pipeline:** Теперь возможны два режима ввода идей.
+
+Система спрашивает:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    РЕЖИМ ВВОДА ИДЕИ                             │
+└─────────────────────────────────────────────────────────────────┘
+
+Выберите режим добавления идеи:
+
+[T] TEXT — Обычная текстовая идея
+    Вводите обычный текст (проблема, инсайт, вопрос, тренд)
+    → Пройдёт через стандартный флоу исследования и написания
+    → 3 варианта черновика при написании
+
+[R] ROUTINE — Демонстрация вашей рутины (Content Machine!)
+    Загружаете скриншот того, что вы реально делаете сейчас
+    + Краткое описание процесса
+    → Система генерирует боли предпринимателей
+    → Система генерирует офферы on-the-fly
+    → 6 вариантов черновика (3 базовых + 3 CM фреймворка)
+    → PAS, Hook-Story-Offer, Show Your Work
+
+Ваш выбор: [T] или [R] ?
+```
+
+**Обработка ввода:** Пользователь вводит `T` или `R`
+
+**IF режим [T] (TEXT):**
+  → Перейти к шагу "1. Request Idea Input" (текущая логика)
+
+**IF режим [R] (ROUTINE):**
+  → Перейти к шагу "1-R. Load Routine Demo"
+
+---
+
+### 1-R. Load Routine Demo (Content Machine Stage 1: INPUT)
+
+**Триггер:** Только если выбран режим [R]
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│            РЕЖИМ ROUTINE: ПОКАЖИТЕ ВАШУ РУТИНУ                  │
+└─────────────────────────────────────────────────────────────────┘
+
+Загрузите скриншот того, что вы демонстрируете.
+
+Примеры рутин:
+├─ BMAD опросил и сгенерировал 80+ документов за 2 часа
+├─ ClaudeFlow: консилиум агентов (юрист, маркетолог, аналитик)
+├─ Программирую робота через агентные схемы
+├─ Использую BMAD для описания процессов компании
+└─ Другое...
+
+ЗАГРУЗКА:
+
+1. Скриншот рутины: [прикрепить изображение]
+   (PNG, JPG, обязательно)
+
+2. Описание: что вы делаете и зачем
+   (1-3 предложения)
+```
+
+**Обработка скриншота:**
+
+Система использует Vision API Claude для извлечения контекста:
+
+```
+Анализирую скриншот...
+
+✓ Извлечён контекст:
+  ├─ visual_context: "На скрине видна интерфейс BMAD с диалогом..."
+  ├─ tools_used: ["BMAD", "Claude", "PDF export"]
+  ├─ demonstrated_result: "80+ документов готовы к использованию"
+  └─ context_type: "documentation generation"
+```
+
+**Сохранение:**
+
+Система сохраняет в ideas_inbox.csv:
+
+```csv
+id, date_added, source, raw_idea, content_type, idea_metadata, status, notes
+[N], [today], routine, "[description]", demo, "{\"visual_context\": \"...\", \"tools_used\": [...], \"demonstrated_result\": \"...\"}", active, [auto]
+```
+
+Где `idea_metadata` — JSON с извлечёнными данными.
+
+**Следующий шаг:**
+1b. Collect Content Type (как обычно, но content_type уже = "demo")
+
+---
+
+### 1. Request Idea Input
+
+```
+═══════════════════════════════════════════════════════════════
+
+  💡 ADD NEW IDEA
+
+  Расскажи мне идею для контента. Может быть что угодно:
+  • Проблема которую ты видишь
+  • Инсайт который хочешь поделиться
+  • Тренд в твоей нише
+  • Вопрос который часто слышишь
+  • Что-то что тебя вдохновило
+
+  Просто напиши (2-3 предложения достаточно):
+
+═══════════════════════════════════════════════════════════════
+```
+
+Wait for user input.
+
+### 1b. Collect Content Type
+
+After user provides idea, ask for content type:
+
+```
+Какой это тип контента?
+
+[1] EVERGREEN — Информация которая всегда актуальна
+[2] TOPICAL — О текущих событиях и трендах
+[3] SEASONAL — Актуально в определённый период
+[4] PHILOSOPHICAL — Размышления и глубокие инсайты
+[5] TUTORIAL — Как делать / пошаговая инструкция
+[6] DEMO — Демонстрация инструмента / процесса
+
+Выбери (1-6):
+```
+
+Wait for selection. Valid options: evergreen, topical, seasonal, philosophical, tutorial, demo
+
+**Примечание для Content Machine:**
+- Если выбран режим [T] (текст): пользователь выбирает тип вручную
+- Если выбран режим [R] (routine): content_type **автоматически** = [6] DEMO
+  (система пропускает этот выбор и идёт дальше)
+
+### 2. Validate Idea
+
+Check against [idea-validation-checklist.md](../data/checklist-templates/idea-validation-checklist.md):
+
+```
+Проверяю твою идею...
+
+✓ Специфичная? ✅
+✓ Исследуемая? ✅
+✓ Аудитория понятна? ✅
+✓ Не дубликат? ✅
+
+Статус: ✅ PASS — Идея готова к исследованию!
+```
+
+If FAIL:
+```
+⚠️  Вопросы по идее:
+  • [Specific feedback]
+  • [Suggestion for improvement]
+
+Хочешь доработать или выбрать другую идею?
+```
+
+### 3. Add to Inbox
+
+```
+Добавляю идею в inbox...
+
+Идея #[N]:
+├─ Title: "[user-provided-title]"
+├─ Raw description: "[description]"
+├─ Content type: [selected type]
+├─ Category: [detected/user-specified]
+├─ Status: active
+├─ Date added: [today]
+└─ Priority: [medium by default]
+
+✅ Идея добавлена в ideas_inbox.csv
+```
+
+### 4. Check for Duplicates
+
+Before saving, route to deduplication check:
+
+```
+Проверяю на дубликаты в существующих идеях...
+```
+
+Execute: `./c-01b-dedup-check.md`
+
+This step will:
+- Compare idea with existing ideas_inbox.csv
+- Flag potential duplicates with similarity %
+- Allow user to confirm or modify
+- Return to step 5 when cleared for saving
+
+### 5. Present Next Options
+
+```
+═══════════════════════════════════════════════════════════════
+
+  Что дальше?
+
+  [R] RESEARCH — Исследуй эту идею (найти углы)
+  [A] ADD MORE — Добавь ещё идею
+  [M] Back to MENU — Другие операции
+
+═══════════════════════════════════════════════════════════════
+```
+
+**[R] RESEARCH:**
+Load, read entire file, then execute `./c-02a-load-ideas.md`
+
+**[A] ADD MORE:**
+Return to step 1 (request new idea)
+
+**[M] Back to MENU:**
+Load `./c-00-menu.md`
+
+---
+
+## SAVED DATA
+
+Idea automatically saved to ideas_inbox.csv (after dedup check passes):
+```csv
+id,date_added,source,raw_idea,content_type,category,status,notes
+[N],[today],user_input,"[idea description]",[type],[category],active,[auto-generated notes]
+```
+
+---
+
+## NEXT STEP
+
+Execute dedup check (c-01b-dedup-check.md) before saving. Then user selects next action.

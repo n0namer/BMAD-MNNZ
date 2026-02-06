@@ -1,0 +1,339 @@
+---
+name: step-c-03c-draft
+description: Generate 3 draft post variations based on selected angle
+type: content-generation
+nextStepFile: ./c-03d-variants.md
+---
+
+## NEXT STEP
+
+Handle user selection (select draft → proceed to variants)
+
+**EXECUTION RULE:**
+ALWAYS halt and wait for user input after presenting menu. ONLY proceed when user makes a selection.
+
+---
+
+# CREATE C-03: Write Post - Draft
+
+## IMPORTANT: REUSE CHECK FIRST
+
+**Before drafting, check if you should reuse an existing post.**
+
+Run `./c-03a-reuse-check.md` first to:
+- Search for similar published posts
+- Detect post variants
+- Determine if draft should be a variant_of existing post
+
+If reusing existing post as variant → Continue here with variant modifications (step 2B below)
+
+---
+
+## STEP GOAL:
+
+Generate 3 draft variations of a post for the selected angle.
+
+## EXECUTION:
+
+### 1A. Check if Variant
+
+**If reuse check found existing post to build variant from:**
+
+```
+═══════════════════════════════════════════════════════════════
+
+  ✍️  WRITE POST: Generating Variant
+
+  Base post ID: post-2026-001 (Published: Jan 2026)
+  Base angle: Time Saving
+  New angle: ROI/Cost Savings
+
+  Creating variant with modified:
+  ✓ Opening hook
+  ✓ 2-3 examples
+  ✓ Call-to-action
+
+═════════════════════════════════════════════════════════════════
+```
+
+**Modifications for variant_of:**
+- **Opening hook/first sentence**: Keep core idea, shift focus to new angle
+  - Original: "3 часа вместо недели" (Time angle)
+  - Variant: "70% меньше затрат на контент" (Cost angle)
+- **2-3 examples**: Use same situation but emphasize different benefit
+  - Original examples: Speed metrics
+  - Variant examples: Cost/ROI metrics
+- **Call-to-action**: Tailor to new angle audience
+  - Original: "Попробуй сегодня" (time-focused)
+  - Variant: "Вычисли ROI своего контента" (cost-focused)
+
+Proceed to section "### 2B. Generate 3 Variant Drafts" below
+
+---
+
+### 1B. Display Generation Start (New Post)
+
+**If no reuse - creating original post:**
+
+```
+═══════════════════════════════════════════════════════════════
+
+  ✍️  WRITE POST: Generating Drafts
+
+  Идея: "ИИ контент за 3 часа"
+  Угол: Time Saving ⏱️
+
+  Создаю 3 варианта текста...
+
+═════════════════════════════════════════════════════════════════
+```
+
+### 2B. Generate 3 Variant Drafts (if variant_of)
+
+Using base post + new angle + research data, create 3 variations:
+
+**Rule:** Keep 60-70% of original, change 30-40% for new angle
+
+---
+
+### 2. Generate Drafts (New Post)
+
+**Логика генерации зависит от content_type:**
+
+---
+
+#### IF content_type != "demo" (текстовая идея)
+
+Генерируем **3 базовых варианта**, используя angle + research data:
+
+```
+DRAFT 1 - DIRECT & PUNCHY (Hook-focused)
+─────────────────────────────────────────
+[текст как в примере выше...]
+
+Quality score: 89/100 | CTR potential: 4.2%
+
+─────────────────────────────────────────
+
+DRAFT 2 - STORYTELLING (Narrative-focused)
+─────────────────────────────────────────
+[текст как в примере выше...]
+
+Quality score: 84/100 | CTR potential: 3.8%
+
+─────────────────────────────────────────
+
+DRAFT 3 - DATA-DRIVEN (Numbers-focused)
+─────────────────────────────────────────
+[текст как в примере выше...]
+
+Quality score: 86/100 | CTR potential: 4.0%
+
+─────────────────────────────────────────
+```
+
+---
+
+#### IF content_type == "demo" (Content Machine routine)
+
+Генерируем **6 вариантов** (3 базовых + 3 Content Machine фреймворка).
+
+**Input для CM вариантов:**
+- `pain_points`: из `pain_points_json` (из c-02c)
+- `generated_offers`: из `workflow_state.json` (из c-03b2)
+- `visual_context`: из `idea_metadata` (из c-01)
+
+**DRAFT 1-3:** Базовые варианты (как выше) — DIRECT, STORYTELLING, DATA-DRIVEN
+
+---
+
+**DRAFT 4 - PAS: Problem-Agitate-Solution** 🔥 (Content Machine)
+─────────────────────────────────────────
+
+Структура:
+
+1️⃣ **PROBLEM** (2-3 предложения) — Начни с первой боли из списка
+   Пример: "Документация занимает дни, а результат плохой"
+
+2️⃣ **AGITATE** (2-3 предложения) — Усиль боль, покажи последствия
+   Пример: "Пока ты пишешь, конкуренты уже масштабируются"
+
+3️⃣ **SOLUTION** (3-4 предложения) — Покажи рутину как решение
+   Пример: "Я только что сгенерировал 80+ документов за 2 часа с BMAD.
+           Вот как это работает..."
+   (Используй `visual_context` из скриншота)
+
+4️⃣ **OFFER** (1-2 предложения) — Вшей оффер из `generated_offers`
+   Пример: "{offer_description}. {offer_cta}"
+
+Результат: 600-800 символов
+
+Quality score: 87/100 | CTR potential: 4.1%
+
+─────────────────────────────────────────
+
+**DRAFT 5 - Hook-Story-Offer** 🚀 (Content Machine)
+─────────────────────────────────────────
+
+Структура:
+
+1️⃣ **HOOK** (1-2 предложения) — Шокирующая цифра из рутины
+   Пример: "80 документов за 2 часа. Вот как."
+
+2️⃣ **STORY** (4-5 предложений) — Покажи процесс из visual_context
+   Пример: "Сегодня утром BMAD опросил меня про продукт.
+            Через 30 минут: техзадание, roadmap, user stories.
+            Я только проверил и откорректировал 3-4 пункта.
+            Обычно это 2 дня. Получилось 2 часа."
+
+3️⃣ **NARRATIVE BRIDGE** (1-2 предложения) — Связь с болью
+   Пример: "Если у вас юристы, маркетологи, HR — та же проблема."
+
+4️⃣ **OFFER** (2-3 предложения) — Вшей оффер
+   Пример: "{offer_title}: {offer_description}. {offer_cta}"
+
+Результат: 700-900 символов
+
+Quality score: 88/100 | CTR potential: 4.3%
+
+─────────────────────────────────────────
+
+**DRAFT 6 - Show Your Work (Austin Kleon)** ✨ (Content Machine)
+─────────────────────────────────────────
+
+Структура:
+
+1️⃣ **BEHIND-THE-SCENES** (3-4 предложения) — Процесс изнутри
+   Пример: "Вот как я сейчас работаю с документацией.
+            BMAD задаёт вопросы, я отвечаю.
+            Система на лету строит структуру и заполняет разделы.
+            Результат: 80+ доков, готовых на 90%."
+
+2️⃣ **INSIGHT** (2-3 предложения) — Что понял в процессе
+   Пример: "Главное открытие: качество документации зависит не от времени,
+            а от структуры вопросов."
+
+3️⃣ **AUTHENTICITY** (1-2 предложения) — Это реальная работа, не кейс
+   Пример: "Это не демо для клиента — это реальный процесс,
+            который я использую каждый день."
+
+4️⃣ **SOFT OFFER** (2-3 предложения) — Мягкий оффер "если интересно"
+   Пример: "Если похожая задача — {offer_cta}"
+
+Результат: 550-750 символов
+
+Quality score: 85/100 | CTR potential: 3.9%
+
+─────────────────────────────────────────
+```
+
+### 3. Display Drafts & Options
+
+**Для обычного контента (content_type != "demo"):**
+
+```
+═════════════════════════════════════════════════════════════════
+
+  ✅ 3 DRAFT VARIANTS CREATED
+
+  Draft 1: DIRECT & PUNCHY (89/100) ⭐
+  Draft 2: STORYTELLING (84/100)
+  Draft 3: DATA-DRIVEN (86/100)
+
+  Post type: Original
+  variant_of: (none)
+
+═════════════════════════════════════════════════════════════════
+
+Что дальше?
+
+[1-3] SELECT DRAFT — Выбрать понравившийся вариант
+[F] FEEDBACK — Дать feedback на все варианты
+[G] GENERATE NEW — Создать новые варианты
+[V] VIEW FULL — Показать полные версии (500/250/100 chars)
+[M] Back to MENU
+
+═════════════════════════════════════════════════════════════════
+```
+
+---
+
+**Для Content Machine контента (content_type == "demo"):**
+
+```
+═════════════════════════════════════════════════════════════════
+
+  ✅ 6 DRAFT VARIANTS CREATED (Content Machine)
+
+  БАЗОВЫЕ ВАРИАНТЫ:
+  Draft 1: DIRECT & PUNCHY (89/100) ⭐
+  Draft 2: STORYTELLING (84/100)
+  Draft 3: DATA-DRIVEN (86/100)
+
+  CONTENT MACHINE ФРЕЙМВОРКИ (с вшитыми болями + офферами):
+  Draft 4: PAS (Problem-Agitate-Solution) (87/100) 🔥
+  Draft 5: Hook-Story-Offer (88/100) 🚀
+  Draft 6: Show Your Work (Austin Kleon) (85/100) ✨
+
+  Post type: Original
+  variant_of: (none)
+  pain_points: [{pain_1}, {pain_2}, {pain_3}]
+  generated_offers: [{offer_1}, {offer_2}]
+
+═════════════════════════════════════════════════════════════════
+
+Варианты 4-6 автоматически вшивают:
+  ✓ Боли предпринимателей (из c-02c)
+  ✓ Сгенерированные офферы (из c-03b2)
+  ✓ Контекст вашей рутины (из скриншота)
+
+Что дальше?
+
+[1-6] SELECT DRAFT — Выбрать понравившийся вариант
+[F] FEEDBACK — Дать feedback на все варианты
+[G] GENERATE NEW — Создать новые варианты
+[V] VIEW FULL — Показать полные версии (500/250/100 chars)
+[M] Back to MENU
+
+═════════════════════════════════════════════════════════════════
+```
+
+**[1-3] SELECT DRAFT:**
+```
+Выбрал Draft 1: DIRECT & PUNCHY
+
+Post metadata:
+  • post_id: (auto-generated)
+  • angle: Time Saving
+  • variant_of: (none / or base_post_id if variant)
+
+Переходим к генерации дополнительных вариантов...
+```
+Load, read entire file, then execute `./c-03d-variants.md` with selected draft and variant_of info
+
+**[F] FEEDBACK:**
+```
+Дай feedback на все варианты:
+[Waiting for user input...]
+
+Например:
+  • "Draft 1 лучше, но hook нужен сильнее"
+  • "Мне нравится структура Draft 3"
+  • Etc.
+```
+Re-generate with feedback
+
+**[G] GENERATE NEW:**
+Generate 3 new variations
+
+**[V] VIEW FULL:**
+Show 250-char and 100-char versions of selected draft
+
+**[M] Back to MENU:**
+Load `./c-00-menu.md`
+
+---
+
+## NEXT STEP
+
+Handle user selection (select draft → proceed to variants)
