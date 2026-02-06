@@ -3,7 +3,7 @@ name: 'step-x-01-kickoff'
 description: 'Transition idea from PLANNED to IN_PROGRESS with milestones and success metrics'
 nextStepFile: './step-x-02-tracking.md'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
-trackerTemplateFile: '../templates/project/execution-tracker.template.md'
+trackerTemplateFile: './data/execution-tracker-template.md'
 ---
 
 # Step X-01: Project Kickoff
@@ -94,7 +94,7 @@ After **Step 08 (Deep Plan)** completes and user is ready to start execution. Th
 
 ### 6. Create Execution Tracker File
 
-📖 **Template:** `../data/execution-tracker-template.md` - Read template, populate with confirmed milestones/metrics, save to `{bmb_creations_output_folder}/life-os/output/{idea-id}-execution-tracker.md`, confirm creation.
+📖 **Template:** `./data/execution-tracker-template.md` - Read template, populate with confirmed milestones/metrics, save to `{bmb_creations_output_folder}/life-os/output/{idea-id}-execution-tracker.md`, confirm creation.
 
 ### 7. Update Workflow Plan Status
 
