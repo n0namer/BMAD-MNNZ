@@ -14,3 +14,4 @@
 
 # Also don't ignore .gitignore itself
 !.gitignore
+!PHASE-1-DELIVERY-2026-02-26.md
