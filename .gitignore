@@ -8,6 +8,7 @@
 !.clinerules/
 !.clinerules/**
 !folder_structure.md
+!PHASE-2-HANDOFF-README.md
 
 .claude\*
 
