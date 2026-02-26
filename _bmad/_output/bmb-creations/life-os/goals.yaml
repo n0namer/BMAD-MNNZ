@@ -1,0 +1,382 @@
+# Life OS Goals Framework
+# Иерархическая структура целей: 2026 → 2029 → 5-10 лет
+
+---
+metadata:
+  version: "1.0"
+  created: "2026-02-05"
+  owner: "Никита"
+  alignment_domains:
+    - Finance (passive income)
+    - Health (SMILE, Tirzepatide, surgery)
+    - Family (marriage, children via surrogate)
+    - Lifestyle (freedom, travel, sports, blogging)
+
+---
+
+## FOUNDATION: Core Values
+
+core_values:
+  - name: "Freedom"
+    description: "Ability to choose what to work on, when, where"
+    weight: 1.0
+    why: "Ultimate goal - passive income enables this"
+
+  - name: "Money"
+    description: "Financial security and wealth building"
+    weight: 0.9
+    why: "Enables freedom, family, health investments"
+
+  - name: "Health"
+    description: "Physical and mental wellbeing"
+    weight: 0.85
+    why: "Foundation for everything else"
+
+  - name: "Family"
+    description: "Building life with Masha, children via surrogate"
+    weight: 0.9
+    why: "Primary life goal alongside income"
+
+---
+
+## 2026: YEAR OF FOUNDATION & HEALTH
+
+year_2026:
+  theme: "Build passive income foundation + restore health"
+
+  primary_goals:
+    - goal_id: "2026-01-passive-income"
+      title: "Launch Passive Income Streams"
+      description: |
+        Establish two passive income sources:
+        1) Trading bot (Katana-VectorBT) - automated trading
+        2) Profitable SaaS service (Sales QA OR Consilium MVP)
+
+      success_criteria:
+        - Trading bot: Running, generating revenue (any amount)
+        - SaaS: Beta users or 1st paying customer
+
+      financial_target: "$5,000-15,000/month from passive sources"
+
+      projects:
+        - project: "001-katana-vectorbt"
+          priority: "🔴 CRITICAL"
+          reason: "Foundation for 1млн/месяц goal"
+          timeline: "Jan-Mar 2026"
+          effort_estimate: "80-120 hours"
+          multiplier: "14x (with Claude Code + BMAD + Flow)"
+          realistic_duration: "5-9 days focused work"
+
+        - project: "005-sales-qa-saas"
+          priority: "🔴 CRITICAL"
+          reason: "First SaaS product to validate market"
+          timeline: "Apr-May 2026"
+          effort_estimate: "200-400 hours"
+          multiplier: "18.5x"
+          realistic_duration: "11-22 hours = 2-3 days focused"
+
+    - goal_id: "2026-02-health-restoration"
+      title: "Restore Health"
+      description: |
+        Complete three medical procedures:
+        1) Eye surgery (SMILE) - restore vision
+        2) Tonsillectomy - gland removal
+        3) Weight loss with Tirzepatide
+
+      timeline_detail:
+        - date: "2026-02-09"
+          event: "Тонзиллэктомия: начало анализов у доктора"
+          impact: "Start medical preparation"
+          workload: "Low"
+
+        - date: "2026-02-19"
+          event: "Операция на гландах"
+          impact: "Unable to work 2-4 weeks"
+          workload: "None"
+
+        - date: "2026-03-01"
+          event: "Ранняя реабилитация"
+          impact: "50% productivity, light work only"
+          duration: "4 weeks"
+          workload: "Low"
+
+        - date: "2026-04-01"
+          event: "SMILE: восстановление зрения"
+          impact: "Schedule after gland recovery"
+          workload: "Low during preparation/recovery"
+
+        - date: "2026-06-30"
+          event: "DEADLINE: похудеть на Тирзепатиде"
+          impact: "Must be on weight loss track by June"
+          workload: "Ongoing (weekly weigh-ins)"
+
+      success_criteria:
+        - Gland surgery: Successfully completed, healed
+        - SMILE: Eyes restored, clear vision
+        - Tirzepatide: Target weight achieved by June
+
+      health_targets:
+        - vision: "20/20 after SMILE"
+        - weight: "Achieve target by June 30"
+        - energy: "Higher energy from health improvements"
+
+  quarterly_breakdown:
+
+    Q1_2026:
+      focus: "Prepare for surgery + start Katana"
+      goals:
+        - "Get Katana-VectorBT foundation running"
+        - "Complete medical tests and surgery"
+        - "Start recovery and light work"
+      timeline:
+        - "Jan 1-8: Full work on Katana (8-10h/week)"
+        - "Jan 9-31: Continue Katana + start 002 Карты (6-8h/week)"
+        - "Feb 1-8: Maximum productivity before surgery"
+        - "Feb 9-19: Medical preparation (no work)"
+        - "Feb 19-28: Post-surgery, no work"
+        - "Mar 1-31: Recovery mode, 50% capacity, light support only"
+      medical_events:
+        - "02-09: Start medical tests"
+        - "02-19: Surgery (Тонзиллэктомия)"
+
+    Q2_2026:
+      focus: "Resume work + launch SaaS MVP + eye surgery"
+      goals:
+        - "Achieve 50%+ recovery from gland surgery"
+        - "Stabilize Katana (verify it works, is generating revenue)"
+        - "Plan and start 005 Sales QA"
+        - "Complete SMILE eye surgery"
+      timeline:
+        - "Apr 1-30: Full capacity, intensive SaaS work"
+        - "May 1-31: Balanced work (SaaS + light Katana monitoring)"
+      medical_events:
+        - "Apr: SMILE procedure"
+        - "May-Jun: Post-SMILE recovery (minor)"
+        - "Jun 30: Tirzepatide target weight achieved"
+
+    Q3_2026:
+      focus: "Grow SaaS revenue + prepare for family"
+      goals:
+        - "Sales QA: Get 5-10 beta users, first paying customers"
+        - "Katana: Stable revenue generation"
+        - "Accumulate capital for 2029 goals (ипотека + суррогатство)"
+        - "Complete all health procedures"
+
+    Q4_2026:
+      focus: "Consolidate + plan 2027"
+      goals:
+        - "Sales QA: 20+ users, $2-5K MRR"
+        - "Katana: Passive revenue stream established"
+        - "Plan 2027: scale SaaS OR launch Consilium"
+        - "Timeline for marriage with Masha"
+
+  financial_target_2026: "$60,000 - $180,000 (passive + SaaS)"
+
+  wip_limit: 2
+  wip_detail:
+    - slot_1: "001-Katana (core, never pause)"
+    - slot_2: "005-Sales-QA (after gland recovery)"
+    note: |
+      Max 2 projects. All others (002, 004, 007, 003)
+      are PAUSED or deprioritized for 2026.
+
+---
+
+## 2029: VISION OF STABILITY & FAMILY
+
+year_2029:
+  theme: "Family foundation + 1млн/месяц income + financial security"
+
+  major_milestones:
+    - milestone_id: "2027-01-marriage"
+      title: "Married to Masha"
+      date: "2027 (exact date: TBD)"
+      status: "Major life milestone - plan wedding"
+
+    - milestone_id: "2029-02-children"
+      title: "2 Children via Surrogate"
+      date: "~2029 (7 years old in 2036 scenario)"
+      impact: "Family of 4"
+      cost_prepared: "Prepared funding from 2026-2029 period"
+
+    - milestone_id: "2029-03-mortgage"
+      title: "First Mortgage Payment Made"
+      date: "2029"
+      impact: "Property ownership"
+      funding: "From accumulated passive income + SaaS revenue"
+
+    - milestone_id: "2029-04-income"
+      title: "1млн/месяц Stable Revenue"
+      description: |
+        Consolidated passive income from:
+        1) Katana trading bot: $20-50K/month
+        2) Sales QA SaaS: $30-50K/month
+        3) Consilium SaaS (optional): $20-50K/month
+        4) Other sources: $5-30K/month
+      total: "$1,000,000+ per month"
+
+    - milestone_id: "2029-05-portfolio"
+      title: "3+ Passive Income Sources"
+      sources:
+        - "Katana trading (automated)"
+        - "Sales QA (subscription SaaS)"
+        - "Consilium (scalable SaaS)"
+        - "Blog/YT monetization (light blogging)"
+
+  projects_active_2027_2028:
+    - priority_1: "006-consilium-saas (scale version of Sales QA)"
+    - priority_2: "002-karty-api (B2B expansion)"
+    - priority_3: "004-vk-bot (monetization)"
+
+  wip_limit: 2-3
+  wip_detail:
+    - "Continue Katana (never pause)"
+    - "Grow Sales QA"
+    - "Launch Consilium (optional but recommended)"
+
+  lifestyle_target:
+    - "Work 10-15 hours/week (mostly monitoring + new projects)"
+    - "Travel with Masha 2-3 months/year"
+    - "Fitness routine established"
+    - "Blogging: 1-2 posts/week"
+    - "Family time prioritized"
+
+---
+
+## 5-10 YEARS (2032-2036): ULTIMATE VISION
+
+ultimate_vision:
+  theme: "Freedom + Family + Passive Business Empire"
+
+  life_state:
+    setup: |
+      • Married to Masha (since 2027)
+      • 2 children by surrogate (age ~5-6 in 2036, born 2030-2031)
+      • Living in comfortable home (mortgage active/paid)
+      • Full-time traveler with family
+
+    income_structure:
+      passive_revenue: "$1,000,000+ per month"
+      working_hours: "5-10 hours/week"
+      focus: "Monitoring + strategic decisions + new innovations"
+
+    portfolio:
+      - "Katana: Fully automated trading ($50-100K/month)"
+      - "Sales QA: Mature SaaS with team ($50-100K/month)"
+      - "Consilium: Scaled to 100+ customers ($100-200K/month)"
+      - "Blogging/YouTube: Passive (ads, sponsorship) ($20-50K/month)"
+      - "Additional passive: Royalties, partnerships, etc. ($20-50K/month)"
+
+    lifestyle:
+      freedom_aspects:
+        - "Choose when/where to work"
+        - "Travel globally with family"
+        - "Spend time on health/fitness (2+ hours/day)"
+        - "Blogging/content creation (2+ hours/week)"
+        - "Family activities prioritized"
+
+    success_definition:
+      - "Financial independence: Can support family 100% from passive income"
+      - "Time freedom: Work only 5-10h/week on optional projects"
+      - "Geographic freedom: Able to travel/live anywhere"
+      - "Family stability: Masha, 2 kids, stable home"
+      - "Health: Peak physical condition maintained"
+      - "Purpose: Helping others via blogging/content"
+
+  annual_income_target: "$12,000,000+ per year"
+
+  net_worth_target: "$5,000,000+ (from real estate + investments + business equity)"
+
+  key_metrics:
+    passive_income_ratio: "95%+ of income (automated/passive)"
+    working_hours_per_week: "5-10 (optimization + new ideas)"
+    family_time_hours_per_week: "40+"
+    fitness_hours_per_week: "10-15"
+    content_creation_hours_per_week: "2-5"
+
+  what_success_means:
+    - "Freedom to say NO to projects"
+    - "Money not as a concern (basic + comfort always covered)"
+    - "Family as priority, not side project"
+    - "Time to maintain health"
+    - "Platform to help others via blogging"
+
+---
+
+## STRATEGIC ALIGNMENT SCORING
+
+project_alignment:
+
+  "001-katana-vectorbt":
+    alignment_2026: 1.0
+    alignment_2029: 0.95
+    alignment_5_10_years: 0.9
+    reason: "Core passive income engine, must not pause"
+    priority: "🔴 CRITICAL - NEVER PAUSE"
+
+  "005-sales-qa":
+    alignment_2026: 0.95
+    alignment_2029: 0.9
+    alignment_5_10_years: 0.85
+    reason: "First successful SaaS, scales to 1млн goal"
+    priority: "🔴 CRITICAL - Priority 2 after Katana"
+
+  "006-consilium":
+    alignment_2026: 0.3
+    alignment_2029: 0.95
+    alignment_5_10_years: 0.95
+    reason: "Largest SaaS, scales income to 1млн, but dependent on Sales QA patterns"
+    priority: "🟡 HIGH - Start after Sales QA validated"
+
+  "002-karty-maps":
+    alignment_2026: 0.4
+    alignment_2029: 0.6
+    alignment_5_10_years: 0.5
+    reason: "B2B potential but not critical path to 1млн"
+    priority: "🟢 MEDIUM - Optional 2027"
+
+  "004-vk-bot":
+    alignment_2026: 0.3
+    alignment_2029: 0.5
+    alignment_5_10_years: 0.4
+    reason: "Quick revenue but limited scale"
+    priority: "🟢 MEDIUM - Optional 2027"
+
+  "007-beauty-franchise":
+    alignment_2026: 0.1
+    alignment_2029: 0.2
+    alignment_5_10_years: 0.1
+    reason: "Operational business (not passive), requires hands-on"
+    priority: "🔴 SKIP FOR NOW - Conflicts with freedom goal"
+
+  "003-vk-recipes":
+    alignment_2026: 0
+    alignment_2029: 0.1
+    alignment_5_10_years: 0.2
+    reason: "Already completed, good learning but limited revenue"
+    priority: "✅ DONE - Can resume for blogging content"
+
+---
+
+## METRICS & TRACKING
+
+annual_review_dates:
+  - "2026-06-30: Mid-year health check (Tirzepatide progress)"
+  - "2026-12-31: Year-end review (income targets, 2027 planning)"
+  - "2027-06-30: Mid-year assessment"
+  - "2027-12-31: Year-end review"
+  - "2029-12-31: Vision checkpoint (1млн/месяц achieved?)"
+  - "2032: Ultimate vision - 5 year checkpoint"
+
+monthly_tracking:
+  - "Income: Passive revenue from all sources"
+  - "Health: Weight (Tirzepatide), fitness, recovery"
+  - "Projects: Katana status, Sales QA users, new launches"
+  - "Family: Time with Masha, relationship milestones"
+  - "Blogging: Content output, audience growth"
+  - "Freedom: Work hours, decision autonomy"
+
+---
+
+version: "1.0 - Initial goals framework created 2026-02-05"
+next_review: "2026-06-30 (mid-year health checkpoint)"
