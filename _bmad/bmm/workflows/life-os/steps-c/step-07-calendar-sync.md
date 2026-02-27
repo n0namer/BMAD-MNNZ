@@ -22,7 +22,7 @@ calendarEventTemplatesRef: '../data/calendar-event-templates.md'
 
 ## STEP GOAL
 
-Translate the approved project into a realistic timeline and capture it in a project file.
+Translate the approved project into a realistic timeline and capture it in a project file. Tie calendar blocks to the goals cascade (IDEAL 1.5) and auto-block capacity warnings if the proposed time slots would exceed the active project limit.
 
 ## MANDATORY EXECUTION RULES
 

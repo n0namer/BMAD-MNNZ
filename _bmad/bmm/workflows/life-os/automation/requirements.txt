@@ -1,0 +1,22 @@
+# Calendar Sync Integration Dependencies
+# Install with: pip install -r requirements.txt
+
+# Google Calendar API
+google-api-python-client>=2.100.0
+google-auth-httplib2>=0.1.1
+google-auth-oauthlib>=1.1.0
+
+# Microsoft Outlook/Office 365 API
+O365>=2.0.27
+
+# iCal support
+icalendar>=5.0.11
+
+# Configuration and data handling
+PyYAML>=6.0.1
+python-dateutil>=2.8.2
+
+# Optional: Enhanced features
+# requests>=2.31.0  # For webhook support
+# schedule>=1.2.0   # For daemon mode scheduling
+# colorama>=0.4.6   # For colored console output

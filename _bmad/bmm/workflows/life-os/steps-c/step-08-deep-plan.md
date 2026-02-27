@@ -6,6 +6,9 @@ snapshotFile: '{bmb_creations_output_folder}/life-os/snapshots/{project_id}.md'
 journalFile: '{bmb_creations_output_folder}/life-os/journal/{project_id}.md'
 deepPlanTemplatesRef: '../data/deep-plan-templates.md'
 l1l3TemplateRef: '../data/l1-l3-template.md'
+qualityGatesRef: '../data/deep-plan-quality-gates.md'
+autoIntelligenceRef: '../data/deep-plan-auto-intelligence.md'
+goalLinkageRef: '../data/goal-linkage-traceability.md'
 nextStepFile: './step-08.5-final-polish.md'
 track_defaults:
   quick:
@@ -28,7 +31,7 @@ track_defaults:
 
 Create multi-level plan (L1-L6) for effective project contribution.
 
-💡 **Quality Reference:** `../data/validation-examples.md` | **Quality Gates:** `../data/deep-plan-quality-gates.md`
+💡 **Quality Reference:** `../data/validation-examples.md` | **Quality Gates:** `{qualityGatesRef}`
 
 **Quality Standards:**
 - **Deep Track (L1-L6):** Full depth, 100+ tasks, dependencies, 5-8 risks, 2000-3000 words
@@ -85,37 +88,19 @@ Choice: [A/F/S]
 
 ### 3. Auto-Intelligence Check & Auto-Linking (Subprocess)
 
-📖 **Reference:** `../data/deep-plan-auto-intelligence.md`
+📖 **Reference:** `{autoIntelligenceRef}`
 
-**Launch a subprocess that:**
-1. Scans idea metadata for domain tags (Business, Health, Personal, etc.)
-2. Loads auto-linking-engine.md with 50+ linking rules
-3. Matches domain patterns to template structures:
-   - Business → Finance/OKR nodes at L2
-   - Health → Habit Loop at L5
-   - Personal → Pomodoro/Time blocks at L5
-4. Identifies cross-domain dependencies (e.g., Business goal needs Health energy)
-5. Returns structured node suggestions with parent-child relationships
+**Subprocess:** Scans domain tags → Loads auto-linking-engine.md (50+ rules) → Matches patterns (Business→Finance/OKR, Health→Habit Loop, Personal→Pomodoro) → Returns node mapping (200-300 lines).
 
-**Subprocess returns:** Concise node mapping (200-300 lines) instead of loading full auto-linking-engine.md (1300+ lines).
-
-**Graceful fallback:** If subprocess unavailable, load `../data/deep-plan-auto-intelligence.md` and manually apply 3-5 highest-priority linking rules based on user's domain tags.
+**Fallback:** Load `{autoIntelligenceRef}` and apply 3-5 top-priority rules manually.
 
 ### 4. Generate Plan
 
 📖 **Structure Guide:** `../data/deep-plan-l1-l6-guide.md`
 
-**L1-L3 (Standard):** Load {l1l3TemplateRef}
-- L1: Overview (what/why/how, 2-3 paragraphs)
-- L2: Major phases (3-5 phases with duration, goal)
-- L3: Milestones (5-8 with dates, criteria, deliverables)
-- Output: Duration, critical path, top 3 risks
+**L1-L3 (Standard):** {l1l3TemplateRef} → L1: Overview | L2: Phases (3-5) | L3: Milestones (5-8) → Output: duration, critical path, top 3 risks.
 
-**L1-L6 (Deep):** Load {deepPlanTemplatesRef}
-- L1: Role/mission | L2: Contribution areas (2-5) | L3: Work streams | L4: Stages | L5: Tasks | L6: Atomic actions
-- Use scenario template: Tech Expert, Research, Ops, Product, Invited Role (fallback)
-- Mixed Scenario if multiple match (merge unique nodes)
-- Apply auto-linked nodes from subprocess (connections from Step 3)
+**L1-L6 (Deep):** {deepPlanTemplatesRef} → L1: Role | L2: Areas (2-5) | L3: Streams | L4: Stages | L5: Tasks | L6: Actions. Use scenario template (Tech/Research/Ops/Product/Invited). Apply auto-linked nodes from Step 3.
 
 ### 5. Update Project Plan
 
@@ -126,39 +111,37 @@ Update "Deep Plan (L1-L6)" section in {projectPlanFile}. Add RACI for L2 nodes, 
 - Nodes Count = total L* lines
 - RACI Coverage = (L2 with R+A) / total L2
 - If-Then Coverage = count If-Then actions
+- Goal Linkage Coverage = (milestones with goal_id) / total milestones
 
 **If TRIZ used:** Document principle, before/after resolution, add as L2 node if applicable.
+
+### 5.5. Link Milestones to Goals (Traceability)
+
+📖 **Full Process:** `{goalLinkageRef}`
+
+**Process:** Check goals.yaml → Match milestones (domain/timeframe/semantic) → Confirm with user → Update plan + metrics.
+
+**Risk Flags:** Single-Goal Focus (>70%), Short-Term Bias (>80% 1-year), No Goal Linkage (<50%).
+
+**Output:** Traceability matrix + coverage + risk flags → project plan + shared-knowledge memory.
 
 ### 6. Update Journal
 
 Append: Date, what deepened, key decisions.
 
----
-
 ### 7. Quality Validation
 
-📖 **Reference:** `../data/deep-plan-quality-gates.md`
+📖 **Reference:** `{qualityGatesRef}`
 
-**L1-L3 Checklist:** Structure clear? Phase timelines specific? 20-30 tasks? Top 3 risks? 800-1200 words?
+**Checklists:** L1-L3: structure/tasks(20-30)/risks(3)/800-1200 words | L1-L6: depth/tasks(100+)/dependencies/risks(5-8)/2000-3000 words
 
-**L1-L6 Checklist:** Full depth (not L1-L2)? Timelines specific? 100+ tasks? Dependencies mapped? 5-8 risks? Contingencies? 2000-3000 words?
+**Quality Check:** [I]mprove | [A]ccept | [R]efer examples | [C]ontinue → Handle: I=step 4 | A=warn | R=examples | C=proceed
 
-**Quality Check:**
-[I]mprove | [A]ccept as-is (risk acknowledged) | [R]efer to examples | [C]ontinue (standards met)
+**Review:** Show L1-L6 summary, RACI%, If-Then count, template, auto-linked nodes. Confirm: [Y]es/[N]o/[E]xplain
 
-**Handle:** I=return to step 4 | A=warn + confirm | R=show validation-examples.md | C=proceed
+### 7.5. Save Planning Patterns to Memory
 
-**Review Checkpoint:**
-```
-L1: {Role/Mission}
-L2: {Areas} | L3: {Streams} | L4: {Stages} | L5: {Tasks} | L6: {Actions}
-RACI: {%} | If-Then: {count} | Template: {name} | Auto-linked: {count}
-```
-
-Plan meets expectations? [Y]es/[N]o/[E]xplain
-- Y=proceed to menu | N=revise | E=show L1-L6 breakdown
-
----
+Store planning patterns, task estimates, and TRIZ integration (if applied) to shared-knowledge namespace for learning and calibration.
 
 ### 8. Menu Options
 
@@ -171,13 +154,43 @@ Plan meets expectations? [Y]es/[N]o/[E]xplain
 Choice: [T/R/Q/C]
 ```
 
-**Menu Logic:**
-- **T:** Identify contradictions → Step 4.5 TRIZ Analysis → Apply principle → Update L2 structure → Document TRIZ principle → Re-run quality check → Redisplay menu
-- **R:** Revise levels → Restructure L1-L6 → Re-run quality check → Redisplay menu
-- **Q:** Verify L1-L4, RACI ≥70%, If-Then ≥2 → Show results → Allow extension → Re-run quality check → Redisplay menu
-- **C:** Save to {projectPlanFile} and {journalFile} → Update frontmatter → Execute {nextStepFile}
+## Menu Handling Logic:
 
-**RULES:** Wait for input. Complete only when C selected.
+### EXECUTION RULES:
+
+**ALWAYS halt and wait for user input. Complete only when [C] selected.**
+
+**Per-choice logic:**
+
+- **[T] - TRIZ Analysis:**
+  1. Identify contradictions from L2+ structure
+  2. Execute Step 4.5 TRIZ Analysis subprocess
+  3. Apply resolved principle to L2 structure
+  4. Document principle, before/after, L2 update in plan
+  5. Re-run quality check (section 7)
+  6. Redisplay menu
+
+- **[R] - Revise Plan:**
+  1. Restructure L1-L6 levels based on user feedback
+  2. Update milestone timelines and tasks
+  3. Recalculate RACI coverage and If-Then actions
+  4. Re-run quality check (section 7)
+  5. Redisplay menu
+
+- **[Q] - Quality Gate:**
+  1. Verify L1-L4 complete (not just L1-L2)
+  2. Check RACI coverage ≥70% on L2 nodes
+  3. Verify If-Then actions ≥2
+  4. Show validation results
+  5. Allow user to request improvements or confirm
+  6. Re-run quality check if improvements made
+  7. Redisplay menu
+
+- **[C] - Continue (Finalize):**
+  1. Save plan to {projectPlanFile}
+  2. Save updates to {journalFile}
+  3. Update frontmatter with completion timestamp
+  4. Execute next step: {nextStepFile}
 
 ---
 

@@ -4,6 +4,8 @@ description: 'TRIZ contradiction analysis: optional step called from Step 4, 5 o
 mode: create
 type: optional
 estimatedTime: '5-120 minutes (depends on mode)'
+nextStepFile: null
+returnToCaller: true
 triggers:
   automatic:
     - consilium_divergence: '>40% expert disagreement'

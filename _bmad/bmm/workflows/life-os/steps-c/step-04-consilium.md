@@ -77,6 +77,8 @@ Announce mode + specialists, then proceed.
 3. Keep 2-3 bullets per perspective
 4. Total: 5-10 min
 
+Before finishing, search `shared-knowledge` for similar ideas and note the pattern in memory—IDEAL 1.4 (memory-first reasoning) expects those insights to inform scoring and escalation decisions.
+
 #### Consilium Reference Files Loading (Subprocess - Pattern 3)
 
 **Launch a subprocess that:**
@@ -166,22 +168,129 @@ Append to {workflowPlanFile}.
 
 ---
 
-### 8. MENU OPTIONS
+### 8. Track Escalation Check
+
+**💡 Reference:** See `../data/track-escalation-rules.md` for complete algorithm
+
+**After consensus synthesis, check for escalation triggers:**
+
+```bash
+# TRIGGER 1: Consilium Divergence (>50% disagreement)
+TOTAL_SPECIALISTS=$(count_all_specialists)
+CONSENSUS_RECOMMENDATIONS=$(count_matching_recommendations)
+AGREEMENT=$(echo "$CONSENSUS_RECOMMENDATIONS / $TOTAL_SPECIALISTS * 100" | bc)
+
+if [ "$AGREEMENT" -lt 50 ] && [ "$CURRENT_TRACK" = "Quick" ]; then
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "⚠️ TRACK ESCALATION NOTICE"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "During consilium, I detected significant disagreement"
+    echo "among specialists (agreement: $AGREEMENT%)."
+    echo ""
+    echo "  Trigger: Consilium Divergence"
+    echo "  Current track: Quick Track"
+    echo "  Suggested upgrade: Standard Track"
+    echo ""
+    echo "  What changes:"
+    echo "  + Full Six Hats analysis (all perspectives)"
+    echo "  + Extended scoring (9 criteria vs 3)"
+    echo "  + Portfolio integration check"
+    echo "  + Additional 40-60 minutes"
+    echo ""
+    echo "  [U] Upgrade to Standard Track"
+    echo "  [K] Keep Quick Track (I understand the limits)"
+    echo ""
+fi
+
+# TRIGGER 4: Stakeholder Discovery (Quick Track only)
+INITIAL_STAKEHOLDERS=$(get_initial_stakeholder_count)
+CONSILIUM_STAKEHOLDERS=$(count_stakeholders_from_consilium)
+
+if [ "$CONSILIUM_STAKEHOLDERS" -gt "$((INITIAL_STAKEHOLDERS * 2))" ] && [ "$CURRENT_TRACK" = "Quick" ]; then
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "⚠️ TRACK ESCALATION NOTICE"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "During consilium, new stakeholder groups were identified."
+    echo "Initial: $INITIAL_STAKEHOLDERS → Current: $CONSILIUM_STAKEHOLDERS stakeholders"
+    echo ""
+    echo "  Trigger: Stakeholder Discovery"
+    echo "  Current track: Quick Track"
+    echo "  Suggested upgrade: Standard Track"
+    echo ""
+    echo "  What changes:"
+    echo "  + Multi-stakeholder coordination analysis"
+    echo "  + Full Six Hats (all perspectives captured)"
+    echo "  + Additional 40-60 minutes"
+    echo ""
+    echo "  [U] Upgrade to Standard Track"
+    echo "  [K] Keep Quick Track (I understand the limits)"
+    echo ""
+fi
+
+# TRIZ Auto-Trigger (if consensus still low after potential upgrade)
+if [ "$AGREEMENT" -lt 60 ]; then
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "🚨 TRIZ RECOMMENDED: Consilium Divergence Detected"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "Agreement rate: $AGREEMENT% (<60% threshold)"
+    echo "Experts show significant disagreement on approach."
+    echo ""
+    echo "TRIZ can help find a non-compromise solution that"
+    echo "satisfies all perspectives without trade-offs."
+    echo ""
+    echo "[T] Trigger TRIZ analysis (5-120 min)"
+    echo "[S] Skip TRIZ - Accept compromise"
+    echo "[L] Learn more about TRIZ"
+    echo ""
+    echo "Your choice: [T/S/L]"
+fi
+```
+
+**If user selects [T]:** Load and execute `./step-04.5-triz-analysis.md`, then return to menu below
+
+**If user selects [L]:**
+```
+TRIZ (Theory of Inventive Problem Solving) resolves contradictions
+rather than compromising. When specialists disagree, it's usually
+because there's a hidden contradiction (X improves but Y worsens).
+
+TRIZ provides 40 principles to eliminate the contradiction entirely.
+
+Example:
+- Problem: Need fast delivery (6 weeks) BUT speed reduces quality
+- TRIZ: Principle 1 (Segmentation) → Phase 1: fast MVP, Phase 2: quality refinement
+- Result: Both speed AND quality achieved
+
+Would you like to run TRIZ analysis? [Y/N]
+```
+
+**If agreement ≥60%:** Skip TRIZ check, proceed to menu
+
+---
+
+### 9. Present MENU OPTIONS
+
+Display: "**Select an Option:** [T] TRIZ [A] Advanced Elicitation [P] Party Mode [C] Continue"
 
 **[T] TRIZ** - Resolve contradictions (Step 4.5: Quick 5-10min / Structured 30-60min / ARIZ 2-4hr)
 **[A] Advanced Elicitation** - 50+ techniques (see `../data/advanced-elicitation-methods.md`)
 **[P] Party Mode** - Creative brainstorming ({partyModeWorkflow})
 **[C] Continue** - Proceed with recommendations
 
-➡️ **Your choice:** [T/A/P/C]
+#### Menu Handling Logic:
+- IF T: Execute Step 4.5 TRIZ analysis, when finished redisplay the menu
+- IF A: Load `../data/advanced-elicitation-methods.md`, execute, when finished redisplay the menu
+- IF P: Read {partyModeWorkflow}, execute, when finished redisplay the menu
+- IF C: Save content to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF Any other: help user, then [Redisplay Menu Options](#9-present-menu-options)
 
-**Handling:**
-- T → Step 4.5, then return to menu
-- A → Load `../data/advanced-elicitation-methods.md`, execute, return to menu
-- P → Read {partyModeWorkflow}, execute, return to menu
-- C → Save to {workflowPlanFile}, load and read entire {nextStepFile}
-
-**RULES:** Wait for input, ONLY proceed on 'C', return after A/P/T
+#### EXECUTION RULES:
+- ALWAYS halt and wait for user input after presenting menu
+- ONLY proceed to next step when user selects 'C'
+- After T/A/P execution, return to this menu
 
 ---
 

@@ -1,0 +1,11 @@
+﻿projects:
+  - project_id: project-001
+    name: Portfolio Upgrade
+    capacity_per_week: 12
+    status: IN_PROGRESS
+  - project_id: project-002
+    name: Research Sprint
+    capacity_per_week: 10
+    status: ACTIVE
+wip_limit: 3
+units: hours/week

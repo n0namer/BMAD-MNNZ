@@ -12,7 +12,7 @@ coherenceChecksRef: '../data/final-polish-coherence-checks.md'
 
 ## STEP GOAL:
 
-Review the complete workflow plan for overall coherence, check consistency across all sections, and apply final refinements before marking workflow as COMPLETE.
+Review the complete workflow plan for overall coherence, check consistency across all sections, and apply final refinements before marking workflow as COMPLETE. Tie the refinements to the IDEAL PDCA loop (IDEAL 1.5) by flagging what will go into the next daily/weekly review and storing the high-level learnings in shared memory for future patterns (IDEAL 1.4).
 
 ## 📖 Глоссарий терминов
 

@@ -6,13 +6,16 @@ workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.m
 portfolioFolder: '{bmb_creations_output_folder}/life-os'
 metricsFile: '{bmb_creations_output_folder}/life-os/metrics/metrics.md'
 journalFolder: '{bmb_creations_output_folder}/life-os/journal'
+resourceGuideFile: '../data/resource-update-guide.md'
 ---
 
 # Edit Step 2: Update Resources
 
-## STEP GOAL:
+## STEP GOAL
 
 Manage portfolio-level resources: update personal capacity, adjust budget allocations, track timeline constraints, monitor WIP limits.
+
+💡 **Detailed Analysis Templates:** `{resourceGuideFile}`
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -64,117 +67,59 @@ Ask:
 
 ### 2A. IF CAPACITY - Update Available Hours
 
-Ask:
-"Сколько часов в неделю вы можете инвестировать в проекты?
+Ask: "Сколько часов в неделю? Текущий: {current} | Новое: [0-60]"
 
-Текущий: {current} часов/неделю
-Новое значение: [0-60] часов"
-
-After input, calculate impact:
+Calculate impact:
 ```
-📊 Capacity Impact Analysis
+📊 Capacity Impact
 
-Current WIP: {X projects, Y hours}
-Available: {Z hours}
+WIP: {X projects, Y hours} | Available: {Z hours}
+Utilization: {Y/Z}% | Free: {Z-Y} hours
+{if Y>Z: "⚠️ OVERALLOCATED - Reduce WIP or extend timelines" else: "✅ OK"}
 
-Impact:
-- Current projects: {utilization}%
-- Free capacity: {free} hours
-- Overallocated: {Y - Z < 0 ? "YES ⚠️" : "NO ✅"}
-
-{If overallocated: "⚠️ ALERT: Projects exceed capacity. Recommendations:
-  1. Reduce WIP (currently {X}, recommend max {X-1})
-  2. Extend timelines
-  3. Delegate or pause lower-priority project"}
+📖 Detailed analysis templates: {resourceGuideFile}
 ```
 
 ### 2B. IF WIP - Update Concurrent Project Limit
 
-Ask:
-"Сколько проектов можете вести одновременно?
+Ask: "Сколько проектов одновременно? Текущий: {current} | Новый: [1-5]"
 
-Текущий лимит: {current} проектов
-Новый лимит: [1-5] проектов"
-
-After input, check WIP health:
+Check WIP health:
 ```
 📊 WIP Status
 
-Current WIP: {X projects}
-New WIP limit: {Y projects}
+Current: {X projects} | New limit: {Y projects}
+{if X>Y: "⚠️ Must free {X-Y} slots - Complete/pause/kill" else: "✅ OK"}
 
-Active Projects:
-1. {Project1} - {status}
-2. {Project2} - {status}
-...
-
-{If X > Y: "⚠️ ALERT: Current WIP ({X}) exceeds new limit ({Y}).
-Recommendations:
-  1. Complete or pause {X-Y} projects
-  2. Move {X-Y} to backlog
-  3. Adjust timeline or defer"}
+Active: {list projects with status}
+📖 Detailed WIP analysis: {resourceGuideFile}
 ```
 
 ### 2C. IF TIMELINE - Add Constraints
 
-Ask:
-"Добавьте ограничение по времени на портфель.
+Ask: "Тип ограничения: [V]acation | [C]onference | [B]uild | [O]ther"
 
-Тип:
-[V]acation - Отпуск (недоступны даты)
-[C]onference - Конференция или событие
-[B]uild - Строительство/переезд (занято время)
-[O]ther - Другое
+Capture: Event name, start/end dates, impact (e.g., "50% capacity", "Full pause")
 
-Укажите тип: [V] / [C] / [B] / [O]"
-
-Capture:
-- Event name
-- Start date
-- End date
-- Impact on portfolio (e.g., "No new starts", "50% capacity", "Full pause")
-
-Add to timeline constraints and recalculate all project timelines.
+Recalculate all project timelines. 📖 Timeline adjustment formulas: {resourceGuideFile}
 
 ### 2D. IF BUDGET - Update Allocation
 
-Ask:
-"Обновите бюджет портфеля.
+Ask: "Новый бюджет: ${amount} за {period}? Текущий: ${current}"
 
-Текущий бюджет: ${current} (период: {period})
-Новый бюджет: ${new} (период?)"
+Ask for bucket allocation (each bucket 0-100%):
 
-Then ask for allocation across strategic buckets:
+Show allocation:
 ```
-Распределение по направлениям:
-
-Strategic Buckets:
-1. {Bucket1}: {X%} = ${amount}
-2. {Bucket2}: {Y%} = ${amount}
-3. {Bucket3}: {Z%} = ${amount}
-
-Измените процент для каждого [0-100%]:
-```
-
-Calculate and show allocation:
-```
-📊 Budget Allocation
+📊 Budget
 
 Total: ${total}
+{Bucket1}: {X%} = ${amt} | {count} projects | Avg ${per_proj}
+{Bucket2}: {Y%} = ${amt} | {count} projects | Avg ${per_proj}
+...
 
-{Bucket1}: {X%} = ${amount}
-  └─ Projects: {count}
-  └─ Avg per project: ${per_project}
-
-{Bucket2}: {Y%} = ${amount}
-  └─ Projects: {count}
-  └─ Avg per project: ${per_project}
-
-{Bucket3}: {Z%} = ${amount}
-  └─ Projects: {count}
-  └─ Avg per project: ${per_project}
-
-⚠️ Underfunded buckets: {list if any}
+{if any <15%: "⚠️ Underfunded: {bucket_name}" else: "✅ Balanced"}
+📖 Allocation best practices: {resourceGuideFile}
 ```
 
 ### 3. Document Changes
@@ -272,30 +217,17 @@ Display: "**Select:** [C] Continue to Next Edit"
 
 ---
 
-## RESOURCE MANAGEMENT BEST PRACTICES
+## QUICK REFERENCE
 
-**Capacity Planning:**
-- 40-50 hours/week: Sustainable for 3 projects
-- 60+ hours/week: Unsustainable (recommend reduce WIP)
-- <20 hours/week: Too small, consolidate portfolio
-
-**WIP Limits:**
-- 3 projects: Optimal for focus + progress
-- 4+ projects: Context switch overhead increases
-- 1-2 projects: Only for high-risk or complex work
-
-**Timeline Constraints:**
-- Plan for vacation, conferences, life events
-- Mark as "blocked" in project timelines
-- Adjust milestone dates automatically
-
-**Budget Allocation:**
-- Strategic buckets prevent single-domain dominance
-- Review quarterly for balance
-- Underfunded buckets (<15% allocation) → escalate
+**Best Practices:**
+- Capacity: 40-50 hrs/week for 3 projects (sustainable)
+- WIP: 3 projects optimal, 4+ increases overhead
+- Timeline: Plan for vacation, conferences (add buffers)
+- Budget: Review quarterly, underfunded <15% = red flag
 
 **Red Flags:**
-- 🔴 Utilization >100% → Reduce WIP or extend timelines
-- 🔴 WIP > limit → Complete or pause projects immediately
-- 🟡 Utilization 80-100% → Add buffer capacity
-- 🟡 Underfunded bucket → Reallocate or pause projects
+- 🔴 Utilization >100% → Reduce WIP
+- 🔴 WIP > limit → Complete/pause projects
+- 🟡 Underfunded bucket (<15%) → Reallocate
+
+📖 **Complete best practices, analysis templates, and decision trees:** {resourceGuideFile}

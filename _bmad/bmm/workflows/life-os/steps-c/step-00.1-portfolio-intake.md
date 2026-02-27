@@ -6,6 +6,7 @@ status: active
 category: collection
 track: batch
 estimated_duration: 15-30 min
+nextStepFile: './step-01-collect-ideas.md'
 requires:
   - data/batch-quick-score.md
   - data/portfolio-collection-protocol.md

@@ -1,0 +1,1074 @@
+# Specialist Roles Database
+# 50+ specialist types across multiple domains
+# Used by role-matching-algorithm.md for intelligent suggestions
+
+roles:
+  # ===========================
+  # BUSINESS (10 roles)
+  # ===========================
+
+  - id: product-manager
+    title: Product Manager
+    domains: [business, tech]
+    keywords: [product, roadmap, features, users, mvp, backlog, stakeholders, requirements, prioritization]
+    priority: high
+    expertise: Product strategy, user research, feature prioritization, roadmap planning, stakeholder management
+    typical_contributions:
+      - Define product vision and strategy
+      - Prioritize features and backlog
+      - Coordinate with stakeholders and teams
+      - Drive product-market fit
+    signals_needed:
+      - Building a new product or feature
+      - Need to coordinate multiple stakeholders
+      - Product direction unclear
+      - Feature prioritization challenges
+
+  - id: business-analyst
+    title: Business Analyst
+    domains: [business, finance]
+    keywords: [analysis, requirements, process, workflow, optimization, metrics, kpi, data, reporting]
+    priority: high
+    expertise: Business process analysis, requirements gathering, data analysis, workflow optimization
+    typical_contributions:
+      - Analyze business processes and gaps
+      - Gather and document requirements
+      - Create process improvement recommendations
+      - Define success metrics and KPIs
+    signals_needed:
+      - Process optimization needed
+      - Requirements unclear or complex
+      - Need data-driven insights
+      - Gap analysis required
+
+  - id: marketing-strategist
+    title: Marketing Strategist
+    domains: [business, creative]
+    keywords: [marketing, campaign, brand, audience, messaging, channels, growth, acquisition, retention]
+    priority: medium
+    expertise: Marketing strategy, brand positioning, campaign planning, growth marketing, audience segmentation
+    typical_contributions:
+      - Develop marketing strategy and positioning
+      - Plan campaigns and channels
+      - Define target audience and messaging
+      - Drive growth and acquisition
+    signals_needed:
+      - Launching new product or service
+      - Need to reach target audience
+      - Growth stagnant
+      - Brand positioning unclear
+
+  - id: sales-expert
+    title: Sales Expert
+    domains: [business]
+    keywords: [sales, revenue, pipeline, leads, conversion, deals, negotiation, closing, crm]
+    priority: medium
+    expertise: Sales strategy, pipeline management, lead generation, deal closing, CRM optimization
+    typical_contributions:
+      - Design sales process and funnel
+      - Build lead generation strategies
+      - Train on negotiation and closing
+      - Optimize conversion rates
+    signals_needed:
+      - Need to drive revenue
+      - Sales process inefficient
+      - Low conversion rates
+      - Pipeline challenges
+
+  - id: startup-advisor
+    title: Startup Advisor
+    domains: [business, finance]
+    keywords: [startup, venture, fundraising, pitch, investors, scaling, equity, valuation, acceleration]
+    priority: high
+    expertise: Startup strategy, fundraising, investor relations, scaling, pitch development
+    typical_contributions:
+      - Guide startup strategy and growth
+      - Help with fundraising and investors
+      - Advise on scaling challenges
+      - Review pitch decks and valuations
+    signals_needed:
+      - Early-stage startup
+      - Fundraising needed
+      - Scaling challenges
+      - Pitch development required
+
+  - id: operations-manager
+    title: Operations Manager
+    domains: [business]
+    keywords: [operations, efficiency, process, logistics, supply, delivery, optimization, workflow, management]
+    priority: medium
+    expertise: Operations optimization, process management, logistics, supply chain, efficiency improvement
+    typical_contributions:
+      - Streamline operations and workflows
+      - Optimize resource allocation
+      - Manage logistics and supply
+      - Improve operational efficiency
+    signals_needed:
+      - Operations bottlenecks
+      - Resource allocation issues
+      - Process inefficiencies
+      - Scaling operational capacity
+
+  - id: project-manager
+    title: Project Manager
+    domains: [business, tech]
+    keywords: [project, timeline, milestones, coordination, team, planning, execution, delivery, agile, scrum]
+    priority: high
+    expertise: Project planning, timeline management, team coordination, agile/scrum, delivery execution
+    typical_contributions:
+      - Create project plans and timelines
+      - Coordinate team activities
+      - Track progress and milestones
+      - Ensure on-time delivery
+    signals_needed:
+      - Complex multi-phase project
+      - Team coordination needed
+      - Timeline management critical
+      - Multiple dependencies
+
+  - id: customer-success-manager
+    title: Customer Success Manager
+    domains: [business]
+    keywords: [customer, success, retention, satisfaction, support, engagement, onboarding, churn, feedback]
+    priority: medium
+    expertise: Customer retention, satisfaction management, onboarding, support strategy, engagement
+    typical_contributions:
+      - Design customer onboarding process
+      - Improve retention and reduce churn
+      - Gather and act on feedback
+      - Drive customer engagement
+    signals_needed:
+      - High churn rate
+      - Customer satisfaction low
+      - Onboarding challenges
+      - Need feedback loops
+
+  - id: strategic-planner
+    title: Strategic Planner
+    domains: [business]
+    keywords: [strategy, planning, vision, objectives, roadmap, long-term, goals, execution, alignment]
+    priority: medium
+    expertise: Strategic planning, vision development, long-term roadmaps, goal alignment
+    typical_contributions:
+      - Develop strategic vision and goals
+      - Create long-term roadmaps
+      - Align team on objectives
+      - Guide strategic execution
+    signals_needed:
+      - Long-term planning needed
+      - Vision unclear
+      - Strategic direction missing
+      - Goal alignment issues
+
+  - id: change-management-specialist
+    title: Change Management Specialist
+    domains: [business]
+    keywords: [change, transformation, transition, adoption, communication, resistance, culture, training]
+    priority: low
+    expertise: Change management, organizational transformation, adoption strategies, culture change
+    typical_contributions:
+      - Guide organizational change
+      - Manage transition processes
+      - Address resistance and adoption
+      - Communicate change effectively
+    signals_needed:
+      - Major organizational change
+      - Adoption challenges
+      - Cultural transformation needed
+      - Resistance to change
+
+  # ===========================
+  # TECHNICAL (12 roles)
+  # ===========================
+
+  - id: software-architect
+    title: Software Architect
+    domains: [tech]
+    keywords: [architecture, system, design, scalability, infrastructure, patterns, microservices, api, integration]
+    priority: high
+    expertise: System architecture, design patterns, scalability, API design, integration architecture
+    typical_contributions:
+      - Design system architecture
+      - Define technical patterns and standards
+      - Plan scalability and performance
+      - Guide technology decisions
+    signals_needed:
+      - Building complex system
+      - Scalability concerns
+      - Architecture decisions needed
+      - Technical foundation unclear
+
+  - id: backend-developer
+    title: Backend Developer
+    domains: [tech]
+    keywords: [backend, server, api, database, logic, integration, services, performance, security]
+    priority: high
+    expertise: Backend development, API design, database management, server-side logic, integration
+    typical_contributions:
+      - Build server-side logic and APIs
+      - Design and optimize databases
+      - Implement integrations
+      - Ensure backend performance and security
+    signals_needed:
+      - Backend development needed
+      - API design required
+      - Database work
+      - Server infrastructure
+
+  - id: frontend-developer
+    title: Frontend Developer
+    domains: [tech, design]
+    keywords: [frontend, ui, interface, react, vue, angular, javascript, responsive, web, app]
+    priority: high
+    expertise: Frontend development, UI implementation, JavaScript frameworks, responsive design
+    typical_contributions:
+      - Build user interfaces
+      - Implement responsive designs
+      - Develop interactive features
+      - Optimize frontend performance
+    signals_needed:
+      - Web or app UI needed
+      - Frontend development required
+      - Interactive features
+      - User interface work
+
+  - id: mobile-developer
+    title: Mobile Developer
+    domains: [tech]
+    keywords: [mobile, ios, android, app, native, react-native, flutter, swift, kotlin, mobile-first]
+    priority: high
+    expertise: Mobile app development, iOS/Android, cross-platform frameworks, mobile UX
+    typical_contributions:
+      - Build mobile applications
+      - Implement mobile-specific features
+      - Optimize mobile performance
+      - Handle platform-specific requirements
+    signals_needed:
+      - Mobile app needed
+      - iOS or Android development
+      - Cross-platform app
+      - Mobile-first approach
+
+  - id: devops-engineer
+    title: DevOps Engineer
+    domains: [tech]
+    keywords: [devops, ci, cd, deployment, infrastructure, docker, kubernetes, automation, monitoring, cloud]
+    priority: medium
+    expertise: CI/CD pipelines, infrastructure automation, containerization, cloud deployment, monitoring
+    typical_contributions:
+      - Set up CI/CD pipelines
+      - Automate deployment processes
+      - Manage cloud infrastructure
+      - Implement monitoring and logging
+    signals_needed:
+      - Deployment automation needed
+      - Infrastructure management
+      - Cloud migration
+      - CI/CD setup required
+
+  - id: data-scientist
+    title: Data Scientist
+    domains: [tech, business]
+    keywords: [data, analytics, machine-learning, ai, models, predictions, insights, statistics, python, visualization]
+    priority: medium
+    expertise: Data analysis, machine learning, statistical modeling, predictive analytics, visualization
+    typical_contributions:
+      - Analyze data and extract insights
+      - Build predictive models
+      - Create data visualizations
+      - Guide data-driven decisions
+    signals_needed:
+      - Data analysis needed
+      - ML/AI implementation
+      - Predictive insights required
+      - Data visualization
+
+  - id: ml-developer
+    title: ML Developer
+    domains: [tech]
+    keywords: [ml, ai, neural, deep-learning, training, models, algorithms, tensorflow, pytorch, nlp]
+    priority: medium
+    expertise: Machine learning development, neural networks, model training, ML pipelines, AI integration
+    typical_contributions:
+      - Develop ML models and algorithms
+      - Train and optimize neural networks
+      - Build ML pipelines
+      - Integrate AI into applications
+    signals_needed:
+      - ML/AI features needed
+      - Model development required
+      - AI integration
+      - Neural network work
+
+  - id: database-administrator
+    title: Database Administrator
+    domains: [tech]
+    keywords: [database, sql, nosql, postgres, mongo, optimization, queries, performance, backup, scaling]
+    priority: medium
+    expertise: Database design, query optimization, backup/recovery, performance tuning, scaling
+    typical_contributions:
+      - Design database schemas
+      - Optimize queries and performance
+      - Manage backups and recovery
+      - Scale database infrastructure
+    signals_needed:
+      - Database performance issues
+      - Schema design needed
+      - Data storage scaling
+      - Query optimization
+
+  - id: security-architect
+    title: Security Architect
+    domains: [tech]
+    keywords: [security, encryption, authentication, authorization, vulnerabilities, compliance, audit, penetration, firewall]
+    priority: high
+    expertise: Security architecture, encryption, auth systems, vulnerability assessment, compliance
+    typical_contributions:
+      - Design security architecture
+      - Implement auth and encryption
+      - Conduct security audits
+      - Ensure compliance standards
+    signals_needed:
+      - Security requirements
+      - Auth system needed
+      - Compliance required
+      - Security audit
+
+  - id: qa-engineer
+    title: QA Engineer
+    domains: [tech]
+    keywords: [testing, qa, quality, automation, test-cases, bugs, selenium, jest, cypress, validation]
+    priority: medium
+    expertise: Quality assurance, test automation, test planning, bug tracking, validation
+    typical_contributions:
+      - Develop test strategies
+      - Create automated tests
+      - Perform manual testing
+      - Track and verify bug fixes
+    signals_needed:
+      - Quality assurance needed
+      - Test automation
+      - Bug tracking
+      - Validation requirements
+
+  - id: site-reliability-engineer
+    title: Site Reliability Engineer
+    domains: [tech]
+    keywords: [sre, reliability, uptime, monitoring, incident, response, performance, availability, observability]
+    priority: medium
+    expertise: System reliability, incident response, monitoring, performance optimization, availability
+    typical_contributions:
+      - Ensure system reliability and uptime
+      - Design monitoring and alerting
+      - Handle incident response
+      - Optimize system performance
+    signals_needed:
+      - Reliability concerns
+      - Uptime critical
+      - Monitoring needed
+      - Incident management
+
+  - id: cloud-architect
+    title: Cloud Architect
+    domains: [tech]
+    keywords: [cloud, aws, azure, gcp, serverless, migration, infrastructure, scalability, cost-optimization]
+    priority: medium
+    expertise: Cloud architecture, AWS/Azure/GCP, serverless, cloud migration, cost optimization
+    typical_contributions:
+      - Design cloud infrastructure
+      - Plan cloud migration
+      - Optimize cloud costs
+      - Implement scalable solutions
+    signals_needed:
+      - Cloud infrastructure needed
+      - Cloud migration
+      - Scalability planning
+      - Cost optimization
+
+  # ===========================
+  # DESIGN (8 roles)
+  # ===========================
+
+  - id: ux-designer
+    title: UX Designer
+    domains: [design, tech]
+    keywords: [ux, user-experience, usability, research, personas, journey, wireframes, testing, interaction]
+    priority: high
+    expertise: User experience design, user research, wireframing, usability testing, interaction design
+    typical_contributions:
+      - Conduct user research
+      - Create wireframes and prototypes
+      - Design user flows and journeys
+      - Perform usability testing
+    signals_needed:
+      - User experience focus
+      - Wireframing needed
+      - User research required
+      - Interaction design
+
+  - id: ui-designer
+    title: UI Designer
+    domains: [design, tech]
+    keywords: [ui, interface, visual, mockups, figma, sketch, design-system, components, aesthetics, branding]
+    priority: high
+    expertise: Visual design, UI mockups, design systems, component libraries, brand aesthetics
+    typical_contributions:
+      - Create high-fidelity mockups
+      - Design UI components
+      - Build design systems
+      - Ensure visual consistency
+    signals_needed:
+      - Visual design needed
+      - UI mockups required
+      - Design system creation
+      - Brand consistency
+
+  - id: product-designer
+    title: Product Designer
+    domains: [design, tech, business]
+    keywords: [product-design, end-to-end, user-centered, prototyping, iteration, validation, design-thinking]
+    priority: high
+    expertise: End-to-end product design, user-centered design, prototyping, design thinking, validation
+    typical_contributions:
+      - Design complete product experiences
+      - Prototype and iterate quickly
+      - Validate designs with users
+      - Apply design thinking methodologies
+    signals_needed:
+      - Complete product design
+      - End-to-end experience
+      - Rapid prototyping
+      - Design validation
+
+  - id: brand-strategist
+    title: Brand Strategist
+    domains: [design, business, creative]
+    keywords: [brand, identity, positioning, messaging, voice, tone, values, differentiation, awareness]
+    priority: medium
+    expertise: Brand strategy, positioning, identity development, messaging, brand differentiation
+    typical_contributions:
+      - Define brand positioning
+      - Develop brand identity
+      - Create messaging and voice
+      - Build brand awareness strategies
+    signals_needed:
+      - Brand development needed
+      - Positioning unclear
+      - Identity creation
+      - Messaging refinement
+
+  - id: visual-designer
+    title: Visual Designer
+    domains: [design, creative]
+    keywords: [visual, graphics, illustration, typography, color, layout, aesthetics, imagery, composition]
+    priority: medium
+    expertise: Graphic design, illustration, typography, color theory, visual composition
+    typical_contributions:
+      - Create visual assets
+      - Design graphics and illustrations
+      - Define visual style
+      - Ensure aesthetic quality
+    signals_needed:
+      - Visual assets needed
+      - Graphics creation
+      - Illustration work
+      - Visual style definition
+
+  - id: motion-designer
+    title: Motion Designer
+    domains: [design, creative]
+    keywords: [motion, animation, video, transitions, effects, after-effects, interactive, dynamic, micro-interactions]
+    priority: low
+    expertise: Motion graphics, animation, video editing, transitions, micro-interactions
+    typical_contributions:
+      - Create animated graphics
+      - Design motion transitions
+      - Build micro-interactions
+      - Produce video content
+    signals_needed:
+      - Animation needed
+      - Motion graphics
+      - Video content
+      - Interactive transitions
+
+  - id: ux-researcher
+    title: UX Researcher
+    domains: [design, business]
+    keywords: [research, users, interviews, surveys, testing, insights, data, personas, analytics, feedback]
+    priority: medium
+    expertise: User research, interviews, surveys, usability testing, data analysis, insights
+    typical_contributions:
+      - Conduct user interviews
+      - Design and run surveys
+      - Perform usability tests
+      - Synthesize research insights
+    signals_needed:
+      - User research needed
+      - Feedback collection
+      - Usability validation
+      - Data-driven insights
+
+  - id: accessibility-specialist
+    title: Accessibility Specialist
+    domains: [design, tech]
+    keywords: [accessibility, a11y, wcag, inclusive, aria, screen-reader, compliance, usability, disabilities]
+    priority: low
+    expertise: Accessibility standards, WCAG compliance, inclusive design, assistive technologies
+    typical_contributions:
+      - Ensure accessibility compliance
+      - Audit for accessibility issues
+      - Design inclusive experiences
+      - Implement ARIA and standards
+    signals_needed:
+      - Accessibility requirements
+      - Compliance needed (WCAG)
+      - Inclusive design focus
+      - Accessibility audit
+
+  # ===========================
+  # FINANCE (6 roles)
+  # ===========================
+
+  - id: cfo
+    title: Chief Financial Officer (CFO)
+    domains: [finance, business]
+    keywords: [cfo, financial, strategy, budget, forecasting, reporting, capital, investment, risk, profitability]
+    priority: high
+    expertise: Financial strategy, budget management, forecasting, capital allocation, risk management
+    typical_contributions:
+      - Develop financial strategy
+      - Manage budgets and forecasts
+      - Oversee capital allocation
+      - Ensure financial health
+    signals_needed:
+      - High budget project
+      - Financial strategy needed
+      - Complex financial planning
+      - Capital decisions
+
+  - id: financial-analyst
+    title: Financial Analyst
+    domains: [finance, business]
+    keywords: [financial-analysis, modeling, forecasting, roi, profitability, metrics, reporting, budgeting]
+    priority: medium
+    expertise: Financial modeling, forecasting, ROI analysis, profitability metrics, budget analysis
+    typical_contributions:
+      - Create financial models
+      - Analyze ROI and profitability
+      - Forecast financial outcomes
+      - Report on financial metrics
+    signals_needed:
+      - Financial analysis needed
+      - ROI calculation
+      - Budget forecasting
+      - Profitability assessment
+
+  - id: investment-advisor
+    title: Investment Advisor
+    domains: [finance]
+    keywords: [investment, portfolio, returns, risk, assets, diversification, wealth, capital, growth, allocation]
+    priority: medium
+    expertise: Investment strategy, portfolio management, risk assessment, asset allocation
+    typical_contributions:
+      - Advise on investments
+      - Build investment portfolios
+      - Assess risk and returns
+      - Optimize asset allocation
+    signals_needed:
+      - Investment decisions
+      - Portfolio management
+      - Risk assessment
+      - Wealth growth
+
+  - id: accountant
+    title: Accountant
+    domains: [finance]
+    keywords: [accounting, bookkeeping, taxes, compliance, financial-statements, gaap, audits, reconciliation]
+    priority: medium
+    expertise: Accounting, bookkeeping, tax compliance, financial statements, audit preparation
+    typical_contributions:
+      - Manage bookkeeping
+      - Prepare financial statements
+      - Ensure tax compliance
+      - Support audits
+    signals_needed:
+      - Accounting needs
+      - Tax compliance
+      - Financial reporting
+      - Audit preparation
+
+  - id: budget-planner
+    title: Budget Planner
+    domains: [finance, business]
+    keywords: [budget, planning, allocation, expenses, cost-control, forecasting, spending, tracking]
+    priority: medium
+    expertise: Budget planning, expense tracking, cost control, financial forecasting
+    typical_contributions:
+      - Create budget plans
+      - Track expenses
+      - Control costs
+      - Forecast spending
+    signals_needed:
+      - Budget planning needed
+      - Cost control
+      - Expense tracking
+      - Spending forecasts
+
+  - id: financial-controller
+    title: Financial Controller
+    domains: [finance, business]
+    keywords: [controller, accounting, reporting, compliance, internal-controls, audits, financial-operations]
+    priority: medium
+    expertise: Financial operations, accounting oversight, compliance, internal controls, audit management
+    typical_contributions:
+      - Oversee financial operations
+      - Ensure compliance and controls
+      - Manage accounting processes
+      - Coordinate audits
+    signals_needed:
+      - Financial oversight needed
+      - Compliance management
+      - Internal controls
+      - Audit coordination
+
+  # ===========================
+  # HEALTH & WELLNESS (8 roles)
+  # ===========================
+
+  - id: wellness-coach
+    title: Wellness Coach
+    domains: [health, personal]
+    keywords: [wellness, health, lifestyle, habits, coaching, balance, holistic, mindfulness, self-care]
+    priority: medium
+    expertise: Holistic wellness, lifestyle coaching, habit formation, work-life balance, mindfulness
+    typical_contributions:
+      - Guide holistic wellness
+      - Build healthy habits
+      - Promote work-life balance
+      - Support mindfulness practices
+    signals_needed:
+      - Wellness focus
+      - Lifestyle improvement
+      - Habit formation
+      - Balance needed
+
+  - id: nutritionist
+    title: Nutritionist
+    domains: [health]
+    keywords: [nutrition, diet, food, meal-planning, health, weight, eating, supplements, macros, vitamins]
+    priority: medium
+    expertise: Nutrition planning, diet optimization, meal planning, supplement guidance
+    typical_contributions:
+      - Design nutrition plans
+      - Optimize diet for health goals
+      - Provide meal planning guidance
+      - Advise on supplements
+    signals_needed:
+      - Nutrition planning
+      - Diet optimization
+      - Meal planning
+      - Health through food
+
+  - id: fitness-coach
+    title: Fitness Coach
+    domains: [health]
+    keywords: [fitness, exercise, training, workout, strength, cardio, endurance, athletic, performance, gym]
+    priority: medium
+    expertise: Fitness training, workout programming, strength building, performance optimization
+    typical_contributions:
+      - Design workout programs
+      - Train on exercise techniques
+      - Build strength and endurance
+      - Optimize athletic performance
+    signals_needed:
+      - Fitness goals
+      - Exercise programming
+      - Training needed
+      - Performance improvement
+
+  - id: mental-health-counselor
+    title: Mental Health Counselor
+    domains: [health, personal]
+    keywords: [mental-health, therapy, counseling, stress, anxiety, depression, emotional, well-being, support]
+    priority: medium
+    expertise: Mental health support, counseling, stress management, emotional well-being
+    typical_contributions:
+      - Provide mental health support
+      - Counsel on stress and anxiety
+      - Guide emotional well-being
+      - Support mental resilience
+    signals_needed:
+      - Mental health focus
+      - Stress management
+      - Emotional support
+      - Counseling needed
+
+  - id: doctor
+    title: Doctor (Medical Advisor)
+    domains: [health]
+    keywords: [doctor, medical, health, diagnosis, treatment, symptoms, medicine, clinical, physician]
+    priority: low
+    expertise: Medical advice, health assessment, diagnosis support, treatment guidance
+    typical_contributions:
+      - Provide medical guidance
+      - Assess health concerns
+      - Advise on treatment options
+      - Support health decisions
+    signals_needed:
+      - Medical advice needed
+      - Health assessment
+      - Treatment decisions
+      - Symptom evaluation
+
+  - id: physical-therapist
+    title: Physical Therapist
+    domains: [health]
+    keywords: [physical-therapy, rehabilitation, injury, recovery, mobility, pain, exercises, movement, healing]
+    priority: low
+    expertise: Physical rehabilitation, injury recovery, mobility improvement, pain management
+    typical_contributions:
+      - Guide rehabilitation
+      - Design recovery exercises
+      - Improve mobility
+      - Manage pain through therapy
+    signals_needed:
+      - Injury recovery
+      - Rehabilitation needed
+      - Mobility issues
+      - Pain management
+
+  - id: sleep-specialist
+    title: Sleep Specialist
+    domains: [health]
+    keywords: [sleep, rest, insomnia, circadian, sleep-quality, recovery, fatigue, sleep-hygiene, energy]
+    priority: low
+    expertise: Sleep optimization, rest quality, circadian rhythm, sleep hygiene, energy management
+    typical_contributions:
+      - Optimize sleep quality
+      - Address insomnia
+      - Improve circadian rhythm
+      - Enhance energy through rest
+    signals_needed:
+      - Sleep issues
+      - Energy optimization
+      - Insomnia problems
+      - Rest quality
+
+  - id: behavioral-psychologist
+    title: Behavioral Psychologist
+    domains: [health, personal]
+    keywords: [behavior, psychology, habits, motivation, change, cognitive, mindset, patterns, modification]
+    priority: medium
+    expertise: Behavioral change, habit psychology, motivation, cognitive patterns, behavior modification
+    typical_contributions:
+      - Understand behavior patterns
+      - Design behavior change strategies
+      - Improve motivation
+      - Modify cognitive patterns
+    signals_needed:
+      - Behavior change needed
+      - Habit modification
+      - Motivation challenges
+      - Mindset shifts
+
+  # ===========================
+  # PERSONAL DEVELOPMENT (6 roles)
+  # ===========================
+
+  - id: productivity-coach
+    title: Productivity Coach
+    domains: [personal, business]
+    keywords: [productivity, efficiency, time-management, focus, organization, systems, habits, workflow, output]
+    priority: medium
+    expertise: Productivity systems, time management, focus techniques, workflow optimization
+    typical_contributions:
+      - Build productivity systems
+      - Teach time management
+      - Improve focus and efficiency
+      - Optimize workflows
+    signals_needed:
+      - Productivity improvement
+      - Time management issues
+      - Focus challenges
+      - Workflow optimization
+
+  - id: life-coach
+    title: Life Coach
+    domains: [personal]
+    keywords: [life-coaching, goals, purpose, fulfillment, clarity, direction, values, growth, transformation]
+    priority: medium
+    expertise: Life goal setting, purpose clarity, personal transformation, value alignment
+    typical_contributions:
+      - Clarify life goals
+      - Define purpose and direction
+      - Guide personal transformation
+      - Align with values
+    signals_needed:
+      - Life direction unclear
+      - Purpose exploration
+      - Personal growth
+      - Value alignment
+
+  - id: career-coach
+    title: Career Coach
+    domains: [personal, business]
+    keywords: [career, job, transition, advancement, resume, interview, networking, skills, professional, growth]
+    priority: medium
+    expertise: Career planning, job transitions, professional development, networking, skill building
+    typical_contributions:
+      - Guide career planning
+      - Support job transitions
+      - Develop professional skills
+      - Build networking strategies
+    signals_needed:
+      - Career transition
+      - Job search
+      - Professional growth
+      - Career advancement
+
+  - id: learning-specialist
+    title: Learning Specialist
+    domains: [personal]
+    keywords: [learning, education, skills, training, knowledge, courses, development, mastery, studying]
+    priority: medium
+    expertise: Learning strategies, skill acquisition, educational planning, training design
+    typical_contributions:
+      - Design learning paths
+      - Optimize skill acquisition
+      - Create training programs
+      - Support knowledge mastery
+    signals_needed:
+      - Skill development
+      - Learning optimization
+      - Training needed
+      - Knowledge acquisition
+
+  - id: executive-coach
+    title: Executive Coach
+    domains: [personal, business]
+    keywords: [executive, leadership, management, strategy, decision-making, influence, performance, development]
+    priority: medium
+    expertise: Executive development, leadership coaching, strategic decision-making, influence building
+    typical_contributions:
+      - Develop leadership skills
+      - Coach on strategic decisions
+      - Improve executive performance
+      - Build influence and presence
+    signals_needed:
+      - Leadership development
+      - Executive growth
+      - Strategic decision-making
+      - Management coaching
+
+  - id: habit-specialist
+    title: Habit Specialist
+    domains: [personal, health]
+    keywords: [habits, routine, consistency, behavior, change, formation, tracking, systems, discipline]
+    priority: medium
+    expertise: Habit formation, routine building, behavioral consistency, change systems
+    typical_contributions:
+      - Design habit systems
+      - Build consistent routines
+      - Guide behavior change
+      - Track habit formation
+    signals_needed:
+      - Habit building
+      - Routine creation
+      - Consistency challenges
+      - Behavior modification
+
+  # ===========================
+  # DOMAIN-SPECIFIC (10 roles)
+  # ===========================
+
+  - id: legal-advisor
+    title: Legal Advisor
+    domains: [legal]
+    keywords: [legal, law, contracts, compliance, regulations, rights, terms, agreements, litigation, counsel]
+    priority: medium
+    expertise: Legal guidance, contract review, compliance, regulatory matters, rights protection
+    typical_contributions:
+      - Provide legal advice
+      - Review contracts and agreements
+      - Ensure regulatory compliance
+      - Protect legal rights
+    signals_needed:
+      - Legal matters
+      - Contract review
+      - Compliance requirements
+      - Legal protection
+
+  - id: compliance-officer
+    title: Compliance Officer
+    domains: [legal, business]
+    keywords: [compliance, regulations, policies, audit, governance, standards, risk, enforcement, reporting]
+    priority: medium
+    expertise: Compliance management, regulatory adherence, policy enforcement, governance, auditing
+    typical_contributions:
+      - Ensure regulatory compliance
+      - Develop compliance policies
+      - Conduct audits
+      - Manage governance
+    signals_needed:
+      - Regulatory requirements
+      - Compliance management
+      - Policy development
+      - Audit preparation
+
+  - id: supply-chain-expert
+    title: Supply Chain Expert
+    domains: [business]
+    keywords: [supply-chain, logistics, procurement, inventory, vendors, delivery, optimization, distribution]
+    priority: low
+    expertise: Supply chain optimization, logistics, procurement, inventory management, vendor relations
+    typical_contributions:
+      - Optimize supply chain
+      - Manage logistics and procurement
+      - Control inventory
+      - Coordinate vendor relationships
+    signals_needed:
+      - Supply chain management
+      - Logistics optimization
+      - Procurement needs
+      - Inventory control
+
+  - id: content-strategist
+    title: Content Strategist
+    domains: [creative, business]
+    keywords: [content, strategy, editorial, publishing, storytelling, messaging, audience, channels, planning]
+    priority: medium
+    expertise: Content strategy, editorial planning, storytelling, multi-channel publishing
+    typical_contributions:
+      - Develop content strategy
+      - Plan editorial calendars
+      - Guide storytelling approach
+      - Optimize content channels
+    signals_needed:
+      - Content creation
+      - Editorial planning
+      - Storytelling needs
+      - Channel strategy
+
+  - id: creative-director
+    title: Creative Director
+    domains: [creative, design]
+    keywords: [creative, direction, vision, concept, campaigns, aesthetics, branding, team, execution]
+    priority: medium
+    expertise: Creative vision, concept development, campaign direction, brand aesthetics, team leadership
+    typical_contributions:
+      - Lead creative vision
+      - Develop campaign concepts
+      - Direct creative execution
+      - Guide brand aesthetics
+    signals_needed:
+      - Creative leadership
+      - Campaign development
+      - Brand direction
+      - Creative vision
+
+  - id: community-manager
+    title: Community Manager
+    domains: [community, business]
+    keywords: [community, engagement, social, moderation, events, networking, members, forums, interaction]
+    priority: medium
+    expertise: Community building, engagement strategies, event planning, social management, moderation
+    typical_contributions:
+      - Build and grow community
+      - Engage members
+      - Plan community events
+      - Moderate discussions
+    signals_needed:
+      - Community building
+      - Member engagement
+      - Social interaction
+      - Event coordination
+
+  - id: social-strategist
+    title: Social Strategist
+    domains: [community, creative, business]
+    keywords: [social-media, engagement, content, platforms, growth, viral, influencer, campaigns, analytics]
+    priority: medium
+    expertise: Social media strategy, platform growth, content virality, influencer relations, analytics
+    typical_contributions:
+      - Develop social strategies
+      - Grow platform presence
+      - Create viral campaigns
+      - Analyze social metrics
+    signals_needed:
+      - Social media growth
+      - Platform strategy
+      - Engagement building
+      - Viral campaigns
+
+  - id: innovation-consultant
+    title: Innovation Consultant
+    domains: [business, creative]
+    keywords: [innovation, ideation, creativity, disruption, transformation, breakthrough, experimentation, r&d]
+    priority: medium
+    expertise: Innovation strategy, ideation facilitation, disruptive thinking, experimentation, R&D guidance
+    typical_contributions:
+      - Guide innovation process
+      - Facilitate ideation
+      - Identify disruptive opportunities
+      - Support experimentation
+    signals_needed:
+      - Innovation needed
+      - Disruptive thinking
+      - Ideation facilitation
+      - R&D guidance
+
+  - id: research-analyst
+    title: Research Analyst
+    domains: [business]
+    keywords: [research, analysis, data, insights, market, competitive, trends, reports, findings, investigation]
+    priority: medium
+    expertise: Research methodology, data analysis, market research, competitive analysis, trend identification
+    typical_contributions:
+      - Conduct research studies
+      - Analyze market trends
+      - Perform competitive analysis
+      - Synthesize findings
+    signals_needed:
+      - Research needed
+      - Market analysis
+      - Competitive insights
+      - Trend identification
+
+  - id: risk-manager
+    title: Risk Manager
+    domains: [business, finance]
+    keywords: [risk, mitigation, assessment, contingency, uncertainty, threats, insurance, prevention, planning]
+    priority: medium
+    expertise: Risk assessment, mitigation strategies, contingency planning, threat analysis
+    typical_contributions:
+      - Assess project risks
+      - Develop mitigation strategies
+      - Create contingency plans
+      - Monitor threats
+    signals_needed:
+      - Risk assessment
+      - Uncertainty management
+      - Contingency planning
+      - Threat mitigation
+
+# ===========================
+# METADATA
+# ===========================
+
+metadata:
+  version: 1.0.0
+  last_updated: 2026-02-06
+  total_roles: 50
+  categories:
+    business: 10
+    technical: 12
+    design: 8
+    finance: 6
+    health: 8
+    personal: 6
+    domain_specific: 10
+  maintainer: Life OS Workflow System
+  references:
+    - data/role-matching-algorithm.md
+    - data/roles-descriptions.md
+    - data/roles-templates.md

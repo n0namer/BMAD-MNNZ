@@ -12,7 +12,7 @@ workflowPlanTemplate: '../templates/workflow-plan.template.md'
 ## STEP GOAL
 
 To capture a new idea or project from the user and understand its core intent,
-context, and constraints.
+context, and constraints.  Use the gathered signals (stakeholders, risk, domain) to drive the Quick/Standard/Deep track detector from IDEAL 1.2 so the remaining flow matches the required depth.
 
 ## MANDATORY EXECUTION RULES
 
@@ -142,7 +142,24 @@ Now let me analyze the complexity and recommend the optimal track..."
 
 ---
 
-### 9. Track Detection & Recommendation
+### 9. Save to Claude Flow Memory (Pattern Recognition)
+
+```bash
+# Store idea patterns for cross-project learning
+npx claude-flow@v3alpha memory store \
+  --namespace "shared-knowledge" \
+  --key "life-os:patterns:idea-collection:{domain}" \
+  --content "{\"idea_id\":\"${IDEA_ID}\",\"domain\":\"${domain}\",\"complexity_signals\":\"${complexity_signal}\",\"keywords\":\"${keywords}\",\"timestamp\":\"${timestamp}\"}" \
+  --tags "life-os,patterns,ideas,${domain}"
+```
+
+**What gets stored:**
+- Domain patterns (which domains produce which types of ideas)
+- Complexity signals (keywords that predict track)
+- Success patterns (later linked to completion rates)
+- Similar idea detection (for future reference)
+
+### 10. Track Detection & Recommendation
 
 📖 **Algorithm:** data/track-detection-algorithm.md
 📖 **UI Templates:** data/track-recommendation-ui.md
@@ -181,18 +198,34 @@ Append track selection summary to {workflowPlanFile} with scoring breakdown, ste
 
 Update idea file frontmatter with track metadata (track, track_score, track_confidence, track_override).
 
-#### Step 9.9: Save to Memory
+#### Step 9.9: Save Track Decision to Memory
 
 ```bash
+# Store track selection for pattern learning
 npx claude-flow@v3alpha memory store \
   --namespace "shared-knowledge" \
   --key "life-os:track-selection:{IDEA_ID}" \
-  --content "{idea_id, recommended_track, selected_track, confidence, score, parameters, timestamp}"
+  --content "{\"idea_id\":\"${IDEA_ID}\",\"recommended_track\":\"${recommended_track}\",\"selected_track\":\"${selected_track}\",\"confidence\":\"${confidence}\",\"score\":${track_score},\"parameters\":${parameters_json},\"timestamp\":\"${timestamp}\"}" \
+  --tags "life-os,track-detection,${selected_track}"
+
+# If user overrode recommendation, store learning
+if [ "$selected_track" != "$recommended_track" ]; then
+  npx claude-flow@v3alpha memory store \
+    --namespace "shared-knowledge" \
+    --key "life-os:learnings:track-override:{IDEA_ID}" \
+    --content "{\"idea_id\":\"${IDEA_ID}\",\"recommended\":\"${recommended_track}\",\"chosen\":\"${selected_track}\",\"reason\":\"${user_reason}\",\"outcome\":\"pending\",\"timestamp\":\"${timestamp}\"}" \
+    --tags "life-os,learnings,track-override"
+fi
 ```
+
+**Pattern Learning:**
+- Track detection accuracy improves over time
+- Override patterns inform algorithm adjustments
+- Success outcomes validate track choices
 
 ---
 
-### 10. Route to Next Step
+### 11. Route to Next Step
 
 | Track | Next Step | Notes |
 |-------|-----------|-------|
@@ -207,17 +240,27 @@ npx claude-flow@v3alpha memory store \
 - Override to lighter/heavier track
 - View track comparison details
 
-**Execution Rules:**
+---
+
+## 🛑 EXECUTION RULES (MENU HANDLING)
+
+**CRITICAL: ALWAYS halt and wait for user selection before proceeding.**
+
+### Halt Point
 1. Present track recommendation with confidence level (from Step 9.5)
-2. **HALT and WAIT** for user selection
-3. If user accepts recommendation → Save track metadata to idea file and memory, then route based on track table above
-4. If user overrides to lighter track → Show Template 3 warning (Step 9.7), wait for confirmation, then save and route
-5. If user overrides to heavier track → No warning, save metadata, route to appropriate next step
-6. **Track routing logic:**
-   - **Quick track** → Save track flag, load and execute step-04-consilium.md with `track=quick` parameter
-   - **Standard track** → Save track metadata, load and execute step-02-roles-discovery.md
-   - **Deep track** → Check if {goalsFile} exists. If yes → load step-02-roles-discovery.md. If no → load step-00-goals-discovery.md first
-7. **Do NOT auto-proceed** - this is an interactive decision requiring user confirmation
+2. **ALWAYS HALT AND WAIT** for user to select an option
+3. **DO NOT auto-proceed** - this is an interactive decision requiring explicit user confirmation
+4. **DO NOT assume user acceptance** - wait for user input at menu
+
+### Processing User Selection
+- If user accepts recommendation → Save track metadata to idea file and memory, then route based on track table above
+- If user overrides to lighter track → Show Template 3 warning (Step 9.7), wait for confirmation, then save and route
+- If user overrides to heavier track → No warning, save metadata, route to appropriate next step
+
+### Track Routing Logic
+- **Quick track** → Save track flag, load and execute step-04-consilium.md with `track=quick` parameter
+- **Standard track** → Save track metadata, load and execute step-02-roles-discovery.md
+- **Deep track** → Check if {goalsFile} exists. If yes → load step-02-roles-discovery.md. If no → load step-00-goals-discovery.md first
 
 ---
 

@@ -1,0 +1,353 @@
+# Life OS - Daily TODO Generator Configuration
+# Конфигурация системы автоматической генерации ежедневных задач
+
+# ═══════════════════════════════════════════════════════════
+# КАЛЕНДАРНЫЕ НАСТРОЙКИ
+# ═══════════════════════════════════════════════════════════
+
+calendar:
+  # Рабочие дни недели (mon, tue, wed, thu, fri, sat, sun)
+  work_days: [mon, tue, wed, thu, fri]
+
+  # Рабочих часов в день
+  work_hours_per_day: 8
+
+  # Длительность одного deep work блока (часы)
+  deep_work_block_duration: 4
+
+  # Процент резервного времени (buffer)
+  buffer_percentage: 15
+
+  # Регулярные встречи и блоки (вычитаются из доступного времени)
+  recurring_blocks:
+    - name: "Daily Standup"
+      duration: 0.5  # часы
+      days: [mon, tue, wed, thu, fri]
+      time: "09:00"
+      priority: high
+
+    - name: "Email Processing"
+      duration: 0.5
+      days: [mon, wed, fri]
+      time: "08:30"
+      priority: medium
+
+    - name: "Weekly Planning"
+      duration: 1.0
+      days: [mon]
+      time: "10:00"
+      priority: high
+
+    - name: "Team Sync"
+      duration: 1.0
+      days: [wed]
+      time: "15:00"
+      priority: medium
+
+    - name: "Weekly Retro"
+      duration: 1.0
+      days: [fri]
+      time: "16:00"
+      priority: high
+
+# ═══════════════════════════════════════════════════════════
+# ПРИОРИТИЗАЦИЯ ЗАДАЧ
+# ═══════════════════════════════════════════════════════════
+
+prioritization:
+  # Задачи > N часов автоматически High priority
+  high_threshold_hours: 3
+
+  # Deadline ближе N дней → High priority
+  deadline_proximity_days: 3
+
+  # Весы для расчёта приоритета (сумма = 1.0)
+  weights:
+    goal_priority: 0.4     # Приоритет цели из goals.yaml
+    deadline: 0.3          # Близость дедлайна
+    estimated_hours: 0.2   # Оценка трудоёмкости
+    dependencies: 0.1      # Наличие зависимостей
+
+  # Пороги классификации (score из weights)
+  thresholds:
+    high: 25    # >= 25 → High
+    medium: 15  # >= 15 → Medium
+    low: 0      # < 15 → Low
+
+# ═══════════════════════════════════════════════════════════
+# РАСПРЕДЕЛЕНИЕ ЗАДАЧ ПО ДНЯМ
+# ═══════════════════════════════════════════════════════════
+
+task_distribution:
+  # Стратегия распределения
+  # - balanced: Равномерное распределение по дням
+  # - frontload: Больше задач в начале недели
+  # - backload: Больше задач в конце недели
+  strategy: "balanced"
+
+  # Максимум задач в день
+  max_tasks_per_day: 6
+
+  # Максимум High priority задач в день
+  max_high_priority_per_day: 3
+
+  # Минимум buffer времени в день (часы)
+  min_buffer_hours: 1
+
+  # Разрешить переносы на следующую неделю при перегрузке
+  allow_overflow: true
+
+  # Предпочтения по дням для типов задач
+  day_preferences:
+    mon:
+      - planning
+      - architecture
+      - strategic
+
+    tue:
+      - implementation
+      - coding
+      - development
+
+    wed:
+      - review
+      - testing
+      - integration
+
+    thu:
+      - documentation
+      - refactoring
+      - optimization
+
+    fri:
+      - cleanup
+      - deployment
+      - retrospective
+
+# ═══════════════════════════════════════════════════════════
+# ФОРМАТИРОВАНИЕ ВЫВОДА
+# ═══════════════════════════════════════════════════════════
+
+output:
+  # Язык интерфейса (ru, en)
+  language: "ru"
+
+  # Формат даты (Python strftime)
+  date_format: "%Y-%m-%d"
+
+  # Формат времени (24-часовой)
+  time_format: "%H:%M"
+
+  # Включить метрики в TODO файл
+  include_metrics: true
+
+  # Включить календарные блоки
+  include_calendar_blocks: true
+
+  # Включить quick links
+  include_quick_links: true
+
+  # Включить иконки эмодзи
+  include_emoji: true
+
+  # Шаблон заголовка
+  header_template: "# TODO - {date} ({weekday})"
+
+  # Секции приоритетов
+  priority_sections:
+    high:
+      title: "⚡ High Priority (Must Do)"
+      emoji: "⚡"
+      color: "red"
+
+    medium:
+      title: "🟡 Medium Priority (Should Do)"
+      emoji: "🟡"
+      color: "yellow"
+
+    low:
+      title: "🔵 Low Priority (Nice to Have)"
+      emoji: "🔵"
+      color: "blue"
+
+# ═══════════════════════════════════════════════════════════
+# ПУТИ К ФАЙЛАМ И ДИРЕКТОРИЯМ
+# ═══════════════════════════════════════════════════════════
+
+paths:
+  # Входной файл с целями
+  goals_file: "../data/goals.yaml"
+
+  # Выходная директория для TODO файлов
+  output_dir: "../output/todos"
+
+  # Директория с шаблонами
+  templates_dir: "../templates"
+
+  # Директория для календарных файлов (.ics)
+  calendar_export_dir: "../output/todos/ics"
+
+  # Директория для метрик
+  metrics_dir: "../output/metrics"
+
+  # Директория для архива
+  archive_dir: "../output/archive"
+
+# ═══════════════════════════════════════════════════════════
+# ИНТЕГРАЦИЯ С КАЛЕНДАРЁМ
+# ═══════════════════════════════════════════════════════════
+
+calendar_integration:
+  # Тип календаря (google, outlook, ical)
+  type: "ical"
+
+  # Часовой пояс
+  timezone: "Europe/Moscow"
+
+  # Формат экспорта
+  export_format: "ics"
+
+  # Добавлять напоминания
+  add_reminders: true
+
+  # Время напоминания до события (минуты)
+  reminder_minutes: [15, 60]
+
+  # Категории для календарных событий
+  event_categories:
+    high: "Work - Critical"
+    medium: "Work - Important"
+    low: "Work - Optional"
+
+  # Цвета событий (для Google Calendar)
+  event_colors:
+    high: "11"      # Красный
+    medium: "5"     # Жёлтый
+    low: "9"        # Синий
+
+# ═══════════════════════════════════════════════════════════
+# МЕТРИКИ И ОТЧЁТНОСТЬ
+# ═══════════════════════════════════════════════════════════
+
+metrics:
+  # Собирать метрики выполнения
+  enabled: true
+
+  # Формат метрик (json, yaml, csv)
+  format: "json"
+
+  # Метрики для отслеживания
+  track:
+    - task_completion_rate
+    - time_accuracy
+    - priority_distribution
+    - load_balancing
+    - goal_alignment
+    - buffer_usage
+
+  # Экспорт метрик в external системы
+  export:
+    enabled: false
+    destinations:
+      - type: "prometheus"
+        url: "http://localhost:9090"
+      - type: "grafana"
+        url: "http://localhost:3000"
+
+# ═══════════════════════════════════════════════════════════
+# УВЕДОМЛЕНИЯ
+# ═══════════════════════════════════════════════════════════
+
+notifications:
+  # Включить уведомления
+  enabled: false
+
+  # Каналы уведомлений
+  channels:
+    - type: "email"
+      recipients: ["user@example.com"]
+      events: [todo_generated, deadline_approaching]
+
+    - type: "slack"
+      webhook_url: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+      events: [todo_generated, task_completed]
+
+    - type: "telegram"
+      bot_token: "YOUR_BOT_TOKEN"
+      chat_id: "YOUR_CHAT_ID"
+      events: [todo_generated, deadline_approaching, task_overdue]
+
+# ═══════════════════════════════════════════════════════════
+# АВТОМАТИЗАЦИЯ
+# ═══════════════════════════════════════════════════════════
+
+automation:
+  # Автоматическая генерация по расписанию
+  auto_generate:
+    enabled: false
+    schedule: "0 18 * * 0"  # Каждое воскресенье в 18:00 (cron)
+
+  # Автоматический перенос незавершённых задач
+  auto_rollover:
+    enabled: true
+    max_rollovers: 3  # Максимум переносов одной задачи
+
+  # Автоматическая отправка в календарь
+  auto_export_calendar:
+    enabled: false
+
+  # Автоматическая архивация старых TODO
+  auto_archive:
+    enabled: true
+    older_than_days: 30
+
+# ═══════════════════════════════════════════════════════════
+# РАСШИРЕННЫЕ НАСТРОЙКИ
+# ═══════════════════════════════════════════════════════════
+
+advanced:
+  # Использовать AI для приоритизации (требует API key)
+  ai_prioritization:
+    enabled: false
+    provider: "openai"  # openai, anthropic, local
+    model: "gpt-4"
+    api_key: "YOUR_API_KEY"
+
+  # Автоматическое разбиение больших задач
+  auto_split_tasks:
+    enabled: true
+    threshold_hours: 8  # Задачи > 8ч разбиваются
+
+  # Учёт энергетических уровней (циркадные ритмы)
+  energy_optimization:
+    enabled: true
+    high_energy_hours: ["09:00", "10:00", "11:00", "15:00", "16:00"]
+    low_energy_hours: ["13:00", "14:00", "17:00", "18:00"]
+
+  # Интеграция с TRIZ для решения проблем
+  triz_integration:
+    enabled: false
+    auto_suggest_solutions: true
+
+  # Связь с Deep Plan системой
+  deep_plan_integration:
+    enabled: true
+    auto_link_tasks: true
+    sync_progress: true
+
+# ═══════════════════════════════════════════════════════════
+# ДЕБАГ И ЛОГИРОВАНИЕ
+# ═══════════════════════════════════════════════════════════
+
+debug:
+  # Уровень логирования (DEBUG, INFO, WARNING, ERROR)
+  log_level: "INFO"
+
+  # Путь к лог-файлу
+  log_file: "../logs/todo-generator.log"
+
+  # Подробный вывод в консоль
+  verbose: false
+
+  # Сохранять промежуточные данные
+  save_intermediate: false

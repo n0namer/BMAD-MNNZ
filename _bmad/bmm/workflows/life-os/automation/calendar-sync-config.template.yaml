@@ -1,0 +1,129 @@
+# Calendar Sync Configuration Template
+# Copy this file to calendar-sync-config.yaml and customize
+
+# Calendar provider settings
+providers:
+  google:
+    enabled: true
+    calendar_id: "primary"  # or specific calendar ID from Google Calendar settings
+    credentials_file: "credentials/google_credentials.json"
+    token_file: "credentials/google_token.pickle"
+
+  outlook:
+    enabled: false  # Set to true to enable Outlook sync
+    calendar_id: "Calendar"  # Default Outlook calendar name
+    credentials_file: "credentials/outlook_credentials.json"
+
+  ical:
+    enabled: true  # iCal export always available as fallback
+    export_path: "exports/life-os-calendar.ics"
+
+# Sync settings
+sync:
+  # How often to sync (when running in daemon mode)
+  # Options: 5min, 15min, 30min, 1hour, manual
+  frequency: "15min"
+
+  # Bidirectional sync (sync changes from calendar back to TODO)
+  bidirectional: true
+
+  # Conflict resolution strategy
+  # Options: calendar-wins, todo-wins, manual-review
+  conflict_resolution: "manual-review"
+
+  # Create backup before each sync
+  backup_before_sync: true
+
+  # Maximum number of backups to keep
+  max_backups: 10
+
+  # Enable caching for faster syncs (experimental)
+  enable_cache: false
+
+# TODO file parsing configuration
+todo:
+  # Pattern to find TODO files (relative to automation directory)
+  # Use * as placeholder for date (YYYY-MM-DD)
+  file_pattern: "../../steps-e/daily-todo-*.md"
+
+  # Markdown header that marks the time blocks section
+  time_block_marker: "## Time Blocks"
+
+  # Regex pattern to extract goal_id from time block header
+  # Should capture goal_id in group 1
+  goal_id_pattern: "\\[goal_id: ([a-z0-9-]+)\\]"
+
+# Domain to color mapping
+# Customize colors for your calendar
+colors:
+  # Primary domains (Life OS standard)
+  finance: "#0B8043"      # Green - financial planning, budgeting
+  business: "#039BE5"     # Blue - work projects, meetings
+  health: "#D50000"       # Red - exercise, medical appointments
+  personal: "#F4B400"     # Yellow - family, hobbies, personal time
+  learning: "#7986CB"     # Purple - study, courses, skill development
+
+  # Optional: Add custom domains
+  # creative: "#E67C73"   # Salmon - creative work, design
+  # social: "#33B679"     # Teal - social events, networking
+
+  # Fallback for undefined domains
+  default: "#616161"      # Gray
+
+# Logging configuration
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+
+  # Log file path (relative to automation directory)
+  file: "logs/calendar-sync.log"
+
+  # Also output logs to console
+  console: true
+
+  # Rotate log files (not yet implemented)
+  rotate: false
+  max_size_mb: 10
+  max_files: 5
+
+# Advanced settings
+advanced:
+  # Maximum events to process per sync (prevents rate limiting)
+  max_events_per_sync: 100
+
+  # Retry failed API calls
+  retry_on_failure: true
+  max_retries: 3
+  retry_delay_seconds: 5
+
+  # API request timeout in seconds
+  api_timeout: 30
+
+  # User agent for API requests
+  user_agent: "LifeOS-CalendarSync/1.0"
+
+# Rate limiting (prevents hitting API quotas)
+rate_limits:
+  google:
+    requests_per_second: 10
+    requests_per_day: 10000
+
+  outlook:
+    requests_per_second: 5
+    requests_per_day: 5000
+
+# Webhook configuration (for real-time sync)
+webhook:
+  enabled: false
+  port: 8080
+  secret_token: "your-secret-token-here"  # Change this!
+  allowed_ips: ["127.0.0.1"]  # IP whitelist
+
+# Notification settings (future feature)
+notifications:
+  enabled: false
+  slack_webhook: ""
+  email: ""
+  on_conflict: true
+  on_error: true
+  daily_summary: false

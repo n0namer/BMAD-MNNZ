@@ -15,7 +15,7 @@ Validate milestone completion against success criteria, analyze variances, and d
 - **ADJUST** - Revise plan (rescope, extend timeline, reallocate resources)
 - **ESCALATE** - Trigger pivot-or-kill decision (step-x-04)
 
-**Purpose:** Prevent runaway commitments by enforcing quality gates at key checkpoints.
+**Purpose:** Prevent runaway commitments by enforcing quality gates at key checkpoints, referencing IDEAL 1.14’s critical-path markers so every milestone review knows how much slack remains and whether dependencies are on the critical chain.
 
 ---
 

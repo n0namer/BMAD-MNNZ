@@ -69,9 +69,6 @@ Check ALL that apply:
 📝 **Brief description:**
 ```
 
-**Quick validation:**
-- "just me and Claude" → ✅ Solo + LLM = 10x-20x | Team + LLM → 🚀 20x-50x
-
 ---
 
 #### Question 2: Development Speed Profile
@@ -81,12 +78,10 @@ Check ALL that apply:
 ❓ **Question 2: What is your development speed?**
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[A] **LLM writes code** (Claude Code/Cursor/GPT-4) - LLM 80-90% of code, you: review + architecture. Speed: 10x-50x
-[B] **Traditional** (manual coding) - Manually + GitHub Copilot. Speed: 1x (baseline)
-[C] **No-code tools** (Bubble/Webflow/Airtable) - Configuration > code. Speed: 5x-20x
-[D] **Hybrid** (LLM + no-code + existing) - Combination of all methods. Speed: 20x-100x
+[A] **LLM writes code** (10x-50x) | [B] **Traditional** (1x baseline) | [C] **No-code tools** (5x-20x) | [D] **Hybrid** (20x-100x)
 
 📝 **Your profile:** [A/B/C/D]
+📖 **Detailed profiles:** {resourceAssessmentExamples}
 ```
 
 ---
@@ -99,13 +94,12 @@ Check ALL that apply:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **Budget:** {amount / unlimited / minimal}
-**Time:** {X hours/week, deadline, priority: critical/important/flexible}
+**Time:** {hours/week, deadline, priority}
 **Team:** {full-time/part-time, skill gaps, coordination}
-**Technical:** {legacy integration, compliance (GDPR/HIPAA), platform (web/mobile/desktop)}
+**Technical:** {legacy, compliance, platform}
 
-📝 **Primary constraint (1-2 sentences):**
-
-📖 **Complete constraint analysis and mitigation strategies:** See {resourceAssessmentExamples}
+📝 **Primary constraint:** _______________
+📖 **Constraint analysis and mitigation:** {resourceAssessmentExamples}
 ```
 
 ---
@@ -117,18 +111,15 @@ Check ALL that apply:
 ❓ **Question 4: What assets do you already have?**
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-(From Step 0.5 we know what is ready. Now focus on REUSE)
+(From Step 0.5 we know completion %. Now assess reusability)
 
-**Core Questions:**
 - Existing codebase: {X}% reusable?
-- Design system / UI components: {yes / no}
-- API integrations (auth, payment, external): {which are ready?}
-- Test data, user research, docs: {yes / no}
+- Design system / UI components: {yes/no}
+- API integrations (auth, payment, external): {which ready?}
+- Test data, user research, docs: {yes/no}
 
-📝 **What can be reused:**
-(Brief description)
-
-📖 **Complete inventory templates:** See {resourceAssessmentExamples}
+📝 **What can be reused:** _______________
+📖 **Complete inventory templates:** {resourceAssessmentExamples}
 ```
 
 ---
@@ -139,44 +130,60 @@ Check ALL that apply:
 - 💬 Return calculated multiplier only, not full YAML
 - ⚙️ TOOL/SUBPROCESS FALLBACK: If subprocess unavailable, achieve outcome in main context thread
 
-### Speed Multiplier Calculation (Subprocess)
+### Speed Multiplier Calculation (Subprocess) - Optimization Pattern 3
 
-**Launch a subprocess that:**
-1. Loads data/speed-multipliers.yaml
-2. Extracts base multiplier for method (A/B/C/D)
-3. Applies adjustments based on:
-   - Existing code completion %
-   - Team size
-   - Constraints (time/budget/quality)
-4. Returns calculated multiplier + formula breakdown
+**Subprocess Strategy:** Loads `data/speed-multipliers.yaml` (352 lines total), extracts ONLY base multiplier for user's selected method (A/B/C/D), applies method-specific adjustments (code %, team, constraints), returns calculated multiplier + formula (50 lines vs 352 full YAML).
 
-**Subprocess returns:** 50 lines (result + formula) instead of 800 lines (full YAML + examples)
+**Expected Savings:** ~302 lines (86% reduction in context loading)
 
-**Expected format from subprocess:**
+**Subprocess Implementation:**
+
 ```markdown
-## Speed Multiplier Calculation Result
+Launch subprocess that:
+1. Read `data/speed-multipliers.yaml`
+2. Match user's method selection:
+   - [A] LLM writes code → Extract `base_multipliers.llm_assisted_solo/team` + `adjustment_factors`
+   - [B] Traditional → Extract `base_multipliers.traditional_manual` (no adjustments)
+   - [C] No-code tools → Extract `base_multipliers.nocode_tools` + `adjustment_factors`
+   - [D] Hybrid → Extract `base_multipliers.hybrid_approach` + ALL `adjustment_factors`
+3. For selected method, apply adjustments based on:
+   - Existing codebase reusability ({Y}%)
+   - Infrastructure readiness (basic/intermediate/advanced)
+   - Team size (solo/small/medium/large)
+   - Budget constraints (minimal/moderate/generous)
+   - Time constraints (tight/normal/flexible)
+4. Calculate final formula: Base + Adjustments - Penalties
+5. Return output (max 50 lines):
+   - Selected method + base multiplier
+   - Applied adjustments + values
+   - Final calculated multiplier
+   - Example timeline calculation
 
-**Base Multiplier:** {X}x ({method_name})
-
-**Adjustments Applied:**
-+ Existing codebase ({Y}% reusable): +{Z}x
-+ No-code tools: +{A}x
-+ Team size ({N} devs): +{B}x
-+ Infrastructure ready: +{C}x
-
-**Constraint Penalties:**
-- Budget limited: -{D}x
-- Time limited: -{E}x
-- Skill gaps: -{F}x
-
-**FINAL SPEED MULTIPLIER: {TOTAL}x**
-
-**Timeline Impact:**
-- Traditional estimate: 12 weeks → {12/TOTAL} weeks
-- Time saved: {12-12/TOTAL} weeks
+Fallback: If subprocess unavailable, load full `data/speed-multipliers.yaml` in main context and perform calculation inline.
 ```
 
-**Graceful fallback:** If subprocess unavailable, load full data in main context.
+**Output Format (50 lines max):**
+```
+⚡ Speed Multiplier Calculation
+Selected Method: {A/B/C/D}
+Base Multiplier: {X}x
+
+Applied Adjustments:
++ {Codebase reusability}: +{bonus}x
++ {Infrastructure}: +{bonus}x
++ {Team size}: +{bonus}x
+
+Applied Penalties:
+- {Budget constraint}: -{penalty}x
+- {Time constraint}: -{penalty}x
+
+Final Calculation: {Base} + {Total Adjustments} - {Total Penalties} = {FINAL}x
+Timeline Example: 12 weeks (traditional) ÷ {FINAL}x = {12/FINAL} weeks
+```
+
+**Fallback:** If subprocess unavailable, load full data in main context.
+
+📖 **Subprocess format and detailed examples:** {resourceAssessmentExamples}
 
 ---
 
@@ -187,36 +194,18 @@ Based on user answers, calculate Speed Multiplier using data from `{speedMultipl
 ```
 ⚡ **Speed Multiplier Calculation**
 
-**Base Multiplier (Development Method):**
-- {method}: {X}x
-
-**Adjustments:**
-+ Existing codebase ({Y}% reusable): +{Z}x
-+ No-code tools: +{A}x
-+ Team size ({N} devs): +{B}x
-+ Infrastructure ready: +{C}x
-
-**Constraint Penalties:**
-- Budget limited: -{D}x
-- Time limited: -{E}x
-- Skill gaps: -{F}x
+**Base:** {method} = {X}x
+**Adjustments:** +{positive_total}x (codebase, tools, team, infra)
+**Penalties:** -{penalty_total}x (budget, time, coordination)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 **FINAL SPEED MULTIPLIER: {TOTAL}x**
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💡 **Example:**
-- Traditional estimate: 12 weeks → With your resources: {12/TOTAL} weeks
-- **Time saved: {12-12/TOTAL} weeks**
+💡 **Example:** Traditional 12 weeks → Actual: {12/TOTAL} weeks (saved {12-12/TOTAL} weeks)
 ```
 
-**Quick Reference (from speedMultipliersData):**
-- LLM-assisted solo: 10x-20x | Team: 20x-50x
-- No-code tools: 5x-20x | Existing code: +2x-5x
-- Hybrid (LLM+no-code+existing): 20x-100x
-- Traditional baseline: 1x
-
-📖 **Detailed examples and formulas:** See {resourceAssessmentExamples}
+📖 **Detailed calculation examples and formulas:** {resourceAssessmentExamples}
 
 ---
 

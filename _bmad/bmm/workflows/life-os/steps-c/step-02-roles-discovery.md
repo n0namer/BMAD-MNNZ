@@ -11,7 +11,7 @@ specialistsFolder: '{bmb_creations_output_folder}/life-os/specialists'
 
 ## STEP GOAL
 
-Identify required roles using base roles by sphere, create missing role stubs before specialist matching.
+Identify required roles using AI-powered role matching and sphere detection, create missing role stubs before specialist matching.
 
 ## MANDATORY EXECUTION RULES
 
@@ -51,52 +51,96 @@ Identify required roles using base roles by sphere, create missing role stubs be
 
 **Select 1–3 spheres:** business, finance, career, health, relationships, learning, home, legal, creative, community
 
-**📚 Reference:** See `data/roles-auto-selection.md` for inference protocol
+**📚 Reference:** See `data/sphere-detection-rules.md` for complete detection algorithm
 
-### 2. Select Roles (Suggest + Confirm)
+### 2. AI-Powered Role Matching
 
-**Logic:**
-- Use {rolesBase} CSV for sphere → role mapping
-- Match tags, map default_template
-- Suggest new role if gap exists
-- Merge overlapping roles (keep highest priority)
+**🤖 Automatic Role Suggestion Algorithm:**
+
+Uses intelligent role matching from `data/role-matching-algorithm.md`:
+1. **Extract keywords** from idea title + description
+2. **Detect domains** (business, tech, design, finance, health, personal, etc.)
+3. **Match keywords to 50+ specialist roles** from `data/specialist-roles.yaml`
+4. **Apply contextual refinement** (budget, timeline, complexity, stage)
+5. **Rank and deduplicate** roles by relevance
+6. **Return top 2-8 roles** based on complexity tier
 
 **📚 References:**
-- Selection logic: `data/roles-auto-selection.md`
+- Algorithm logic: `data/role-matching-algorithm.md`
+- Role database: `data/specialist-roles.yaml` (50+ specialists)
 - Role descriptions: `data/roles-descriptions.md`
+- Selection logic: `data/roles-auto-selection.md`
 
-#### Roles CSV Filtering (Subprocess - Pattern 1 + Pattern 3)
+**Complexity-based limits:**
+- Quick (<8): 2-3 core roles
+- Standard (8-15): 4-6 roles
+- Deep (>15): 6-8 comprehensive roles
 
-**Launch a subprocess that:**
+#### Present AI Suggestions
+
+```
+🤖 **AI-Suggested Specialist Roles**
+
+**Detected Domains:** {primary_domain}, {secondary_domain}
+**Project Complexity:** {Quick/Standard/Deep}
+**Keywords Analyzed:** {top_keywords}
+
+**Recommended Roles:**
+
+1. **{Role Name}** — Priority: {High/Medium/Low}
+   - **Relevance Score:** {score}/100
+   - **Why:** {keyword matches and domain fit}
+   - **Contribution:** {what this role brings}
+
+2. **{Role Name}** — Priority: {High/Medium/Low}
+   ...
+
+**Optional Roles (consider if project expands):**
+- {Optional Role 1} — {brief rationale}
+- {Optional Role 2} — {brief rationale}
+
+**Algorithm Details:**
+- {N} keywords analyzed
+- {N} roles evaluated from database
+- {N} contextual factors applied (budget, timeline, stage)
+
+---
+
+**Actions:**
+[A] Approve these roles
+[M] Modify (add/remove/change roles)
+[R] Regenerate with different criteria
+[?] Explain role selection logic
+[C] Continue with these roles
+```
+
+#### User Response Handling
+
+- **A** or **C**: Proceed to append
+- **M**: Enter interactive modification mode
+  - Add: "Add Marketing Strategist"
+  - Remove: "Remove UX Designer" (with impact warning)
+  - Replace: "Replace PM with Startup Advisor"
+  - Priority: "Make Architect high priority"
+- **R**: Re-run algorithm with adjusted parameters
+- **?**: Show detailed scoring and keyword matches
+
+#### CSV Fallback (If AI Insufficient)
+
+**Fallback for base roles using subprocess (Pattern 1 + Pattern 3):**
+
 1. Loads {rolesBase} CSV file
-2. Filters rows matching identified spheres (from step 1)
+2. Filters rows matching identified spheres
 3. Extracts only: role, sphere, priority, default_template
-4. Returns ONLY relevant rows (~10-20 lines instead of 150+ full CSV)
+4. Returns ONLY relevant rows (~10-20 lines instead of 150+)
 
-**Subprocess returns:** Filtered roles matching current spheres + priority + template mapping
+**📚 Reference:** See `data/roles-filtering-algorithm.md` for complete CSV filtering algorithm
 
-**Graceful fallback:** If subprocess unavailable, grep CSV in main context for sphere matches, then load full CSV
+**Graceful fallback:** If subprocess unavailable, grep CSV for sphere matches
 
 **Context Savings:** ~450 lines (150 CSV rows → 10-20 filtered rows)
 
-**Present suggested roles:**
-```
-📋 Suggested Roles for this project:
-
-**Spheres:** {list}
-**Required Roles:**
-- {role} — priority: {high/medium/low} — {brief rationale}
-
-**Notes:**
-- {constraints or gaps}
-
-Please confirm: [A]pprove / [M]odify / [C]ontinue
-```
-
-**User response handling:**
-- **A** or **C**: Proceed to append
-- **M**: Ask changes, update, re-present
-- **Other**: Help user, redisplay menu
+**Integration:** AI specialist matching takes priority; CSV fallback used only if insufficient matches.
 
 ### 3. Append to Workflow Plan (After Approval)
 
@@ -104,8 +148,15 @@ Please confirm: [A]pprove / [M]odify / [C]ontinue
 ## Roles
 
 **Spheres:** {list}
+**Detected Domains:** {primary_domain}, {secondary_domain}
 **Required Roles:**
-- {role} — priority: {high/medium/low}
+- {role} — priority: {high/medium/low} — {relevance_note}
+
+**Role Matching Details:**
+- Algorithm version: 1.0.0
+- Keywords analyzed: {count}
+- Roles evaluated: {count}
+- Complexity tier: {Quick/Standard/Deep}
 
 **Notes:**
 - {constraints or gaps}
@@ -182,4 +233,3 @@ Display: "**Select:** [C] Continue"
 - Skipping plan update
 
 **Master Rule:** Roles must be explicit before specialist matching.
-

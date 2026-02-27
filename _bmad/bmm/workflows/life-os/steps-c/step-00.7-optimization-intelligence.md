@@ -72,66 +72,165 @@ Identify domain from Step 01, load recommendations from `{optimizationDataFile}`
 
 ### Optimization Stack Lookup (Subprocess)
 
-**Launch a subprocess that:**
-1. Loads data/optimization-suggestions.yaml
-2. Greps for user's domain (software/finance/health/personal/business/education)
-3. Extracts Traditional/Modern/Optimal stack for that domain
-4. Returns domain-specific recommendations only
+**CRITICAL OPTIMIZATION INSTRUCTION:**
 
-**Subprocess returns:** 200 lines (one domain) instead of 2,000 lines (all 6 domains)
+This step uses a subprocess to dramatically reduce context window usage. Instead of loading all 6 domain recommendations (~2,000 lines), launch a subprocess that:
+
+**Subprocess Command:**
+```bash
+#!/bin/bash
+# Load domain-specific optimization data (Subprocess - Pattern 1 + 3)
+
+# 1. Extract user's domain from preceding steps (e.g., saas_web_app, mobile_app, ai_ml_product, etc.)
+DOMAIN=$(echo "{user_domain}" | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g')
+
+# 2. Load optimization suggestions YAML file
+YAML_FILE="./data/optimization-suggestions.yaml"
+
+# 3. Extract ONLY the matching domain section using grep + YAML parsing
+# This avoids loading the entire 2,000-line file into context
+grep -A 150 "^  ${DOMAIN}:" "$YAML_FILE" | grep -B 2 -E "^  [a-z_]+:|^[a-z_]+:" | head -n 200
+
+# 4. Return formatted YAML for that domain only (200 lines max)
+# Includes: traditional, modern, optimal stacks with timelines, costs, pros/cons
+```
+
+**What subprocess does:**
+1. ✅ Loads only the matching domain (e.g., `saas_web_app`)
+2. ✅ Extracts Traditional/Modern/Optimal stacks for that domain
+3. ✅ Returns ~200 lines instead of 2,000 lines
+4. ✅ Includes: timeline, cost, team size, pros/cons, architecture patterns
 
 **Expected format from subprocess:**
 ```yaml
 domain: {domain_name}
 traditional:
-  stack: {tech_stack}
-  timeline_multiplier: 1x
-  cost: ${baseline}
+  stack:
+    backend: {stack}
+    frontend: {stack}
+    hosting: {stack}
+    auth: {stack}
+    database: {stack}
+  timeline: "X-Y weeks"
+  cost: "$Xk-Yk"
+  team: "N developers"
   pros: [list]
   cons: [list]
+
 modern:
-  stack: {tech_stack}
-  timeline_multiplier: 10-20x
-  cost: ${baseline/5}
+  stack:
+    backend: {stack}
+    frontend: {stack}
+    hosting: {stack}
+    auth: {stack}
+    database: {stack}
+  timeline: "X-Y weeks"
+  cost: "$Xk-Yk"
+  multiplier: "10-20x faster"
   pros: [list]
   cons: [list]
+
 optimal:
-  stack: {tech_stack}
-  timeline_multiplier: 20-50x
-  cost: ${baseline/10}
-  benefits: [list]
-  trade_offs: [list]
-  recommended: true
+  stack:
+    backend: {stack}
+    frontend: {stack}
+    hosting: {stack}
+    auth: {stack}
+    database: {stack}
+  timeline: "X-Y days"
+  cost: "$Xk-Yk"
+  multiplier: "20-50x faster"
+  why_optimal: [list]
+  architecture: [list]
+  cost_breakdown: {breakdown}
 ```
 
-**Graceful fallback:** If subprocess unavailable, load full file in main context.
+**Graceful Fallback Protocol (MANDATORY):**
+- ✅ If subprocess unavailable → Load domain data from YAML file directly in main context
+- ✅ Use local file system search (grep/rg) to extract domain section
+- ✅ Parse YAML in-thread and extract Traditional/Modern/Optimal stacks
+- ✅ Continue with same output format regardless of execution method
+
+**Fallback Implementation (if subprocess fails):**
+```bash
+# Fallback: Use rg (ripgrep) from local search if subprocess unavailable
+rg -A 150 "^  ${DOMAIN}:" ./data/optimization-suggestions.yaml | head -n 200
+```
+
+**CRITICAL TOKENS SAVED:** This subprocess optimization reduces context usage from ~2,000 lines to ~200 lines (-90% tokens) while maintaining complete information for the user's specific domain.
 
 ---
 
 ### 3. Optimization Suggestions
 
-**Present 3-tier comparison for {domain}:**
+**Present 3-tier comparison for {domain} (from subprocess data):**
 
 ```
-🎯 **Optimization Options**
+🎯 **Optimization Options** (for {domain})
 
 **Option 1: Traditional** ⏱️ Baseline (1x)
-Stack: {traditional_stack}, Timeline: {X} weeks, Cost: ${Y}
-Pros: Full control, battle-tested
-Cons: Slowest, highest cost, manual DevOps
+Stack: {traditional_stack}
+Timeline: {X} weeks
+Cost: ${Y}
+Team: {team_size}
 
-**Option 2: Modern** ⚡ Fast (10x-20x)
-Stack: {modern_stack}, Timeline: {X/15} weeks, Cost: ${Y/5}
-Pros: 10x-20x faster, 5x cheaper, auto-scaling
-Cons: Some vendor dependency
+Pros:
+- {pro_1}
+- {pro_2}
 
-**Option 3: Optimal** 🚀 Fastest (20x-50x) ⭐ RECOMMENDED
-Stack: {optimal_stack}, Timeline: {X/35} weeks, Cost: ${Y/10}
-Benefits: Maximum speed, minimum cost, best tools, fastest iteration
-Trade-offs: Vendor integration (managed risk), platform constraints (acceptable for MVP)
+Cons:
+- {con_1}
+- {con_2}
+
+---
+
+**Option 2: Modern** ⚡ Fast (10-20x)
+Stack: {modern_stack}
+Timeline: {X/15} weeks
+Cost: ${Y/5}
+Team: {team_size}
+Speed Multiplier: {multiplier}x faster
+
+Pros:
+- {pro_1}
+- {pro_2}
+
+Cons:
+- {con_1}
+- {con_2}
+
+---
+
+**Option 3: Optimal** 🚀 Fastest (20-50x) ⭐ RECOMMENDED
+Stack: {optimal_stack}
+Timeline: {X/35} days (or weeks)
+Cost: ${Y/10}
+Team: {team_size}
+Speed Multiplier: {multiplier}x faster
+
+Why Optimal:
+- {why_1}
+- {why_2}
+- {why_3}
+
+Architecture:
+- {architecture_1}
+- {architecture_2}
+
+Cost Breakdown:
+- {service_1}: ${cost}
+- {service_2}: ${cost}
+- Total Monthly: ${total}
+- Savings vs Traditional: ${savings}
+
+Trade-offs:
+- {tradeoff_1} (acceptable for MVP)
+- {tradeoff_2} (managed risk)
 ```
 
-💡 **Domain Examples:** Load `{optimizationExamples}` for complete tech stack comparisons (6 domains with Traditional/Modern/Optimal)
+**Data Source:** Subprocess extracted domain-specific recommendations from `{optimizationDataFile}` (~200 lines for {domain} only, not 2,000 full file).
+
+💡 **Extended Domain Examples:** Load `{optimizationExamples}` for complete tech stack comparisons with real-world examples (6 domains with Traditional/Modern/Optimal)
 
 ---
 

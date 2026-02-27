@@ -1,9 +1,9 @@
 ---
 name: 'step-x-01-kickoff'
 description: 'Transition idea from PLANNED to IN_PROGRESS with milestones and success metrics'
-nextStepFile: './step-x-02-tracking.md'
+nextStepFile: './step-x-02-weekly-pulse.md'
 workflowPlanFile: '{bmb_creations_output_folder}/life-os/workflow-plan-life-os.md'
-trackerTemplateFile: './data/execution-tracker-template.md'
+trackerTemplateFile: '../data/execution-tracker-template.md'
 ---
 
 # Step X-01: Project Kickoff
@@ -118,7 +118,7 @@ After **Step 08 (Deep Plan)** completes and user is ready to start execution. Th
 **Menu:** [T] Track Progress (Step X-02) | [E] Edit Kickoff | [R] Review Plan (Step 08) | [D] Dashboard (all IN_PROGRESS)
 
 **Logic:**
-- T: Save state, read entire `./step-x-02-tracking.md`, execute
+- T: Save state, read entire `./step-x-02-weekly-pulse.md`, execute
 - E: Edit milestones/metrics, re-save, redisplay menu
 - R: Show Step 08, redisplay menu
 - D: Show IN_PROGRESS projects, redisplay menu

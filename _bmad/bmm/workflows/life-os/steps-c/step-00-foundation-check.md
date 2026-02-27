@@ -62,6 +62,20 @@ fi
 **If NO required files exist → Run full foundation sequence (Steps 0.5-0.7)**
 **Goals file is OPTIONAL and shown separately**
 
+**🔍 SmartSkip Detection:** Before displaying scenarios, check existing foundation coverage:
+```bash
+# Scan for existing foundation data in memory
+EXISTING_LAYERS=$(npx claude-flow@v3alpha memory search -q "foundation layer" --limit 10 | jq '.results | length')
+
+if [ "$EXISTING_LAYERS" -ge 3 ]; then
+  echo "✅ SmartSkip: 80%+ foundation coverage detected"
+  echo "Recommendation: Skip foundation (Scenario A) → proceed to Step 01"
+elif [ "$EXISTING_LAYERS" -gt 0 ]; then
+  echo "⚡ JIT Optimization: Partial data found ($EXISTING_LAYERS layers)"
+  echo "Will load existing + fill gaps on-demand (Scenario B/C)"
+fi
+```
+
 ---
 
 ### 2. Scenario A: All Required Foundation Data Exists (3/3 files)
@@ -93,7 +107,7 @@ fi
 - `[R]` → Confirm, then load `{nextStepIfMissing}` (step-00.5)
 - `[G]` (if goals not defined) → Load step-00-goals-discovery.md, then return to Step 01
 
-### Menu Handler (Scenario A)
+### Menu Handling Logic: Scenario A
 
 **Available Options:**
 - `[S]` - Skip - Use existing data (proceed to Step 01)
@@ -101,9 +115,9 @@ fi
 - `[R]` - Re-enter - Complete foundation sequence from Step 0.5
 - `[G]` - Goals - Define long-term goals (if not defined)
 
-**Execution Rules:**
+**EXECUTION RULES:**
 1. Display menu options with existing data summary
-2. **HALT and WAIT** for user input
+2. **ALWAYS HALT and WAIT** for user input
 3. If user selects `[S]` → Save state, update frontmatter, load and execute {nextStepFile}
 4. If user selects `[U]` → Show update submenu (see Section 5), then wait again
 5. If user selects `[R]` → Confirm warning, save state, load {nextStepIfMissing}
@@ -133,16 +147,16 @@ fi
 - `[R]` → Load `{nextStepIfMissing}` (step-00.5)
 - `[S]` → Warn, then load `{nextStepFile}` if confirmed
 
-### Menu Handler (Scenario B)
+### Menu Handling Logic: Scenario B
 
 **Available Options:**
 - `[C]` - Complete - Fill missing required sections
 - `[R]` - Re-enter - Start full foundation sequence
 - `[S]` - Skip - Continue anyway (not recommended)
 
-**Execution Rules:**
+**EXECUTION RULES:**
 1. Display menu with existing vs missing data
-2. **HALT and WAIT** for user input
+2. **ALWAYS HALT and WAIT** for user input
 3. If user selects `[C]` → Determine first missing step file, save state, load that step
 4. If user selects `[R]` → Save state, load {nextStepIfMissing} (step-00.5)
 5. If user selects `[S]` → Display warning about risks, wait for confirmation, then load {nextStepFile}
@@ -180,15 +194,15 @@ fi
 - `[C]` → Load `{nextStepIfMissing}` (step-00.5)
 - `[Q]` → Exit workflow
 
-### Menu Handler (Scenario C)
+### Menu Handling Logic: Scenario C
 
 **Available Options:**
 - `[C]` - Continue - Begin required foundation data collection
 - `[Q]` - Quit - Exit workflow
 
-**Execution Rules:**
+**EXECUTION RULES:**
 1. Display menu with time estimates and benefits
-2. **HALT and WAIT** for user input
+2. **ALWAYS HALT and WAIT** for user input
 3. If user selects `[C]` → Save state, update frontmatter, load and execute {nextStepIfMissing}
 4. If user selects `[Q]` → Confirm exit, save session state, terminate workflow gracefully
 5. **Do NOT auto-proceed** - this is an interactive menu requiring user choice

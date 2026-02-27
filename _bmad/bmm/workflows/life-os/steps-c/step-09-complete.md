@@ -1,6 +1,7 @@
 ---
 name: 'step-09-complete'
 description: 'Finalize the create flow and confirm completion'
+nextStepFile: null
 ---
 
 # Step 9: Complete
@@ -61,6 +62,48 @@ npx claude-flow@v3alpha memory store \
 ```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## 💾 Save Project Completion Learnings to Memory
+
+```bash
+# After workflow completes, store comprehensive learnings
+npx claude-flow@v3alpha memory store \
+  --namespace "shared-knowledge" \
+  --key "life-os:completion:learnings:{IDEA_ID}" \
+  --content "{\"idea_id\":\"${IDEA_ID}\",\"domain\":\"${domain}\",\"track\":\"${track}\",\"outcome\":\"${outcome}\",\"duration_actual\":${duration_minutes},\"duration_estimated\":${estimated_minutes},\"variance\":${variance_percentage},\"key_learnings\":${learnings_array},\"challenges\":${challenges_array},\"success_factors\":${success_factors_array},\"would_repeat\":${would_use_again},\"rating\":${overall_rating},\"timestamp\":\"${timestamp}\"}" \
+  --tags "life-os,completion,learnings,${domain}"
+
+# Store track effectiveness for future recommendations
+npx claude-flow@v3alpha memory store \
+  --namespace "shared-knowledge" \
+  --key "life-os:calibration:track-effectiveness:{track}" \
+  --content "{\"track\":\"${track}\",\"completion_rate\":${completion_rate},\"avg_rating\":${avg_rating},\"avg_duration\":${avg_duration_minutes},\"sample_size\":${count},\"timestamp\":\"${timestamp}\"}" \
+  --tags "life-os,calibration,track"
+
+# If archived, store archive metadata
+if [ "$ARCHIVED" = "true" ]; then
+  npx claude-flow@v3alpha memory store \
+    --namespace "shared-knowledge" \
+    --key "life-os:archive:metadata:{IDEA_ID}" \
+    --content "{\"idea_id\":\"${IDEA_ID}\",\"archive_path\":\"${archive_path}\",\"status\":\"${status}\",\"quarter\":\"${quarter}\",\"pattern_mining_eligible\":true,\"timestamp\":\"${timestamp}\"}" \
+    --tags "life-os,archive,${status}"
+fi
+```
+
+**Pattern Learning:**
+- Track recommendation accuracy (which tracks produce best outcomes)
+- Duration estimation calibration (improve time estimates)
+- Success factor patterns (what predicts completion)
+- Domain-specific learnings (patterns per domain)
+- Archive mining (historical pattern analysis)
+
+**Cross-Project Benefits:**
+- New ideas benefit from similar past learnings
+- Track detection improves with completion data
+- Duration estimates become more accurate
+- Success patterns inform recommendations
 
 ---
 

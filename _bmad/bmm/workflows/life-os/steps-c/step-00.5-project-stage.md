@@ -116,30 +116,70 @@ Let's determine where you are right now.
 
 ### Step-Specific Subprocess Optimization Rules
 
-- 🎯 Load projectStageExamples in subprocess when user needs help (Pattern 3)
+- 🎯 Load projectStageExamples in subprocess when user needs help (Pattern 3: JIT Example Loading)
 - 💬 Return ONLY matching stage example (A-F), not entire file
 - ⚙️ TOOL/SUBPROCESS FALLBACK: If subprocess unavailable, achieve outcome in main context thread
 
-### Project Stage Examples (JIT Loading)
+### Optimization Pattern 3: JIT Example Loading (Just-In-Time)
 
-**If user uncertain about stage classification:**
+**Current State (Inefficient):**
+- Loads full examples file (~1,500 lines)
+- Contains all 6 stages + 10+ example scenarios
+- Context bloated when user only needs 1-2 examples
+- Load time: ~2-3 seconds
 
-**Launch a subprocess that:**
-1. Loads data/project-stage-examples.md
-2. Finds stage example matching user's description (A-F)
-3. Returns ONLY matching example + completion % calculation
-4. Parent presents example to user
+**Optimized State (Efficient):**
+- Loads ONLY matching stage example (~150 lines)
+- Context reduction: 90% fewer lines
+- Load time: <500ms
+- User gets faster, focused answer
 
-**Subprocess returns:** 150 lines (one example) instead of 1,500 lines (all examples)
+### Project Stage Examples (JIT Loading - Subprocess Implementation)
 
-**Expected format from subprocess:**
-```markdown
+**When user uncertain about stage classification:**
+
+**Subprocess workflow:**
+1. User provides stage description or answers clarifying questions
+2. Subprocess spawned with task: "Find matching stage example"
+3. Subprocess loads `data/foundation-examples/project-stage-examples.md`
+4. Subprocess searches for matching stage (A-F) based on user description
+5. Subprocess extracts ONLY matching stage section (lines X-Y)
+6. Subprocess returns formatted response to parent
+7. Parent (main context) presents example to user for confirmation
+
+**Subprocess task instruction:**
+```
+Task: Match user project description to stage and extract example
+Input: User's stage description or responses to clarifying questions
+Process:
+1. Load data/foundation-examples/project-stage-examples.md
+2. Match against stages:
+   - Stage A: "Idea only, no code" → match keywords: "just thinking", "no code", "early", "concept"
+   - Stage B: "Prototype/POC" → match keywords: "prototype", "proof of concept", "working locally", "beta"
+   - Stage C: "MVP in development" → match keywords: "partial", "in progress", "incomplete", "building"
+   - Stage D: "MVP launched" → match keywords: "launched", "users", "feedback", "live"
+   - Stage E: "Production/scaling" → match keywords: "paying", "customers", "growing", "production"
+   - Stage F: "Mature product" → match keywords: "mature", "optimization", "evolution", "optimization focus"
+3. Extract matching stage section (approximately 150 lines including description + examples)
+4. Format as returned example (see below)
+5. Return ONLY the matching stage, not full file
+
+Return format:
+---
 ## Stage {A-F}: {Stage Name}
 
-{Stage description}
+{Stage description from examples file}
+
+**Characteristics:**
+{Key characteristics}
 
 **Example Scenario:**
-{Matching example}
+{One concrete example matching user's description}
+
+**Timeline Impact:**
+- Greenfield estimate: {X} weeks
+- Adjusted timeline: {Y} weeks ({Z}% of greenfield)
+- Time saved: {W} weeks
 
 **Completion Calculation:**
 - Technical: {X}%
@@ -147,11 +187,38 @@ Let's determine where you are right now.
 - Market: {Z}%
 - Operations: {W}%
 - **Overall: {AVERAGE}%**
-
-**Timeline Impact:** {100-AVERAGE}% of greenfield estimate
+---
 ```
 
-**Graceful fallback:** If subprocess unavailable, load full examples file in main context.
+**Expected savings:**
+- Lines reduced: 1,500 → 150 (90% reduction)
+- Context window saved: ~2,250 tokens
+- Load time: ~2.5 seconds → <500ms
+
+**Graceful fallback:**
+```
+If subprocess unavailable or fails:
+1. Load full examples file in main context
+2. Display entire Stage Lifecycle Descriptions section
+3. User manually finds matching example
+4. Continue with assessment
+
+This maintains functionality even if subprocess tools aren't available.
+```
+
+**Subprocess unavailability handling:**
+```markdown
+⚙️ If subprocess tools aren't available:
+
+Instead, I'll load the full examples file and help you:
+1. Scan through stage descriptions together
+2. Identify which stage matches your situation
+3. Review the specific example for that stage
+4. Calculate your completion percentage
+
+Takes slightly longer (main context instead of subprocess),
+but achieves the same outcome with the same accuracy.
+```
 
 ### 3. Calculate Completion Percentage
 

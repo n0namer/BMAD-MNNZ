@@ -37,7 +37,7 @@ Classify project, assess portfolio health, define integration approach, and docu
 
 **MCP/Search:** If unclear, use MCP search → consilium ranks 2-4 options → user chooses
 
-**Data Ops:** Load only relevant parts from {strategicBucketsRef}, {portfolioHealthRef}, {integrationPatternsRef}, {workflowMappingRef}, {timelineRef}, {wipRef}. Use subprocess if available, otherwise manual.
+**Data Ops:** Load only relevant parts from {strategicBucketsRef}, {portfolioHealthRef}, {integrationPatternsRef}, {workflowMappingRef}, {timelineRef}, {wipRef}. Use subprocess if available, otherwise manual. Explicitly validate that active projects stay within the IDEAL capacity limit (max 2–3 simultaneously active), tie the integration plan back to the goals cascade (1/3/5/10-year intent), and flag any deviations so subsequent reviews can correct course.
 
 **Outputs:** Append to {workflowPlanFile} | Record in {decisionsLog} | Use {portfolioTemplatesRef}, {portfolioAlignmentRef}, {portfolioWipRef} for JIT guidance
 

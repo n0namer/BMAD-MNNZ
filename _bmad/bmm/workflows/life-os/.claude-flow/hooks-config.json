@@ -1,0 +1,57 @@
+{
+  "hooks": {
+    "post-task": {
+      "enabled": true,
+      "triggers": [
+        {
+          "pattern": "L1-S3",
+          "description": "DFVC evaluation complete - transition inbox to evaluated",
+          "action": "transition-inbox-evaluated",
+          "params": {
+            "source_folder": "inbox",
+            "target_folder": "evaluated"
+          }
+        },
+        {
+          "pattern": "L2-S1",
+          "description": "Detailed analysis complete - transition evaluated to planned",
+          "action": "transition-evaluated-planned",
+          "params": {
+            "source_folder": "evaluated",
+            "target_folder": "planned"
+          }
+        },
+        {
+          "pattern": "L2-S3.*GO",
+          "description": "Go-decision with capacity check - transition planned to active",
+          "action": "transition-planned-active",
+          "params": {
+            "source_folder": "planned",
+            "target_folder": "active",
+            "check_capacity": true,
+            "max_capacity": 5
+          }
+        }
+      ]
+    }
+  },
+  "memory": {
+    "namespace": "life-os-transitions",
+    "ttl_days": 365,
+    "log_all_transitions": true
+  },
+  "validation": {
+    "verify_file_exists": true,
+    "verify_folder_writable": true,
+    "rollback_on_error": true
+  },
+  "script_paths": {
+    "transition_manager": "scripts/transition-manager.ps1"
+  },
+  "notifications": {
+    "enabled": false,
+    "capacity_warning": true,
+    "transition_success": false,
+    "transition_failure": true
+  }
+}
