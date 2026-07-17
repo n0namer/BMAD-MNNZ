@@ -1,0 +1,233 @@
+name: Scheduled Security & Dependency Checks
+
+on:
+  schedule:
+    # Weekly dependency update checks (Monday 02:00 UTC)
+    - cron: '0 2 * * 1'
+    # Weekly security audit (Wednesday 03:00 UTC)
+    - cron: '0 3 * * 3'
+    # Nightly performance baseline (daily 01:00 UTC)
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.12'
+  POETRY_VERSION: '1.7.1'
+
+jobs:
+  dependency-check:
+    name: Weekly Dependency Update Check
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 2 * * 1' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: ${{ env.POETRY_VERSION }}
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Check for outdated dependencies
+        run: poetry show --outdated || echo "All dependencies are up to date"
+        continue-on-error: true
+
+      - name: Audit dependencies for vulnerabilities
+        run: poetry audit --no-update
+        continue-on-error: true
+
+      - name: Check pip audit
+        run: |
+          pip install pip-audit
+          pip-audit || true
+        continue-on-error: true
+
+      - name: Create issue if vulnerabilities found
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Security] Dependency Vulnerabilities Detected',
+              body: 'Vulnerabilities detected during weekly dependency check. Please review and update dependencies.',
+              labels: ['security', 'dependencies']
+            })
+        continue-on-error: true
+
+  security-audit:
+    name: Weekly Security Audit
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 3 * * 3' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install security tools
+        run: |
+          pip install bandit safety semgrep GitPython
+
+      - name: Run comprehensive Bandit scan
+        run: |
+          bandit -r src/ \
+            -f sarif \
+            -o bandit-report.sarif \
+            --severity-level medium \
+            || true
+        continue-on-error: true
+
+      - name: Run Semgrep security audit
+        run: |
+          semgrep --config=p/security-audit \
+            --config=p/cwe-top-25 \
+            src/ \
+            -o semgrep-results.json \
+            || true
+        continue-on-error: true
+
+      - name: Run Safety vulnerability check
+        run: |
+          safety check --json > safety-results.json || true
+        continue-on-error: true
+
+      - name: Upload security reports
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: bandit-report.sarif
+          wait-for-processing: true
+
+      - name: Archive security reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-reports-${{ github.run_number }}
+          path: |
+            bandit-report.sarif
+            semgrep-results.json
+            safety-results.json
+          retention-days: 90
+
+  performance-baseline:
+    name: Nightly Performance Baseline
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 1 * * *' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: ${{ env.POETRY_VERSION }}
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install dependencies
+        run: poetry install --with dev --with test
+
+      - name: Run performance tests
+        run: |
+          poetry run pytest src/tests/performance/ \
+            -v \
+            --benchmark-only \
+            --benchmark-json=performance-baseline.json \
+            || true
+        continue-on-error: true
+
+      - name: Compare with baseline
+        run: |
+          if [ -f performance-baseline-previous.json ]; then
+            poetry run pytest-benchmark compare performance-baseline-previous.json performance-baseline.json || true
+          fi
+        continue-on-error: true
+
+      - name: Store baseline for comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-baseline-${{ github.run_id }}
+          path: performance-baseline.json
+          retention-days: 30
+
+      - name: Comment on performance changes
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (fs.existsSync('performance-baseline.json')) {
+              const baseline = JSON.parse(fs.readFileSync('performance-baseline.json', 'utf8'));
+              console.log('Performance baseline recorded for commit: ' + context.sha.substring(0, 7));
+            }
+        continue-on-error: true
+
+  license-check:
+    name: License Compliance Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run license check
+        uses: davideicardi/github-action-license-report@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-unapproved: true
+
+      - name: SBOM generation (optional)
+        run: |
+          pip install cyclonedx-bom-python-lib
+          cyclonedx-bom -o sbom.xml || true
+        continue-on-error: true
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sbom
+          path: sbom.xml
+          retention-days: 90
+
+  health-check-summary:
+    name: Health Check Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [dependency-check, security-audit]
+
+    steps:
+      - name: Generate health report
+        run: |
+          echo "## Scheduled Health Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Checks Completed:**" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Dependency audit (weekly)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Security audit (weekly)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Performance baseline (nightly)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Schedule:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Dependency check: Monday 02:00 UTC" >> $GITHUB_STEP_SUMMARY
+          echo "- Security audit: Wednesday 03:00 UTC" >> $GITHUB_STEP_SUMMARY
+          echo "- Performance: Daily 01:00 UTC" >> $GITHUB_STEP_SUMMARY

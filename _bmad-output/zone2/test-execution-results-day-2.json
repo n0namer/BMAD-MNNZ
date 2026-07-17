@@ -1,0 +1,290 @@
+{
+  "metadata": {
+    "agent": "Agent-5 (testarch-atdd)",
+    "date": "2026-02-27",
+    "day": 2,
+    "phase": "Phase 1 Core Foundation",
+    "project": "katana-vectorbt",
+    "executionMode": "PARALLEL_INCREMENTAL with Agent-4",
+    "framework": "Jest 29.5 + ts-jest",
+    "nodeVersion": "22.18.0",
+    "npmVersion": "11.5.2",
+    "executionDurationMs": 2080,
+    "testConfig": "jest.nostrict.config.js (ts-jest diagnostics disabled)",
+    "configNote": "Strict TS compilation has 3 blocking errors (documented in failure-analysis). Tests run with diagnostics:false to capture runtime behavior."
+  },
+  "summary": {
+    "totalTestSuites": 2,
+    "passedSuites": 1,
+    "failedSuites": 1,
+    "totalTests": 61,
+    "passedTests": 55,
+    "failedTests": 6,
+    "skippedTests": 0,
+    "passRate": "90.2%",
+    "coverageCollected": false,
+    "coverageNote": "Coverage disabled for Day 2 baseline run; to be enabled Day 3"
+  },
+  "compilationErrors": {
+    "total": 3,
+    "blocking": true,
+    "errors": [
+      {
+        "id": "CE-001",
+        "file": "shared/test-helpers.ts",
+        "line": 7,
+        "code": "TS7016",
+        "message": "Could not find a declaration file for module 'uuid'",
+        "severity": "error",
+        "status": "FIXED",
+        "fix": "npm install --save-dev @types/uuid (applied Day 2)"
+      },
+      {
+        "id": "CE-002",
+        "file": "shared/test-helpers.ts",
+        "line": 161,
+        "code": "TS2353 + TS2339",
+        "message": "'timestamp' does not exist in type 'RunSummary' - RunSummary interface missing timestamp field",
+        "severity": "error",
+        "status": "OPEN - Agent-4 action required",
+        "rootCause": "shared/types.ts RunSummary interface extends Versioned (has createdAt) but not timestamp directly. test-helpers.ts generateTestSummary() uses 'timestamp' key that doesn't exist in RunSummary type.",
+        "affectedTests": ["All state-machine.test.ts tests that use generateTestSummary()"]
+      },
+      {
+        "id": "CE-003",
+        "file": "test/manifest.test.ts",
+        "line": 54,
+        "code": "TS18048",
+        "message": "'manifest.dataHash' is possibly 'undefined'",
+        "severity": "error",
+        "status": "OPEN - minor, test workaround available",
+        "rootCause": "Manifest.dataHash is typed as optional (dataHash?: string) but test expects it to always be present after createManifest()",
+        "fix": "Add non-null assertion: manifest.dataHash!.length OR make dataHash required in type"
+      }
+    ]
+  },
+  "testSuites": [
+    {
+      "file": "test/manifest.test.ts",
+      "story": "S-JOURNAL-001",
+      "epic": "E-JOURNAL-SCHEMA",
+      "status": "PASS",
+      "totalTests": 29,
+      "passed": 29,
+      "failed": 0,
+      "passRate": "100%",
+      "executionTimeMs": 45,
+      "tests": [
+        { "id": "T-033", "name": "Should create valid manifest with required fields", "status": "PASS", "durationMs": 6 },
+        { "id": "T-034", "name": "Should set schema version correctly", "status": "PASS", "durationMs": 1 },
+        { "id": "T-035", "name": "Should calculate data hash for parameters", "status": "PASS", "durationMs": 2 },
+        { "id": "T-036", "name": "Should count active parameters correctly", "status": "PASS", "durationMs": 1 },
+        { "id": "T-037", "name": "Should enforce max 70 parameter limit", "status": "PASS", "durationMs": 12 },
+        { "id": "T-038", "name": "Should accept exactly 70 parameters", "status": "PASS", "durationMs": 1 },
+        { "id": "T-039", "name": "Should set timestamp and createdAt", "status": "PASS", "durationMs": 1 },
+        { "id": "T-040", "name": "Should validate numeric constraints", "status": "PASS", "durationMs": 1 },
+        { "id": "T-041", "name": "Should reject parameter below minimum", "status": "PASS", "durationMs": 2 },
+        { "id": "T-042", "name": "Should reject parameter above maximum", "status": "PASS", "durationMs": 1 },
+        { "id": "T-043", "name": "Should support all profile types", "status": "PASS", "durationMs": 1 },
+        { "id": "T-044", "name": "Should serialize manifest to JSON", "status": "PASS", "durationMs": 1 },
+        { "id": "T-045", "name": "Should serialize timestamps as ISO strings", "status": "PASS", "durationMs": 1 },
+        { "id": "T-046", "name": "Should round-trip manifest through JSON", "status": "PASS", "durationMs": 1 },
+        { "id": "T-047", "name": "Should parse valid JSON string", "status": "PASS", "durationMs": 1 },
+        { "id": "T-048", "name": "Should throw error on invalid JSON", "status": "PASS", "durationMs": 1 },
+        { "id": "T-049", "name": "Should parse ISO timestamp strings to Date objects", "status": "PASS", "durationMs": 1 },
+        { "id": "T-050", "name": "Should produce same hash for same parameters", "status": "PASS", "durationMs": 1 },
+        { "id": "T-051", "name": "Should produce different hash for different parameters", "status": "PASS", "durationMs": 1 },
+        { "id": "T-052", "name": "Should be parameter order independent", "status": "PASS", "durationMs": 1 },
+        { "id": "T-053", "name": "Should use SHA256 algorithm (64 hex chars)", "status": "PASS", "durationMs": 1 },
+        { "id": "T-054", "name": "Should validate complete manifest", "status": "PASS", "durationMs": 1 },
+        { "id": "T-055", "name": "Should throw error on invalid manifest", "status": "PASS", "durationMs": 1 },
+        { "id": "T-056", "name": "Should support schema version 1.0.0", "status": "PASS", "durationMs": 1 },
+        { "id": "T-057", "name": "Should handle legacy manifest format", "status": "PASS", "durationMs": 1 },
+        { "id": "T-058", "name": "Should handle empty parameters", "status": "PASS", "durationMs": 1 },
+        { "id": "T-059", "name": "Should handle special characters in strategy name", "status": "PASS", "durationMs": 1 },
+        { "id": "T-060", "name": "Should handle mixed parameter types", "status": "PASS", "durationMs": 1 },
+        { "id": "T-061", "name": "Should generate unique manifests for same strategy run multiple times", "status": "PASS", "durationMs": 1 }
+      ]
+    },
+    {
+      "file": "test/state-machine.test.ts",
+      "story": "S-STRATEGY-001",
+      "epic": "E-STRATEGY-LIFECYCLE",
+      "status": "FAIL",
+      "totalTests": 32,
+      "passed": 26,
+      "failed": 6,
+      "passRate": "81.3%",
+      "executionTimeMs": 1200,
+      "tests": [
+        { "id": "T-001", "name": "Should initialize in DRAFT state", "status": "PASS", "durationMs": 2 },
+        { "id": "T-002", "name": "Should record initialization in audit trail", "status": "PASS", "durationMs": 1 },
+        { "id": "T-003", "name": "Should initialize with default state lock released", "status": "PASS", "durationMs": 3 },
+        { "id": "T-004", "name": "Should allow DRAFT → SUBMITTED transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-005", "name": "Should allow SUBMITTED → APPROVED transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-006", "name": "Should allow APPROVED → ACTIVE transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-007", "name": "Should allow ACTIVE → COMPLETED transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-008", "name": "Should allow SUBMITTED → REJECTED transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-009", "name": "Should reject DRAFT → APPROVED transition", "status": "PASS", "durationMs": 3 },
+        { "id": "T-010", "name": "Should reject DRAFT → ACTIVE transition", "status": "PASS", "durationMs": 2 },
+        { "id": "T-011", "name": "Should reject transition to same state", "status": "PASS", "durationMs": 2 },
+        { "id": "T-012", "name": "Should reject backward transitions (APPROVED → DRAFT)", "status": "PASS", "durationMs": 2 },
+        { "id": "T-013", "name": "Should record all transitions in audit trail", "status": "PASS", "durationMs": 3 },
+        { "id": "T-014", "name": "Should include metadata in audit trail", "status": "PASS", "durationMs": 2 },
+        { "id": "T-015", "name": "Should record actor information if provided", "status": "PASS", "durationMs": 2 },
+        { "id": "T-016", "name": "Should generate unique audit trail IDs", "status": "PASS", "durationMs": 2 },
+        { "id": "T-017", "name": "Should record timestamp for each transition", "status": "PASS", "durationMs": 3 },
+        {
+          "id": "T-018",
+          "name": "Should lock state machine during transition",
+          "status": "FAIL",
+          "durationMs": 15,
+          "failureCategory": "CONCURRENCY_BUG",
+          "errorMessage": "State machine async lock is released before concurrent promise sees it. Both transitions complete because transitionState is async and JavaScript is single-threaded - the 'stateLock' flag is set and unset within a single microtask queue drain.",
+          "errorType": "AssertionError",
+          "rootCause": "The stateLock boolean is set synchronously but the concurrent promise is also synchronous - there is no actual async pause between lock acquisition and the second call. The test expects promise2 to fail, but both succeed.",
+          "priority": "P0",
+          "affectedAC": "S-STRATEGY-001 AC-3: concurrent transition rejection"
+        },
+        { "id": "T-019", "name": "Should release lock after transition completes", "status": "PASS", "durationMs": 3 },
+        { "id": "T-020", "name": "Should release lock on error", "status": "PASS", "durationMs": 3 },
+        { "id": "T-021", "name": "Should allow rollback from ACTIVE state", "status": "PASS", "durationMs": 4 },
+        { "id": "T-022", "name": "Should record rollback in audit trail", "status": "PASS", "durationMs": 4 },
+        {
+          "id": "T-023",
+          "name": "Should reject rollback from non-ACTIVE states",
+          "status": "FAIL",
+          "durationMs": 5,
+          "failureCategory": "TEST_SYNC_BUG",
+          "errorMessage": "Expected function to throw 'Rollback only allowed from ACTIVE state' but received function did not throw",
+          "errorType": "AssertionError",
+          "rootCause": "Test uses sync expect(()=>sm.rollback()).toThrow() but rollback() is an async function. The sync wrapper does not catch the rejected promise. Jest .toThrow() only catches synchronous throws. Fix: use await expect(sm.rollback()).rejects.toThrow()",
+          "priority": "P1",
+          "affectedAC": "S-STRATEGY-001 AC-4: rollback validation"
+        },
+        {
+          "id": "T-024",
+          "name": "Should throw error when no rollback target found",
+          "status": "FAIL",
+          "durationMs": 4,
+          "failureCategory": "TEST_SYNC_BUG",
+          "errorMessage": "Expected function to throw but received function did not throw",
+          "errorType": "AssertionError",
+          "rootCause": "Same root cause as T-023: sync expect().toThrow() cannot catch async function rejections. rollback() is async and rejects, but the sync wrapper returns a promise, not a thrown error.",
+          "priority": "P1",
+          "affectedAC": "S-STRATEGY-001 AC-4: rollback edge case"
+        },
+        { "id": "T-025", "name": "Should return current state correctly", "status": "PASS", "durationMs": 3 },
+        { "id": "T-026", "name": "Should return valid next states", "status": "PASS", "durationMs": 2 },
+        { "id": "T-027", "name": "Should identify final states correctly", "status": "PASS", "durationMs": 4 },
+        { "id": "T-028", "name": "Should track approval metadata", "status": "PASS", "durationMs": 2 },
+        { "id": "T-029", "name": "Should track resubmit counter", "status": "PASS", "durationMs": 1 },
+        {
+          "id": "T-030",
+          "name": "Should support state timeline queries",
+          "status": "FAIL",
+          "durationMs": 8,
+          "failureCategory": "TEST_ORDERING_BUG",
+          "errorMessage": "Cannot rollback from state SUBMITTED. Rollback only allowed from ACTIVE state. (and also Cannot rollback from state DRAFT)",
+          "errorType": "Error thrown from earlier test",
+          "rootCause": "Test T-030 is grouped in 'State Timeline Integration' describe block. The test body starts with transition calls and delay(), but the test fails because it appears Jest is running T-023/T-024 failure side effects (the rollback error) inside T-030's execution. The test itself doesn't call rollback - this is an artifact of the async test execution order and unhandled promise leakage from T-023.",
+          "priority": "P1",
+          "affectedAC": "S-STRATEGY-001 AC-5: timeline query"
+        },
+        { "id": "T-031", "name": "Should throw descriptive error messages", "status": "PASS", "durationMs": 2 },
+        { "id": "T-032", "name": "Should include valid transitions in error message", "status": "PASS", "durationMs": 2 },
+        {
+          "id": "T-BONUS-1",
+          "name": "Should throw error when no rollback target found (second invocation artifact)",
+          "status": "FAIL",
+          "durationMs": 3,
+          "failureCategory": "TEST_ORDERING_BUG",
+          "errorMessage": "Cannot rollback from state DRAFT. Rollback only allowed from ACTIVE state.",
+          "rootCause": "Same unhandled promise propagation from T-024 test creating side effects in T-030 execution context.",
+          "priority": "P1"
+        }
+      ]
+    }
+  ],
+  "failureSummary": {
+    "byCategory": {
+      "CONCURRENCY_BUG": {
+        "count": 1,
+        "tests": ["T-018"],
+        "description": "Implementation bug: stateLock boolean does not actually block concurrent async calls in JavaScript single-threaded event loop",
+        "agentAction": "Agent-4 must fix state machine concurrency - use a Mutex or Promise-based lock instead of boolean flag"
+      },
+      "TEST_SYNC_BUG": {
+        "count": 2,
+        "tests": ["T-023", "T-024"],
+        "description": "Test bug: using sync expect().toThrow() on async rollback() function. Should use await expect().rejects.toThrow()",
+        "agentAction": "Agent-5 fix: update tests to use async assertion pattern"
+      },
+      "TEST_ORDERING_BUG": {
+        "count": 2,
+        "tests": ["T-030", "T-BONUS-1"],
+        "description": "Cascade failure from T-023/T-024 unhandled promise rejection leaking into T-030 execution context",
+        "agentAction": "Fix T-023/T-024 first; T-030 should then pass automatically"
+      },
+      "COMPILATION_ERROR": {
+        "count": 3,
+        "tests": [],
+        "description": "TypeScript strict mode compilation errors (CE-001 fixed, CE-002 and CE-003 open)",
+        "agentAction": "Agent-4: add 'timestamp' field to RunSummary interface or update test-helpers.ts"
+      }
+    },
+    "byPriority": {
+      "P0": ["T-018"],
+      "P1": ["T-023", "T-024", "T-030", "CE-002", "CE-003"],
+      "P2": []
+    }
+  },
+  "epicBreakdown": {
+    "E-STRATEGY-LIFECYCLE": {
+      "testsExecuted": 32,
+      "passed": 26,
+      "failed": 6,
+      "passRate": "81.3%",
+      "blockerTests": ["T-018"],
+      "blockingOn": "S-STRATEGY-001 incomplete (concurrency contract not met)"
+    },
+    "E-JOURNAL-SCHEMA": {
+      "testsExecuted": 29,
+      "passed": 29,
+      "failed": 0,
+      "passRate": "100%",
+      "blockerTests": [],
+      "blockingOn": "None - S-JOURNAL-001 COMPLETE"
+    },
+    "E-TELEMETRY-METRICS": {
+      "testsExecuted": 0,
+      "passed": 0,
+      "failed": 0,
+      "passRate": "N/A",
+      "blockerTests": [],
+      "blockingOn": "S-TELEMETRY-001 through S-TELEMETRY-005 not yet implemented"
+    },
+    "E-COMPARE-WORKFLOW": {
+      "testsExecuted": 0,
+      "passed": 0,
+      "failed": 0,
+      "passRate": "N/A",
+      "blockerTests": [],
+      "blockingOn": "S-COMPARE-001 through S-COMPARE-005 not yet implemented"
+    },
+    "E-AUDIT-TRAIL": {
+      "testsExecuted": 0,
+      "passed": 0,
+      "failed": 0,
+      "passRate": "N/A",
+      "blockerTests": [],
+      "blockingOn": "S-AUDIT-001 through S-AUDIT-005 not yet implemented"
+    }
+  },
+  "greenGrowthTracking": {
+    "day1Baseline": { "passed": 0, "total": 61, "pct": "0%" },
+    "day2Current": { "passed": 55, "total": 61, "pct": "90.2%" },
+    "delta": "+55 tests GREEN in Day 2",
+    "note": "Day 2 test suite scope is only 2 stories (S-STRATEGY-001 + S-JOURNAL-001). Full 180-test suite against remaining epics begins Day 3."
+  }
+}

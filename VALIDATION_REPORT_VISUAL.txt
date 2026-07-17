@@ -1,0 +1,173 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║           WORKFLOW VALIDATION REPORT - idea-to-post-pipeline               ║
+║                                                                            ║
+║                     Analyzed 106 workflow steps                            ║
+║                         Status: CRITICAL                                   ║
+║                    Validation Score: 87/100                                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CRITICAL FINDINGS (1)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ❌ CRIT-001: BROKEN RETURN PATH IN YOLO MODE
+
+     File: mode-yolo/step-yolo-06-summary.md (line 5)
+     Issue: Invalid path reference
+
+     Current:  nextStepFile: ./step-00-menu.md (WRONG)
+     Expected: nextStepFile: ../../step-00-menu.md (CORRECT)
+
+     Impact:   BLOCKS_WORKFLOW
+              User completes YOLO automation, cannot return to main menu
+              Workflow is trapped in mode-yolo directory
+
+     Fix Time: 1 minute
+     Risk:     NONE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ WARNINGS (7) - ALL INTENTIONAL DESIGN PATTERNS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  WARN-001: CREATE Mode Hub Loop (ACCEPTABLE)
+     Pattern: add-idea → menu → add-idea
+
+  WARN-002: EDIT Mode Main Loop (ACCEPTABLE)
+     Pattern: e-01a → e-01b → e-01c → menu → e-01a
+
+  WARN-003 through WARN-007: Additional Loop Variants (ACCEPTABLE)
+     Status: All intentional menu hub patterns
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ VALIDATION CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  [X] 1. Every nextStepFile reference exists?
+      Status: FAIL (1 violation in YOLO mode)
+
+  [OK] 2. All routing logic complete?
+      Status: PASS (All 5 menu steps have proper options)
+
+  [OK] 3. No dead-end steps?
+      Status: PASS (All 106 steps are reachable)
+
+  [OK] 4. Loops close to menu?
+      Status: PASS (All 7 circular patterns close at hubs)
+
+  [X] 5. No circular references?
+      Status: FAIL_INTENTIONAL (7 hub-loops are correct design)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ WORKFLOW STRUCTURE HEALTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Total Files:            106
+  Files with Routing:     103 (97.2%)
+  Files without Routing:  3 (terminal steps)
+  Orphaned Files:         0
+  Dead-End Steps:         0
+
+  WORKFLOW ARCHITECTURE
+  =====================
+
+  Root Level
+  ├── step-00-menu.md (MAIN ENTRY POINT)
+  ├── step-01-init.md
+  └── step-01b-continue.md
+
+  ├─ CREATE MODE (23 files, 8 sub-workflows) ........... OK
+  │  Hub-based design with 8 operational sub-workflows
+  │  Status: HEALTHY
+  │
+  ├─ EDIT MODE (27 files, 8 sub-workflows) ............ OK
+  │  Hub-based design with 8 operational sub-workflows
+  │  Status: HEALTHY
+  │
+  ├─ VALIDATE MODE (25 files, 8 sub-workflows) ....... OK
+  │  Hub-based design with 8 operational sub-workflows
+  │  Status: HEALTHY
+  │
+  └─ YOLO MODE (6 files, LINEAR pipeline) ........... BROKEN
+     Final step cannot return to main menu
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CRITICAL PATHS STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Path 1: CREATE WORKFLOW
+          step-00-menu → mode-c/mode-c-00-menu → [8 sub-workflows]
+          Status: OK HEALTHY
+
+  Path 2: EDIT WORKFLOW
+          step-00-menu → mode-e/mode-e-00-menu → [8 sub-workflows]
+          Status: OK HEALTHY
+
+  Path 3: VALIDATE WORKFLOW
+          step-00-menu → mode-v/mode-v-00-menu → [8 sub-workflows]
+          Status: OK HEALTHY
+
+  Path 4: YOLO WORKFLOW
+          step-00-menu → mode-yolo/step-yolo-01 → [6-step pipeline]
+          Status: BROKEN AT FINAL STEP
+          Break Point: mode-yolo/step-yolo-06-summary.md
+          Issue: Cannot route back to step-00-menu
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ RECOMMENDED FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Priority: CRITICAL
+  Action:   Fix YOLO return path
+  File:     mode-yolo/step-yolo-06-summary.md
+  Line:     5
+
+  Change:
+  ───────────────────────────────────────────────────────────────
+  - nextStepFile: ./step-00-menu.md
+  + nextStepFile: ../../step-00-menu.md
+  ───────────────────────────────────────────────────────────────
+
+  Effort:   1 minute
+  Risk:     NONE
+  Impact:   Restores YOLO workflow functionality
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Validation Score:        87/100
+  After Fix Score:         100/100
+  Critical Issues:         1
+  Warnings (Intentional):  7
+  Total Files Analyzed:    106
+  Routing Coverage:        97.2%
+  Workflow Complexity:     HIGH (4 modes, 106 files)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CONCLUSION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Overall Status: CRITICAL (1 breaking issue)
+
+  The workflow structure is sound and well-designed. All "warnings" about
+  circular loops are INTENTIONAL and CORRECT - they represent the hub-based
+  design pattern where menu steps act as central routing hubs.
+
+  However, there is ONE CRITICAL ISSUE:
+
+    The YOLO automation mode's final step cannot return to the main menu
+    due to an incorrect relative path reference.
+
+  ACTION REQUIRED:
+
+    Fix the path reference in mode-yolo/step-yolo-06-summary.md
+    (change line 5 from ./step-00-menu.md to ../../step-00-menu.md)
+
+  After this 1-minute fix, the workflow will achieve 100/100 validation score
+  and full operational status.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Report Generated: 2026-01-28
+Workflow: idea-to-post-pipeline (106 files)
+Analysis: Complete Structural & Routing Validation

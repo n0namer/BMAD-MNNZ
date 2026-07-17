@@ -1,0 +1,54 @@
+{
+  "poolStatus": {
+    "maxWorkers": 8,
+    "topology": "hierarchical",
+    "strategy": "specialized",
+    "workers": {
+      "coordinator": {"role": "hierarchical-coordinator", "status": "PENDING_SPAWN"},
+      "validator-1": {"role": "qa-validator", "status": "PENDING_SPAWN"},
+      "validator-2": {"role": "qa-validator", "status": "PENDING_SPAWN"},
+      "validator-3": {"role": "qa-validator", "status": "PENDING_SPAWN"},
+      "validator-4": {"role": "qa-validator", "status": "PENDING_SPAWN"},
+      "readiness-checker": {"role": "architecture-reviewer", "status": "PENDING_SPAWN"},
+      "tester": {"role": "test-architect", "status": "PENDING_SPAWN"},
+      "documenter": {"role": "tech-writer", "status": "PENDING_SPAWN"}
+    },
+    "phases": [
+      {
+        "phase": 1,
+        "name": "Architecture Step 4",
+        "strategy": "sequential",
+        "status": "PENDING",
+        "agents": ["coordinator"]
+      },
+      {
+        "phase": 2,
+        "name": "Parallel Validators",
+        "strategy": "parallel",
+        "status": "PENDING",
+        "agents": ["validator-1", "validator-2", "validator-3", "validator-4"]
+      },
+      {
+        "phase": 3,
+        "name": "Implementation Readiness",
+        "strategy": "sequential",
+        "status": "PENDING",
+        "agents": ["readiness-checker"]
+      },
+      {
+        "phase": 4,
+        "name": "Test Design + Traceability",
+        "strategy": "parallel",
+        "status": "PENDING",
+        "agents": ["tester", "documenter"]
+      },
+      {
+        "phase": 5,
+        "name": "Cascade Synchronization",
+        "strategy": "sequential",
+        "status": "PENDING",
+        "agents": ["coordinator"]
+      }
+    ]
+  }
+}

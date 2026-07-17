@@ -1,0 +1,252 @@
+================================================================================
+PHASE 2 IMPLEMENTATION PLANNING PACKAGE
+katana-vectorbt v2.0 | 12-Week Roadmap
+Generated: 2026-02-27 | Status: READY FOR EXECUTION
+================================================================================
+
+MAIN DOCUMENTS (In Reading Order):
+==================================
+
+1. README-PHASE2-IMPLEMENTATION.md (8 KB)
+   - START HERE - Navigation guide for all documents
+   - Quick reference (5-15 min read)
+   - Use case scenarios for different roles
+   
+2. PHASE-2-IMPLEMENTATION-EXECUTIVE-SUMMARY.md (15 KB)
+   - For decision makers and stakeholders
+   - 30-second version + detailed summary
+   - Budget ($561K), timeline (12 weeks), risk assessment
+   - Approval decision framework
+   
+3. CODE-TEST-IMPLEMENTATION-PLAN-2026-02-27.md (52 KB) **MAIN PLAN**
+   - Comprehensive technical roadmap
+   - 287 FRs categorized by complexity (Trivial/Easy/Medium/Hard)
+   - 5 BLOCKERs with full specifications
+   - 576 tests mapped by type (unit/integration/system/perf/security)
+   - Week-by-week sprint breakdown (12 weeks)
+   - Critical path analysis
+   - Resource allocation (6.5 FTE)
+   - Complete risk register with mitigations
+   
+4. IMPLEMENTATION-GANTT-CHART-2026-02-27.md (27 KB)
+   - Visual week-by-week Gantt chart
+   - Effort distribution matrices
+   - Resource allocation & utilization
+   - Dependency chain visualization
+   - Weekly capacity planning
+   - Success dashboard metrics
+
+SUPPORTING DOCUMENTS (Reference):
+==================================
+
+Phase 1 Quality Review:
+- CODE-QUALITY-REVIEW-PHASE1-2026-02-27.md
+- Issues to fix before Phase 2 (HIGH-1, HIGH-2, MEDIUM-1,2,3,4)
+
+Phase 1 Execution Status:
+- PHASE-1-EXECUTION-STATUS-2026-02-27.md
+- Context for Phase 2 planning
+
+Phase 1 Validation:
+- PHASE-4-FINAL-VALIDATION-REPORT-20260226.md (in _bmad-output)
+- Traceability mapping (127/127 requirements)
+- BDD test scenarios (160 scenarios)
+
+Architecture & Design (From Phase 1):
+- katana-v-04-architecture-2026-01-19.md
+- BLOCKER specifications for implementation
+- System architecture details
+
+UI/UX Design (From Phase 1):
+- katana-v-03-ux-design-specification-2026-01-19.md
+- 10 wireframes for all workflows
+
+Epics & Stories (From Phase 1):
+- katana-v-05-epics.md
+- 5 epics with 25 stories total
+- Story points and acceptance criteria
+
+BDD Test Scenarios (From Phase 1):
+- test-cases-blocker-1-state-machine.feature (30 scenarios)
+- test-cases-blocker-2-journal-schema.feature (40 scenarios)
+- test-cases-blocker-3-telemetry.feature (30 scenarios)
+- test-cases-blocker-4-compare.feature (25 scenarios)
+- test-cases-blocker-5-audit.feature (35 scenarios)
+- Total: 160 BDD scenarios = ~1,250 test cases
+
+KEY METRICS AT A GLANCE:
+========================
+
+Schedule:   12 weeks (Feb 28 - May 23, 2026)
+Sprints:    4 x 2-week sprints
+Team:       6.5 FTE (Backend 3, QA 1.5, Frontend 1, DevOps 1)
+Budget:     ~$561K
+Effort:     1,560 hours total (960h code + 480h tests + 120h infra)
+
+Scope:      287 FRs across 5 BLOCKERs
+Tests:      576 tests (336 unit + 144 integration + 96 system/perf/security)
+Code:       ~2,000 lines TypeScript new code + integrations
+Modules:    20 new modules + extensions to 5 Phase 1 modules
+
+Risk:       LOW (critical path well-defined, parallel execution)
+Confidence: HIGH (85-90% - based on Phase 1 success)
+
+THE 5 BLOCKERS:
+===============
+
+BLOCKER-1: State Machine (23 FRs, 92 tests, 72-106h)
+  - 8-state lifecycle management
+  - 13 state transitions with validation
+  - Kill-switch mechanism
+  - Approval workflow
+  - Start: Week 1 | Lead: Dev-A
+
+BLOCKER-2: Journal Schema (48 FRs, 168 tests, 158-236h)
+  - Run metadata persistence
+  - Parameter reproducibility
+  - Market snapshot capture
+  - History tracking and versioning
+  - Start: Week 2 | Lead: Dev-B
+
+BLOCKER-3: Telemetry (54 FRs, 100 tests, 152-217h)
+  - Real-time metrics (P&L, Win Rate, Sharpe Ratio)
+  - Time-period aggregation
+  - Dashboard backend queries
+  - Alert rules engine
+  - Start: Week 5 | Lead: Dev-D
+
+BLOCKER-4: Comparison (42 FRs, 60 tests, 174-265h)
+  - Two-run comparison
+  - Multi-run analysis
+  - Delta calculation
+  - HTML export
+  - Start: Week 5 | Lead: Dev-E
+
+BLOCKER-5: Audit Trail (46 FRs, 156 tests, 208-313h)
+  - Append-only event log
+  - Digital signatures
+  - Reproducibility verification
+  - Query and filtering
+  - Start: Week 5 | Lead: Dev-F
+
+DEPENDENCIES:
+==============
+
+Critical Path:
+  Phase 1 Fixes (Day 1-2)
+    ↓
+  BLOCKER-1 (Weeks 1-2)
+    ↓
+  BLOCKER-2 (Weeks 2-4)
+    ↓
+  BLOCKER-3/4/5 (Weeks 5-8, parallel)
+    ↓
+  Testing & Security (Weeks 7-8)
+    ↓
+  Deployment (Week 9)
+
+Parallel Work (No dependency):
+  - Frontend UI (Weeks 2-8)
+  - Testing (Weeks 2-8, following code completion)
+  - Database infrastructure (Week 1)
+
+APPROVAL CHECKLIST:
+===================
+
+Before starting Phase 2 (Monday, Feb 28):
+
+DECISION MAKERS:
+  [ ] Budget approved (~$561K)
+  [ ] Timeline approved (12 weeks)
+  [ ] Risk assessment reviewed (5 identified + mitigations)
+  [ ] Go-live date confirmed (Week 9)
+
+TECHNICAL LEADS:
+  [ ] Architecture approach reviewed
+  [ ] BLOCKER specifications understood
+  [ ] Critical path agreed
+  [ ] Team assignments confirmed
+
+OPERATIONS:
+  [ ] Team capacity confirmed (6.5 FTE)
+  [ ] Development environment ready
+  [ ] Production data access prepared
+  [ ] CI/CD infrastructure available
+
+PROJECT MANAGEMENT:
+  [ ] Sprint 1 planning scheduled (Mon 9am)
+  [ ] Team kickoff meeting prepared
+  [ ] Daily standup schedule set (9:30am)
+  [ ] Weekly sprint reviews scheduled
+
+QUICK START:
+============
+
+FOR DECISION MAKERS:
+  1. Read: README-PHASE2-IMPLEMENTATION.md (5 min)
+  2. Read: PHASE-2-IMPLEMENTATION-EXECUTIVE-SUMMARY.md (10 min)
+  3. Approve or request changes
+
+FOR TECH LEAD:
+  1. Read: README-PHASE2-IMPLEMENTATION.md (5 min)
+  2. Read: CODE-TEST-IMPLEMENTATION-PLAN-2026-02-27.md (60 min)
+  3. Study: BLOCKER specifications (Part 1.2)
+  4. Plan: First sprint using Part 3
+
+FOR ENGINEERS:
+  1. Find your BLOCKER in main plan (Part 1.2)
+  2. Review your specific specification
+  3. Check week-by-week assignments (Part 3)
+  4. Identify Sprint 1 tasks
+
+FILE LOCATIONS:
+===============
+
+Main Plan Documents:
+  /d/Users/NIKITA/Documents/DEV/BMAD-MNNZ/_bmad-output/
+    - README-PHASE2-IMPLEMENTATION.md
+    - CODE-TEST-IMPLEMENTATION-PLAN-2026-02-27.md
+    - IMPLEMENTATION-GANTT-CHART-2026-02-27.md
+    - PHASE-2-IMPLEMENTATION-EXECUTIVE-SUMMARY.md
+
+Phase 1 Reference Documents:
+  /d/Users/NIKITA/Documents/DEV/katana-vectorbt/.bmad_output/planning-artifacts/
+    - katana-v-04-architecture-2026-01-19.md
+    - katana-v-03-ux-design-specification-2026-01-19.md
+    - katana-v-05-epics.md
+
+Phase 1 Test Scenarios:
+  /d/Users/NIKITA/Documents/DEV/BMAD-MNNZ/_bmad-output/bmb-creations/workflows/bmad-orchestrator/intermediate/
+    - test-cases-blocker-*.feature (5 files)
+
+NEXT STEPS:
+===========
+
+This Week (Feb 27):
+  [ ] Executive review and approval
+  [ ] Tech lead reviews full plan
+  [ ] Team assignments confirmed
+
+Weekend (Feb 27-28):
+  [ ] Final approvals obtained
+  [ ] Environment preparation begins
+  [ ] Meeting agendas prepared
+
+Monday (Feb 28):
+  [ ] 9:00 AM - Sprint 1 Planning (2 hours)
+  [ ] 11:30 AM - Team Kickoff (1 hour)
+  [ ] 1:00 PM - Environment Setup
+  [ ] 3:00 PM - First Pair Programming
+
+DOCUMENT REVISION HISTORY:
+==========================
+
+Generated:  2026-02-27 15:00 UTC
+Version:    1.0 - Initial Release
+Status:     READY FOR EXECUTION
+
+Next Review: End of Sprint 1 (2026-03-13)
+
+================================================================================
+End of Index
+================================================================================

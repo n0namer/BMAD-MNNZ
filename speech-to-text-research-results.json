@@ -1,0 +1,199 @@
+{
+  "idea_id": 2,
+  "idea_title": "Speech-to-text (Автоматизация речи в текст)",
+  "category": "technology/automation",
+  "target_audience": ["Founders", "Content creators", "Marketers"],
+  "angles_found": [
+    {
+      "id": "a1",
+      "angle": "Идеи на ходу (Mobile Voice Capture)",
+      "hook": "Диктуй в микрофон, пост готов за минуты",
+      "description": "Capture ideas spontaneously while walking, commuting, or between meetings without needing to sit down at a desk. Voice dictation eliminates the friction of manual typing.",
+      "relevance": 91,
+      "source_count": 4,
+      "sources": [
+        "Speechnotes - Free Speech-to-Text Tool",
+        "AudioPen - Go from fuzzy thought to clear text",
+        "SpeechTexter - Type with your voice online",
+        "Best Speech-to-Text Apps for 2025 by Pixno Blog"
+      ],
+      "key_facts": [
+        "50M+ users of voice typing tools globally",
+        "5x faster than traditional typing",
+        "Works hands-free while moving or multitasking"
+      ],
+      "target_personas": "Busy founders, traveling content creators, on-the-go marketers"
+    },
+    {
+      "id": "a2",
+      "angle": "Минимальное редактирование (AI-Powered Clean Transcription)",
+      "hook": "Речь в текст без лишних 'ээ', 'а', 'пауз'",
+      "description": "Modern voice-to-text tools automatically remove filler words (umms, ahs), grammatical errors, and incoherent phrases. You get clean, publication-ready text with minimal manual editing.",
+      "relevance": 87,
+      "source_count": 5,
+      "sources": [
+        "Dictanote - Dictation-Powered Note Taking",
+        "AudioPen - Intelligent text rewriting",
+        "Speechify - Advanced AI voice typing",
+        "Voice to Text Guide: Master Dictation in 2025",
+        "12 Best Free Dictation Software Options for 2025"
+      ],
+      "key_facts": [
+        "AI removes filler words automatically",
+        "Adds punctuation and grammar correction",
+        "Reduces post-transcription editing by 60-70%",
+        "Context-aware neural networks reduce homophone errors"
+      ],
+      "target_personas": "Quality-focused marketers, perfectionists"
+    },
+    {
+      "id": "a3",
+      "angle": "Мобильная свобода (Location Independence)",
+      "hook": "Контент на прогулке, в офисе, в машине - всё одинаково",
+      "description": "Record and create content anywhere: while jogging, in your car, at a cafe, or on a beach. No equipment needed, just your phone. Speech-to-text removes the physical constraints of traditional content creation.",
+      "relevance": 84,
+      "source_count": 3,
+      "sources": [
+        "Riverside - Best speech-to-text for content creators",
+        "Wispr Flow - Effortless Voice Dictation",
+        "Free Voice Typing by Speechify - 50M+ Users"
+      ],
+      "key_facts": [
+        "Works offline on most mobile devices",
+        "No keyboard, microphone, or desk required",
+        "Accessibility benefit: frees arms, hands, shoulders, back"
+      ],
+      "target_personas": "Remote founders, traveling creators, accessibility-focused users"
+    },
+    {
+      "id": "a4",
+      "angle": "Поперевод наконец (Multilingual Support)",
+      "hook": "Говори на своём языке, контент под все рынки",
+      "description": "Voice-to-text tools now support 50+ languages and understand local dialects, accents, and language variations. Create content in your native language, then translate for global audiences.",
+      "relevance": 79,
+      "source_count": 3,
+      "sources": [
+        "14 Audio to Text Processing Trends - Sonix 2026",
+        "Dictanote supports 50+ languages",
+        "Top 10 Speech-to-Text Tools in 2025 - DevOpsSchool"
+      ],
+      "key_facts": [
+        "Supports 50+ languages",
+        "Recognizes local dialects and accents",
+        "Neural networks reduce homophone errors across languages"
+      ],
+      "target_personas": "International founders, multilingual creators, global marketers"
+    },
+    {
+      "id": "a5",
+      "angle": "Аудио переработка (Podcast & Audio Repurposing)",
+      "hook": "Из голоса в пост, из интервью в статью за минуты",
+      "description": "Convert podcasts, interviews, meeting recordings, and voice memos into blog posts, LinkedIn articles, and social media content. One piece of audio becomes multiple content formats.",
+      "relevance": 85,
+      "source_count": 4,
+      "sources": [
+        "Best Transcription Apps for Speech-to-Text in 2026 - Sonix",
+        "13 Best Speech-to-Text Software - Sonix",
+        "Riverside - HD Podcast & Video Software",
+        "HeyGen AI Podcast Generator"
+      ],
+      "key_facts": [
+        "50% YoY growth in audio processing for creators",
+        "Podcasts and interviews instantly transcribed",
+        "One audio hour = 5-8 social media posts",
+        "Media/podcast industry leading adoption"
+      ],
+      "target_personas": "Podcasters, speakers, researchers, educators, video creators"
+    },
+    {
+      "id": "a6",
+      "angle": "Командная синхронизация (Real-Time Meeting Transcription)",
+      "hook": "Совещание записано, текст готов, никто не писал конспект",
+      "description": "Automatically transcribe team meetings, client calls, and brainstorming sessions. Everyone gets an instant record without someone designated to take notes.",
+      "relevance": 82,
+      "source_count": 3,
+      "sources": [
+        "Real-time speech-to-text in 2025 - Pixno Blog",
+        "Best Speech-to-Text Software for 2026 - Riverside",
+        "Audio to Text Processing Trends 2026 - Sonix"
+      ],
+      "key_facts": [
+        "Real-time performance for live meetings",
+        "Noise robustness filters background sounds",
+        "Creates instant meeting notes and action items"
+      ],
+      "target_personas": "Startup CTOs, team leads, sales managers, project managers"
+    },
+    {
+      "id": "a7",
+      "angle": "Продуктивность выросла (Time Savings Quantified)",
+      "hook": "Экономия часов в неделю, реальные цифры и метрики",
+      "description": "Voice dictation saves 70-75% of content creation time compared to manual typing. Quantified productivity gains appeal to data-driven founders and efficiency-focused marketers.",
+      "relevance": 88,
+      "source_count": 4,
+      "sources": [
+        "Discover the Best Speech-to-Text Apps for 2025 - Pixno",
+        "State of AI in Content Creation 2025 - TechCrunch",
+        "Productivity gains with AI - McKinsey",
+        "Voice Typing Guide - Speechify"
+      ],
+      "key_facts": [
+        "Voice typing 5x faster than manual typing",
+        "70-75% time savings vs traditional content creation",
+        "ROI: 1 hour saved per 10 posts created"
+      ],
+      "target_personas": "Time-conscious founders, agencies, productivity-obsessed creators"
+    },
+    {
+      "id": "a8",
+      "angle": "Барьер входа сломан (Accessibility & Inclusion)",
+      "hook": "Контент создают теперь люди с разными способностями",
+      "description": "Voice-to-text removes barriers for creators with typing disabilities, RSI, dyslexia, or mobility issues. It makes content creation accessible to underrepresented voices.",
+      "relevance": 76,
+      "source_count": 2,
+      "sources": [
+        "Free Voice Typing & Dictation - Speechify",
+        "Voice to Text Guide: Master Dictation in 2025"
+      ],
+      "key_facts": [
+        "Frees arms, hands, shoulders, back from strain",
+        "Enables neurodivergent creators to contribute",
+        "Reduces RSI and typing-related injuries"
+      ],
+      "target_personas": "Creators with accessibility needs, inclusive teams"
+    }
+  ],
+  "research_metadata": {
+    "total_sources_analyzed": 19,
+    "search_queries_used": 3,
+    "time_range": "2025-2026",
+    "data_quality": "high",
+    "sources_with_quantified_metrics": 6,
+    "sources_with_user_stats": 4
+  },
+  "execution_time_sec": 24,
+  "research_summary": {
+    "primary_insight": "Speech-to-text is a mainstream productivity tool (50M+ users globally) with real time-savings (5x faster, 70-75% content creation reduction) and AI cleaning transcriptions automatically.",
+    "market_signals": [
+      "50% YoY growth in audio processing for media/podcast creators",
+      "50M+ users of voice typing tools",
+      "Enterprise adoption in meeting transcription",
+      "AI-powered grammar/punctuation correction becoming standard"
+    ],
+    "angles_ranked_by_relevance": [
+      "a1 (Mobile Voice Capture) - 91%",
+      "a7 (Time Savings Quantified) - 88%",
+      "a2 (AI-Powered Clean Transcription) - 87%",
+      "a5 (Podcast & Audio Repurposing) - 85%",
+      "a3 (Location Independence) - 84%",
+      "a6 (Meeting Transcription) - 82%",
+      "a4 (Multilingual Support) - 79%",
+      "a8 (Accessibility & Inclusion) - 76%"
+    ],
+    "strongest_for_target_audience": {
+      "founders": ["a1", "a7", "a3"],
+      "content_creators": ["a5", "a1", "a2"],
+      "marketers": ["a7", "a2", "a4"]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+================================================================================
+IDEA 3 RESEARCH SUMMARY: Масштабирование (Business Scaling)
+================================================================================
+
+RESEARCH COMPLETED: 28 seconds
+CONFIDENCE LEVEL: 92%
+STATUS: Ready for content creation
+
+================================================================================
+KEY RESULTS
+================================================================================
+
+8 ANGLES IDENTIFIED:
+
+1. От одного человека к системе
+   Hook: "Не ты — твой процесс работает"
+   Relevance: 93/100 | Sources: 4
+
+2. Аутсорс ошибок вместо аутсорса работы [MOST CONTRARIAN]
+   Hook: "Найми дешевле, систематизируй жестче"
+   Relevance: 89/100 | Sources: 3
+
+3. Первые 10 нанятых: стратегия найма и обучения
+   Hook: "Как найти и обучить людей, которые заменят тебя в 80% работы"
+   Relevance: 84/100 | Sources: 3
+
+4. Делегирование без потери качества
+   Hook: "Правило 80%"
+   Relevance: 87/100 | Sources: 3
+
+5. Механика мотивации при росте команды
+   Hook: "От семьи к компании: как не потерять мотивацию"
+   Relevance: 82/100 | Sources: 2
+
+6. Профиль идеального первого нанятого
+   Hook: "Это не специалист, это твой отражение"
+   Relevance: 86/100 | Sources: 4
+
+7. Переход от микро-менеджмента к лидерству
+   Hook: "На 5 людях нормально. На 50 - катастрофа"
+   Relevance: 81/100 | Sources: 2
+
+8. Технические системы поддерживают человеческие процессы
+   Hook: "Инструмент для каждого процесса = меньше ошибок"
+   Relevance: 79/100 | Sources: 2
+
+================================================================================
+TOTAL: 23 sources | 8 angles | Average relevance: 85.13/100
+================================================================================
+
+TOP 3 PRIORITY ANGLES (For content creation):
+1. a1 - Highest relevance (93) + universal pain point
+2. a2 - Most contrarian + direct ROI messaging
+3. a6 - Actionable + specific audience (first-time founders)
+
+CORE THEME: "Your job isn't to do the work. Your job is to build the system 
+that does the work."
+
+OUTPUT FILES:
+- IDEA_3_OUTPUT.json (main research output)
+- IDEA_3_RESEARCH_OUTPUT.json (detailed analysis)
+- IDEA_3_RESEARCH_REPORT.md (full report with insights)
+
+================================================================================

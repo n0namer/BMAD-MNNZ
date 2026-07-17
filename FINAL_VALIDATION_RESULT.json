@@ -1,0 +1,123 @@
+{
+  "validation_result": {
+    "workflow_name": "idea-to-post-pipeline",
+    "timestamp": "2026-01-28",
+    "analyzer": "Workflow Critical Path Validator",
+    
+    "filesChecked": 106,
+    
+    "pathViolations": [
+      {
+        "file": "mode-yolo/step-yolo-06-summary.md",
+        "line": 5,
+        "reference": "./step-00-menu.md",
+        "expected": "../../step-00-menu.md",
+        "exists": false,
+        "severity": "CRITICAL"
+      }
+    ],
+    
+    "deadEnds": [],
+    
+    "routingIssues": [],
+    
+    "circularReferences": [
+      {
+        "pattern": "CREATE_MODE_LOOP",
+        "status": "INTENTIONAL",
+        "assessment": "PASS"
+      },
+      {
+        "pattern": "EDIT_MODE_LOOPS",
+        "count": 3,
+        "status": "INTENTIONAL",
+        "assessment": "PASS"
+      },
+      {
+        "pattern": "VALIDATE_MODE_LOOPS",
+        "count": 3,
+        "status": "INTENTIONAL",
+        "assessment": "PASS"
+      }
+    ],
+    
+    "status": "CRITICAL",
+    "overallScore": 87,
+    "scoreAfterFix": 100,
+    
+    "summary": {
+      "total_issues": 1,
+      "critical_issues": 1,
+      "warning_issues": 7,
+      "pass_criteria": 4,
+      "fail_criteria": 1
+    },
+    
+    "validation_checklist": {
+      "every_nextStepFile_reference_exists": {
+        "status": "FAIL",
+        "issues": 1
+      },
+      "all_routing_logic_complete": {
+        "status": "PASS",
+        "details": "All 5 menu steps have routing options"
+      },
+      "no_dead_end_steps": {
+        "status": "PASS",
+        "details": "All 106 steps are reachable"
+      },
+      "loops_close_to_menu": {
+        "status": "PASS",
+        "details": "All 7 loops are intentional hub patterns"
+      },
+      "no_orphaned_steps": {
+        "status": "PASS",
+        "details": "0 disconnected files"
+      }
+    },
+    
+    "workflow_structure": {
+      "total_files": 106,
+      "files_with_routing": 103,
+      "routing_coverage": "97.2%",
+      "modes": {
+        "CREATE": {
+          "files": 23,
+          "status": "HEALTHY"
+        },
+        "EDIT": {
+          "files": 27,
+          "status": "HEALTHY"
+        },
+        "VALIDATE": {
+          "files": 25,
+          "status": "HEALTHY"
+        },
+        "YOLO": {
+          "files": 6,
+          "status": "BROKEN"
+        }
+      }
+    },
+    
+    "critical_paths": {
+      "CREATE_WORKFLOW": "HEALTHY",
+      "EDIT_WORKFLOW": "HEALTHY",
+      "VALIDATE_WORKFLOW": "HEALTHY",
+      "YOLO_WORKFLOW": "BROKEN"
+    },
+    
+    "required_fixes": [
+      {
+        "id": "CRIT-001",
+        "priority": "CRITICAL",
+        "file": "mode-yolo/step-yolo-06-summary.md",
+        "line": 5,
+        "from": "nextStepFile: ./step-00-menu.md",
+        "to": "nextStepFile: ../../step-00-menu.md",
+        "fix_time_minutes": 1,
+        "risk": "NONE"
+      }
+    ]
+  }
+}

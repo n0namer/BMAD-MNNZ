@@ -1,0 +1,354 @@
+# CI Quality Gates Template
+# katana-vectorbt — Agent-9 (testarch-ci) — Zone 4 Prep Phase
+#
+# STATUS: TEMPLATE — Awaiting Agent-8 (testarch-trace) quality-gate-decision.md
+#
+# USAGE:
+#   Day 29 (execution phase): Read Agent-8's quality-gate-decision.md and
+#   populate the DYNAMIC_FROM_AGENT_8 placeholder fields.
+#   Then generate final quality-gates.yaml from this template.
+#
+# NOTE: Fields marked "STATIC" are derived from Zone 1 framework analysis
+#       and existing project workflow review. They do not change regardless
+#       of Agent-8's output.
+#
+# NOTE: Fields marked "DYNAMIC_FROM_AGENT_8" MUST be populated from
+#       quality-gate-decision.md before this template can be finalized.
+
+metadata:
+  project: katana-vectorbt
+  version: "1.0.0-template"
+  generated: "2026-02-26"
+  generator: "Agent-9 (testarch-ci) — BMAD Orchestrator Phase 1, Zone 4"
+  status: TEMPLATE
+  blocking_on: "quality-gate-decision.md from Agent-8 (testarch-trace)"
+  execution_date: "Day 29 (after Agent-8 signals completion)"
+
+---
+
+# ============================================================
+# GATE SECTION 1: CODE COVERAGE GATES
+# ============================================================
+coverage_gates:
+
+  # Overall project coverage
+  # DYNAMIC_FROM_AGENT_8: Populate from Agent-8's coverage_threshold_overall field
+  overall:
+    threshold_minimum: DYNAMIC_FROM_AGENT_8     # Hard fail if below this
+    threshold_aspirational: DYNAMIC_FROM_AGENT_8 # Soft warning, PR annotation
+    enforcement: hard_fail
+    source_report: coverage.xml
+    # Pre-read context (already known from traceability-report.md):
+    #   - Agent-8 baseline achieved: 88%
+    #   - Likely gate value: 80% (minimum) / 90% (aspirational)
+    # These values will be confirmed and locked on Day 29.
+
+  # Core module (katana/) — most critical
+  # DYNAMIC_FROM_AGENT_8: Populate from Agent-8's coverage_threshold_core field
+  katana_core:
+    module: katana/
+    threshold_minimum: DYNAMIC_FROM_AGENT_8
+    threshold_aspirational: DYNAMIC_FROM_AGENT_8
+    enforcement: hard_fail
+    # Expected range: 85%-95% (core trading logic, highest priority)
+
+  # UI module (katana/ui/) — dashboard
+  # DYNAMIC_FROM_AGENT_8: Populate from Agent-8's coverage_threshold_ui field
+  katana_ui:
+    module: katana/ui/
+    threshold_minimum: DYNAMIC_FROM_AGENT_8
+    threshold_aspirational: DYNAMIC_FROM_AGENT_8
+    enforcement: soft_warning
+    # Expected range: 70%-80% (UI code, harder to cover with unit tests)
+
+  # Scripts and tools (auxiliary)
+  # STATIC: Derived from existing ci.yml which measures scripts/tools coverage
+  scripts_and_tools:
+    modules:
+      - scripts/
+      - tools/
+    threshold_minimum: 60.0   # STATIC — auxiliary code, lower bar
+    threshold_aspirational: 75.0
+    enforcement: soft_warning
+
+  # Measurement commands (STATIC — will not change based on Agent-8 output)
+  measurement:
+    python_command: |
+      pytest tests/ \
+        --ignore=tests/e2e \
+        --cov=katana \
+        --cov=scripts \
+        --cov=tools \
+        --cov-report=xml \
+        --cov-report=json \
+        --cov-report=term
+    coverage_xml_path: coverage.xml
+    coverage_json_path: coverage.json
+
+---
+
+# ============================================================
+# GATE SECTION 2: TEST PASS RATE GATES
+# ============================================================
+test_pass_rate_gates:
+
+  # P0 — Critical smoke tests
+  # DYNAMIC_FROM_AGENT_8: Confirm P0 gate threshold
+  p0_smoke:
+    priority: P0
+    marker: "p0"
+    threshold_pass_rate: DYNAMIC_FROM_AGENT_8    # Expected: 100.0 (zero tolerance)
+    max_duration_seconds: 300
+    enforcement: hard_fail
+    failure_action: block_all_downstream
+    test_paths:
+      - tests/smoke/
+    # Pre-read context: P0 Coverage 100% (8/8 criteria) from traceability report
+
+  # P1 — High priority tests
+  # DYNAMIC_FROM_AGENT_8: Confirm P1 gate threshold
+  p1_high_priority:
+    priority: P1
+    marker: "p1"
+    threshold_pass_rate: DYNAMIC_FROM_AGENT_8    # Expected: 90.0 (92% achieved)
+    max_duration_seconds: 900
+    enforcement: hard_fail
+    failure_action: block_merge
+    test_paths:
+      - tests/unit/
+      - tests/integration/
+    # Pre-read context: P1 Coverage 92% (11/12) from traceability report
+
+  # Integration tests pass rate
+  # STATIC — not traceability-specific, standard quality threshold
+  integration:
+    threshold_pass_rate: 95.0   # STATIC — allows 5% flakiness (timeout tolerance)
+    max_duration_per_test_seconds: 60
+    enforcement: hard_fail
+    failure_action: block_merge
+    exclude_markers:
+      - "slow"
+
+  # E2E Playwright tests pass rate
+  # STATIC — browser automation has inherent flakiness; 2 retries in CI config
+  e2e_playwright:
+    browser: chromium
+    threshold_pass_rate: 95.0    # STATIC — 2 retry budget, 5% net tolerance
+    max_duration_seconds: 1800
+    enforcement: hard_fail
+    failure_action: block_merge
+    retry_count: 2               # playwright.config.ts retries: isCI ? 2 : 0
+
+  # API endpoint tests (no browser, deterministic)
+  # STATIC — no browser = no flakiness, 100% required
+  e2e_api:
+    browser: api
+    threshold_pass_rate: 100.0   # STATIC — deterministic, zero tolerance
+    max_duration_seconds: 600
+    enforcement: hard_fail
+    failure_action: block_merge
+
+---
+
+# ============================================================
+# GATE SECTION 3: PERFORMANCE GATES
+# ============================================================
+performance_gates:
+
+  # Optimization engine performance benchmark
+  # DYNAMIC_FROM_AGENT_8: Confirm if performance baselines exist from traceability analysis
+  optimization_engine:
+    enabled: DYNAMIC_FROM_AGENT_8    # True only if Agent-8 confirms perf tests exist
+    regression_threshold_percent: 20.0
+    baseline_source: DYNAMIC_FROM_AGENT_8  # Path to baseline measurements
+    enforcement: soft_warning
+    failure_action: annotate_pr
+
+  # Test suite execution time regression
+  # STATIC — prevent test suite from growing unbounded
+  test_suite_duration:
+    enabled: true               # STATIC — always check duration
+    max_unit_test_minutes: 20   # STATIC — derived from pipeline architecture targets
+    max_integration_test_minutes: 15
+    max_e2e_chromium_minutes: 30
+    enforcement: soft_warning
+    failure_action: annotate_pr
+
+---
+
+# ============================================================
+# GATE SECTION 4: SECURITY GATES
+# ============================================================
+security_gates:
+
+  # Python code security scan (Bandit)
+  # STATIC — security gates do not depend on traceability report
+  bandit_python:
+    enabled: true
+    scan_paths:
+      - katana/
+    severity_thresholds:
+      critical: hard_fail       # 0 critical findings allowed
+      high: hard_fail           # 0 high findings allowed
+      medium: soft_warning      # Warning annotation on PR
+      low: ignore               # Low findings informational only
+    output_format: json
+    output_path: reports/bandit-report.json
+    enforcement: hard_fail
+
+  # Node.js dependency audit
+  # STATIC — npm audit level set to high
+  npm_audit:
+    enabled: true
+    audit_level: high           # Fail on HIGH or CRITICAL vulnerabilities
+    enforcement: hard_fail
+
+  # Dependency vulnerability scanning (pip-audit)
+  # STATIC — PyPA safety database
+  pip_audit:
+    enabled: true
+    requirements_file: requirements.txt
+    severity_thresholds:
+      critical: hard_fail
+      high: hard_fail
+      medium: soft_warning
+    enforcement: hard_fail
+
+  # Secret scanning
+  # STATIC — never commit secrets
+  secret_scan:
+    enabled: true
+    tool: truffleHog            # Or gitleaks — to be determined on Day 29
+    enforcement: hard_fail
+    failure_action: block_all_downstream
+
+---
+
+# ============================================================
+# GATE SECTION 5: TRACEABILITY COVERAGE GATE
+# ============================================================
+# This section is populated entirely from Agent-8's output.
+# Cannot be finalized until quality-gate-decision.md is available.
+
+traceability_gates:
+
+  # Overall requirements coverage
+  # DYNAMIC_FROM_AGENT_8: All values from Agent-8's traceability matrix
+  requirements_coverage:
+    minimum_percentage: DYNAMIC_FROM_AGENT_8     # From Agent-8: overall_coverage_threshold
+    achieved_baseline: DYNAMIC_FROM_AGENT_8      # From Agent-8: baseline_achieved (88%)
+    enforcement: DYNAMIC_FROM_AGENT_8            # hard_fail or soft_warning
+    # Pre-read: 88% achieved (22/25 stories) — gate likely at 80% or 85%
+
+  # P0 acceptance criteria coverage
+  # DYNAMIC_FROM_AGENT_8: P0-specific threshold
+  p0_criteria_coverage:
+    minimum_percentage: DYNAMIC_FROM_AGENT_8     # Expected: 100% (no P0 gaps allowed)
+    achieved_baseline: DYNAMIC_FROM_AGENT_8      # From Agent-8: 100% (8/8)
+    enforcement: hard_fail
+
+  # P1 acceptance criteria coverage
+  # DYNAMIC_FROM_AGENT_8: P1-specific threshold
+  p1_criteria_coverage:
+    minimum_percentage: DYNAMIC_FROM_AGENT_8     # Expected: 90% (92% achieved)
+    achieved_baseline: DYNAMIC_FROM_AGENT_8      # From Agent-8: 92% (11/12)
+    enforcement: hard_fail
+
+  # Critical gaps
+  # DYNAMIC_FROM_AGENT_8: Max allowed critical gaps from Agent-8's analysis
+  critical_gaps:
+    maximum_allowed: DYNAMIC_FROM_AGENT_8        # Pre-read: 0 critical gaps
+    enforcement: hard_fail
+
+  # Urgent recommendations from Agent-8 (4-6 error-path tests)
+  # DYNAMIC_FROM_AGENT_8: These become mandatory CI checks if Agent-8 flags them as blocking
+  urgent_recommendations:
+    error_path_tests_required: DYNAMIC_FROM_AGENT_8
+    endpoint_validation_tests_required: DYNAMIC_FROM_AGENT_8
+    auth_negative_path_tests_required: DYNAMIC_FROM_AGENT_8
+    enforce_before_merge: DYNAMIC_FROM_AGENT_8
+
+---
+
+# ============================================================
+# GATE SECTION 6: REPORTING & NOTIFICATION
+# ============================================================
+reporting:
+
+  # Coverage report output format
+  # STATIC
+  coverage_formats:
+    - xml      # Codecov upload
+    - json     # Coverage JSON for gate evaluation scripts
+    - html     # Human-readable HTML report (artifact)
+    - term     # Terminal output in CI logs
+
+  # PR annotation configuration
+  # STATIC
+  pr_annotation:
+    enabled: true
+    post_coverage_summary: true
+    post_test_failure_summary: true
+    post_quality_gate_result: true
+    annotation_token_secret: GITHUB_TOKEN
+
+  # Slack notification (optional)
+  # STATIC — disabled until channel configured
+  slack:
+    enabled: false
+    channel: DYNAMIC_FROM_AGENT_8    # To be configured when known
+    on_failure: true
+    on_recovery: true
+
+  # Artifact retention
+  # STATIC — defined in ci-pipeline-architecture.md
+  artifacts:
+    coverage_xml_retention_days: 30
+    junit_xml_retention_days: 30
+    playwright_artifacts_retention_days: 7     # failure only
+    bandit_report_retention_days: 90
+    quality_gate_result_retention_days: 90
+
+---
+
+# ============================================================
+# DYNAMIC POPULATION INSTRUCTIONS (for Day 29)
+# ============================================================
+# When Agent-8 signals completion:
+#
+# 1. Read: _bmad-output/test-artifacts/quality-gate-decision.md (or traceability-report.md)
+#
+# 2. Extract these fields from Agent-8's report:
+#    - gateDecision (PASS/FAIL/CONDITIONAL_PASS)
+#    - p0_coverage_percentage
+#    - p1_coverage_percentage
+#    - overall_coverage_percentage
+#    - critical_gaps_count
+#    - recommended_coverage_thresholds.overall_minimum
+#    - recommended_coverage_thresholds.p0_required
+#    - recommended_coverage_thresholds.p1_minimum
+#    - urgent_recommendations (list)
+#    - blocking_for_ci (which recommendations must pass before merge)
+#    - performance_baseline_exists (boolean)
+#    - performance_baseline_path (string if exists)
+#
+# 3. Replace ALL "DYNAMIC_FROM_AGENT_8" placeholders with extracted values
+#
+# 4. Save as: quality-gates.yaml (final version, without "template" designation)
+#
+# 5. Generate ci-pipeline-config.yaml incorporating quality-gates.yaml thresholds
+#
+# Pre-read baseline (already extracted from traceability-report.md):
+#   gateDecision: PASS
+#   p0_coverage_percentage: 100
+#   p1_coverage_percentage: 92
+#   overall_coverage_percentage: 88
+#   critical_gaps_count: 0
+#   These values strongly suggest the following gate values will be confirmed:
+#     coverage.overall.threshold_minimum: 80.0
+#     coverage.overall.threshold_aspirational: 90.0
+#     test_pass_rate_gates.p0_smoke.threshold_pass_rate: 100.0
+#     test_pass_rate_gates.p1_high_priority.threshold_pass_rate: 90.0
+#     traceability_gates.p0_criteria_coverage.minimum_percentage: 100.0
+#     traceability_gates.p1_criteria_coverage.minimum_percentage: 90.0
+#     traceability_gates.critical_gaps.maximum_allowed: 0

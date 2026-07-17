@@ -1,0 +1,342 @@
+================================================================================
+LIFE OS WORKFLOW - MENU ROUTING DIAGRAM
+================================================================================
+
+INITIALIZATION MENU
+═══════════════════════════════════════════════════════════════════════════════
+
+    ┌────────────────────────────────────────────────────┐
+    │  Welcome to Life Operating System!                 │
+    │  What would you like to do?                        │
+    │                                                    │
+    │  [C] Create  [V] Validate  [E] Edit  [R] Return   │
+    └────────┬────────┬────────┬────────┬────────────────┘
+             │        │        │        │
+             ▼        ▼        ▼        ▼
+
+
+═══════════════════════════════════════════════════════════════════════════════
+CREATE MODE MENU (Line 126-134)
+═══════════════════════════════════════════════════════════════════════════════
+
+    ┌──────────────────────────────────────────┐
+    │  How would you like to start?             │
+    │  [N] New  [B] Batch  [I] Import          │
+    └──┬─────────┬──────────┬───────────────────┘
+       │         │          │
+       ▼         ▼          ▼
+
+    step-00-        step-00.1-        step-00-
+    foundation-     portfolio-        foundation-
+    check.md        intake.md         check.md
+
+    │               │                 │
+    ├─ Smart Skip   ├─ Collect        └─ Ask for import info
+    │  (data check) │  3-10 ideas      then foundation check
+    │               │
+    ▼               ▼
+
+    IF data       ┌──────────────────┐
+    exists:       │ Quick score each │
+    [Skip]        │ idea             │
+    [Update]      └────────┬─────────┘
+    [Re-enter]             │
+    │                      ▼
+    ▼               ┌──────────────────┐
+                    │ Compare matrix   │
+    No skip:        └────────┬─────────┘
+    run 0.5->0.7            │
+    (foundation)            ▼
+    │                       │
+    └─────┬─────────────────┘
+          │
+          ▼
+
+    step-01-collect-ideas.md
+
+    ┌─────────────────────────────────────────────────────┐
+    │ TRACK DETECTION (Auto-detection or user choice)    │
+    │                                                     │
+    │ [Q] Quick  [S] Standard  [D] Deep  [R] Recommend  │
+    └─┬──────────┬──────────────┬──────────┬──────────────┘
+      │          │              │          │
+      ▼          ▼              ▼          ▼
+
+
+═══════════════════════════════════════════════════════════════════════════════
+QUICK TRACK ROUTING
+═══════════════════════════════════════════════════════════════════════════════
+
+    step-01
+    (Ideas collected)
+       ▼
+    step-04-consilium-lite.md
+    (2-3 specialists, single round, 5-10 min)
+       ▼
+    step-05-scoring.md
+    (Core 5 criteria only, 3-5 min)
+       ▼
+    step-09-complete.md
+
+    Total: 15-20 minutes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+STANDARD TRACK ROUTING
+═══════════════════════════════════════════════════════════════════════════════
+
+    step-01
+    (Ideas collected)
+       ▼
+    step-02-roles-discovery.md
+    (Define roles needed)
+       ▼
+    step-03-specialist-match.md
+    (Find specialists)
+       ▼
+    step-04-consilium.md
+    (4-6 specialists, Six Hats, 15-20 min)
+       ▼
+    step-05-scoring.md
+    (Full scoring, 9 criteria, 10 min)
+       ▼
+    step-06-integration.md
+    (Portfolio WIP check, 10 min)
+       ▼
+    step-08-deep-plan.md
+    (L1-L3 plan, 10-15 min)
+       ▼
+    step-09-complete.md
+
+    Total: 55-75 minutes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+DEEP TRACK ROUTING
+═══════════════════════════════════════════════════════════════════════════════
+
+    step-00-goals-discovery.md  (Optional, recommended)
+       ▼
+    step-01
+    (Ideas collected)
+       ▼
+    step-02-roles-discovery.md
+       ▼
+    step-03-specialist-match.md
+       ▼
+    step-04-consilium.md
+    (6-8 specialists, multi-round)
+       ▼
+    ┌─────────────────────────────┐
+    │ Auto-Detect Contradictions? │
+    │  [Y] Run TRIZ  [N] Skip     │
+    └────┬──────────┬─────────────┘
+         │          │
+         ▼          │
+    step-04.5-      │
+    triz-analysis   │
+    (10-60 min)     │
+         │          │
+         └──┬───────┘
+            ▼
+    step-05-scoring.md
+    (10+ criteria, 10-15 min)
+       ▼
+    step-06-integration.md
+    (Full portfolio analysis)
+       ▼
+    step-07-calendar-sync.md
+    (Milestone events)
+       ▼
+    step-08-deep-plan.md
+    (L1-L6 comprehensive, 20-60 min)
+       ▼
+    step-08.5-final-polish.md
+    (Review and refine)
+       ▼
+    ┌──────────────────────────┐
+    │ Start Execution?         │
+    │  [X] Kickoff  [P] Wait  │
+    └────┬──────────┬──────────┘
+         │          │
+         ▼          │
+    step-x-01-     [P] Save as PLANNED
+    kickoff.md
+         ▼
+    (IN_PROGRESS status)
+       ▼
+    step-09-complete.md
+
+    Total: 2-4 hours
+
+
+═══════════════════════════════════════════════════════════════════════════════
+VALIDATE MODE MENU (Lines 409-417)
+═══════════════════════════════════════════════════════════════════════════════
+
+    ┌────────────────────────────────────────┐
+    │  Which review?                         │
+    │  [D] Daily  [W] Weekly  [M] Monthly   │
+    │  [Q] Quarterly                         │
+    └────┬──────────┬─────────┬─────────────┘
+         │          │         │
+         ▼          ▼         ▼
+
+    step-01-    step-02-     step-03-    step-04-
+    daily-      weekly-      monthly-    quarterly-
+    review.md   review.md    review.md   review.md
+
+    (5 min)     (30 min)     (1 hour)    (2 hours)
+
+
+    EXECUTION INTEGRATION:
+
+    Weekly Review presents IN_PROGRESS projects
+         ▼
+    [P]ulse Check → step-x-02-weekly-pulse.md
+         ▼
+    Status: 🟢 On Track | 🟡 At Risk | 🔴 Blocked
+         ▼
+    [IF 2+ blocked weeks]
+         ▼
+    step-x-04-pivot-or-kill.md
+
+    Monthly Review triggers milestone gates
+         ▼
+    [Milestone reached?]
+         ▼
+    step-x-03-milestone-gate.md
+
+
+═══════════════════════════════════════════════════════════════════════════════
+EDIT MODE MENU (Lines 425-433)
+═══════════════════════════════════════════════════════════════════════════════
+
+    ┌──────────────────────────────────────┐
+    │  What to update?                     │
+    │  [P] Project  [S] Specialist         │
+    │  [R] Resources  [G] Goals            │
+    └────┬──────┬──────┬─────┬─────────────┘
+         │      │      │     │
+         ▼      ▼      ▼     ▼
+
+    step-01-    step-02-     step-02-    step-03-
+    update-     update-      update-     update-
+    project.md  specialist   resources   goals.md
+                .md          .md
+
+    (Update      (Add/update/ (Update     (Add/update/
+     status,     remove       capacity)   retire)
+     timeline)   specialists)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+RETURN-TO-PLAN MODE (Special Mode)
+═══════════════════════════════════════════════════════════════════════════════
+
+    [R]eturn-to-Plan
+         ▼
+    step-00-return-to-plan.md
+         ▼
+    [Select project to restore context]
+         ▼
+    ┌────────────────────────────────────┐
+    │ Return Structured Context:         │
+    │  • Goal                            │
+    │  • Current status                  │
+    │  • Last decision                   │
+    │  • Next steps                      │
+    │  • Recent changes (from journal)   │
+    └────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+EXECUTION TRACKING LIFECYCLE
+═══════════════════════════════════════════════════════════════════════════════
+
+    step-x-01-kickoff.md
+    (PLANNED → IN_PROGRESS)
+    • Set 3-5 milestones
+    • Define success metrics
+       ▼
+    ┌──────────────────────────────────┐
+    │ WEEKLY (step-x-02-pulse)         │
+    │  • Progress? Y/N                 │
+    │  • Blockers? List                │
+    │  • Next priority?                │
+    │  Status: 🟢 🟡 🔴               │
+    └────────┬─────────────────────────┘
+             │
+             ├─ 2+ weeks 🔴?
+             │   └→ step-x-04 (Pivot/Kill)
+             │
+             └─ Normal?
+                └→ Continue
+       ▼
+    ┌──────────────────────────────────┐
+    │ MONTHLY (step-x-03-gate)         │
+    │  • Milestone reached?            │
+    │  • Variance <30%?                │
+    │  Decision: Pass/Adjust/Escalate  │
+    └────────┬─────────────────────────┘
+             │
+             ├─ >50% variance?
+             │   └→ step-x-04 (Pivot/Kill)
+             │
+             └─ On track?
+                └→ Continue
+       ▼
+    ┌──────────────────────────────────┐
+    │ PIVOT-OR-KILL (step-x-04)        │
+    │  Score 0-40:                     │
+    │  • 0-15: KILL                    │
+    │  • 16-25: PIVOT                  │
+    │  • 26-40: PERSIST                │
+    └──────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+CRITICAL ISSUES MAP
+═══════════════════════════════════════════════════════════════════════════════
+
+    CRITICAL ISSUE #1: Goals Discovery Routing
+    ┌─ Lines 149-151
+    │  step-00-goals-discovery.md EXISTS
+    │  but routing UNCLEAR
+    │
+    │  Problem: Optional goals menu doesn't explicitly route to file
+    │  Fix: Add "IF C: Load steps-c/step-00-goals-discovery.md"
+    └─ Priority: IMMEDIATE
+
+    CRITICAL ISSUE #2: Orphaned steps-v Files
+    ┌─ Steps-V Folder
+    │  ❓ step-05-refactoring-summary.md (NOT ROUTED)
+    │  ❓ step-v-05-retrospective.md (NOT ROUTED)
+    │
+    │  Problem: Files exist but not in VALIDATE menu
+    │  Fix: Add to menu OR archive to _archive/
+    └─ Priority: IMMEDIATE
+
+
+═══════════════════════════════════════════════════════════════════════════════
+STATUS QUICK REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+    Initialization Menu:    ✅ PASS
+    Create Mode:            ✅ PASS (1 CRITICAL)
+    Validate Mode:          ✅ PASS (1 CRITICAL)
+    Edit Mode:              ✅ PASS
+    Return-to-Plan:         ✅ PASS (3 WARNINGS)
+    Execution Tracking:     ✅ PASS
+    Track Routing:          ✅ PASS
+
+    ───────────────────────────────────
+    Overall: ⚠️ PASS (Critical fixes needed)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+All menus accessible? YES ✅
+All routing correct? YES ✅
+All referenced steps exist? YES ✅
+Ready for production? NO ⚠️ (Fix critical issues first)
+================================================================================

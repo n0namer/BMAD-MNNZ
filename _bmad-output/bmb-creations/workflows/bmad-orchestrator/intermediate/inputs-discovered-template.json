@@ -1,0 +1,113 @@
+{
+  "sessionId": "{{sessionId}}",
+  "discoveryTimestamp": "{{timestamp}}",
+  "version": "1.0",
+  "discovery": {
+    "taskDescription": "{{taskDescription}}",
+    "taskType": "{{taskType}}",
+    "complexity": "{{complexity}}",
+    "domain": "{{domain}}"
+  },
+  "files": {
+    "sourceFiles": [
+      {{#sourceFiles}}
+      {
+        "path": "{{path}}",
+        "type": "{{type}}",
+        "lines": {{lines}},
+        "size": "{{size}}",
+        "extension": "{{extension}}",
+        "detectedEncoding": "{{encoding}}",
+        "isLarge": {{isLarge}},
+        "sections": [
+          {{#sections}}
+          {
+            "name": "{{name}}",
+            "lineStart": {{lineStart}},
+            "lineEnd": {{lineEnd}},
+            "type": "{{type}}"
+          }{{^isLast}},{{/isLast}}
+          {{/sections}}
+        ]
+      }{{^isLast}},{{/isLast}}
+      {{/sourceFiles}}
+    ],
+    "targetFiles": [
+      {{#targetFiles}}
+      {
+        "path": "{{path}}",
+        "purpose": "{{purpose}}",
+        "expectedType": "{{expectedType}}",
+        "exists": {{exists}}
+      }{{^isLast}},{{/isLast}}
+      {{/targetFiles}}
+    ],
+    "referenceFiles": [
+      {{#referenceFiles}}
+      {
+        "path": "{{path}}",
+        "relevance": "{{relevance}}",
+        "relationship": "{{relationship}}"
+      }{{^isLast}},{{/isLast}}
+      {{/referenceFiles}}
+    ]
+  },
+  "requirements": {
+    "functional": [
+      {{#functionalReqs}}
+      {
+        "id": "{{id}}",
+        "description": "{{description}}",
+        "priority": "{{priority}}",
+        "source": "{{source}}"
+      }{{^isLast}},{{/isLast}}
+      {{/functionalReqs}}
+    ],
+    "nonFunctional": [
+      {{#nonFunctionalReqs}}
+      {
+        "id": "{{id}}",
+        "description": "{{description}}",
+        "category": "{{category}}"
+      }{{^isLast}},{{/isLast}}
+      {{/nonFunctionalReqs}}
+    ],
+    "constraints": [
+      {{#constraints}}
+      "{{.}}"{{^isLast}},{{/isLast}}
+      {{/constraints}}
+    ]
+  },
+  "dependencies": {
+    "fileDependencies": [
+      {{#fileDeps}}
+      {
+        "from": "{{from}}",
+        "to": "{{to}}",
+        "type": "{{type}}"
+      }{{^isLast}},{{/isLast}}
+      {{/fileDeps}}
+    ],
+    "externalDependencies": [
+      {{#externalDeps}}
+      {
+        "name": "{{name}}",
+        "type": "{{type}}",
+        "required": {{required}}
+      }{{^isLast}},{{/isLast}}
+      {{/externalDeps}}
+    ]
+  },
+  "context": {
+    "estimatedTokens": {{estimatedTokens}},
+    "largeFileCount": {{largeFileCount}},
+    "requiresParallel": {{requiresParallel}},
+    "suggestedApproach": "{{suggestedApproach}}"
+  },
+  "metadata": {
+    "discoveryMethod": "{{discoveryMethod}}",
+    "userProvidedFiles": {{userProvidedFiles}},
+    "autoDetectedFiles": {{autoDetectedFiles}},
+    "confidence": "{{confidence}}"
+  }
+}

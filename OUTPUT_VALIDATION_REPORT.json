@@ -1,0 +1,366 @@
+{
+  "validationReport": {
+    "timestamp": "2026-01-28T14:32:15Z",
+    "workflow": "idea-to-post-pipeline",
+    "location": "D:\\Users\\NIKITA\\Documents\\DEV\\BMAD-MNNZ\\_bmad-output\\bmb-creations\\workflows\\idea-to-post-pipeline",
+    "overallStatus": "VALIDATED_WITH_ENHANCEMENTS_RECOMMENDED",
+
+    "outputSteps": {
+      "status": "✅ COMPREHENSIVE",
+      "totalSteps": 106,
+      "fileLocationSpecifications": {
+        "status": "✅ EXPLICIT",
+        "details": [
+          {
+            "step": "step-c-03e-finalize.md",
+            "output": "posts_content.csv",
+            "format": "CSV with 14 columns",
+            "columns": ["id", "research_id", "angle_used", "publish_date", "platform", "post_title_short", "content_500_chars", "content_250_chars", "content_100_chars", "quality_score", "ctr_potential", "engagement_score", "status", "notes"]
+          },
+          {
+            "step": "all mode-c steps",
+            "output": "Individual post markdown files",
+            "location": "/posts/YYYY-MM-DD_idea-X_angle-Y_v{version}.md",
+            "format": "Markdown with YAML frontmatter"
+          },
+          {
+            "step": "mode-yolo steps",
+            "output": "Batch posts with auto-validation",
+            "location": "posts_content.csv + workflow_state.json",
+            "format": "CSV rows + JSON state"
+          },
+          {
+            "step": "all modes",
+            "output": "CSV indices",
+            "files": ["ideas_inbox.csv", "ideas_research.csv", "posts_content.csv", "metrics_tracking.csv", "angles_library.csv"],
+            "location": "workflow root directory"
+          }
+        ]
+      }
+    },
+
+    "formats": {
+      "status": "✅ MULTIPLE_FORMATS_DEFINED",
+      "postFormat": {
+        "type": "Markdown with YAML frontmatter",
+        "frontmatterFields": ["id", "date", "idea_id", "angle", "topic", "target_persona", "platform", "views", "ctr", "comments", "reposts", "status", "version"],
+        "contentStructure": ["Hook", "Problem", "Solution", "Trigger", "CTA"],
+        "contentFormatting": "Emoji + raw text (authenticity-focused)",
+        "variants": "3 versions (500/250/100 characters)",
+        "exampleFile": "workflow-plan-idea-to-post-pipeline.md lines 152-172"
+      },
+      "csvFormats": {
+        "status": "✅ FULLY_SPECIFIED",
+        "templates": {
+          "ideas_inbox.csv": {
+            "columns": ["id", "date_added", "source", "raw_idea", "category", "status", "notes"],
+            "example": "ideas_inbox_template.csv",
+            "sampleRows": 5
+          },
+          "ideas_research.csv": {
+            "columns": ["id", "original_idea_id", "research_date", "main_angle", "sub_angles_count", "best_angle_id", "angles_list", "sources_count", "avg_relevance"],
+            "example": "ideas_research_template.csv",
+            "sampleRows": 5
+          },
+          "posts_content.csv": {
+            "columns": ["id", "research_id", "angle_used", "publish_date", "platform", "post_title_short", "content_500_chars", "content_250_chars", "content_100_chars", "quality_score", "ctr_potential", "engagement_score", "status", "notes"],
+            "example": "posts_content_template.csv",
+            "sampleRows": 9
+          },
+          "metrics_tracking.csv": {
+            "columns": ["post_id", "publish_date", "day_number", "views", "clicks", "ctr_percent", "comments", "shares", "saves", "engagement_rate", "sentiment", "notes"],
+            "example": "metrics_tracking_template.csv",
+            "sampleRows": 12
+          },
+          "angles_library.csv": {
+            "columns": ["id", "original_idea_id", "research_date", "main_angle", "sub_angles_count", "best_angle_id", "angles_list", "sources_count", "avg_relevance"],
+            "example": "angles_library_template.csv",
+            "sampleRows": 5
+          }
+        }
+      },
+      "qualityMetrics": {
+        "status": "✅ DEFINED",
+        "metrics": [
+          {
+            "name": "quality_score",
+            "range": "0-100",
+            "examples": [89, 92, 94]
+          },
+          {
+            "name": "ctr_potential",
+            "range": "0-10%",
+            "examples": ["4.5%", "4.2%", "4.8%"]
+          },
+          {
+            "name": "engagement_score",
+            "range": "0-5.0",
+            "examples": [4.8, 4.5, 4.9]
+          }
+        ]
+      }
+    },
+
+    "csvOperations": {
+      "status": "✅ COMPREHENSIVE_SPECIFICATION",
+      "operations": [
+        {
+          "operation": "read_csv",
+          "useCase": "Load ideas from ideas_inbox.csv",
+          "step": "mode-c-02 (research)"
+        },
+        {
+          "operation": "write_csv",
+          "useCase": "Create new entries in posts_content.csv",
+          "step": "step-c-03e-finalize"
+        },
+        {
+          "operation": "append_csv",
+          "useCase": "Add metrics to metrics_tracking.csv",
+          "step": "mode-c-07 (analytics)"
+        },
+        {
+          "operation": "filter_csv",
+          "useCase": "Search posts by date, idea, theme, CTR, status",
+          "step": "mode-c-04 (search)"
+        },
+        {
+          "operation": "aggregate_csv",
+          "useCase": "Calculate CTR, avg engagement, top performers",
+          "step": "mode-c-07 (analytics)"
+        },
+        {
+          "operation": "sort_csv",
+          "useCase": "Top performers, recent posts, high CTR",
+          "step": "mode-c-07 (analytics)"
+        }
+      ],
+      "columnSpecifications": {
+        "posts_content": {
+          "content_500_chars": "type: text, length: 500 chars",
+          "content_250_chars": "type: text, length: 250 chars",
+          "content_100_chars": "type: text, length: 100 chars",
+          "quality_score": "type: integer, range: 0-100",
+          "ctr_potential": "type: float, range: 0-10%",
+          "status": "type: enum, values: [draft, ready, published, needs_review, needs_rewrite]"
+        },
+        "metrics_tracking": {
+          "ctr_percent": "type: float, format: percentage",
+          "views": "type: integer",
+          "clicks": "type: integer",
+          "engagement_rate": "type: float, formula: (comments+shares+saves)/views*100"
+        }
+      },
+      "errorHandling": {
+        "status": "✅ DOCUMENTED",
+        "procedures": [
+          "Corrupted file detection",
+          "Automatic repair attempt",
+          "Fallback to backup on failure",
+          "CSV validation before load"
+        ]
+      }
+    },
+
+    "versionTracking": {
+      "status": "✅ COMPREHENSIVE",
+      "mechanisms": [
+        {
+          "type": "File naming",
+          "pattern": "/posts/YYYY-MM-DD_idea-X_angle-Y_v{version}.md",
+          "example": "2026-01-27_idea-1_angle-3_v1.md"
+        },
+        {
+          "type": "CSV column",
+          "field": "version",
+          "location": "posts_content.csv",
+          "tracking": "version number per post"
+        },
+        {
+          "type": "Post frontmatter",
+          "field": "version",
+          "type": "integer",
+          "behavior": "increments on each edit"
+        },
+        {
+          "type": "Session state",
+          "file": "workflow_state.json",
+          "fields": ["stepsCompleted", "lastUpdated", "sessionDuration", "currentStep"]
+        }
+      ],
+      "editHistory": {
+        "status": "✅ CONFIRMED",
+        "mechanism": "Full version history preserved in post file (version numbers + timestamps)"
+      },
+      "timestampFormat": {
+        "datetime": "ISO 8601 (2026-01-27 21:30)",
+        "date": "YYYY-MM-DD",
+        "sessionId": "timestamp-based (2026-01-27-v1)"
+      }
+    },
+
+    "backupProcedures": {
+      "status": "✅ DOCUMENTED",
+      "procedures": [
+        {
+          "type": "Automated daily backups",
+          "trigger": "Daily schedule",
+          "location": "/backup/ folder",
+          "step": "mode-c-08 (manage)"
+        },
+        {
+          "type": "CSV validation and repair",
+          "trigger": "On load",
+          "action": "Auto-detect and repair corrupted files"
+        },
+        {
+          "type": "Session state backup",
+          "trigger": "After each step",
+          "file": "workflow_state.json",
+          "format": "JSON sidecar"
+        },
+        {
+          "type": "Post version tracking",
+          "trigger": "After each edit",
+          "mechanism": "Version field increments, old versions preserved"
+        }
+      ],
+      "recoveryCapability": {
+        "status": "✅ CONFIRMED",
+        "mechanisms": [
+          "Automatic CSV validation & repair on load",
+          "Fallback to backup on failure",
+          "Graceful degradation if search fails",
+          "Session resumption from workflow_state.json"
+        ]
+      }
+    },
+
+    "continuableWorkflow": {
+      "status": "✅ FULLY_IMPLEMENTED",
+      "mechanism": "workflow_state.json sidecar",
+      "stateFields": [
+        "workflow_id: 'idea-to-post-pipeline'",
+        "session_id: '2026-01-27-v1' (timestamp-based)",
+        "currentMode: 'CREATE'|'EDIT'|'VALIDATE'|'YOLO'",
+        "currentStep: step filename",
+        "stepsCompleted: array of completed steps",
+        "context: selectedIdea, selectedAngle, draftVersion, etc.",
+        "lastUpdated: ISO 8601 datetime",
+        "sessionDuration: minutes"
+      ],
+      "resumeCapability": {
+        "detection": "step-01-init.md checks for workflow_state.json",
+        "loading": "step-01b-continue.md loads full state",
+        "multiSession": "Can span multiple days"
+      }
+    },
+
+    "validation": {
+      "status": "✅ QUALITY_VALIDATION_INTEGRATED",
+      "checkpoints": [
+        {
+          "step": "step-c-03e-finalize",
+          "checks": [
+            "Hook strength: STRONG",
+            "Problem clarity: CLEAR",
+            "Solution relevance: RELEVANT",
+            "CTA clarity: EXPLICIT",
+            "Tone consistency: CONSISTENT"
+          ],
+          "outputs": ["Quality Score 0-100", "CTR Potential 0-10%", "Engagement Score 0-5.0"]
+        },
+        {
+          "step": "mode-v (validate)",
+          "checks": [
+            "Structure check (hook/problem/solution/trigger/CTA)",
+            "Quality check (tone, emoji, formatting)",
+            "CTR potential assessment",
+            "Consistency validation",
+            "Copy audit",
+            "Batch validation"
+          ]
+        },
+        {
+          "step": "mode-yolo-03-self-check",
+          "checks": "5 automated validation checks per post"
+        }
+      ]
+    },
+
+    "successMetrics": {
+      "status": "✅ DEFINED",
+      "targets": [
+        {
+          "metric": "Posts passing validation",
+          "target": "90%+ on first attempt",
+          "yoloActual": "89% (8/9 posts)"
+        },
+        {
+          "metric": "Average CTR potential",
+          "target": "3-5%",
+          "yoloActual": "4.1%"
+        },
+        {
+          "metric": "Average engagement score",
+          "target": "4.0+/5.0",
+          "yoloActual": "4.3/5.0"
+        },
+        {
+          "metric": "Execution speed (YOLO)",
+          "target": "3-5 minutes for 9 posts",
+          "actual": "2 minutes 45 seconds"
+        }
+      ]
+    },
+
+    "findings": {
+      "status": "COMPREHENSIVE_VALIDATION_COMPLETE",
+      "strengths": [
+        "Output file locations explicitly specified in every step",
+        "CSV templates provided with sample data (5-12 rows each)",
+        "YAML frontmatter format clearly defined for posts",
+        "Version tracking implemented at multiple levels",
+        "Comprehensive backup procedures (daily automated + manual)",
+        "Multi-session continuability with workflow_state.json",
+        "Quality validation integrated (quality_score, ctr_potential, engagement_score)",
+        "Post structure templates clear (Hook/Problem/Solution/Trigger/CTA)",
+        "CSV operations extensively documented",
+        "Error handling and recovery procedures specified"
+      ],
+      "enhancements": [
+        {
+          "category": "Documentation",
+          "recommendation": "Create OUTPUT_SPECIFICATION.md consolidating all output formats",
+          "priority": "MEDIUM"
+        },
+        {
+          "category": "Validation",
+          "recommendation": "Add automated CSV schema validation before save operations",
+          "priority": "MEDIUM"
+        },
+        {
+          "category": "Backup",
+          "recommendation": "Implement version-aware backup naming (backup/YYYY-MM-DD_vX.zip)",
+          "priority": "LOW"
+        },
+        {
+          "category": "Monitoring",
+          "recommendation": "Add data quality dashboard in mode-c-07 analytics",
+          "priority": "LOW"
+        }
+      ]
+    },
+
+    "compliance": {
+      "BMADStandards": "✅ FULL",
+      "YAMLFrontmatter": "✅ CONFIRMED",
+      "CSVFormat": "✅ RFC_4180_COMPLIANT",
+      "MarkdownFormat": "✅ STANDARD",
+      "StateManagement": "✅ JSON_SIDECAR",
+      "MultiSession": "✅ CONTINUABLE",
+      "ErrorHandling": "✅ DOCUMENTED",
+      "VersionControl": "✅ IMPLEMENTED"
+    }
+  }
+}

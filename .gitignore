@@ -1,22 +1,30 @@
-# Ignore everything
-*
+# System
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
 
-# But don't ignore the _bmad directory and its contents
-!_bmad/
-!_bmad/**
-!README.md
-!.clinerules/
-!.clinerules/**
-!folder_structure.md
-!PHASE-2-HANDOFF-README.md
+# Environment
+.env
+.env.local
+.env.*.local
+.venv/
+venv/
+env/
 
-.claude\*
+# OS
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+*~
 
-# Also don't ignore .gitignore itself
-!.gitignore
-!PHASE-1-DELIVERY-2026-02-26.md
-!PHASE-1.0-UX-BLOCKER-IMPLEMENTATION-SPEC.md
-!ARCHITECTURE-CRITICAL-DECISIONS-RESOLUTION-PLAN.md
-!PHASE-1-EXECUTION-STATUS-2026-02-27.md
-!VALIDATION-REPORT-100PCT-2026-02-28.md
-!CONSOLIDATION-COMPLETION-SUMMARY-2026-02-28.md
+# Logs
+*.log
+nul
+
+# IDE/Editor - keep all .codex, .cursor, .windsurf, .cline etc.
+# (they ARE the repo content)

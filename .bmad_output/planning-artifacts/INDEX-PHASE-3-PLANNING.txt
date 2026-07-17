@@ -1,0 +1,235 @@
+PHASE 3 TEST DEFERRAL PLANNING - COMPLETE DOCUMENTATION INDEX
+================================================================
+
+Date Created: 2026-03-01
+Total Tests Analyzed: 53 failing tests
+Planning Status: COMPLETE ✓
+Ready for Execution: YES
+
+DOCUMENT STRUCTURE
+==================
+
+Three main planning documents created:
+
+1. PHASE-3-TEST-ROADMAP.md (18 KB)
+   - Strategic overview and scheduling
+   - Test categorization by component (6 groups)
+   - 7-day implementation timeline
+   - Dependency graph and critical path
+   - Risk assessment and BMAD skills required
+   - USE THIS FOR: Overall strategy and scheduling
+
+2. PHASE-3-QUICK-START.md (13 KB)
+   - Day 1 execution guide
+   - First 5 quick-win tests with step-by-step fixes
+   - 3-day detailed execution plan
+   - Debugging tips and commands
+   - USE THIS FOR: Getting started immediately (first 2.5 hours)
+
+3. PHASE-3-IMPLEMENTATION-CHECKLIST.md (32 KB)
+   - Complete line-by-line reference for all 53 tests
+   - Every test has: file location, error, root cause, fix code
+   - Status checkboxes for progress tracking
+   - Copy-paste ready fixes
+   - USE THIS FOR: Fixing each individual test
+
+SUPPORTING DOCUMENTS
+====================
+
+4. PHASE-3-SUMMARY-FOR-MEMORY.md (7 KB)
+   - Summary for global knowledge base
+   - Cross-project learning points
+   - Key metrics and success criteria
+   - USE THIS FOR: Sharing insights across projects
+
+5. INDEX-PHASE-3-PLANNING.txt (THIS FILE)
+   - Quick navigation guide
+   - Document overview
+   - Key statistics
+
+TEST BREAKDOWN
+==============
+
+Group 1: Callback Manager Tests (11 tests)
+  Priority: HIGH
+  Est. Time: 2-3 hours
+  Status: Not started
+  Skill: bmad-tea-testarch-test-design
+  
+Group 2: Dashboard Panel Tests (19 tests)
+  Priority: MEDIUM
+  Est. Time: 3-4 hours
+  Depends on: Group 1
+  Status: Not started
+  Skill: bmad-tea-testarch-test-design
+
+Group 3: Position Sizing (1 test)
+  Priority: MEDIUM
+  Est. Time: 1-2 hours
+  Independent: YES
+  Status: Not started
+  Skill: bmad-tea-testarch-test-design
+
+Group 4: Imports & Dependencies (2 tests)
+  Priority: MEDIUM
+  Est. Time: 1-2 hours
+  Independent: YES
+  Status: Not started
+  Skill: bmad-tea-testarch-test-design
+
+Group 5: Build Configuration (1 test)
+  Priority: LOW
+  Est. Time: 0.5 hours
+  Independent: YES
+  Status: Not started
+  Skill: bmad-tea-testarch-test-design
+
+Group 6: Infrastructure/Story Tests (21 tests)
+  Priority: LOW
+  Est. Time: 3-4 hours
+  Independent: YES (can run parallel)
+  Status: Not started
+  Skills: bmad-tea-testarch-test-design, bmad-bmm-qa-automate
+
+TOTAL: 55 failing tests | 11-15 hours | 3-phase execution
+
+EXECUTION TIMELINE
+==================
+
+Phase 3-A: Foundation (Days 1-2)
+  Day 1: Groups 1, 4, 5 (14 tests) → 26% complete
+  Day 2: Group 3 (1 test) → 28% complete
+  
+Phase 3-B: Features (Days 2-4)
+  Days 2-4: Group 2 (19 tests) → 64% complete
+  
+Phase 3-C: Infrastructure (Days 4-7)
+  Days 4-7: Group 6 (21 tests) → 100% complete
+
+Critical Path: Group 1 → Group 2 → Validation
+Optional: Group 6 (CI) can run in parallel with Group 2
+
+HOW TO USE THESE DOCUMENTS
+==========================
+
+Step 1: READ THIS INDEX (2 min)
+  → Understand document structure and purpose
+
+Step 2: OPEN PHASE-3-QUICK-START.md (30 min)
+  → Review first 5 quick-win tests
+  → Understand fix patterns
+
+Step 3: START TEST 1 (30 min)
+  → Kelly Criterion import fix
+  → First of 5 Day 1 tests
+
+Step 4: REFER TO CHECKLIST (ongoing)
+  → Use PHASE-3-IMPLEMENTATION-CHECKLIST.md
+  → Find exact fix location and code
+  → Copy-paste ready solutions
+
+Step 5: TRACK PROGRESS (daily)
+  → Check status checkboxes in checklist
+  → Compare against timeline in roadmap
+  → Adjust schedule if needed
+
+KEY SUCCESS FACTORS
+===================
+
+1. Start with Group 1 (Callbacks)
+   - Foundation for all other fixes
+   - Quick feedback loop
+   - Builds momentum
+
+2. Follow the Quick Start first
+   - Get 5 tests passing in 2.5 hours
+   - See exact patterns
+   - Build confidence
+
+3. Use checklist religiously
+   - Every test has exact fix
+   - No guessing needed
+   - Copy code directly
+
+4. Test in isolation
+   - Run single test: pytest path::test -v
+   - Then run full group
+   - Then run all tests
+
+5. Track progress visually
+   - Mark checkboxes as complete
+   - Update daily
+   - Stay motivated by progress
+
+BMAD WORKFLOWS TO USE
+====================
+
+Primary: bmad-tea-testarch-test-design
+  - For all test fixes
+  - Understand test requirements
+  - Analyze failures systematically
+  - Implement to match test expectations
+
+Secondary: bmad-bmm-qa-automate (for Group 6)
+  - CI/CD setup
+  - Documentation generation
+  - Quality gate configuration
+
+VERIFICATION COMMANDS
+====================
+
+Single test:
+  python -m pytest src/tests/test_file.py::TestClass::test_method -v
+
+Full group:
+  python -m pytest src/tests/test_file.py -v
+
+All tests:
+  python -m pytest src/tests/ -v --tb=short
+
+Coverage check:
+  python -m pytest src/tests/ --cov=src/bmad --cov-report=term-missing
+
+EXPECTED OUTCOMES
+=================
+
+After Phase 3-A (2 days):
+  ✓ 15/53 tests passing (28%)
+  ✓ Callback system working
+  ✓ Imports validated
+  ✓ Build system configured
+
+After Phase 3-B (4 days):
+  ✓ 35/53 tests passing (64%)
+  ✓ Dashboard panels rendering
+  ✓ All trading features working
+  ✓ Position sizing constraints enforced
+
+After Phase 3-C (7 days):
+  ✓ 56/53 tests passing (100%)
+  ✓ Complete CI/CD pipeline
+  ✓ All documentation exists
+  ✓ Security baseline established
+
+CONTACT/BLOCKERS
+================
+
+If stuck on a test:
+  1. Check PHASE-3-IMPLEMENTATION-CHECKLIST.md for exact fix
+  2. Verify line number matches current codebase
+  3. Use debugging commands provided in QUICK-START
+  4. Test in isolation with pytest -v
+  5. Compare your fix with provided code snippets
+
+NEXT ACTION
+===========
+
+→ OPEN: PHASE-3-QUICK-START.md
+→ READ: First 5 tests section
+→ START: Test 1 (Kelly Criterion, 30 min)
+→ GOAL: 5/53 tests by end of Day 1 morning
+
+You have everything needed. Start now! 🚀
+
+================================================================
+End of Index

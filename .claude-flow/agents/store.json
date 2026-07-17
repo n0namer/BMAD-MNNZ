@@ -1,0 +1,165 @@
+{
+  "agents": {
+    "template-creator": {
+      "agentId": "template-creator",
+      "agentType": "technical-writer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "3",
+        "priority": "medium",
+        "estimatedHours": 3,
+        "model": "haiku"
+      },
+      "createdAt": "2026-02-06T18:23:27.433Z",
+      "model": "haiku",
+      "modelRoutedBy": "explicit"
+    },
+    "escalation-designer": {
+      "agentId": "escalation-designer",
+      "agentType": "system-architect",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "4",
+        "priority": "medium",
+        "estimatedHours": 5,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-02-06T18:23:27.612Z",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "goals-integrator": {
+      "agentId": "goals-integrator",
+      "agentType": "integration-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "5",
+        "priority": "medium",
+        "estimatedHours": 6,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-02-06T18:23:27.846Z",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "memory-integrator": {
+      "agentId": "memory-integrator",
+      "agentType": "memory-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "6",
+        "priority": "medium",
+        "estimatedHours": 4,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-02-06T18:23:28.063Z",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "algorithm-documenter": {
+      "agentId": "algorithm-documenter",
+      "agentType": "algorithm-designer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "7",
+        "priority": "medium",
+        "estimatedHours": 3,
+        "model": "haiku"
+      },
+      "createdAt": "2026-02-06T18:23:28.288Z",
+      "model": "haiku",
+      "modelRoutedBy": "explicit"
+    },
+    "role-matcher": {
+      "agentId": "role-matcher",
+      "agentType": "ai-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "8",
+        "priority": "medium",
+        "estimatedHours": 4,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-02-06T18:23:28.511Z",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "triz-trigger": {
+      "agentId": "triz-trigger",
+      "agentType": "innovation-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "9",
+        "priority": "medium",
+        "estimatedHours": 6,
+        "model": "sonnet"
+      },
+      "createdAt": "2026-02-06T18:23:28.763Z",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    },
+    "frontmatter-cleaner": {
+      "agentId": "frontmatter-cleaner",
+      "agentType": "refactoring-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "10",
+        "priority": "low",
+        "estimatedHours": 1,
+        "model": "haiku"
+      },
+      "createdAt": "2026-02-06T18:23:29.007Z",
+      "model": "haiku",
+      "modelRoutedBy": "explicit"
+    },
+    "documentation-writer": {
+      "agentId": "documentation-writer",
+      "agentType": "technical-writer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "11",
+        "priority": "low",
+        "estimatedHours": 4,
+        "model": "haiku"
+      },
+      "createdAt": "2026-02-06T18:23:29.189Z",
+      "model": "haiku",
+      "modelRoutedBy": "explicit"
+    },
+    "file-optimizer": {
+      "agentId": "file-optimizer",
+      "agentType": "code-quality-specialist",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "taskId": "12",
+        "priority": "low",
+        "estimatedHours": 3,
+        "model": "haiku"
+      },
+      "createdAt": "2026-02-06T18:23:29.370Z",
+      "model": "haiku",
+      "modelRoutedBy": "explicit"
+    }
+  },
+  "version": "3.0.0"
+}

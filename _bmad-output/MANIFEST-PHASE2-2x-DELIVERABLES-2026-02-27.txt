@@ -1,0 +1,134 @@
+PHASE 2 2x EXPANSION IMPLEMENTATION PLAN - MANIFEST
+==================================================
+
+PROJECT: katana-vectorbt v2.0 Phase 2 Extended
+TIMELINE: 20 weeks (Feb 28 - Jul 18, 2026)
+SCOPE: 574 FRs (2x expansion), 980+ tests
+TEAM: 6.5 FTE (no hiring required)
+BUDGET: $314K
+STATUS: READY FOR IMPLEMENTATION
+GENERATED: 2026-02-27
+
+PRIMARY DOCUMENTS (2x Expansion Plan)
+====================================
+
+1. 00-START-HERE-PHASE2-2x-2026-02-27.md
+   Quick overview & next steps (30 min read)
+
+2. PHASE-2-2x-EXECUTIVE-SUMMARY.md
+   Comprehensive executive summary (20 pages)
+
+3. CODE-TEST-IMPLEMENTATION-PLAN-2x-2026-02-27.md
+   Complete technical plan (38K, 50+ pages)
+
+4. IMPLEMENTATION-GANTT-CHART-2x-2026-02-27.md
+   Week-by-week visual timeline (29K, 30+ pages)
+
+5. README-PHASE2-2x-IMPLEMENTATION.md
+   Quick start guide (13K)
+
+6. INDEX-PHASE2-2x-IMPLEMENTATION.md
+   Document index & reference
+
+REFERENCE DOCUMENTS (Original 12-week Plan)
+==========================================
+
+7. CODE-TEST-IMPLEMENTATION-PLAN-2026-02-27.md
+8. IMPLEMENTATION-GANTT-CHART-2026-02-27.md
+9. PHASE-2-IMPLEMENTATION-EXECUTIVE-SUMMARY.md
+
+TEST DESIGN DOCUMENTS (2x Expansion)
+===================================
+
+10. TEST-DESIGN-2x-PHASE2-2026-02-27.md
+11. TEST-SPECIFICATIONS-DETAILED-2x-2026-02-27.md
+12. TEST-DESIGN-2x-EXECUTIVE-SUMMARY-2026-02-27.md
+
+KEY METRICS
+===========
+
+Scope:            287 → 574 FRs (+100%)
+Stories:          23 → 96 (+317%)
+Tests:            576 → 980+ (+70%)
+BLOCKERs:         5 → 13 (+160%)
+Duration:         20 weeks
+Team:             6.5 FTE
+Budget:           $314K
+Cost per FR:      $547
+Code Coverage:    85% target
+Test Pass Rate:   95% target
+
+IMPLEMENTATION TIMELINE
+======================
+
+Week 1-4:    BLOCKER-1 State Machine (CRITICAL)
+Week 5-8:    BLOCKER-2,3 Journal & Telemetry (CRITICAL)
+Week 9-12:   BLOCKER-4,8,9 Comparison, Calendar, Portfolio
+Week 13-16:  BLOCKER-5,6,10,11 Audit, Multi-TF, Risk, Persistence
+Week 17-20:  BLOCKER-12,13 Scalability & Integration + LAUNCH
+
+CRITICAL GATES (No Slip Tolerance)
+=================================
+
+Week 2:  BLOCKER-1 Complete - 30+ tests
+Week 5:  BLOCKER-2 Complete - Schema frozen
+Week 9:  BLOCKER-3 Complete - Telemetry live
+Week 16: Launch Ready - All systems tested
+Week 20: Production Launch - 574 FRs live
+
+TEAM (6.5 FTE - No Hiring)
+==========================
+
+1.0 Tech Lead/Architect
+1.0 Senior Backend #1
+1.0 Backend Engineer #2
+1.0 Backend Engineer #3
+0.5 Infrastructure/DevOps
+1.0 QA/Test Automation
+0.5 Junior Backend
+
+BUDGET: $314K
+=============
+
+Labor:        $296K (6.5 FTE × 20 weeks)
+Infrastructure: $7.5K
+Services:     $8K
+Other:        $2.5K
+
+TESTING: 980+ Tests
+==================
+
+Unit Tests:       560 (85%+ coverage)
+Integration:      240
+System/E2E:       120
+Performance:      40
+Security:         20
+
+RECOMMENDATION
+==============
+
+APPROVED: 20-week, 6.5 FTE plan recommended
+
+Why this plan:
+✅ Better quality (time for testing)
+✅ Lower cost ($314K vs $960K)
+✅ Team stability (no hiring)
+✅ Risk managed (4-week buffer)
+✅ Sustainable pace
+
+Success requires:
+1. Critical path discipline (weeks 2, 5, 9)
+2. Weekly velocity tracking
+3. Full team commitment
+4. Minimal scope creep
+5. Risk escalation
+
+Next steps:
+1. Stakeholder approval
+2. Budget authorization
+3. Team commitment lock
+4. Week 1 kickoff meeting
+
+STATUS: Ready for Implementation
+VERSION: 2.0 (20-week extended)
+DATE: 2026-02-27

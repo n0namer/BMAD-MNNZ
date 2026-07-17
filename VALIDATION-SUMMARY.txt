@@ -1,0 +1,156 @@
+================================================================================
+LIFE OS WORKFLOW.MD - FRONTMATTER VALIDATION SUMMARY
+================================================================================
+
+FILE: _bmad/bmm/workflows/life-os/workflow.md
+DATE: 2026-02-06
+STATUS: ⚠️ WARNINGS (2 Critical Issues)
+
+================================================================================
+1. YAML SYNTAX VALIDATION
+================================================================================
+✅ PASS - Valid YAML syntax
+- All key:value pairs correct
+- Proper indentation
+- No parse errors
+
+================================================================================
+2. VARIABLE STATUS (15 Variables Total)
+================================================================================
+USED Variables (3):
+  ✅ name                    - System metadata (USED)
+  ✅ description            - System metadata (USED)
+  ✅ web_bundle             - System metadata (USED)
+
+UNUSED Variables (12):
+  ❌ trackDetectionAlgorithm     - Defined but NOT used in body
+  ❌ quickTrackFlow              - Defined but NOT used in body
+  ❌ standardTrackFlow           - Defined but NOT used in body
+  ❌ deepTrackFlow               - Defined but NOT used in body
+  ❌ outputQualityStandards      - Defined but NOT used in body
+  ❌ executionKickoff            - Defined but hardcoded at line 349
+  ❌ executionPulse             - Defined but hardcoded elsewhere
+  ❌ executionMilestone         - Defined but hardcoded elsewhere
+  ❌ executionPivot             - Defined but hardcoded elsewhere
+  ❌ portfolioIntake            - Defined but hardcoded at line 136
+  ❌ batchQuickScore            - Defined but NOT used in body
+  ❌ batchComparisonMatrix      - Defined but NOT used in body
+
+UNUSED RATE: 12 of 15 variables (80% unused)
+
+================================================================================
+3. PATH FORMAT VALIDATION
+================================================================================
+✅ PASS - All paths are relative
+- All paths use './' prefix
+- No {workflow_path} placeholders
+- No absolute paths
+- Consistent structure
+
+Verified paths:
+  ✓ ./data/track-detection-algorithm.md
+  ✓ ./data/quick-track-flow.md
+  ✓ ./data/standard-track-flow.md
+  ✓ ./data/deep-track-flow.md
+  ✓ ./data/output-quality-standards.md
+  ✓ ./steps-x/step-x-01-kickoff.md
+  ✓ ./steps-x/step-x-02-weekly-pulse.md
+  ✓ ./steps-x/step-x-03-milestone-gate.md
+  ✓ ./steps-x/step-x-04-pivot-or-kill.md
+  ✓ ./steps-c/step-00.1-portfolio-intake.md
+  ✓ ./data/batch-quick-score.md
+  ✓ ./data/batch-comparison-matrix.md
+
+================================================================================
+4. FORBIDDEN PATTERNS
+================================================================================
+✅ PASS - No forbidden patterns found
+  ✓ No {workflow_path} placeholders
+  ✓ No misused {thisStepFile}
+  ✓ No mixed path formats
+  ✓ No inconsistent variable references
+
+================================================================================
+5. VIOLATIONS SUMMARY
+================================================================================
+
+VIOLATION #1: Unused Frontmatter Variables
+──────────────────────────────────────────
+Severity: 🔴 CRITICAL
+Lines: 5-16
+Issue: 12 variables defined but never used in body text
+Impact: Maintenance burden, inconsistency risk, design confusion
+
+Evidence:
+  • executionKickoff (line 10) → hardcoded at line 349
+  • portfolioIntake (line 14) → hardcoded at line 136
+  • trackDetectionAlgorithm (line 5) → never referenced
+  • 9 other variables similarly unused
+
+VIOLATION #2: Design Pattern Mismatch
+──────────────────────────────────────
+Severity: 🟡 WARNING
+Issue: Frontmatter follows "configuration-as-data" pattern but body treats
+       it as "documentation-only" by hardcoding all paths
+Impact: Violates DRY principle, creates false expectations
+
+Example:
+  Frontmatter: executionKickoff: './steps-x/step-x-01-kickoff.md'
+  Body:        Load 'steps-x/step-x-01-kickoff.md' [hardcoded, not using variable]
+
+================================================================================
+6. RECOMMENDED FIXES
+================================================================================
+
+OPTION A: Clean Removal (⭐ PREFERRED)
+─────────────────────────────────────
+Action: Remove unused variables (lines 5-16)
+Keep: name, description, web_bundle only
+Effort: Very Low
+Benefit: Eliminates clutter, improves clarity
+Status: RECOMMENDED
+
+OPTION B: Complete Template Refactor
+─────────────────────────────────────
+Action: Keep variables, update all body references to use {variable} syntax
+Example: Change 'steps-x/step-x-01-kickoff.md' to '{executionKickoff}'
+Effort: High (20+ changes needed)
+Benefit: Full DRY compliance, easier future maintenance
+
+OPTION C: Hybrid Approach
+─────────────────────────
+Action: Keep 5 critical variables, remove others
+Keep: executionKickoff, executionPulse, executionMilestone, executionPivot,
+      portfolioIntake (execution steps + portfolio mode)
+Remove: All data/ file variables (trackDetectionAlgorithm, etc.)
+Effort: Low
+Benefit: Balanced approach, keeps important config centralized
+
+================================================================================
+7. OVERALL ASSESSMENT
+================================================================================
+
+SYNTAX:           ✅ PASS    (Valid YAML, proper format)
+PATH FORMAT:      ✅ PASS    (All relative with ./)
+FORBIDDEN PATTERNS: ✅ PASS  (None detected)
+VARIABLE USAGE:   ❌ FAIL    (80% unused variables)
+DESIGN CONSISTENCY: ⚠️ FAIL  (Config defined but not used)
+
+FINAL STATUS: ⚠️ WARNINGS (2 Critical Issues - Requires Remediation)
+
+Priority: MEDIUM
+- Doesn't break functionality
+- Violates cleanliness/best practices
+- Should be fixed in next cleanup cycle
+
+================================================================================
+DETAILED REPORT SAVED TO:
+d:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\FRONTMATTER-VALIDATION-REPORT.md
+
+NEXT STEPS:
+1. Review the detailed report
+2. Select remediation option (A, B, or C)
+3. Execute fixes
+4. Re-validate with this tool
+
+================================================================================

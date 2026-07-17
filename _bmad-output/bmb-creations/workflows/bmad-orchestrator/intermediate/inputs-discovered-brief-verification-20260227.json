@@ -1,0 +1,174 @@
+{
+  "sessionId": "orchestrator-brief-verification-20260227",
+  "discoveryTimestamp": "2026-02-27T10:00:00Z",
+  "taskDescription": "Verify FULL canonical Brief (L1 - katana-v-01-product-brief-2026-01-17.md) against all Phase 2 planning and implementation documents to ensure 100% coverage, complete traceability chain (L1→L6), identification of gaps, and validation of 2x expansion artifacts before Phase 2 kickoff",
+  "taskType": "VERIFICATION_AND_SYNCHRONIZATION",
+  "projectName": "katana-vectorbt",
+  "sourceFiles": {
+    "L1_SourceOfTruth": {
+      "path": "katana-v-01-product-brief-2026-01-17.md",
+      "status": "FROZEN",
+      "lines": 2526,
+      "baseRequirements": 70,
+      "wave": "Wave 4 Canonical",
+      "lastUpdated": "2026-02-25",
+      "role": "Source of truth for all verification activities"
+    },
+    "L2_Planning": [
+      {
+        "name": "PRD",
+        "path": "katana-v-02-prd-katana-vectorbt-2026-01-18.md",
+        "status": "NEEDS_VALIDATION",
+        "patches": 7,
+        "validationGap": "Not validated against full Brief",
+        "priority": "HIGH"
+      },
+      {
+        "name": "Architecture",
+        "path": "katana-v-04-architecture-phase-2-2026-02-26.md",
+        "status": "BLOCKING",
+        "completionPercentage": 37.5,
+        "stepsComplete": "1-3",
+        "stepsBlocking": "4-8",
+        "validationGap": "Phase 2 design incomplete",
+        "priority": "CRITICAL"
+      },
+      {
+        "name": "UX Design",
+        "path": "katana-v-03-ux-design-specification-2026-01-19.md",
+        "status": "NEEDS_EXPANSION",
+        "phase1Complete": true,
+        "phase2Status": "GAPS",
+        "validationGap": "Phase 2 design gaps",
+        "priority": "HIGH"
+      }
+    ],
+    "L3_Specifications": [
+      {
+        "name": "Epics",
+        "path": "katana-v-05-epics-REGENERATED-2026-02-27.md",
+        "status": "REGENERATED",
+        "epicCount": 8,
+        "mappedFRs": 287,
+        "coverage": "100% (base Brief)",
+        "validationGap": "Needs validation against full Brief + 2x expansion",
+        "priority": "HIGH"
+      },
+      {
+        "name": "User Stories",
+        "path": "phase-2-user-stories-REGENERATED-2026-02-27.md",
+        "status": "REGENERATED",
+        "storyCount": 187,
+        "totalStoryPoints": 1524,
+        "mappedFRs": 287,
+        "validationGap": "Needs validation against full Brief + 2x expansion",
+        "priority": "HIGH"
+      }
+    ],
+    "L4_2xExpansion_New": [
+      {
+        "name": "Atomic FRs (2x)",
+        "path": "EXPANDED-BRIEF-V3-2x-ATOMIC-FRS-2026-02-27.md",
+        "status": "GENERATED_NOT_VERIFIED",
+        "baseFRs": 287,
+        "expandedFRs": 574,
+        "expansionFactor": "2x",
+        "validationGap": "NOT VERIFIED against Brief",
+        "impact": "HIGH - Impacts all downstream documents",
+        "priority": "CRITICAL"
+      },
+      {
+        "name": "NFR Assessment (2x)",
+        "path": "NFR-ASSESSMENT-2x-PHASE2-2026-02-27.md",
+        "status": "GENERATED_NOT_VERIFIED",
+        "baseNFRs": 8,
+        "expandedNFRs": 16,
+        "acceptanceCriteria": 88,
+        "validationGap": "NOT VERIFIED against Brief",
+        "priority": "HIGH"
+      },
+      {
+        "name": "Test Design (2x)",
+        "path": "TEST-DESIGN-2x-PHASE2-2026-02-27.md",
+        "status": "GENERATED_NOT_VERIFIED",
+        "baseTests": 576,
+        "expandedTests": 1150,
+        "automationFeasible": "94%",
+        "validationGap": "NOT VERIFIED against Brief",
+        "impact": "HIGH - Affects test coverage validation",
+        "priority": "HIGH"
+      },
+      {
+        "name": "Implementation Plan (2x)",
+        "path": "CODE-TEST-IMPLEMENTATION-PLAN-2x-2026-02-27.md",
+        "status": "GENERATED_NOT_VERIFIED",
+        "timeline": "20 weeks",
+        "teamSize": "6.5 FTE",
+        "estimatedCost": "$314K",
+        "validationGap": "NOT VERIFIED against Brief",
+        "impact": "CRITICAL - High cost/schedule impact",
+        "priority": "CRITICAL"
+      }
+    ]
+  },
+  "requirements": {
+    "brief_coverage": {
+      "target": "100%",
+      "metric": "All Brief requirements mapped to documents",
+      "tolerance": "0%"
+    },
+    "traceability": {
+      "target": "Complete L1→L6 chain",
+      "metric": "All FRs traceable to code/tests",
+      "tolerance": "Max 5% untraced"
+    },
+    "gap_identification": {
+      "target": "Zero critical gaps",
+      "metric": "Document misalignments identified",
+      "tolerance": "0 critical, max 5% high-severity"
+    },
+    "2x_expansion_validation": {
+      "target": "All 2x artifacts verified",
+      "metric": "574 FRs, 16 NFRs, 1,150+ tests aligned with Brief",
+      "tolerance": "0% deviation from Brief"
+    }
+  },
+  "context": {
+    "estimatedComplexity": "VERY_HIGH",
+    "documentCount": 12,
+    "requirementCount": 574,
+    "story_count": 352,
+    "test_count": 1150,
+    "interfaceCount": 16,
+    "parallelizableWorkflows": 7,
+    "sequentialBlockers": 1,
+    "estimatedDuration": "6-8 hours (parallel execution)",
+    "estimatedTokens": "50-80K tokens",
+    "criticalPath": "Architecture completion → Parallel validations → Gate decision",
+    "phase2_readiness": "20% (blocked by orchestration)",
+    "phase2_kickoff_date": "2026-03-01"
+  },
+  "metadata": {
+    "projectRoot": "d:\\Users\\NIKITA\\Documents\\DEV\\BMAD-MNNZ",
+    "bmadOutput": "./_bmad-output",
+    "orchestratorVersion": "v6.0",
+    "yoloMode": false,
+    "yoloLevel": 1,
+    "parallelExecutionSupported": true,
+    "largeFileSupportEnabled": true,
+    "memoizationEnabled": true
+  },
+  "gates": {
+    "phase2_kickoff": {
+      "status": "BLOCKED",
+      "blockers": [
+        "Architecture Steps 4-8 incomplete",
+        "2x expansion artifacts not verified",
+        "11 gaps from adversarial review (5 critical, 6 high)",
+        "48-hour remediation in progress"
+      ],
+      "readinessThreshold": "Implementation Readiness = PASS"
+    }
+  },
+  "nextStep": "step-02-workflow-selection.md"
+}

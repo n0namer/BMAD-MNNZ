@@ -1,0 +1,19 @@
+{
+  "_comment": "Add these scripts to katana-vectorbt/package.json scripts section",
+  "_note": "These scripts complement the existing test:unit, test:integration, test:e2e:ts, test:e2e:py scripts",
+  "scripts": {
+    "test:e2e": "npx playwright test --project=chromium",
+    "test:e2e:all-browsers": "npx playwright test",
+    "test:e2e:firefox": "npx playwright test --project=firefox",
+    "test:e2e:webkit": "npx playwright test --project=webkit",
+    "test:e2e:headed": "npx playwright test --headed --project=chromium",
+    "test:e2e:debug": "npx playwright test --debug --project=chromium",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:api": "npx playwright test --project=api tests/e2e/api-endpoints.spec.ts",
+    "test:e2e:smoke": "npx playwright test tests/e2e/smoke.spec.ts --project=chromium",
+    "test:e2e:report": "npx playwright show-report test-results/html",
+    "test:e2e:trace": "npx playwright show-trace",
+    "playwright:install": "npx playwright install",
+    "playwright:install:chromium": "npx playwright install chromium"
+  }
+}

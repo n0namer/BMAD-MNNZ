@@ -1,0 +1,221 @@
+=============================================================================
+YAML FRONTMATTER FIXES - VALIDATION REPORT
+=============================================================================
+
+PROJECT: BMAD-MNNZ / idea-to-post-pipeline
+FIXER AGENT: YAML Frontmatter Corrections (Agent 1)
+DATE: 2026-01-30
+STATUS: COMPLETE ✓
+
+=============================================================================
+FILES FIXED (5/5)
+=============================================================================
+
+1. c-03b-select-angle.md
+   Location: _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/
+   Status: ✅ FIXED
+   
+   Issues Found:
+   - Line 4: Invalid OR operator in nextStepFile field
+     OLD: nextStepFile: ./c-03b1-offer-check.md (for demo) OR ./c-03c-draft.md (for normal)
+     NEW: nextStepFile: ./c-03b1-offer-check.md
+   
+   - Missing routing documentation
+     FIX: Added HTML comment with conditional routing logic
+   
+   - Field order non-standard
+     FIX: Reordered to: name, description, type, nextStepFile
+   
+   YAML Status: ✅ Valid
+
+
+2. c-03c-draft.md
+   Location: _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/
+   Status: ✅ FIXED
+   
+   Issues Found:
+   - Lines 6-7: Non-YAML content mixed into frontmatter
+     OLD: Дай feedback на все варианты: 
+          Например: 
+     NEW: REMOVED (invalid YAML)
+   
+   - Field order non-standard
+     FIX: Reordered to: name, description, type, nextStepFile
+   
+   YAML Status: ✅ Valid
+
+
+3. c-03e-finalize.md
+   Location: _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/
+   Status: ✅ FIXED
+   
+   Issues Found:
+   - Lines 2-4: Metadata fields mixed with content
+     OLD: Location: posts_content.csv
+          Post ID: post_001 [assigned]
+          Save to posts_content.csv, then proceed:
+     NEW: REMOVED (moved to documentation comment)
+   
+   - Line 5: Status field mixed in frontmatter
+     OLD: Status: SAVED (draft, not published)
+     NEW: REMOVED (moved to documentation comment)
+   
+   - Line 10: Stray text in frontmatter
+     OLD: Варианты сохранены: 
+     NEW: REMOVED
+   
+   - Field order non-standard
+     FIX: Reordered to: name, description, type, nextStepFile
+   
+   FIX: Added HTML comment preserving storage information
+   
+   YAML Status: ✅ Valid
+
+
+4. c-03b1-offer-check.md
+   Location: _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/
+   Status: ✅ FIXED
+   
+   Issues Found:
+   - Non-standard field names:
+     OLD: stepId: c-03b1
+          stepType: user-input
+          stepName: Фильтр Офферов — "Мне Не Лень?" (Content Machine Stage 4)
+          estimatedMinutes: 2
+     NEW: name: step-c-03b1-offer-check
+          description: [English description]
+          type: user-input
+          [Metadata moved to HTML comment]
+   
+   - Field order non-standard
+     FIX: Reordered to: name, description, type, nextStepFile
+   
+   FIX: Added HTML comment preserving Russian title and metadata
+   
+   YAML Status: ✅ Valid
+
+
+5. c-03b2-offer-generation.md
+   Location: _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/
+   Status: ✅ FIXED
+   
+   Issues Found:
+   - Non-standard field names (partial):
+     OLD: estimatedMinutes: 1
+     NEW: REMOVED (moved to metadata comment)
+   
+   - Field order slightly off
+     FIX: Reordered to: name, description, type, nextStepFile
+   
+   FIX: Added comprehensive HTML comment with all metadata
+        (Russian title, estimated time, triggers, inputs, outputs, stage)
+   
+   YAML Status: ✅ Valid
+
+=============================================================================
+STANDARD SCHEMA APPLIED (BMAD Compliant)
+=============================================================================
+
+All files now follow this structure:
+
+---
+name: step-{STEPID}
+description: [English description of what step does]
+type: [selection|user-input|automated|content-generation|finalization|etc]
+nextStepFile: ./[next-step].md
+---
+
+<!-- METADATA COMMENT (if needed for complex context)
+   [Additional information preserved as documentation]
+   [Conditional routing logic]
+   [Stage numbers]
+   [Time estimates]
+   [Triggers/Conditions]
+   [Input/Output data]
+-->
+
+=============================================================================
+FIELD STANDARDIZATION
+=============================================================================
+
+OLD FIELD NAMES (Non-standard)    →    NEW FIELD NAMES (Standard BMAD)
+────────────────────────────────────────────────────────────────────────
+stepId                             →    name: step-{id}
+stepType                           →    type
+stepName                           →    description
+estimatedMinutes                   →    Moved to HTML comment metadata
+Location (metadata)                →    Moved to HTML comment metadata
+Post ID (metadata)                 →    Moved to HTML comment metadata
+Status (metadata)                  →    Moved to HTML comment metadata
+
+Conditional routing (invalid OR)   →    Documented in HTML comment
+Russian titles                     →    Preserved in HTML comment
+Pain points / offers context       →    Documented in HTML comment
+
+=============================================================================
+VALIDATION RESULTS
+=============================================================================
+
+YAML Syntax Validation:   ✅ PASS (all files parse correctly)
+Schema Compliance:        ✅ PASS (name, description, type, nextStepFile present)
+Field Ordering:          ✅ PASS (consistent across all files)
+Metadata Preservation:   ✅ PASS (all context moved to HTML comments)
+Conditional Routing:     ✅ PASS (documented in comments, not in YAML)
+UTF-8 Encoding:         ✅ PASS (Russian text preserved correctly)
+
+=============================================================================
+EXECUTION NOTES
+=============================================================================
+
+1. Conditional Routing Logic
+   
+   File: c-03b-select-angle.md
+   The invalid OR operator in nextStepFile has been removed.
+   Conditional routing is now documented in an HTML comment:
+   
+   IF content_type == "demo": execute ./c-03b1-offer-check.md
+   ELSE (content_type != "demo"): execute ./c-03c-draft.md
+   
+   This routing must be handled in the execution logic (Python/JS),
+   not in the YAML frontmatter.
+
+2. Content Machine Pipeline Context
+   
+   Files c-03b1-offer-check.md and c-03b2-offer-generation.md are part
+   of the Content Machine pipeline for demo content (content_type == "demo").
+   
+   Stage Flow:
+   - Stage 4 (c-03b1): Filter offer types user is willing to sell
+   - Stage 3 (c-03b2): Generate concrete offers based on routine + pain points
+   - Then → c-03c-draft: Generate post drafts with embedded offers
+   
+   All metadata preserved in HTML comments for reference.
+
+3. Post Finalization Data
+   
+   File: c-03e-finalize.md saves posts to posts_content.csv with fields:
+   id, research_id, angle_used, publish_date, platform, post_title_short,
+   content_500_chars, content_250_chars, content_100_chars, quality_score,
+   ctr_potential, engagement_score, status, notes
+   
+   Metadata preserved in HTML comment for implementation reference.
+
+=============================================================================
+READY FOR PARSING & AUTOMATION
+=============================================================================
+
+All 5 files are now:
+✅ Valid YAML syntax
+✅ Standard BMAD schema compliant
+✅ Parseable by automation tools
+✅ Metadata documented and accessible
+✅ Conditional logic preserved in comments
+✅ UTF-8 safe (Russian text intact)
+
+Files are ready for:
+- Automated parsing and execution
+- Workflow system integration
+- Pipeline automation
+- Version control (clean diffs)
+
+=============================================================================

@@ -1,0 +1,92 @@
+{
+  "sessionId": "session-orchestrator-20260226-001",
+  "discoveryTimestamp": "2026-02-26T00:00:00Z",
+  "taskDescription": "Full brief verification and document alignment cascade across PRD, Architecture, UX, Epics, and Tests",
+  "taskType": "full-suite-verification-and-cascade-synchronization",
+  "sourceFiles": [
+    {
+      "level": "L1",
+      "type": "product-brief",
+      "name": "katana-v-01-product-brief-2026-01-17.md",
+      "path": "d:\\Users\\NIKITA\\Documents\\DEV\\katana-vectorbt\\.bmad_output\\planning-artifacts\\katana-v-01-product-brief-2026-01-17.md",
+      "role": "source-of-truth",
+      "lastUpdated": "2026-02-25",
+      "status": "canonical",
+      "parameters": 115,
+      "timeframeIndependence": 6
+    },
+    {
+      "level": "L2",
+      "type": "prd",
+      "name": "katana-v-02-prd-katana-vectorbt-2026-01-18.md",
+      "path": "d:\\Users\\NIKITA\\Documents\\DEV\\katana-vectorbt\\.bmad_output\\planning-artifacts\\katana-v-02-prd-katana-vectorbt-2026-01-18.md",
+      "role": "alignment-target",
+      "lastUpdated": "2026-01-18",
+      "status": "7-patches-applied-unverified",
+      "functionalRequirements": 78
+    },
+    {
+      "level": "L2",
+      "type": "architecture",
+      "name": "katana-v-04-architecture-2026-01-19.md",
+      "path": "d:\\Users\\NIKITA\\Documents\\DEV\\katana-vectorbt\\.bmad_output\\planning-artifacts\\katana-v-04-architecture-2026-01-19.md",
+      "role": "critical-blocker",
+      "lastUpdated": "2026-02-26",
+      "status": "steps-1-3-complete-steps-4-plus-blocking",
+      "stepsCompleted": [1, 2, 3],
+      "blockingDecisions": 5,
+      "blockingDecisionDescriptions": [
+        "Rocket Bucket Governance (≤10% NAV, 60% per rocket)",
+        "Adaptive State Machine (GREEN/YELLOW/RED/BLACK transitions)",
+        "Parameter Profiles System (≤70 active params)",
+        "Multi-Timeframe Independence (6 parallel Optuna studies)",
+        "Wave 4 Parameters & DFF (115 taxonomy loader)"
+      ]
+    },
+    {
+      "level": "L2",
+      "type": "ux-design",
+      "name": "katana-v-03-ux-design-specification-2026-01-19.md",
+      "path": "d:\\Users\\NIKITA\\Documents\\DEV\\katana-vectorbt\\.bmad_output\\planning-artifacts\\katana-v-03-ux-design-specification-2026-01-19.md",
+      "role": "alignment-target",
+      "lastUpdated": "2026-01-19",
+      "status": "phase-2-gaps-identified",
+      "stepsCompleted": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
+    {
+      "level": "L3",
+      "type": "epics",
+      "name": "katana-v-05-epics.md",
+      "path": "d:\\Users\\NIKITA\\Documents\\DEV\\katana-vectorbt\\.bmad_output\\planning-artifacts\\katana-v-05-epics.md",
+      "role": "alignment-target",
+      "lastUpdated": "2026-02-26",
+      "status": "structural-ready-needs-phase-2-alignment",
+      "storiesPhase3": 73,
+      "storiesPhase4": 42,
+      "storiesWave4": 22
+    }
+  ],
+  "requirements": {
+    "verification": "100% brief coverage across all documents",
+    "gaps": "Identify all requirement gaps (PRD vs brief, Architecture vs brief, UX vs brief, Epics vs brief)",
+    "execution": "Architecture Step 4 (blocker), then 4 parallel validators, then sequential gate, then 3 parallel test designers",
+    "synchronization": "Cascade synchronization of all documents",
+    "traceability": "Complete requirements traceability matrix"
+  },
+  "context": {
+    "complexity": "high",
+    "estimatedPhase2DecisionsRequired": 5,
+    "parallelValidatorsCount": 4,
+    "parallelTestDesignWorkflowsCount": 3,
+    "userPreference": "maximum-parallelism-via-swarm",
+    "runtime": "claude-code-with-swarm",
+    "topology": "hierarchical",
+    "maxAgents": 8
+  },
+  "phase": {
+    "current": 1,
+    "name": "ANALYZE",
+    "nextPhase": 2,
+    "nextPhaseName": "PLAN"
+  }
+}

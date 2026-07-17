@@ -1,0 +1,70 @@
+{
+  "timestamp": "d:\\Users\\NIKITA\\Documents\\DEV\\BMAD-MNNZ",
+  "summary": {
+    "total_source_modules": 5,
+    "total_source_files": 10,
+    "tested_modules": 1,
+    "module_coverage_pct": 20.0,
+    "file_coverage_pct": 10.0,
+    "total_test_files": 16,
+    "test_density": 1.6
+  },
+  "top_gaps": [
+    {
+      "module": "conditions",
+      "source_files": 3,
+      "test_files": 0,
+      "priority": "MEDIUM"
+    },
+    {
+      "module": "dashboard",
+      "source_files": 2,
+      "test_files": 0,
+      "priority": "MEDIUM"
+    },
+    {
+      "module": "dashboard\\components",
+      "source_files": 2,
+      "test_files": 0,
+      "priority": "MEDIUM"
+    },
+    {
+      "module": "live",
+      "source_files": 2,
+      "test_files": 0,
+      "priority": "MEDIUM"
+    }
+  ],
+  "largest_modules": [
+    {
+      "module": "conditions",
+      "source_files": 3,
+      "test_files": 0,
+      "test_coverage": "NO"
+    },
+    {
+      "module": "dashboard",
+      "source_files": 2,
+      "test_files": 0,
+      "test_coverage": "NO"
+    },
+    {
+      "module": "dashboard\\components",
+      "source_files": 2,
+      "test_files": 0,
+      "test_coverage": "NO"
+    },
+    {
+      "module": "live",
+      "source_files": 2,
+      "test_files": 0,
+      "test_coverage": "NO"
+    },
+    {
+      "module": "<root>",
+      "source_files": 1,
+      "test_files": 16,
+      "test_coverage": "YES"
+    }
+  ]
+}

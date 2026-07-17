@@ -1,0 +1,15 @@
+[INFO] Storing in execution-log/command:1769791810...
+
++-----------+----------------------+
+| Property  | Value                |
++-----------+----------------------+
+| Key       | command:1769791810   |
+| Namespace | execution-log        |
+| Size      | 960 bytes            |
+| TTL       | None                 |
+| Tags      | None                 |
+| Vector    | Yes (384-dim)        |
+| ID        | entry_1769791819396_ |
++-----------+----------------------+
+
+[OK] Data stored successfully

@@ -1,0 +1,209 @@
+{
+  "validation_summary": {
+    "workflow": "idea-to-post-pipeline",
+    "timestamp": "2026-01-28",
+    "status": "CRITICAL",
+    
+    "filesChecked": 106,
+    
+    "pathViolations": [
+      {
+        "id": "CRIT-001",
+        "file": "mode-yolo/step-yolo-06-summary.md",
+        "line": 5,
+        "currentValue": "nextStepFile: ./step-00-menu.md",
+        "expectedValue": "nextStepFile: ../../step-00-menu.md",
+        "issue": "Invalid path reference - file does not exist",
+        "impact": "BREAKS_WORKFLOW - YOLO mode cannot return to main menu",
+        "severity": "CRITICAL"
+      }
+    ],
+    "pathViolationCount": 1,
+    
+    "deadEnds": [],
+    "deadEndCount": 0,
+    
+    "circularReferences": [
+      {
+        "id": "WARN-001",
+        "mode": "CREATE",
+        "pattern": "step-c-01-add-idea → mode-c-00-menu → step-c-01-add-idea",
+        "status": "ACCEPTABLE",
+        "reason": "Intentional hub-loop design - user can repeat or select different operation"
+      },
+      {
+        "id": "WARN-002",
+        "mode": "EDIT",
+        "pattern": "e-01a → e-01b → e-01c → mode-e-00-menu → e-01a",
+        "status": "ACCEPTABLE",
+        "reason": "Standard workflow loop - menu acts as hub between iterations"
+      },
+      {
+        "id": "WARN-003",
+        "mode": "EDIT (variant path)",
+        "pattern": "e-01b → e-01c → mode-e-00-menu → e-01a → e-01b",
+        "status": "ACCEPTABLE",
+        "reason": "User can enter workflow at any step; menu returns to hub"
+      },
+      {
+        "id": "WARN-004",
+        "mode": "EDIT (variant path)",
+        "pattern": "e-01c → mode-e-00-menu → e-01a → e-01b → e-01c",
+        "status": "ACCEPTABLE",
+        "reason": "Entry point flexibility - all paths converge at menu hub"
+      },
+      {
+        "id": "WARN-005",
+        "mode": "VALIDATE",
+        "pattern": "v-01a → v-01b → v-01c → mode-v-00-menu → v-01a",
+        "status": "ACCEPTABLE",
+        "reason": "Same hub-loop pattern - correct design"
+      },
+      {
+        "id": "WARN-006",
+        "mode": "VALIDATE (variant path)",
+        "pattern": "v-01b → v-01c → mode-v-00-menu → v-01a → v-01b",
+        "status": "ACCEPTABLE",
+        "reason": "Flexible entry points; menu is central hub"
+      },
+      {
+        "id": "WARN-007",
+        "mode": "VALIDATE (variant path)",
+        "pattern": "v-01c → mode-v-00-menu → v-01a → v-01b → v-01c",
+        "status": "ACCEPTABLE",
+        "reason": "Standard loop closure at menu"
+      }
+    ],
+    "circularRefCount": 7,
+    "circularRefAssessment": "ALL INTENTIONAL - No action needed",
+    
+    "routingIssues": [],
+    "routingIssueCount": 0,
+    
+    "structuralAnalysis": {
+      "totalFiles": 106,
+      "filesWithRouting": 103,
+      "filesWithoutRouting": 3,
+      "routingCoverage": "97.2%",
+      "orphanedFiles": 0
+    },
+    
+    "workflowStructure": {
+      "rootLevel": {
+        "purpose": "Entry point and mode selection",
+        "files": ["step-00-menu.md", "step-01-init.md", "step-01b-continue.md"]
+      },
+      "modes": {
+        "CREATE": {
+          "directory": "mode-c",
+          "files": 23,
+          "subWorkflows": 8,
+          "status": "HEALTHY"
+        },
+        "EDIT": {
+          "directory": "mode-e",
+          "files": 27,
+          "subWorkflows": 8,
+          "status": "HEALTHY"
+        },
+        "VALIDATE": {
+          "directory": "mode-v",
+          "files": 25,
+          "subWorkflows": 8,
+          "status": "HEALTHY"
+        },
+        "YOLO": {
+          "directory": "mode-yolo",
+          "files": 6,
+          "structure": "Linear 6-step pipeline",
+          "status": "BROKEN - Return path invalid"
+        }
+      }
+    },
+    
+    "criticalPathAnalysis": {
+      "paths": [
+        {
+          "name": "CREATE_WORKFLOW",
+          "entry": "step-00-menu.md",
+          "target": "mode-c/mode-c-00-menu.md",
+          "status": "HEALTHY"
+        },
+        {
+          "name": "EDIT_WORKFLOW",
+          "entry": "step-00-menu.md",
+          "target": "mode-e/mode-e-00-menu.md",
+          "status": "HEALTHY"
+        },
+        {
+          "name": "VALIDATE_WORKFLOW",
+          "entry": "step-00-menu.md",
+          "target": "mode-v/mode-v-00-menu.md",
+          "status": "HEALTHY"
+        },
+        {
+          "name": "YOLO_WORKFLOW",
+          "entry": "step-00-menu.md",
+          "target": "mode-yolo/step-yolo-01-input.md",
+          "status": "BROKEN",
+          "breakPoint": "mode-yolo/step-yolo-06-summary.md (final step cannot return)"
+        }
+      ]
+    },
+    
+    "validationChecklist": {
+      "1_everyNextStepFileReferenceExists": {
+        "status": "FAIL",
+        "violationCount": 1
+      },
+      "2_allRoutingLogicComplete": {
+        "status": "PASS",
+        "details": "All 5 menu steps have proper routing options"
+      },
+      "3_noDeadEndSteps": {
+        "status": "PASS",
+        "details": "All 106 steps are reachable"
+      },
+      "4_loopsCloseToMenu": {
+        "status": "PASS",
+        "details": "All circular patterns are intentional hub-loops"
+      },
+      "5_noCircularReferences": {
+        "status": "FAIL_INTENTIONAL",
+        "details": "Circular patterns detected but verified as correct design (7 hub-loops)"
+      }
+    },
+    
+    "metrics": {
+      "validationScore": "87/100",
+      "estimatedScoreAfterFix": "100/100",
+      "criticalIssues": 1,
+      "warnings": 7,
+      "warningType": "Design_Pattern_Validation",
+      "workflowComplexity": "HIGH"
+    },
+    
+    "fixes": [
+      {
+        "priority": "CRITICAL",
+        "action": "Fix YOLO return path",
+        "file": "mode-yolo/step-yolo-06-summary.md",
+        "line": 5,
+        "change": {
+          "from": "nextStepFile: ./step-00-menu.md",
+          "to": "nextStepFile: ../../step-00-menu.md"
+        },
+        "estimatedTime": "1 minute",
+        "risk": "NONE"
+      }
+    ],
+    
+    "conclusionSummary": {
+      "overallStatus": "CRITICAL",
+      "breakingIssues": 1,
+      "designIssues": 0,
+      "actionRequired": "Fix 1 path reference in YOLO mode to restore workflow integrity",
+      "assessment": "Workflow structure is sound. Single critical path violation prevents YOLO mode from returning to main menu. All other 'issues' are intentional circular loop patterns (hub-based workflow design)."
+    }
+  }
+}

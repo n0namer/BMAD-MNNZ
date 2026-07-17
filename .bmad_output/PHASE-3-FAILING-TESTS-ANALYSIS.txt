@@ -1,0 +1,107 @@
+src/tests/test_conditions_imports.py::TestKellyPositionSizingImports::test_kelly_criterion_with_plotly_available FAILED [  5%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_with_async_handlers FAILED [  9%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_mixed_sync_async FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_isolation FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_logging FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_context_preservation FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_listener_state FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_unsubscribe_from_callback FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_latency_measurement FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_throughput FAILED [ 12%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_memory_efficiency FAILED [ 12%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_renders FAILED [ 12%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_displays_symbols FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_shows_size_and_pnl FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_color_coding FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_renders FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_shows_metrics FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_updates_on_data_change FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_alerts_on_threshold FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_renders FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_equity_curve FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_period_returns FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_drawdown_chart FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_position_update FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_trade_executed FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_risk_alert FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_data_consistency FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_error_handling FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_performance_monitoring FAILED [ 18%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_max_allocation FAILED [ 20%]
+src/tests/test_github_actions.py::TestGitHubActionsWorkflow::test_workflow_triggers_on_push_and_pr FAILED [ 25%]
+src/tests/test_poetry.py::TestPoetrySetup::test_build_system_configured FAILED [ 77%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_github_repo_exists ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_branch_protection_enabled ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_project_structure ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_poetry_installs ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_docker_builds ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_precommit_installs ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_setup_md_exists ERROR [ 87%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_contributing_md_exists ERROR [ 87%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_github_actions_workflow_valid ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_pytest_runs ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_coverage_above_threshold ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_poetry_lock_exists ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_all_quality_checks_pass ERROR [ 89%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_ci_blocks_failing_tests ERROR [ 89%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_no_hardcoded_secrets ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_env_file_example_exists ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_security_md_exists ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_bandit_scanning_passes ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_github_secrets_configured ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_dependency_audit_passes ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_precommit_blocks_secrets ERROR [ 92%]
+ERROR: Coverage failure: total of 0.00 is less than fail-under=90.00
+FAILED src/tests/test_conditions_imports.py::TestKellyPositionSizingImports::test_kelly_criterion_with_plotly_available - ValueError: avg_loss must be negative
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_with_async_handlers - AttributeError: 'AsyncCallbackManager' object has no attribute 'emit_async'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_mixed_sync_async - AttributeError: 'AsyncCallbackManager' object has no attribute 'emit_async'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_isolation - AttributeError: 'CallbackManager' object has no attribute 'emit_safe'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_logging - AttributeError: 'CallbackManager' object has no attribute 'emit_safe'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_context_preservation - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_listener_state - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_unsubscribe_from_callback - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_latency_measurement - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_throughput - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_memory_efficiency - AttributeError: 'CallbackManager' object has no attribute 'listeners'. Did you mean: 'get_listeners'?
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_renders - AttributeError: 'DashboardPosition' object has no attribute 'size'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_displays_symbols - AttributeError: 'DashboardPosition' object has no attribute 'size'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_shows_size_and_pnl - AttributeError: 'PositionPanel' object has no attribute 'get_position_details'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_color_coding - AttributeError: 'PositionPanel' object has no attribute 'get_position_colors'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_renders - AttributeError: 'DashboardMetrics' object has no attribute 'values'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_shows_metrics - AttributeError: 'RiskPanel' object has no attribute 'get_metric_values'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_updates_on_data_change - AttributeError: 'RiskPanel' object has no attribute 'update_metrics'. Did you mean: 'update_metric'?
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_alerts_on_threshold - AttributeError: 'RiskPanel' object has no attribute 'get_alerts'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_renders - TypeError: PerformancePanel.__init__() got an unexpected keyword argument 'equity_curve'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_equity_curve - TypeError: PerformancePanel.__init__() got an unexpected keyword argument 'equity_curve'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_period_returns - TypeError: PerformancePanel.__init__() got an unexpected keyword argument 'equity_curve'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_drawdown_chart - TypeError: PerformancePanel.__init__() got an unexpected keyword argument 'equity_curve'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_position_update - TypeError: PositionPanel.__init__() got an unexpected keyword argument 'on_position_update'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_trade_executed - TypeError: PerformancePanel.__init__() got an unexpected keyword argument 'equity_curve'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_risk_alert - TypeError: RiskPanel.__init__() got an unexpected keyword argument 'on_risk_alert'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_data_consistency - TypeError: PositionPanel.__init__() got an unexpected keyword argument 'on_position_update'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_error_handling - AttributeError: 'PositionPanel' object has no attribute 'register_callback'
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_performance_monitoring - AttributeError: 'PositionPanel' object has no attribute 'register_callback'
+FAILED src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_max_allocation - AssertionError: Position AAPL exceeds max allocation: 0.3
+FAILED src/tests/test_github_actions.py::TestGitHubActionsWorkflow::test_workflow_triggers_on_push_and_pr - AssertionError: Workflow must define triggers
+FAILED src/tests/test_poetry.py::TestPoetrySetup::test_build_system_configured - AssertionError: Must use poetry-core as build backend
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_github_repo_exists
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_branch_protection_enabled
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_project_structure
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_poetry_installs
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_docker_builds
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_precommit_installs
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_setup_md_exists
+ERROR src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_contributing_md_exists
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_github_actions_workflow_valid
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_pytest_runs
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_coverage_above_threshold
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_poetry_lock_exists
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_all_quality_checks_pass
+ERROR src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_ci_blocks_failing_tests
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_no_hardcoded_secrets
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_env_file_example_exists
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_security_md_exists
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_bandit_scanning_passes
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_github_secrets_configured
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_dependency_audit_passes
+ERROR src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_precommit_blocks_secrets

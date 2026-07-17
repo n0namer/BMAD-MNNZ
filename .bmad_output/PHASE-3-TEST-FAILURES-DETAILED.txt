@@ -1,0 +1,200 @@
+src/tests/test_conditions_imports.py::TestKellyPositionSizingImports::test_kelly_criterion_with_plotly_available FAILED [  5%]
+src/tests/test_conditions_imports.py::TestRiskLimitsImports::test_risk_limits_module_exists PASSED [  5%]
+src/tests/test_conditions_imports.py::TestRiskLimitsImports::test_portfolio_constraints_with_plotly_available SKIPPED [  5%]
+src/tests/test_conditions_imports.py::TestPlotlyVersionCompatibility::test_version_detection_is_deterministic PASSED [  6%]
+--
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_with_async_handlers FAILED [  9%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_mixed_sync_async FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_isolation FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_logging FAILED [ 10%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_context_preservation FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_listener_state FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_unsubscribe_from_callback FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_latency_measurement FAILED [ 11%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_throughput FAILED [ 12%]
+src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_memory_efficiency FAILED [ 12%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_renders FAILED [ 12%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_displays_symbols FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_shows_size_and_pnl FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_color_coding FAILED [ 13%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_renders FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_shows_metrics FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_updates_on_data_change FAILED [ 14%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_risk_panel_alerts_on_threshold FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_renders FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_equity_curve FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_period_returns FAILED [ 15%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_performance_panel_drawdown_chart FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_position_update FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_trade_executed FAILED [ 16%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_on_risk_alert FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_data_consistency FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_error_handling FAILED [ 17%]
+src/tests/test_dashboard_panels.py::TestDashboardPanels::test_callbacks_performance_monitoring FAILED [ 18%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_kelly_criterion_basic PASSED [ 18%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_kelly_with_win_rate PASSED [ 18%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_kelly_fractional_kelly PASSED [ 19%]
+--
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_max_allocation FAILED [ 20%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_sector_limits PASSED [ 20%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_leverage_limit PASSED [ 21%]
+src/tests/test_fr001_position_sizing_integration.py::TestFR001PositionSizingIntegration::test_portfolio_constraint_correlation PASSED [ 21%]
+--
+src/tests/test_github_actions.py::TestGitHubActionsWorkflow::test_workflow_triggers_on_push_and_pr FAILED [ 25%]
+src/tests/test_github_actions.py::TestGitHubActionsWorkflow::test_workflow_enforces_python_311_minimum PASSED [ 25%]
+src/tests/test_github_actions.py::TestGitHubActionsWorkflow::test_workflow_uploads_coverage_artifacts PASSED [ 26%]
+src/tests/test_kelly_position_sizing.py::TestKellyPositionSizingWithPlotly::test_kelly_sizing_calculation PASSED [ 26%]
+--
+src/tests/test_poetry.py::TestPoetrySetup::test_build_system_configured FAILED [ 77%]
+src/tests/test_poetry.py::TestPoetrySetup::test_poetry_config_file_is_valid_toml PASSED [ 77%]
+src/tests/test_poetry.py::TestPoetrySetup::test_poetry_lock_file_format PASSED [ 77%]
+src/tests/test_portfolio_diversification.py::TestCorrelationAnalysis::test_correlation_matrix_perfect_correlation PASSED [ 78%]
+--
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_github_repo_exists ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_branch_protection_enabled ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_project_structure ERROR [ 85%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_poetry_installs ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_docker_builds ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_precommit_installs ERROR [ 86%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_setup_md_exists ERROR [ 87%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubSetup::test_contributing_md_exists ERROR [ 87%]
+src/tests/test_story_0_1_acceptance.py::TestGitHubScaffoldingSummary::test_story_0_1_summary PASSED [ 87%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_github_actions_workflow_valid ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_pytest_runs ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_coverage_above_threshold ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_poetry_lock_exists ERROR [ 88%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_all_quality_checks_pass ERROR [ 89%]
+src/tests/test_story_0_2_acceptance.py::TestPythonEnvironmentSetup::test_ci_blocks_failing_tests ERROR [ 89%]
+src/tests/test_story_0_2_acceptance.py::TestPythonSetupSummary::test_story_0_2_summary PASSED [ 89%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_no_hardcoded_secrets ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_env_file_example_exists ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_security_md_exists ERROR [ 90%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_bandit_scanning_passes ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_github_secrets_configured ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_dependency_audit_passes ERROR [ 91%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaseline::test_precommit_blocks_secrets ERROR [ 92%]
+src/tests/test_story_0_sec_acceptance.py::TestSecurityBaselineSummary::test_story_0_sec_summary PASSED [ 92%]
+src/tests/unit/test_position_sizer.py::TestRiskResult::test_risk_result_creation PASSED [ 92%]
+src/tests/unit/test_position_sizer.py::TestRiskResult::test_risk_result_auto_calculate_rr PASSED [ 92%]
+--
+ERROR: Coverage failure: total of 0.00 is less than fail-under=90.00
+
+
+=================================== ERRORS ====================================
+__________ ERROR at setup of TestGitHubSetup.test_github_repo_exists __________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 44
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+______ ERROR at setup of TestGitHubSetup.test_branch_protection_enabled _______
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 82
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+__________ ERROR at setup of TestGitHubSetup.test_project_structure ___________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 127
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+___________ ERROR at setup of TestGitHubSetup.test_poetry_installs ____________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 173
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+____________ ERROR at setup of TestGitHubSetup.test_docker_builds _____________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 221
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+__________ ERROR at setup of TestGitHubSetup.test_precommit_installs __________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 279
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+___________ ERROR at setup of TestGitHubSetup.test_setup_md_exists ____________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 330
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+________ ERROR at setup of TestGitHubSetup.test_contributing_md_exists ________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_1_acceptance.py, line 385
+      @pytest.mark.story_0_1
+      @pytest.mark.acceptance
+--
+_ ERROR at setup of TestPythonEnvironmentSetup.test_github_actions_workflow_valid _
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 45
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+________ ERROR at setup of TestPythonEnvironmentSetup.test_pytest_runs ________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 123
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+_ ERROR at setup of TestPythonEnvironmentSetup.test_coverage_above_threshold __
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 196
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+____ ERROR at setup of TestPythonEnvironmentSetup.test_poetry_lock_exists _____
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 272
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+__ ERROR at setup of TestPythonEnvironmentSetup.test_all_quality_checks_pass __
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 339
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+__ ERROR at setup of TestPythonEnvironmentSetup.test_ci_blocks_failing_tests __
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_2_acceptance.py, line 421
+      @pytest.mark.story_0_2
+      @pytest.mark.acceptance
+--
+______ ERROR at setup of TestSecurityBaseline.test_no_hardcoded_secrets _______
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 46
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+_____ ERROR at setup of TestSecurityBaseline.test_env_file_example_exists _____
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 116
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+_______ ERROR at setup of TestSecurityBaseline.test_security_md_exists ________
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 189
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+_____ ERROR at setup of TestSecurityBaseline.test_bandit_scanning_passes ______
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 263
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+____ ERROR at setup of TestSecurityBaseline.test_github_secrets_configured ____
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 338
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+_____ ERROR at setup of TestSecurityBaseline.test_dependency_audit_passes _____
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 394
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+____ ERROR at setup of TestSecurityBaseline.test_precommit_blocks_secrets _____
+file D:\Users\NIKITA\Documents\DEV\BMAD-MNNZ\src\tests\test_story_0_sec_acceptance.py, line 452
+      @pytest.mark.story_0_sec
+      @pytest.mark.acceptance
+--
+FAILED src/tests/test_conditions_imports.py::TestKellyPositionSizingImports::test_kelly_criterion_with_plotly_available - ValueError: avg_loss must be negative
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_with_async_handlers - AttributeError: 'AsyncCallbackManager' object has no attribute 'emit_async'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_mixed_sync_async - AttributeError: 'AsyncCallbackManager' object has no attribute 'emit_async'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_isolation - AttributeError: 'CallbackManager' object has no attribute 'emit_safe'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_error_logging - AttributeError: 'CallbackManager' object has no attribute 'emit_safe'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_context_preservation - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_listener_state - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_unsubscribe_from_callback - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_latency_measurement - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_throughput - AttributeError: 'dict' object has no attribute 'event_type'
+FAILED src/tests/test_dashboard_callbacks.py::TestDashboardCallbacks::test_callback_memory_efficiency - AttributeError: 'CallbackManager' object has no attribute 'listeners'. Did you mean: 'get_listeners'?
+FAILED src/tests/test_dashboard_panels.py::TestDashboardPanels::test_position_panel_renders - AttributeError: 'DashboardPosition' object has no attribute 'size'

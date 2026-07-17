@@ -1,0 +1,19 @@
+{
+  "ideas": [
+    {"id": "001", "title": "finance-katana-vectorbt", "file": "idea-001-finance-katana-vectorbt.md"},
+    {"id": "002", "title": "business-maps-auto-reply", "file": "idea-002-business-maps-auto-reply.md"},
+    {"id": "003", "title": "business-vk-recipes", "file": "idea-003-business-vk-recipes.md"},
+    {"id": "004", "title": "business-vk-bot", "file": "idea-004-business-vk-bot.md"},
+    {"id": "005", "title": "business-sales-qa", "file": "idea-005-business-sales-qa.md"},
+    {"id": "006", "title": "business-consilium-saas", "file": "idea-006-business-consilium-saas.md"},
+    {"id": "007", "title": "business-beauty-franchise", "file": "idea-007-business-beauty-franchise.md"}
+  ],
+  "evaluation_criteria": {
+    "researcher": ["Market validation", "Competitive analysis", "Target audience", "Revenue potential"],
+    "architect": ["Technical feasibility", "Architecture design", "Technology stack", "Scalability"],
+    "security": ["Data security", "Compliance risks", "Privacy issues", "Regulatory concerns"],
+    "coder": ["Implementation readiness", "Code complexity", "Development time estimate", "Dependencies"],
+    "repo_architect": ["Repository structure", "Integration points", "Project dependencies", "Documentation needs"]
+  },
+  "assessment_timestamp": "2026-02-06T00:00:00Z"
+}

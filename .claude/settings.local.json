@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npx bmad-method:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)",
+      "Bash(mcp list:*)",
+      "Bash(mcp:*)",
+      "Bash(python3 -m mcp:*)",
+      "Bash(dir:*)",
+      "Bash(if [ -f \"CLAUDE.md\" ])",
+      "Bash(then echo \"✅ CLAUDE.md found\")",
+      "Bash(else echo \"❌ CLAUDE.md not found\")",
+      "Bash(fi)",
+      "Bash(npx:*)",
+      "Bash(wc:*)",
+      "Bash(test:*)",
+      "Bash(ls \"d:\\\\Users\\\\NIKITA\\\\Documents\\\\DEV\\\\BMAD-MNNZ\\\\_bmad\\\\bmm\\\\workflows\\\\life-os\\\\templates\"\" | grep -E \"triz)",
+      "Bash(project \")",
+      "Bash(git push:*)",
+      "Bash(git log:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(grep:*)",
+      "Bash(\"d:\\\\Users\\\\NIKITA\\\\Documents\\\\DEV\\\\BMAD-MNNZ\\\\_bmad-output\\\\bmb-creations\\\\workflows\\\\bmad-orchestrator\\\\validation-report-2026-02-26.md\":*)",
+      "Bash(ls -lh steps-c/*.md)",
+      "Bash(/tmp/extract_config_vars.sh:*)",
+      "Bash(ls:*)",
+      "Bash(/tmp/validation_summary.txt:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(claude mcp:*)",
+      "Bash(python:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "claude-flow",
+    "context-mode"
+  ]
+}

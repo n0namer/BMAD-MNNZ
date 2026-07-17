@@ -1,0 +1,145 @@
+# generated: 2026-02-26
+# project: katana-vectorbt
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/zone1
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+# - Sprint assignments documented in sprint-plan-phase1.md
+
+generated: 2026-02-26
+project: katana-vectorbt
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/zone1
+
+development_status:
+  # ============================================================
+  # EPIC 1: E-STRATEGY-LIFECYCLE (34 points, CRITICAL, Sprints 1-3)
+  # ============================================================
+  epic-strategy-lifecycle: backlog
+
+  # Sprint 1 - no dependencies
+  strategy-001-implement-state-machine-transitions: backlog   # 13 pts, Sprint 1
+
+  # Sprint 2 - depends on strategy-001
+  strategy-002-build-approval-workflow: backlog               # 8 pts, Sprint 2
+  strategy-003-add-kill-switch-mechanism: backlog             # 5 pts, Sprint 2
+
+  # Sprint 3 - depends on strategy-001 and strategy-002
+  strategy-004-create-state-timeline: backlog                 # 5 pts, Sprint 3
+  strategy-005-build-rejection-resubmit-logic: backlog        # 3 pts, Sprint 3
+
+  epic-strategy-lifecycle-retrospective: optional
+
+  # ============================================================
+  # EPIC 2: E-JOURNAL-SCHEMA (40 points, CRITICAL, Sprints 1-4)
+  # ============================================================
+  epic-journal-schema: backlog
+
+  # Sprint 1 - no dependencies
+  journal-001-create-manifest-json-structure: backlog         # 8 pts, Sprint 1
+
+  # Sprint 2 - depends on journal-001
+  journal-002-create-summary-json-v30: backlog                # 10 pts, Sprint 2
+
+  # Sprint 3 - journal-003 depends on journal-001; journal-004 depends on journal-002+003
+  journal-003-implement-events-ndjson: backlog                # 8 pts, Sprint 3
+  journal-004-build-database-schema-postgres: backlog         # 8 pts, Sprint 3
+
+  # Sprint 4 - depends on journal-001 and journal-004
+  journal-005-create-reproducibility-verifier: backlog        # 6 pts, Sprint 4
+
+  epic-journal-schema-retrospective: optional
+
+  # ============================================================
+  # EPIC 3: E-TELEMETRY-METRICS (30 points, HIGH, Sprints 4-6)
+  # Depends on E-STRATEGY-LIFECYCLE being complete
+  # ============================================================
+  epic-telemetry-metrics: backlog
+
+  # Sprint 4 - depends on E-STRATEGY-LIFECYCLE complete
+  telemetry-001-instrument-time-to-status: backlog            # 6 pts, Sprint 4
+  telemetry-002-implement-mtif-calculation: backlog           # 6 pts, Sprint 4
+
+  # Sprint 5 - depends on telemetry-001
+  telemetry-003-implement-log-diving-rate: backlog            # 6 pts, Sprint 5
+
+  # Sprint 6 - depends on telemetry-001, telemetry-002, telemetry-003
+  telemetry-004-build-metrics-dashboard: backlog              # 8 pts, Sprint 6
+
+  # Sprint 6 - depends on telemetry-004
+  telemetry-005-create-alert-rules: backlog                   # 4 pts, Sprint 6
+
+  epic-telemetry-metrics-retrospective: optional
+
+  # ============================================================
+  # EPIC 4: E-COMPARE-WORKFLOW (25 points, HIGH, Sprints 5-7)
+  # Depends on E-JOURNAL-SCHEMA being complete
+  # ============================================================
+  epic-compare-workflow: backlog
+
+  # Sprint 5 - depends on E-JOURNAL-SCHEMA complete
+  compare-001-implement-comparison-algorithm: backlog         # 7 pts, Sprint 5
+
+  # Sprint 6 - depends on compare-001
+  compare-002-build-run-selection-ui: backlog                 # 5 pts, Sprint 6
+
+  # Sprint 7 - depends on compare-002
+  compare-003-create-delta-visualization: backlog             # 6 pts, Sprint 7
+
+  # Sprint 7 - depends on compare-003
+  compare-004-add-metric-selection: backlog                   # 4 pts, Sprint 7
+  compare-005-build-export-functionality: backlog             # 3 pts, Sprint 7
+
+  epic-compare-workflow-retrospective: optional
+
+  # ============================================================
+  # EPIC 5: E-AUDIT-TRAIL (25 points, HIGH, Sprints 5-7)
+  # Depends on E-JOURNAL-SCHEMA being complete
+  # ============================================================
+  epic-audit-trail: backlog
+
+  # Sprint 5 - depends on E-JOURNAL-SCHEMA complete
+  audit-001-implement-audit-trail-collection: backlog         # 6 pts, Sprint 5
+
+  # Sprint 6 - depends on audit-001
+  audit-002-build-verification-algorithm: backlog             # 7 pts, Sprint 6
+
+  # Sprint 7 - depends on audit-002
+  audit-003-create-audit-ui: backlog                          # 6 pts, Sprint 7
+
+  # Sprint 7 - depends on audit-002 and audit-003
+  audit-004-add-reproduce-run-button: backlog                 # 4 pts, Sprint 7
+
+  # Sprint 7 - depends on audit-004
+  audit-005-build-diagnostic-tool: backlog                    # 2 pts, Sprint 7
+
+  epic-audit-trail-retrospective: optional

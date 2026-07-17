@@ -1,0 +1,208 @@
+================================================================================
+CONTENT MACHINE STAGE 5 - IMPLEMENTATION AUDIT
+Idea-to-Post-Pipeline Workflow
+================================================================================
+
+RESEARCH QUESTION:
+Is Stage 5 POST GENERATION with frameworks implemented in steps-c/?
+
+ANSWER: NO — Stage 5 is DOCUMENTED but PARTIALLY IMPLEMENTED
+Completion: ~60% (basic post generation works, but frameworks are not exposed)
+
+================================================================================
+FRAMEWORK DOCUMENTATION vs IMPLEMENTATION MATRIX
+================================================================================
+
+Framework                Status      Documented?    Implemented?    Notes
+─────────────────────────────────────────────────────────────────────────
+Show Your Work           ❌ MISSING  ✅ Yes         ❌ NO          No process-focused variants
+(Austin Kleon)
+
+PAS                      ⚠️ PARTIAL ✅ Yes         ⚠️ IMPLICIT    Used in Draft 2 "Storytelling"
+(Problem-Agitate-Solve)
+
+Hook-Story-Offer         ⚠️ PARTIAL ✅ Yes         ⚠️ IMPLICIT    Present across all drafts
+                                                                   but not explicitly chosen
+
+Behind-the-Scenes        ❌ MISSING  ✅ Yes         ❌ NO          No routine demo variants
+
+================================================================================
+ACTUAL IMPLEMENTATION IN steps-c/
+================================================================================
+
+CURRENT STATE:
+  └─ c-03 Series: Basic Post Generation (5 files)
+     ├─ c-03a: Select idea
+     ├─ c-03b: Select research angle
+     ├─ c-03c: Generate 3 draft variations ← FRAMEWORK VARIANTS HAPPEN HERE
+     ├─ c-03d: Generate size variants (500/250/100 chars)
+     └─ c-03e: Final review & save
+
+WHAT c-03c GENERATES:
+  • Draft 1: DIRECT & PUNCHY (Hook-focused)
+  • Draft 2: STORYTELLING (Narrative-focused)
+  • Draft 3: DATA-DRIVEN (Numbers-focused)
+
+These are STYLE VARIANTS, not FRAMEWORK VARIANTS
+
+WHAT'S MISSING:
+  ✗ Framework selection menu
+  ✗ Show Your Work variant (process, not product)
+  ✗ Behind-the-Scenes variant (authentic routine)
+  ✗ PAS variant (explicit problem-agitate-solution)
+  ✗ User awareness of which framework is used
+
+================================================================================
+SOFT CTA ANALYSIS
+================================================================================
+
+CTAs Found in c-03c-draft.md:
+
+Draft 1: "👉 Закинь пост в сохранённые и попробуй сегодня"
+         (Save post & try today) ✅ SOFT
+
+Draft 2: "👉 Вот как..."
+         (Here's how...) ✅ SOFT
+
+Draft 3: "👉 Попробуй и вычисли сам"
+         (Try and calculate yourself) ✅ SOFT
+
+VERDICT: CTAs ARE SOFT ✅
+         (Action-oriented, benefit-focused, not pushy)
+
+CTA VALIDATION:
+  c-03e-finalize.md checks:
+  ✓ CTA clarity: ✅ EXPLICIT
+  ✓ Quality checks for all posts
+
+================================================================================
+STAGE 5 CONTENT MACHINE PIPELINE
+================================================================================
+
+DOCUMENTED (workflow.md lines 68-113):
+
+  Stage 1: INPUT ─────────────────→ Routine Demonstration (screenshot + desc)
+  Stage 2: PAIN GENERATION ────────→ Auto-generate business pains
+  Stage 3: PRODUCT GENERATION ────→ Suggest offers on-the-fly
+  Stage 4: FILTER ────────────────→ User marks willingness to sell
+  Stage 5: OUTPUT ────────────────→ Post Generation (2-3 variants)
+                                    └─ Using frameworks:
+                                       • Show Your Work
+                                       • PAS
+                                       • Hook-Story-Offer
+                                       • Behind-the-Scenes
+
+IMPLEMENTED:
+  ✓ Stage 1-4 DESIGNED (no code files)
+  ✗ Stage 5 PARTIALLY IMPLEMENTED
+    └─ c-03 generates posts
+    └─ But no framework selection
+
+FILE STRUCTURE FOR FULL IMPLEMENTATION WOULD BE:
+  c-09-routine-input.md          ← MISSING
+  c-10-pain-generation.md        ← MISSING
+  c-11-offer-generation.md       ← MISSING
+  c-12-filter-offers.md          ← MISSING
+  c-13-framework-selection.md    ← MISSING (for Stage 5)
+  c-14-framework-posts.md        ← MISSING (for Stage 5)
+
+ACTUAL FILES THAT EXIST:
+  c-01 through c-08 (basic workflow)
+  NO c-09+ (Content Machine not implemented)
+
+================================================================================
+COMPLETION CHECKLIST
+================================================================================
+
+Stage 5 Post Generation Requirements:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ REQUIREMENT                           │ STATUS  │ LOCATION              │
+├───────────────────────────────────────┼─────────┼──────────────────────│
+│ Generate Telegram posts               │ ✅ YES  │ c-03c-draft.md        │
+│ Create size variants (250/100 char)   │ ✅ YES  │ c-03d-variants.md     │
+│ Use Show Your Work framework          │ ❌ NO   │ Not implemented       │
+│ Use PAS framework explicitly          │ ⚠️  IMP │ Implicit in Draft 2   │
+│ Use Hook-Story-Offer framework        │ ⚠️  IMP │ Implicit in all       │
+│ Use Behind-the-Scenes framework       │ ❌ NO   │ Not implemented       │
+│ Generate 2-3 post variants            │ ✅ YES  │ c-03c (3 drafts)      │
+│ Include soft CTAs                     │ ✅ YES  │ All drafts            │
+│ Validate soft CTAs enforced           │ ✅ YES  │ c-03e quality check   │
+│ Framework selection menu              │ ❌ NO   │ Not implemented       │
+│ Explain framework choice              │ ❌ NO   │ Not implemented       │
+│ Routine→Pain→Offer pipeline           │ ❌ NO   │ Not implemented       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+COMPLETION SCORE: 6/12 = 50% (Basic functionality works, not full implementation)
+
+================================================================================
+RECOMMENDATIONS FOR COMPLETION
+================================================================================
+
+Priority 1: Framework Selection (Quick Win)
+───────────────────────────────────────────
+Enhance c-03c-draft.md to:
+  1. Add menu before generating drafts:
+     [1] Show Your Work - Process over product
+     [2] PAS - Problem-Agitate-Solution
+     [3] Hook-Story-Offer - Attention-Narrative-CTA
+     [4] Behind-the-Scenes - Authentic routine
+     [A] Auto-Select Best Match
+
+  2. Generate drafts using selected framework
+
+Priority 2: Show Your Work Variants
+──────────────────────────────────
+Add variant type showing:
+  • Step-by-step process
+  • How you work (the "behind-the-scenes")
+  • Tools/methods used
+  • Results achieved
+
+Priority 3: Behind-the-Scenes Variants
+────────────────────────────────────
+Add variant showing:
+  • Actual routine/work demo
+  • Real screenshots if possible
+  • Authentic (not staged)
+  • Proof through demonstration
+
+Priority 4: Content Machine Full Pipeline (Medium-term)
+───────────────────────────────────────────────────
+Implement c-09 through c-14 for:
+  • Routine input acceptance
+  • Automated pain generation
+  • Dynamic offer creation
+  • User filtering
+  • Framework-based post generation
+
+================================================================================
+CONCLUSION
+================================================================================
+
+Stage 5 is:
+  ✅ DOCUMENTED - workflow.md is clear and detailed
+  ⚠️  PARTIALLY IMPLEMENTED - c-03 generates posts but doesn't expose frameworks
+  ❌ NOT COMPLETE - Missing Show Your Work, Behind-the-Scenes, framework selection
+
+Current implementation: ~60% complete
+- Basic post generation: ✅
+- Size variants: ✅
+- Soft CTAs: ✅
+- Framework variety: ❌
+- Framework selection: ❌
+- Full Content Machine pipeline: ❌
+
+Recommendation: Complete framework selection in c-03c before using Stage 5 for
+              production content generation. Full Content Machine pipeline can
+              be implemented in Phase 2.
+
+================================================================================
+Files Reviewed:
+  • _bmad/bmm/workflows/idea-to-post-pipeline/workflow.md
+  • _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/c-03c-draft.md
+  • _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/c-03d-variants.md
+  • _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/c-03e-finalize.md
+  • _bmad/bmm/workflows/idea-to-post-pipeline/steps-c/ (directory listing)
+
+Date: 2026-01-30
+================================================================================

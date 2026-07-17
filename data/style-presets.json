@@ -1,0 +1,777 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-30",
+  "presets": {
+    "professional_authority": {
+      "id": "professional_authority",
+      "name": "Professional Authority",
+      "emoji": "🎩",
+      "tagline": "Credible expertise backed by experience and evidence",
+      "description": "For business advice, technical thought leadership, case studies, research findings",
+      "bestFor": [
+        "Business advice",
+        "Thought leadership",
+        "Case studies",
+        "Research findings",
+        "Strategic insights"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "industry terminology",
+            "precise language",
+            "active voice",
+            "power verbs: accelerate, catalyze, elevate, drive, unlock, leverage"
+          ],
+          "avoid": [
+            "slang",
+            "casual modifiers",
+            "filler words",
+            "corporate clichés"
+          ]
+        },
+        "sentenceLength": {
+          "average": 17,
+          "distribution": {
+            "veryShort_5_8": 0.20,
+            "medium_15_20": 0.50,
+            "longer_20_30": 0.30
+          }
+        },
+        "punctuation": {
+          "exclamationMarks_per_300_words": 1,
+          "questionMarks_per_300_words": 1,
+          "emDashes_per_300_words": 2,
+          "ellipses_per_300_words": 0
+        },
+        "metaphorFrequency": "1 per 300-400 words",
+        "metaphorStyle": [
+          "Business/strategic metaphors",
+          "Market positioning",
+          "Competitive advantage",
+          "Leverage, drive, accelerate"
+        ],
+        "formality": 8.5,
+        "emotionalTone": [
+          "Credible",
+          "Confident",
+          "Strategic",
+          "Measured",
+          "Authoritative"
+        ],
+        "pacing": "Deliberate, measured, each paragraph builds on previous",
+        "openingHook": "Statistics, surprising insight, or challenge statement",
+        "callToAction": "Learn how..., Discover the framework..., Explore this approach..."
+      },
+      "sentenceExamples": [
+        "Organizations frequently fail to optimize cloud infrastructure investment, resulting in 20-40% excess spend.",
+        "Analysis of 500+ companies reveals a consistent pattern of underutilization.",
+        "This strategic approach, when implemented systematically, drives measurable ROI."
+      ],
+      "exampleTransformation": {
+        "original": "Dude, you're probably wasting money on cloud infrastructure",
+        "transformed": "Organizations frequently fail to optimize cloud infrastructure investment, resulting in 20-40% excess spend"
+      },
+      "platformVariations": {
+        "linkedin": "Formal, credible, evidence-based",
+        "twitter": "Headline + link format",
+        "email": "Long-form, cited sources",
+        "blog": "Reference-rich, framework-driven"
+      }
+    },
+    "friend_chatting": {
+      "id": "friend_chatting",
+      "name": "Friend Chatting",
+      "emoji": "👋",
+      "tagline": "Like texting a knowledgeable friend who gets it",
+      "description": "For personal stories, peer-to-peer advice, community building, casual tips",
+      "bestFor": [
+        "Personal stories",
+        "Peer-to-peer advice",
+        "Community building",
+        "Casual tips",
+        "Relatable insights"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Conversational vocabulary",
+            "Colloquialisms",
+            "Contractions (don't, you're, I've)",
+            "Informal tags (you know?, right?)"
+          ],
+          "avoid": [
+            "Jargon",
+            "Formal structures",
+            "Corporate speak",
+            "Overly polished language"
+          ]
+        },
+        "sentenceLength": {
+          "average": 11,
+          "distribution": {
+            "short_5_10": 0.45,
+            "medium_10_15": 0.40,
+            "longer_15_20": 0.15
+          }
+        },
+        "punctuation": {
+          "ellipses_per_300_words": 2,
+          "questionMarks_per_300_words": 3,
+          "emDashes_per_300_words": 3,
+          "exclamationMarks_per_300_words": 2
+        },
+        "metaphorFrequency": "1 per 250 words",
+        "metaphorStyle": [
+          "Everyday metaphors",
+          "Roadblock",
+          "Lightbulb moment",
+          "Hustle, grind",
+          "Real-life comparisons"
+        ],
+        "formality": 3,
+        "emotionalTone": [
+          "Warm",
+          "Relatable",
+          "Honest",
+          "Slightly vulnerable",
+          "Approachable"
+        ],
+        "pacing": "Conversational flow, ideas jump like natural conversation",
+        "openingHook": "Personal anecdote, confession, or relatable question",
+        "callToAction": "Let me know what you think, Try it out, Hit me up, What do you think?"
+      },
+      "sentenceExamples": [
+        "So here's the thing... most teams I talk to are throwing money at cloud bills when they could literally cut costs in half.",
+        "Weird how nobody talks about this, right?",
+        "I've been there. It sucks."
+      ],
+      "exampleTransformation": {
+        "original": "Professional organizations should consider alternative infrastructure solutions",
+        "transformed": "So here's the thing... most teams I talk to are throwing money at cloud bills when they could literally cut costs in half. Weird how nobody talks about this"
+      },
+      "platformVariations": {
+        "linkedin": "Personal but professional",
+        "twitter": "Ultra-casual, emoji-heavy",
+        "email": "Warm, personal, conversational",
+        "blog": "Story-driven, authentic voice"
+      }
+    },
+    "storyteller": {
+      "id": "storyteller",
+      "name": "Storyteller",
+      "emoji": "📖",
+      "tagline": "Narrative-driven, emotionally engaging, vivid details",
+      "description": "For demo walkthroughs, behind-the-scenes, customer journeys, case studies with narrative arc",
+      "bestFor": [
+        "Demo walkthroughs",
+        "Behind-the-scenes content",
+        "Customer journeys",
+        "Case studies with arc",
+        "Emotional storytelling"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Sensory verbs: discovered, watched, witnessed, felt, saw",
+            "Vivid adjectives",
+            "Show-don't-tell",
+            "Concrete details"
+          ],
+          "avoid": [
+            "Passive voice",
+            "Abstract language",
+            "Summarization",
+            "Generic descriptions"
+          ]
+        },
+        "sentenceLength": {
+          "average": 15,
+          "distribution": {
+            "veryShort_6_8": 0.20,
+            "medium_15_20": 0.50,
+            "longer_20_25": 0.30
+          }
+        },
+        "punctuation": {
+          "ellipses_per_300_words": 2,
+          "emDashes_per_300_words": 2,
+          "questionMarks_per_300_words": 1,
+          "exclamationMarks_per_300_words": 1
+        },
+        "metaphorFrequency": "1 per 150 words",
+        "metaphorStyle": [
+          "Narrative metaphors",
+          "Journey, discovery",
+          "Turning point",
+          "Plot twist",
+          "Emotional arcs"
+        ],
+        "formality": 4.5,
+        "emotionalTone": [
+          "Engaging",
+          "Curious",
+          "Vivid",
+          "Surprising",
+          "Triumphant"
+        ],
+        "pacing": "Story arc: problem → discovery → action → result, with emotional beats",
+        "openingHook": "Scene-setting, conflict introduction, curiosity gap",
+        "callToAction": "See how we did it, Here's what happened next, This changed everything"
+      },
+      "sentenceExamples": [
+        "We were drowning. Three months in, documents scattered across five different tools, nobody knew what was current.",
+        "Then something shifted.",
+        "Within 48 hours, we'd generated 80+ documents, all structured, all current."
+      ],
+      "exampleTransformation": {
+        "original": "Implementation of new tools improved efficiency",
+        "transformed": "We were drowning. Three months in, documents scattered across five different tools, nobody knew what was current. Then something shifted. We tried a different approach... and within 48 hours, we'd generated 80+ documents, all structured, all current."
+      },
+      "platformVariations": {
+        "linkedin": "Professional narrative arc",
+        "twitter": "Hook only, link for full story",
+        "email": "Full story arc with multiple paragraphs",
+        "blog": "Detailed narrative with dialogue"
+      }
+    },
+    "educator": {
+      "id": "educator",
+      "name": "Educator",
+      "emoji": "🎓",
+      "tagline": "Clear, structured, step-by-step guidance",
+      "description": "For tutorials, methodologies, onboarding, explanatory content, 'how-to' guides",
+      "bestFor": [
+        "Tutorials",
+        "Methodologies",
+        "Onboarding",
+        "Explanatory content",
+        "How-to guides",
+        "Learning-focused"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Instructional verbs: create, configure, integrate, validate",
+            "Clear nouns",
+            "Precise definitions",
+            "Consistent terminology"
+          ],
+          "avoid": [
+            "Ambiguous language",
+            "Jargon without explanation",
+            "Complex sentence structures",
+            "Casual language"
+          ]
+        },
+        "sentenceLength": {
+          "average": 16,
+          "distribution": {
+            "short_10_12": 0.30,
+            "medium_15_18": 0.55,
+            "longer_18_22": 0.15
+          }
+        },
+        "punctuation": {
+          "colonsBefore Lists": "Frequent",
+          "bullets": "Very frequent",
+          "numbers": "Very frequent",
+          "exclamationMarks_per_300_words": 1
+        },
+        "metaphorFrequency": "1 per 400 words",
+        "metaphorStyle": [
+          "Building metaphors",
+          "Foundation, step, layer",
+          "Building blocks",
+          "Scaffolding"
+        ],
+        "formality": 6,
+        "emotionalTone": [
+          "Encouraging",
+          "Patient",
+          "Supportive",
+          "Clarity-focused",
+          "Accessible"
+        ],
+        "pacing": "Sequential: concept → example → application → practice",
+        "openingHook": "Learning outcome statement (By end, you'll understand...)",
+        "callToAction": "Try this, Practice this approach, Apply to your situation"
+      },
+      "sentenceExamples": [
+        "Here's how to optimize cloud costs in 5 steps.",
+        "First, audit what you're actually using and paying for.",
+        "Let's walk through each one."
+      ],
+      "exampleTransformation": {
+        "original": "Cloud infrastructure optimization requires multi-phase approach with monitoring",
+        "transformed": "Here's how to optimize cloud costs in 5 steps:\n1. Audit\n2. Right-size\n3. Automate\n4. Monitor\n5. Iterate\n\nLet's walk through each one..."
+      },
+      "platformVariations": {
+        "linkedin": "Thought leadership approach",
+        "twitter": "Single step at a time",
+        "email": "Full step-by-step walkthrough",
+        "blog": "Comprehensive guide with examples"
+      }
+    },
+    "provocateur": {
+      "id": "provocateur",
+      "name": "Provocateur",
+      "emoji": "🔥",
+      "tagline": "Bold takes that challenge conventional thinking",
+      "description": "For hot takes, contrarian opinions, debate-starting content, unpopular perspectives",
+      "bestFor": [
+        "Hot takes",
+        "Contrarian opinions",
+        "Debate-starting content",
+        "Unpopular perspectives",
+        "Challenging status quo"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Challenging language: wrong, myth, actually, ironically",
+            "Directness without rudeness",
+            "Strong opinions",
+            "Comparative language"
+          ],
+          "avoid": [
+            "Hedging language",
+            "Corporate speak",
+            "Fence-sitting",
+            "Over-qualification"
+          ]
+        },
+        "sentenceLength": {
+          "average": 12,
+          "distribution": {
+            "veryShort_3_5": 0.25,
+            "medium_12_18": 0.50,
+            "longer_18_25": 0.25
+          }
+        },
+        "punctuation": {
+          "questionMarks_per_300_words": 3,
+          "emDashes_per_300_words": 3,
+          "exclamationMarks_per_300_words": 3,
+          "ellipses_per_300_words": 1
+        },
+        "metaphorFrequency": "1 per 250 words",
+        "metaphorStyle": [
+          "Contrarian metaphors",
+          "Status quo",
+          "Breaking the mold",
+          "Conventional wisdom",
+          "Paradigm shifts"
+        ],
+        "formality": 4,
+        "emotionalTone": [
+          "Challenging",
+          "Provocative",
+          "Confident",
+          "Slightly irreverent",
+          "Engaging"
+        ],
+        "pacing": "Challenge conventional idea → evidence → alternative view → implication",
+        "openingHook": "Contrarian statement, myth-busting, or challenge to reader's assumptions",
+        "callToAction": "Rethink this, What if..., Prove me wrong, Question this assumption"
+      },
+      "sentenceExamples": [
+        "Everything you know about cloud setup is wrong.",
+        "Or at least, outdated.",
+        "We're still optimizing for 2019 constraints."
+      ],
+      "exampleTransformation": {
+        "original": "Consider alternative perspectives on infrastructure deployment",
+        "transformed": "Everything you know about cloud setup is wrong. (Or at least, outdated.) We're still optimizing for 2019 constraints. But here's why that doesn't work anymore..."
+      },
+      "platformVariations": {
+        "linkedin": "Thoughtful challenge",
+        "twitter": "Quick provocative take",
+        "email": "Argumentative with evidence",
+        "blog": "Full contrarian essay"
+      }
+    },
+    "data_driven": {
+      "id": "data_driven",
+      "name": "Data-Driven",
+      "emoji": "📊",
+      "tagline": "Numbers-first, evidence-based, analytically rigorous",
+      "description": "For research findings, benchmarks, performance reports, analytical content, metrics breakdowns",
+      "bestFor": [
+        "Research findings",
+        "Benchmarks",
+        "Performance reports",
+        "Analytical content",
+        "Metrics breakdowns",
+        "Data-backed insights"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Quantifiers: percentage, benchmark, correlation",
+            "Analytical verbs: analyzed, measured, validated, demonstrated",
+            "Technical language acceptable",
+            "Specific numbers"
+          ],
+          "avoid": [
+            "Vague language",
+            "Emotional appeals",
+            "Unsupported claims",
+            "Casual tone"
+          ]
+        },
+        "sentenceLength": {
+          "average": 18,
+          "distribution": {
+            "medium_15_18": 0.40,
+            "longer_18_25": 0.50,
+            "veryLong_25_plus": 0.10
+          }
+        },
+        "punctuation": {
+          "colonsBefore Data": "Very frequent",
+          "parentheses_for_sources": "Frequent",
+          "emDashes_for_caveats": "Frequent"
+        },
+        "metaphorFrequency": "1 per 500+ words",
+        "metaphorStyle": [
+          "Data metaphors",
+          "Trend, signal, pattern",
+          "Baseline, baseline drift",
+          "Technical language OK"
+        ],
+        "formality": 8,
+        "emotionalTone": [
+          "Objective",
+          "Measured",
+          "Credible",
+          "Authoritative",
+          "Evidence-focused"
+        ],
+        "pacing": "Methodology → findings → implications → recommendations",
+        "openingHook": "Surprising statistic or research question",
+        "callToAction": "See the full data, Download the report, Review methodology"
+      },
+      "sentenceExamples": [
+        "Analysis of 500+ companies shows average cloud overspend of 31% annually.",
+        "Key drivers: right-sizing (42% of waste), resource scheduling (28%), and reserved instance mismatches (18%).",
+        "Companies implementing all three interventions reduced costs by an average of $2.3M/year."
+      ],
+      "exampleTransformation": {
+        "original": "Many companies waste money on cloud costs",
+        "transformed": "Analysis of 500+ companies shows average cloud overspend of 31% annually. Key drivers: right-sizing (42% of waste), resource scheduling (28%), and reserved instance mismatches (18%)."
+      },
+      "platformVariations": {
+        "linkedin": "Stat + insight",
+        "twitter": "Single metric, highly specific",
+        "email": "Full data breakdown with sources",
+        "blog": "Deep analysis with methodology"
+      }
+    },
+    "minimalist": {
+      "id": "minimalist",
+      "name": "Minimalist",
+      "emoji": "✂️",
+      "tagline": "Maximum impact, minimum words",
+      "description": "For tweets, short tips, headlines, LinkedIn short posts, social snippets",
+      "bestFor": [
+        "Tweets",
+        "Short tips",
+        "Headlines",
+        "LinkedIn short posts",
+        "Social snippets",
+        "Short-form content"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Only essential words",
+            "Strong verbs",
+            "Short nouns",
+            "No filler adjectives"
+          ],
+          "avoid": [
+            "Descriptive language",
+            "Qualifiers",
+            "Complex phrases",
+            "Anything non-essential"
+          ]
+        },
+        "sentenceLength": {
+          "average": 8,
+          "distribution": {
+            "veryShort_5_10": 0.70,
+            "short_10_15": 0.25,
+            "medium_15_plus": 0.05
+          }
+        },
+        "punctuation": {
+          "periods": "Only. Full stop.",
+          "commas": "Minimal",
+          "exclamationMarks": "Very rare",
+          "whiteSpace": "Maximize"
+        },
+        "metaphorFrequency": "<1 per 500 words",
+        "metaphorStyle": [
+          "Minimal metaphors",
+          "Direct language preferred",
+          "Skip the fancy stuff"
+        ],
+        "formality": 2,
+        "emotionalTone": [
+          "Punchy",
+          "Clear",
+          "High-signal",
+          "Confident",
+          "Direct"
+        ],
+        "pacing": "Hook → core insight → implication (everything else cut)",
+        "openingHook": "Shocking statement or immediate value",
+        "callToAction": "Link, emoji, or implied action"
+      },
+      "sentenceExamples": [
+        "Your cloud bill is 2x higher than it needs to be.",
+        "Here's why.",
+        "Cloud costs: overspending 31%. Most teams don't know."
+      ],
+      "exampleTransformation": {
+        "original": "Professional organizations should consider alternative infrastructure solutions that may reduce costs",
+        "transformed": "Your cloud bill is 2x higher than it needs to be. Here's why."
+      },
+      "platformVariations": {
+        "linkedin": "Punchy bullet posts",
+        "twitter": "Maximum brevity, high signal",
+        "email": "Scannable short sections",
+        "blog": "Short articles, white space"
+      }
+    },
+    "warm_expert": {
+      "id": "warm_expert",
+      "name": "Warm Expert",
+      "emoji": "☀️",
+      "tagline": "Knowledgeable but approachable, mentor vibes",
+      "description": "For onboarding content, mentorship, educational content for anxious learners, guidance-heavy posts",
+      "bestFor": [
+        "Onboarding content",
+        "Mentorship",
+        "Educational content",
+        "Anxious learners",
+        "Guidance-heavy posts",
+        "Supportive content"
+      ],
+      "characteristics": {
+        "wordChoice": {
+          "include": [
+            "Friendly tone with expertise",
+            "We language",
+            "Encouragement: actually simple, totally doable",
+            "Supportive language"
+          ],
+          "avoid": [
+            "Condescension",
+            "Overly casual",
+            "Cold expertise",
+            "Implied judgment"
+          ]
+        },
+        "sentenceLength": {
+          "average": 15,
+          "distribution": {
+            "short_10_13": 0.35,
+            "medium_14_16": 0.50,
+            "longer_17_20": 0.15
+          }
+        },
+        "punctuation": {
+          "exclamationMarks_per_300_words": 2,
+          "questionMarks_per_300_words": 2,
+          "emDashes_per_300_words": 1,
+          "ellipses_per_300_words": 1
+        },
+        "metaphorFrequency": "1 per 300 words",
+        "metaphorStyle": [
+          "Supportive metaphors",
+          "Journey, companion, guide",
+          "Step-by-step",
+          "Scaffolding"
+        ],
+        "formality": 5.5,
+        "emotionalTone": [
+          "Encouraging",
+          "Supportive",
+          "Patient",
+          "Confident-in-you",
+          "Warm"
+        ],
+        "pacing": "Normalize concern → share wisdom → empower action → celebrate progress",
+        "openingHook": "Validation of reader's feeling/challenge, then bridge to solution",
+        "callToAction": "You've got this, Let's walk through, I'm here to help"
+      },
+      "sentenceExamples": [
+        "Hey, I know setting this up feels complicated.",
+        "It's not—I promise.",
+        "Let me walk you through this step-by-step."
+      ],
+      "exampleTransformation": {
+        "original": "Infrastructure configuration requires multiple parameters and validation steps",
+        "transformed": "Hey, I know setting this up feels complicated. It's not—I promise. Let me walk you through this step-by-step. You've totally got this."
+      },
+      "platformVariations": {
+        "linkedin": "Approachable insights",
+        "twitter": "Encouraging question",
+        "email": "Supportive mentoring tone",
+        "blog": "Mentoring voice, step-by-step"
+      }
+    }
+  },
+  "recommendations": {
+    "angleToPreset": {
+      "teaching_how_to": {
+        "primary": "educator",
+        "secondary": "warm_expert",
+        "confidence": 0.95
+      },
+      "contrarian_hot_take": {
+        "primary": "provocateur",
+        "secondary": "professional_authority",
+        "confidence": 0.90
+      },
+      "demo_behind_the_scenes": {
+        "primary": "storyteller",
+        "secondary": "friend_chatting",
+        "confidence": 0.95
+      },
+      "research_data": {
+        "primary": "data_driven",
+        "secondary": "professional_authority",
+        "confidence": 0.95
+      },
+      "personal_journey": {
+        "primary": "friend_chatting",
+        "secondary": "storyteller",
+        "confidence": 0.90
+      },
+      "expert_opinion": {
+        "primary": "professional_authority",
+        "secondary": "provocateur",
+        "confidence": 0.85
+      },
+      "community_peer_learning": {
+        "primary": "friend_chatting",
+        "secondary": "warm_expert",
+        "confidence": 0.85
+      },
+      "time_saving": {
+        "primary": "minimalist",
+        "secondary": "data_driven",
+        "confidence": 0.88
+      }
+    },
+    "audienceToPreset": {
+      "technical_ctos": {
+        "primary": "professional_authority",
+        "secondary": "data_driven",
+        "confidence": 0.90
+      },
+      "founders_entrepreneurs": {
+        "primary": "friend_chatting",
+        "secondary": "provocateur",
+        "confidence": 0.85
+      },
+      "beginners_learners": {
+        "primary": "warm_expert",
+        "secondary": "educator",
+        "confidence": 0.95
+      },
+      "busy_professionals": {
+        "primary": "minimalist",
+        "secondary": "data_driven",
+        "confidence": 0.90
+      },
+      "creative_community": {
+        "primary": "storyteller",
+        "secondary": "friend_chatting",
+        "confidence": 0.90
+      },
+      "general_audience": {
+        "primary": "storyteller",
+        "secondary": "warm_expert",
+        "confidence": 0.85
+      }
+    },
+    "contentTypeToPreset": {
+      "demo": {
+        "primary": "storyteller",
+        "secondary": "friend_chatting",
+        "confidence": 0.95
+      },
+      "research": {
+        "primary": "data_driven",
+        "secondary": "professional_authority",
+        "confidence": 0.95
+      },
+      "tutorial": {
+        "primary": "educator",
+        "secondary": "warm_expert",
+        "confidence": 0.95
+      },
+      "opinion": {
+        "primary": "provocateur",
+        "secondary": "friend_chatting",
+        "confidence": 0.90
+      },
+      "story": {
+        "primary": "storyteller",
+        "secondary": "friend_chatting",
+        "confidence": 0.95
+      },
+      "advice": {
+        "primary": "warm_expert",
+        "secondary": "educator",
+        "confidence": 0.88
+      },
+      "news": {
+        "primary": "minimalist",
+        "secondary": "data_driven",
+        "confidence": 0.85
+      }
+    },
+    "platformToPreset": {
+      "linkedin": {
+        "primary": "professional_authority",
+        "secondary": "data_driven",
+        "confidence": 0.90
+      },
+      "twitter": {
+        "primary": "minimalist",
+        "secondary": "provocateur",
+        "confidence": 0.90
+      },
+      "newsletter": {
+        "primary": "storyteller",
+        "secondary": "friend_chatting",
+        "confidence": 0.88
+      },
+      "blog": {
+        "primary": "educator",
+        "secondary": "data_driven",
+        "confidence": 0.85
+      },
+      "social": {
+        "primary": "friend_chatting",
+        "secondary": "storyteller",
+        "confidence": 0.85
+      }
+    }
+  },
+  "promptTemplates": {
+    "professional_authority": "You are writing in the 'Professional Authority' style. Characteristics:\n- Voice: Credible, confident, strategic\n- Word choice: Industry terminology, active voice, power verbs (accelerate, drive, leverage)\n- Sentences: Average 17 words, 20% short, 50% medium, 30% longer\n- Tone: Measured confidence, authoritative\n- Metaphors: 1 per 300-400 words, business/strategic focus\n- Formality: 8.5/10\n- Opening: Surprising statistic or strategic insight\n- CTA: Learn how..., Discover the framework...\n\nWrite the content maintaining these characteristics throughout.",
+    "friend_chatting": "You are writing in the 'Friend Chatting' style. Characteristics:\n- Voice: Warm, relatable, honest, slightly vulnerable\n- Word choice: Conversational vocabulary, contractions, informal tags\n- Sentences: Average 11 words, 45% short (5-10w), 40% medium, 15% longer\n- Tone: Like talking to a knowledgeable friend\n- Metaphors: 1 per 250 words, everyday metaphors\n- Formality: 3/10\n- Opening: Personal anecdote or relatable question\n- CTA: Let me know..., Try it out..., Hit me up...\n\nWrite conversationally, as if messaging a peer.",
+    "storyteller": "You are writing in the 'Storyteller' style. Characteristics:\n- Voice: Engaging, curious, vivid, surprising\n- Word choice: Sensory verbs (discovered, watched), vivid adjectives, show-don't-tell\n- Sentences: Varied rhythm, 20% very short, 50% medium, 30% longer\n- Tone: Narrative arc with emotional beats\n- Metaphors: 1 per 150 words, narrative metaphors\n- Formality: 4.5/10\n- Structure: Problem → Discovery → Action → Result\n- Opening: Scene-setting or conflict introduction\n- CTA: See how we did it, Here's what happened next\n\nWrite with a narrative arc, bringing readers into the story.",
+    "educator": "You are writing in the 'Educator' style. Characteristics:\n- Voice: Encouraging, patient, supportive, clarity-focused\n- Word choice: Instructional verbs (create, configure, validate), clear definitions\n- Sentences: Average 16 words, consistent and reassuring\n- Tone: Clear explanation for intelligent student\n- Metaphors: 1 per 400 words, building metaphors\n- Formality: 6/10\n- Structure: Concept → Example → Application → Practice\n- Opening: Learning outcome statement\n- CTA: Try this, Practice this, Apply to your situation\n\nWrite step-by-step, making content accessible and empowering.",
+    "provocateur": "You are writing in the 'Provocateur' style. Characteristics:\n- Voice: Challenging, confident, provocative, slightly irreverent\n- Word choice: Direct language (wrong, myth, actually), challenging framing\n- Sentences: 25% very short (3-5w), 50% medium, 25% longer\n- Tone: Bold challenge to assumptions\n- Metaphors: 1 per 250 words, contrarian focus\n- Formality: 4/10\n- Structure: Challenge idea → Evidence → Alternative view → Implication\n- Opening: Contrarian statement or myth-busting\n- CTA: Rethink this, What if..., Prove me wrong\n\nChallenge conventional thinking while backing up claims.",
+    "data_driven": "You are writing in the 'Data-Driven' style. Characteristics:\n- Voice: Objective, measured, credible, authoritative through evidence\n- Word choice: Quantifiers, analytical verbs (analyzed, measured), specific numbers\n- Sentences: Average 18 words, 40% medium (15-18w), 50% longer (18-25w)\n- Tone: Rigorous and evidence-focused\n- Metaphors: 1 per 500+ words, data/technical metaphors\n- Formality: 8/10\n- Structure: Methodology → Findings → Implications → Recommendations\n- Opening: Surprising statistic or research question\n- CTA: See the data, Download report, Review methodology\n\nLead with data, cite sources, emphasize methodology.",
+    "minimalist": "You are writing in the 'Minimalist' style. Characteristics:\n- Voice: Punchy, clear, high-signal, confident\n- Word choice: Only essential words, strong verbs, no filler\n- Sentences: Average 8 words, 70% very short (5-10w), 25% short-medium (10-15w)\n- Tone: Direct and impactful\n- Metaphors: <1 per 500 words, direct language preferred\n- Formality: 2/10\n- Structure: Hook → Core insight → Implication\n- Opening: Shocking statement or immediate value\n- CTA: Link, emoji, or implied action\n\nRemove every non-essential word. Maximum impact, minimum prose.",
+    "warm_expert": "You are writing in the 'Warm Expert' style. Characteristics:\n- Voice: Encouraging, supportive, patient, confident-in-you\n- Word choice: Friendly tone with expertise, 'we' language, encouragement words\n- Sentences: Average 15 words, 35% short, 50% medium, 15% longer\n- Tone: Mentor figure, approachable expertise\n- Metaphors: 1 per 300 words, supportive metaphors\n- Formality: 5.5/10\n- Structure: Normalize concern → Share wisdom → Empower → Celebrate\n- Opening: Validate reader's challenge, then bridge to solution\n- CTA: You've got this, Let's walk through, I'm here\n\nBe the supportive mentor who believes in the reader."
+  }
+}

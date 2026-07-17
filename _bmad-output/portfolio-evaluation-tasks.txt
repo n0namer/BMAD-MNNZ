@@ -1,0 +1,72 @@
+PORTFOLIO RE-EVALUATION SWARM
+==============================
+Swarm ID: swarm-1770328473121
+Topology: hierarchical (6 agents max)
+Strategy: specialized (no overlap)
+Mode: PARALLEL (all agents concurrent)
+
+IDEAS TO EVALUATE (7 TOTAL):
+1. Idea-001: Katana-VectorBT (financial autonomy)
+2. Idea-002: Maps Bot
+3. Idea-003: VK Pabl Public Recipes
+4. Idea-004: VK Bot
+5. Idea-005: Sales QA AI
+6. Idea-006: SaaS AI Consilium
+7. Idea-007: DepylBrazil Beauty Franchise (ACTIVE, 9.0/10, TOP-3)
+
+AGENTS DISPATCHED:
+==================
+
+AGENT 1: RESEARCHER (Parallel)
+Task: Gather baseline data on all 7 ideas
+- Read summary files for each idea
+- Extract current scores (if available)
+- Document current status (WIP, completed, blocked)
+- Identify completeness of BMAD workflow coverage
+
+AGENT 2: BMAD VALIDATOR (Parallel)
+Task: Validate all 7 ideas against BMAD methodology
+- Check steps 1-8 coverage for each idea
+- Identify missing BMAD steps
+- Validate deep-think, consilium, risk analysis completion
+- Score BMAD compliance
+
+AGENT 3: RISK ANALYZER (Parallel)
+Task: Re-evaluate risks for all 7 ideas
+- Review current risk assessments
+- Validate contingency plans
+- Identify new/emerging risks
+- Rate risk severity (critical/high/medium/low)
+
+AGENT 4: SCORING SPECIALIST (Parallel)
+Task: Re-score all 7 ideas using MCDA criteria
+Criteria (5):
+1. Impact (implementation benefit)
+2. Feasibility (technical + resource constraints)
+3. Strategic Alignment (business goals fit)
+4. Risk Level (inverse - lower risk = higher score)
+5. BMAD Coverage (methodology completeness)
+
+AGENT 5: PORTFOLIO OPTIMIZER (Parallel)
+Task: Optimize portfolio across all 7 ideas
+- Prioritize all 7 ideas (ranked list)
+- Identify WIP conflicts (what's actively worked on?)
+- Cross-project dependencies
+- Resource allocation recommendations
+- Recommend what to START, PAUSE, CONTINUE
+
+SHARED COORDINATION NAMESPACE:
+============================
+All agents store findings to: coordination/portfolio-reevaluation/*
+Format: JSON with idea-ID as key
+Fields: current_score, suggested_score, risks, compliance, priority_rank
+
+TIMELINE:
+=========
+Start: 2026-02-06 00:00:00Z (parallel)
+Collect: ~10-15 minutes for all agents
+Consolidate: ~5 minutes
+Report: ~5 minutes
+Total: ~25 minutes
+
+STATUS: AGENTS DISPATCHED

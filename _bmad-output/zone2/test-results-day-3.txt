@@ -1,0 +1,4 @@
+PASS test/state-machine.test.ts
+PASS test/manifest.test.ts
+Test Suites: 2 passed, 2 total
+Tests:       61 passed, 61 total

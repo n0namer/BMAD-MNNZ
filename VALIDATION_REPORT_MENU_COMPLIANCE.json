@@ -1,0 +1,332 @@
+{
+  "report_title": "Menu Handling Compliance Validation Report",
+  "analysis_scope": "idea-to-post-pipeline workflow steps",
+  "analysis_date": "2026-01-28",
+  "validation_criteria": {
+    "criterion_1": "All steps with menus must have [A]/[P]/[C] options documented",
+    "criterion_2": "Each menu must have explicit handler section",
+    "criterion_3": "'Halt and wait' instruction must be present",
+    "criterion_4": "[C] option must save state and load next step",
+    "criterion_5": "Non-[C] options must redisplay menu"
+  },
+  "executive_summary": {
+    "total_steps_with_menus": 95,
+    "overall_status": "NON_COMPLIANT",
+    "compliance_score": "20%",
+    "critical_issues": 139,
+    "key_risk": "Menu handling is not standardized, making automated execution difficult"
+  },
+  "findings": {
+    "menusFound": {
+      "total": 95,
+      "distribution": {
+        "main_menus": 3,
+        "mode_menus": 3,
+        "workflow_menus": 89
+      }
+    },
+    "handlerCompliance": {
+      "handler_sections": {
+        "total_files": 95,
+        "compliant": 19,
+        "non_compliant": 76,
+        "compliance_percent": 20.0,
+        "status": "CRITICAL_VIOLATION"
+      },
+      "halt_instructions": {
+        "total_files": 95,
+        "present": 32,
+        "missing": 63,
+        "compliance_percent": 33.7,
+        "status": "CRITICAL_VIOLATION",
+        "pattern": "🛑 ALWAYS halt|halt and wait|Wait for user|ALWAYS halt"
+      },
+      "menu_redirect_logic": {
+        "total_files": 95,
+        "compliant": 87,
+        "non_compliant": 8,
+        "compliance_percent": 91.6,
+        "status": "ACCEPTABLE",
+        "patterns": [
+          "[M] Back to MENU",
+          "[<] Back to",
+          "Load ... menu.md"
+        ]
+      },
+      "state_save_load_pattern": {
+        "total_files": 95,
+        "implemented": 42,
+        "missing": 53,
+        "coverage_percent": 44.2,
+        "status": "PARTIAL_COMPLIANCE",
+        "pattern": "Load, read entire file, then execute"
+      }
+    },
+    "violations": {
+      "critical_violations": [
+        {
+          "violation_type": "Missing handler section",
+          "count": 76,
+          "files": [
+            "step-01-init.md",
+            "step-01b-continue.md",
+            "mode-c/mode-c-01/step-c-01-add-idea.md",
+            "mode-c/mode-c-02/step-c-02a-load-ideas.md",
+            "mode-c/mode-c-02/step-c-02c-research.md",
+            "mode-c/mode-c-02/step-c-02d-results.md",
+            "mode-c/mode-c-03/step-c-03c-draft.md",
+            "mode-c/mode-c-03/step-c-03d-variants.md",
+            "mode-c/mode-c-05/step-c-05d-finalize.md",
+            "mode-c/mode-c-06/step-c-06b-merge-strategy.md",
+            "mode-c/mode-c-06/step-c-06c-generate.md",
+            "mode-c/mode-c-07/step-c-07b-deepdive.md",
+            "mode-c/mode-c-07/step-c-07c-recommendations.md",
+            "mode-c/mode-c-08/step-c-08a-backup.md",
+            "mode-c/mode-c-08/step-c-08b-maintenance.md",
+            "[... and 61 more files]"
+          ],
+          "severity": "HIGH",
+          "impact": "Prevents programmatic parsing of menu handlers; manual interpretation required"
+        },
+        {
+          "violation_type": "Missing halt/wait instruction",
+          "count": 63,
+          "files": [
+            "mode-c/mode-c-02/step-c-02b-select-idea.md",
+            "mode-c/mode-c-02/step-c-02c-research.md",
+            "mode-c/mode-c-03/step-c-03a-select-idea.md",
+            "mode-c/mode-c-03/step-c-03b-select-angle.md",
+            "mode-c/mode-c-03/step-c-03c-draft.md",
+            "mode-c/mode-c-03/step-c-03d-variants.md",
+            "mode-c/mode-c-03/step-c-03e-finalize.md",
+            "mode-c/mode-c-04/step-c-04b-results.md",
+            "mode-c/mode-c-04/step-c-04c-actions.md",
+            "[... and 54 more files]"
+          ],
+          "severity": "HIGH",
+          "impact": "Risk of proceeding without waiting for user input; workflow continuity compromised"
+        }
+      ],
+      "warning_violations": [
+        {
+          "violation_type": "Missing state save/load pattern",
+          "count": 53,
+          "severity": "MEDIUM",
+          "impact": "State may be lost between menu transitions; session continuity at risk"
+        },
+        {
+          "violation_type": "Missing menu redirect for edge cases",
+          "count": 8,
+          "severity": "LOW",
+          "impact": "Limited to finalize/summary steps; acceptable in context"
+        }
+      ]
+    }
+  },
+  "compliance_assessment": {
+    "handler_sections": {
+      "requirement": "All menu steps must have '### 3. Handle User Selection' section",
+      "current_status": "20% compliant (19/95)",
+      "gap": "76 files missing",
+      "assessment": "CRITICAL - Majority of files do not have standardized handler structure"
+    },
+    "halt_instructions": {
+      "requirement": "All menus must contain explicit halt/wait instruction",
+      "current_status": "33.7% compliant (32/95)",
+      "gap": "63 files missing",
+      "assessment": "CRITICAL - Two-thirds of menus lack halt instructions"
+    },
+    "menu_redirect": {
+      "requirement": "[M] or equivalent must return to menu; non-[C] options redisplay",
+      "current_status": "91.6% compliant (87/95)",
+      "gap": "8 files missing",
+      "assessment": "ACCEPTABLE - Good coverage; exceptions are edge cases"
+    },
+    "state_transitions": {
+      "requirement": "[C] must 'save state and load entire next file before execution'",
+      "current_status": "44.2% implemented (42/95)",
+      "gap": "53 files missing",
+      "assessment": "PARTIAL - Less than half have explicit state management"
+    },
+    "overall_assessment": "NON_COMPLIANT - Majority of files violate core requirements"
+  },
+  "root_causes": [
+    {
+      "cause": "Inconsistent template application",
+      "evidence": "Only main menus (3 files) follow consistent pattern; workflow steps (89 files) are ad-hoc",
+      "affected_count": 92
+    },
+    {
+      "cause": "Missing standardized template",
+      "evidence": "No universal template.md; each step creates own handler pattern",
+      "affected_count": 89
+    },
+    {
+      "cause": "Incomplete documentation of handler requirements",
+      "evidence": "CRITICAL RULES mention halt/wait, but not consistently implemented",
+      "affected_count": 63
+    },
+    {
+      "cause": "State management not enforced",
+      "evidence": "Some files mention 'Load entire file' pattern; others skip it entirely",
+      "affected_count": 53
+    }
+  ],
+  "detailed_violation_breakdown": {
+    "by_mode": {
+      "main_menu (step-00-menu.md)": {
+        "total": 1,
+        "violations": 0,
+        "status": "COMPLIANT"
+      },
+      "mode-c (CREATE)": {
+        "total": 23,
+        "missing_handler": 16,
+        "missing_halt": 15,
+        "status": "NON_COMPLIANT"
+      },
+      "mode-e (EDIT)": {
+        "total": 35,
+        "missing_handler": 31,
+        "missing_halt": 24,
+        "status": "NON_COMPLIANT"
+      },
+      "mode-v (VALIDATE)": {
+        "total": 10,
+        "missing_handler": 8,
+        "missing_halt": 6,
+        "status": "NON_COMPLIANT"
+      },
+      "mode-yolo (YOLO)": {
+        "total": 1,
+        "missing_handler": 0,
+        "missing_halt": 1,
+        "status": "MOSTLY_COMPLIANT"
+      },
+      "workflow_menus": {
+        "total": 25,
+        "missing_handler": 21,
+        "missing_halt": 17,
+        "status": "NON_COMPLIANT"
+      }
+    }
+  },
+  "example_violations": {
+    "example_1": {
+      "file": "mode-c/mode-c-02/step-c-02c-research.md",
+      "issue": "Has menu options [W] [A] [M] but no handler section",
+      "missing": [
+        "### 3. Handle User Selection section",
+        "🛑 ALWAYS halt and wait for user input"
+      ],
+      "consequence": "Menu execution relies on manual interpretation; cannot be automated"
+    },
+    "example_2": {
+      "file": "mode-c/mode-c-03/step-c-03a-select-idea.md",
+      "issue": "Missing halt instruction",
+      "missing": [
+        "Explicit 'Wait for user input' instruction"
+      ],
+      "consequence": "Workflow could proceed without user selection"
+    },
+    "example_3": {
+      "file": "mode-c/mode-c-05/step-c-05d-finalize.md",
+      "issue": "No handler section; no halt instruction",
+      "missing": [
+        "### 3. Handle User Selection",
+        "Halt instruction"
+      ],
+      "consequence": "Finalization step unclear whether it waits for input or proceeds automatically"
+    }
+  },
+  "recommendations": {
+    "immediate_actions": [
+      {
+        "priority": "CRITICAL",
+        "action": "Create standardized menu handler template",
+        "effort": "Low (2-4 hours)",
+        "benefit": "Provides reference for fixing all 76 files",
+        "template": {
+          "section_name": "### 3. Handle User Selection",
+          "required_elements": [
+            "Option descriptions (what each choice does)",
+            "Explicit halt/wait instruction at top",
+            "Handler for each menu option",
+            "[M] Back to menu handler",
+            "[C] Save state and proceed handler"
+          ]
+        }
+      },
+      {
+        "priority": "CRITICAL",
+        "action": "Add halt instructions to 63 files",
+        "effort": "Medium (4-6 hours)",
+        "benefit": "Prevent unintended workflow progression",
+        "approach": "Batch add '🛑 ALWAYS halt and wait for user input' after menu display"
+      },
+      {
+        "priority": "HIGH",
+        "action": "Add handler sections to 76 files",
+        "effort": "High (8-12 hours)",
+        "benefit": "Enable programmatic parsing; standardize execution",
+        "approach": "Use template to structure handler blocks; validate against criteria"
+      }
+    ],
+    "standardization_requirements": [
+      {
+        "requirement": "All menus must have explicit handler section",
+        "location": "After menu display (step 3 in execution)",
+        "format": "### 3. Handle User Selection"
+      },
+      {
+        "requirement": "Halt instruction must appear before waiting for input",
+        "pattern": "🛑 ALWAYS halt and wait for user input",
+        "placement": "Top of handler section"
+      },
+      {
+        "requirement": "All menu options must have handler",
+        "format": "**[X] Option Name:**\\nDescription + action"
+      },
+      {
+        "requirement": "[C] must explicitly save state and load next file",
+        "pattern": "Load, read entire file, then execute"
+      },
+      {
+        "requirement": "Non-[C] options must redisplay menu or navigate",
+        "options": [
+          "Return to menu",
+          "Go back to previous menu",
+          "Halt and wait for new selection"
+        ]
+      }
+    ]
+  },
+  "validation_checklist": {
+    "for_each_file_with_menu": [
+      "[ ] Has ### 3. Handle User Selection section?",
+      "[ ] Contains explicit halt/wait instruction?",
+      "[ ] Each menu option [1-8] has handler block?",
+      "[ ] [M] Back to MENU handler documented?",
+      "[ ] [A] Advanced Elicitation returns to menu?",
+      "[ ] [P] Party Mode returns to menu?",
+      "[ ] [C] Save state + load next file pattern present?",
+      "[ ] Non-[C] options redisplay menu or navigate back?",
+      "[ ] State transitions documented?",
+      "[ ] File paths in handlers are correct relative paths?"
+    ]
+  },
+  "next_steps": {
+    "phase_1_assessment": "Document current violations and identify root causes",
+    "phase_2_template": "Create and publish standardized template",
+    "phase_3_remediation": "Apply template to priority files (main menus, critical paths)",
+    "phase_4_completion": "Complete remediation of remaining files",
+    "phase_5_validation": "Verify all files meet compliance criteria",
+    "phase_6_automation": "Enable programmatic parsing and execution"
+  },
+  "conclusion": {
+    "summary": "Menu handling compliance is critically low (20%). Majority of workflow steps lack standardized handler sections and halt instructions.",
+    "risk_level": "HIGH - Prevents reliable workflow automation; manual execution required",
+    "recommendation": "Implement immediate remediation using standardized template; prioritize main menus and critical workflow paths",
+    "effort_estimate": "16-22 hours total; can be parallelized"
+  }
+}
