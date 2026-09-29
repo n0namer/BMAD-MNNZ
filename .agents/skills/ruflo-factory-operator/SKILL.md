@@ -18,7 +18,8 @@ Recover project truth, prove the plan, then spend worker tokens. This skill is p
    - RUFLO_OPERATING_CONTRACT.md when changing Factory/retrieval/learning behavior.
 3. Activate canonical bmad-help, resolve project BMad configuration, and recover the active authoritative plan/status instead of creating a competing PLAN.
 4. Inspect branch/HEAD/recent commits/dirty state, deterministic tests/runtime evidence, Ruflo profile/evidence, and live CrewSync sessions/tasks/claims/leases/locks.
-5. Inventory existing capabilities/resources before proposing new code.
+5. When a curated Factory Codex home is configured, use it for Factory workers instead of inheriting unrelated global skills/plugins/auth; ambient global Codex state is not project truth.
+6. Inventory existing capabilities/resources before proposing new code.
 
 If local Factory docs are unavailable, do not invent machine capabilities. Continue read-only from this skill plus target-project truth and report the missing Factory evidence.
 
